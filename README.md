@@ -65,10 +65,10 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
 
 You may use any of these filters in any order:
 
-**required**  
+**`required`**  
 The filed is required.
 
-**number**  
+**`number`**  
 Must be a number.
 
 **digits**  
