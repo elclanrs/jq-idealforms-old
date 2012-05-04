@@ -53,9 +53,9 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
     <!-- Radio -->
     <p>
         <label>Options:</label>
-        <label><input type="radio" name="options"/>One</label>
-        <label><input type="radio" name="options"/>Two</label>
-        <label><input type="radio" name="options"/>Three</label>
+        <label><input type="radio" name="options" value="One"/>One</label>
+        <label><input type="radio" name="options" value="Two"/>Two</label>
+        <label><input type="radio" name="options" value="Three"/>Three</label>
     </p>
 
 </form>
