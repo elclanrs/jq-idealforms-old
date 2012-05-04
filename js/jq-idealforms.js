@@ -85,8 +85,8 @@
             var actions = {
                 init: (function() {
                     $select.css({
-                        // position: 'absolute',
-                        // left: '-9999px'
+                        position: 'absolute',
+                        left: '-9999px'
                     });
                     Select.select.insertAfter($select);
                     Select.sub.hide();
