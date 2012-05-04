@@ -194,8 +194,13 @@ $('#my-form').idealforms({
 
 When you open `jq-idealforms.less`, all user options are located at the beginning of the file. You can safely edit all values from the "user config". The "extra" options must be edited wisely since most of the variables here are relative to other variables defined elsewhere.
 
-The names of the user config variables are pretty self-explanatory. If you screw up you can always go back. 
+The names of the user config variables are pretty self-explanatory. If you screw up you can always go back.
 
+You can change the width of a any input by its id:
+
+```css
+#comments { width: 200px; }
+```
 Don't forget the compile into `css`.
 
 Enjoy.
