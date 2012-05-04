@@ -167,6 +167,7 @@
                                     return re.test($(this).text());
                                 }).first().index();
                             actions.change(!~curIdx ? selIdx : curIdx);
+                            actions.scrollToItem();
                         }
                     };
                     keys[key] ? keys[key]() : keys['default']();
