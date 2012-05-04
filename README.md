@@ -155,9 +155,12 @@ $('#my-form').idealforms({
             }
         },
         'options': {
-            filters: 'required'
+            filters: 'min'
+            data: {
+                min: 1
+            }
             errors: {
-                required: 'Check only <strong>1</strong> option.'
+                min: 'Check only <strong>1</strong> option.'
             }
         }
     },
