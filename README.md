@@ -1,7 +1,4 @@
-jq-idealforms
-=============
-
-The ultimate form plugin!
+* * *
 
 **[DEMO](http://elclanrs.github.com/jq-idealforms/)**  
 **Tested:** IE8+, Webkit, Firefox 3.6+, Opera 11+
