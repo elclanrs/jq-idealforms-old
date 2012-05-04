@@ -157,6 +157,7 @@
                     var keys = {
                         9: function(){ // Tab
                             if (Select.select.is('.menu')) {
+                                actions.blur();
                                 actions.hideMenu();
                             } else {
                                 return false;
