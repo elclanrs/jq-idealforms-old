@@ -3,6 +3,7 @@
 .ui-input{font-family:inherit;height:33px;line-height:33px;padding:0 .8em;}
 .qval-form{font-size:15px;font-family:inherit;}.qval-form *{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;outline:0;border-radius:0 \9 !important;}
 .qval-form p{float:left;clear:both;position:relative;margin:.5em 0;}
+.qval-form ul,.qval-form li{padding:0;margin:0;}
 .qval-form .qval-label,.qval-form .field{float:left;position:relative;}
 .qval-form .qval-label{max-width:auto;padding-right:1.7em;text-align:right;}
 .qval-form input[type="text"],.qval-form input[type="password"],.qval-form textarea,.qval-form select{padding:.4em;width:225px;border:1px solid #b3b3b3;background:#ffffff;outline:0;font-family:inherit;border-radius:2px;}
