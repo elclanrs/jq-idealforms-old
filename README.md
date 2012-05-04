@@ -63,23 +63,54 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
 
 ### jQuery:
 
-**Filters**
-* required
+You may use any of these filters in any order:
+
+**required**
 The filed is required.
-* number
-* digits
-* name
-* username
-* pass
-* stringpass
-* email
-* phone
-* zip
-* url
-* min
-* max
-* date
-* exclude
+
+**number**
+Must be a number.
+
+**digits**
+Only digits.
+
+**name**
+Must be at least 3 characters long, and must only contain letters.
+
+**username**
+Must be at between 4 and 32 characters long and start with a letter. You may use letters, numbers, underscores, and one dot (.)
+
+**pass**
+Must be at least 6 characters long, and contain at least one number, one uppercase and one lowercase letter.
+
+**strongpass**
+Must be at least 8 characters long and contain at least one uppercase and one lowercase letter and one number or special character.
+
+**email**
+Must be a valid e-mail address.
+
+**phone**
+Must be a valid US phone number. (you can add a customs filters for other countries)
+
+**zip**
+Must be a valid US zip code. (ditto)
+
+**url**
+Must be a valid URL.
+
+**min**
+* Must be at least `x` characters minimum.
+* Must have at least `x` checkboxes checked.
+
+**max**
+* `x` characters maximum.
+* No more than `x` checkboxes checked.
+
+**date**
+Must be a valid date in this format `mm/dd/yy/` (ditto)
+
+**exclude**
+Exclude an array of values from validating.
 
 ```javascript
 $('#my-form').quickValidate({
