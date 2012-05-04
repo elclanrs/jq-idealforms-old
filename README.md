@@ -160,6 +160,29 @@ $('#my-form').idealforms({
                 required: 'Check only <strong>1</strong> option.'
             }
         }
+    },
+    // Custom filters
+    filters: {
+        custom: {
+            regex: /regularexpression/,
+            error: 'My custom error'
+        },
+        another: {
+            regex: function(input, value) {
+                // input: {
+                //    userOptions: user options of the field (filters, data, errors)
+                //    input: the jQuery input object
+                //}
+                this.error = 'My custom ' + value;     
+            }
+        }
+    }
+    // Callbacks
+    onSuccess: function(e){ 
+        // Form validates
+    },
+    onFail: function(){
+        // Form does NOT validate        
     }
     
 });
