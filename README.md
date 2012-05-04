@@ -22,7 +22,7 @@ Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
 Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plugin and the `jq-idealforms.css` stylesheet into your project as well as the [`normalize.css`](http://necolas.github.com/normalize.css/) reset.
 
-### HTML:
+### Markup:
 
 ```html
 <form id="my-form">
@@ -61,7 +61,7 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
 </form>
 ```
 
-### jQuery:
+### Using the plugin:
 
 **You may use any of these filters in any order:**
 
@@ -112,8 +112,10 @@ Must be a valid date in this format `mm/dd/yy/` (ditto)
 `exclude`  
 * Prevent validation if the value matches any value in the given array.
 
+Call **jq-idealforms** on your form. Since the plugin works on each form separately you need to make a call on each and every form you want to make ideal. In most cases it will only be one form.
+
 ```javascript
-$('#my-form').quickValidate({
+$('#my-form').idealforms({
     
     // For consistency all keys
     // must be in quotes
@@ -140,7 +142,7 @@ $('#my-form').quickValidate({
                 exclude: 'Choose a color'
             },
             errors: {
-                exclude: 'Choose a color from the list.'
+                exclude: 'Choose a color from the list.' // Custom error
             }
         },
         'langs[]': {
@@ -162,3 +164,15 @@ $('#my-form').quickValidate({
     
 });
 ```
+
+### Theming:
+
+**jq-idealforms** relays on a carefully crafted [LESS](http://lesscss.org/) stylesheet, `../css/jq-idealforms.less`. From this file you can tweak every detail of the input's appearance, from the simplest text input, to the select menus, radios, and checkboxes.
+
+When you open `jq-idealforms.less`, all user options are located at the beginning of the file. You can safely edit all values from the "user config". The "extra" options must be edited wisely since most of the variables here are relative to other variables defined elsewhere.
+
+The names of the user config variables are pretty self-explanatory. If you screw up you can always go back. 
+
+Don't forget the compile into `css`.
+
+Enjoy.
