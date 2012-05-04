@@ -9,6 +9,13 @@
 
 **jq-idealforms** is a small jQuery plugin to build awesome responsive forms with customizable input elements, full keyboard support and "on the spot" validation.
 
+### Features:
+* Fully responsive (aka adaptative, adapts to the container, no css media queries needed)
+* Keyboard support
+* Customizable input types with [LESS](http://lesscss.org/).
+* "On the spot" validation
+* `placeholder` support for every browser
+
 Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
 # How to use it:
@@ -21,7 +28,7 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
 <form id="my-form">
 
     <!-- Text -->
-    <p><label>Date:</label><input type="text" placeholder="mm/dd/yy" class="required date"/></p>
+    <p><label>Username:</label><input name="username" type="text" placeholder="mm/dd/yy"/></p>
 
     <!-- Select -->
     <p>
@@ -50,4 +57,14 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
     </p>
 
 </form>
+```
+
+### jQuery:
+
+```javascript
+$('#my-form').quickValidate({
+    
+    
+    
+});
 ```
