@@ -63,7 +63,7 @@
     @error-width: @input-width / 1.2;
     @icon-padding: @icon-size/2;
     @arrow-size: (@font-size/1.4);
-    @select-scroll-size: 9; /* 9 items in scroll view */
+    @select-scroll-size: 7; /* 9 items in scroll view */
     @select-valid-border: none;
     @select-invalid-border: none;
     
@@ -449,33 +449,29 @@
     .qval-radiocheck {
         position: relative;
         width: @input-width;
-        padding: 1em;
-        line-height: 20px;
+        padding: .8em;
         font-size: @small-font-size;
-        color: darken(@radiocheck-bg, 60%);
+        color: darken(@radiocheck-bg, 80%);
         border-radius: @border-radius;
         border: @border-width solid darken(@radiocheck-bg, 30%);
         .gradient(@radiocheck-bg, lighten(@radiocheck-bg, 20%));
         label, input { cursor: pointer; }
         label {
+            line-height: @radiocheck-icon-height;
             float: left;
             clear: left;
-            margin: .2em 0;
-            padding-left: @radiocheck-icon-width + @font-size/2;
-        }
-        input {
-            margin-right: .5em;
+            margin: .4em 0;
+            vertical-align: bottom;
+            margin-left: @radiocheck-icon-width / 2;
         }
     }
     .qval-check,
     .qval-radio {
-        margin-left: -@radiocheck-icon-width - @font-size/2;
-        position: relative;
         float: left;
         background: url(@radiocheck-sprite) left top no-repeat;
         width: @radiocheck-icon-width;
         height: @radiocheck-icon-height;
-        margin-right: @font-size/2;
+        margin-right: .5em;
     }
     .qval-radio {
         background-position: left bottom;
