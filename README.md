@@ -63,10 +63,10 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
 
 ### jQuery:
 
-You may use any of these filters in any order:
+**You may use any of these filters in any order:**
 
 `required`  
-The filed is required.
+The field is required.
 
 `number`  
 Must be a number.
@@ -110,7 +110,7 @@ Must be a valid URL.
 Must be a valid date in this format `mm/dd/yy/` (ditto)
 
 `exclude`  
-Exclude an array of values from validating.
+* Prevent validation if the value matches any value in the given array.
 
 ```javascript
 $('#my-form').quickValidate({
@@ -120,6 +120,9 @@ $('#my-form').quickValidate({
     inputs: {
         'username': {
             filters: 'required username'
+        },
+        'date': {
+            filters: 
         }
     }
     
