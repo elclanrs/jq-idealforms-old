@@ -7,7 +7,7 @@
 
 # What's jq-idealforms:
 
-**jq-idealforms** is a small jQuery plugin to build awesome responsive forms with customizable input elements, full keyboard support and "on the spot" validation.
+**jq-idealforms** is a small framework to build awesome responsive forms. It's built on top of jQuery and LESS.
 
 ### Features:
 * Fully responsive (aka adaptive, adapts to the container, no css media queries needed)
@@ -194,8 +194,15 @@ $('#my-form').idealforms({
 
 When you open `jq-idealforms.less`, all user options are located at the beginning of the file. You can safely edit all values from the "user config". The "extra" options must be edited wisely since most of the variables here are relative to other variables defined elsewhere.
 
-The names of the user config variables are pretty self-explanatory. If you screw up you can always go back. 
+The names of the user config variables are pretty self-explanatory. If you screw up you can always go back.
 
+You'll have to try out different values and widths depending on your container's width. Usually, adjusting the font should be enough in most cases, but if the font becomes too big or too small then it's a good idea to tweak the input's and/or error's width. The error is included in the width of the form, meaning that the form will become responsive as soon as the container can no longer wrap the the field including the error. This helps to prevent the error from hiding outside the window if the form is aligned to the right and the browser's window is small.
+
+The width of all inputs is auto-calculated but you can change the width of any input by targeting its id:
+
+```css
+#comments { width: 200px; }
+```
 Don't forget the compile into `css`.
 
 Enjoy.
