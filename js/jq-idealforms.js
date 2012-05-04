@@ -4,7 +4,6 @@
 
     * Author: Cedric Ruiz
     * License: GPLv2
-    * Website: https://github.com/elclanrs/jq-quickvalidate
 
 -------------------------------------------------------- */
 
