@@ -10,7 +10,7 @@
 **jq-idealforms** is a small jQuery plugin to build awesome responsive forms with customizable input elements, full keyboard support and "on the spot" validation.
 
 ### Features:
-* Fully responsive (aka adaptative, adapts to the container, no css media queries needed)
+* Fully responsive (aka adaptive, adapts to the container, no css media queries needed)
 * Keyboard support
 * Customizable input types with [LESS](http://lesscss.org/).
 * "On the spot" validation
