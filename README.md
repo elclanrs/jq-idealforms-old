@@ -139,7 +139,7 @@ $('#my-form').idealforms({
         'colors': {
             filters: 'exclude',
             data: {
-                exclude: 'Choose a color'
+                exclude: ['Choose a color']
             },
             errors: {
                 exclude: 'Choose a color from the list.' // Custom error
