@@ -85,8 +85,8 @@
             var actions = {
                 init: (function() {
                     $select.css({
-                        position: 'absolute',
-                        left: '-9999px'
+                        // position: 'absolute',
+                        // left: '-9999px'
                     });
                     Select.select.insertAfter($select);
                     Select.sub.hide();
@@ -244,7 +244,7 @@
                     $select.on({
                         'blur.menu': events['blur.menu'],
                         'focus.menu' : events.focus,
-                        'keydown.menu' : events.keydown
+                        'keyup.menu' : events.keydown
                     });
                     Select.select.on('mousedown.menu', events['hideOutside.menu']);
                     Select.items.on('click.menu', events['clickItem.menu']);
@@ -260,7 +260,7 @@
                     $select.on({
                         'blur.list': events['blur.list'],
                         'focus.list' : events.focus,
-                        'keydown.list' : events.keydown
+                        'keyup.list' : events.keydown
                     });
                     Select.select.on('mousedown.list', events['mousedown.list']);
                     Select.items.on('click.list', events['clickItem.list']);
