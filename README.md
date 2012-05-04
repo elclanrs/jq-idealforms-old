@@ -7,7 +7,7 @@
 
 # What's jq-idealforms:
 
-**jq-idealforms** is a small framework to build awesome responsive forms. It's buillt on top of jQuery and LESS.
+**jq-idealforms** is a small framework to build awesome responsive forms. It's built on top of jQuery and LESS.
 
 ### Features:
 * Fully responsive (aka adaptive, adapts to the container, no css media queries needed)
