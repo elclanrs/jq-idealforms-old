@@ -1,7 +1,7 @@
 * * *
 
 **[DEMO](http://elclanrs.github.com/jq-idealforms/)**  
-**Tested:** IE8+, Webkit, Firefox 3.6+, Opera 11+
+**Tested:** IE8+, Webkit, Firefox & Opera
 
 * * *
 
@@ -15,7 +15,7 @@ Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
 Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plugin and the `jq-idealforms.css` stylesheet into your project as well as the [`normalize.css`](http://necolas.github.com/normalize.css/) reset.
 
-## HTML:
+### HTML:
 
 ```html
 <form id="my-form">
