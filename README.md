@@ -53,9 +53,9 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
     <!-- Radio -->
     <p>
         <label>Options:</label>
-        <label><input type="radio" name="radio"/>One</label>
-        <label><input type="radio" name="radio"/>Two</label>
-        <label><input type="radio" name="radio"/>Three</label>
+        <label><input type="radio" name="options"/>One</label>
+        <label><input type="radio" name="options"/>Two</label>
+        <label><input type="radio" name="options"/>Three</label>
     </p>
 
 </form>
@@ -119,10 +119,44 @@ $('#my-form').quickValidate({
     // must be in quotes
     inputs: {
         'username': {
-            filters: 'required username'
+            filters: 'required username exclude',
+            data: {
+                exclude: ['user', 'username', 'admin'] // Case sensitive
+            }
         },
         'date': {
-            filters: 
+            filters: 'date'            
+        },
+        'comments': {
+            filters: 'min max',
+            data: {
+                min: 50
+                max: 200
+            }
+        },
+        'colors': {
+            filters: 'exclude',
+            data: {
+                exclude: 'Choose a color'
+            },
+            errors: {
+                exclude: 'Choose a color from the list.'
+            }
+        },
+        'langs[]': {
+            filters: 'min',
+            data: {
+                min: 2
+            },
+            errors: {
+                min: 'Check at least <strong>2</strong> languages.'
+            }
+        },
+        'options': {
+            filters: 'required'
+            errors: {
+                required: 'Check only <strong>1</strong> option.'
+            }
         }
     }
     
