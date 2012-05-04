@@ -48,7 +48,7 @@
     @select-focus: @button-focus;
     
     /* Radio & Checkbox */
-    @radiocheck-bg: #eee;
+    @radiocheck-bg: #fff;
     @radiocheck-sprite: "../img/radiocheck.png";
     @radiocheck-icon-width: 17px;
     @radiocheck-icon-height: 17px;
@@ -159,10 +159,7 @@
         position: relative;
         margin: .5em 0;
     }
-    ul, li {
-        padding: 0;
-        margin: 0;
-    }
+    ul, li { margin: 0; padding: 0; }
     .qval-label,
     .field {
         float: left;
@@ -393,7 +390,7 @@
             .gradient(@select-bg, lighten(@select-bg, 10%));
             .box-shadow(0 @border-width @border-width rgba(0,0,0,.2));
             color: @color;
-            border: @border-width solid darken(@select-bg, 20%);
+            border: @border-width solid darken(@select-bg, 30%);
             border-top: 0;
             border-radius: 0 0 @border-radius @border-radius;
             /* Last item fix round border */
@@ -457,13 +454,14 @@
         font-size: @small-font-size;
         color: darken(@radiocheck-bg, 60%);
         border-radius: @border-radius;
-        border: @border-width solid darken(@radiocheck-bg, 20%);
+        border: @border-width solid darken(@radiocheck-bg, 30%);
         .gradient(@radiocheck-bg, lighten(@radiocheck-bg, 20%));
         label, input { cursor: pointer; }
         label {
             float: left;
             clear: left;
             margin: .2em 0;
+            padding-left: @radiocheck-icon-width + @font-size/2;
         }
         input {
             margin-right: .5em;
@@ -471,12 +469,13 @@
     }
     .qval-check,
     .qval-radio {
+        margin-left: -@radiocheck-icon-width - @font-size/2;
         position: relative;
         float: left;
         background: url(@radiocheck-sprite) left top no-repeat;
         width: @radiocheck-icon-width;
         height: @radiocheck-icon-height;
-        margin-right: .5em;
+        margin-right: @font-size/2;
     }
     .qval-radio {
         background-position: left bottom;
