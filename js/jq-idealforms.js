@@ -99,6 +99,13 @@
                         e.preventDefault();
                     }
                 },
+                // Fix loosing focus when scrolling
+                // and selecting item with keyboard
+                focusHack: function(){
+                    setTimeout(function () {
+                        $select.trigger('focus');
+                    }, 1);
+                },
                 focus: function(){
                     Select.select.addClass('focus');
                     $(document).on('keydown.noscroll', actions.noWindowScroll);
@@ -148,6 +155,13 @@
                 keydown: function(key) {
                     var idx = $select.find('option:selected').index();
                     var keys = {
+                        9: function(){ // Tab
+                            if (Select.select.is('.menu')) {
+                                actions.blur();
+                            } else {
+                                return false;
+                            }
+                        },
                         13: function() { // Enter
                             Select.sub.is(':visible') ? actions.hideMenu() : actions.showMenu();
                         },
@@ -168,6 +182,9 @@
                                 }).first().index();
                             actions.change(!~curIdx ? selIdx : curIdx);
                             actions.scrollToItem();
+                            $select.trigger('blur');
+                            actions.showMenu();
+                            actions.focusHack();
                         }
                     };
                     keys[key] ? keys[key]() : keys['default']();
@@ -207,17 +224,12 @@
                             $(document).off('mousedown.qval');
                             $select.on('blur.menu', events['blur.menu']);
                         } else {
-                            // Fix loosing focus when scrolling
-                            setTimeout(function () {
-                                $select.trigger('focus');
-                            }, 1);
+                            actions.focusHack();
                         }
                     });
                 },
                 'mousedown.list': function(){
-                    setTimeout(function () {
-                        $select.trigger('focus');
-                    }, 1);    
+                    actions.focusHack();
                 }
             };
             
@@ -244,7 +256,7 @@
                     $select.on({
                         'blur.menu': events['blur.menu'],
                         'focus.menu' : events.focus,
-                        'keyup.menu' : events.keydown
+                        'keydown.menu' : events.keydown
                     });
                     Select.select.on('mousedown.menu', events['hideOutside.menu']);
                     Select.items.on('click.menu', events['clickItem.menu']);
@@ -260,10 +272,10 @@
                     $select.on({
                         'blur.list': events['blur.list'],
                         'focus.list' : events.focus,
-                        'keyup.list' : events.keydown
+                        'keydown.list' : events.keydown
                     });
                     Select.select.on('mousedown.list', events['mousedown.list']);
-                    Select.items.on('click.list', events['clickItem.list']);
+                    Select.items.on('mousedown.list', events['clickItem.list']);
                 });
                 
             Select.select.on('menu'); // Default to `menu mode`   
