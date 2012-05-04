@@ -396,7 +396,7 @@
 ###########################################################
 -------------------------------------------------------- */
 
-    $.fn.quickValidate = function(ops) {
+    $.fn.idealforms = function(ops) {
 
         // Default options
         var o = $.extend({

@@ -28,7 +28,9 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
 <form id="my-form">
 
     <!-- Text -->
-    <p><label>Username:</label><input name="username" type="text" placeholder="mm/dd/yy"/></p>
+    <p><label>Username:</label><input name="username" type="text" /></p>
+    <p><label>Date:</label><input name="date" type="text" placeholder="mm/dd/yy"/></p>
+    <p><label>Comments:</label><textarea name="comments"></textarea></p>
 
     <!-- Select -->
     <p>
@@ -61,10 +63,34 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
 
 ### jQuery:
 
+**Filters**
+* required
+The filed is required.
+* number
+* digits
+* name
+* username
+* pass
+* stringpass
+* email
+* phone
+* zip
+* url
+* min
+* max
+* date
+* exclude
+
 ```javascript
 $('#my-form').quickValidate({
     
-    
+    // For consistency all keys
+    // must be in quotes
+    inputs: {
+        'username': {
+            filters: 'required username'
+        }
+    }
     
 });
 ```
