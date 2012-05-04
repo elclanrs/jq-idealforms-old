@@ -3,4 +3,4 @@ jq-idealforms
 
 The ultimate form plugin.
 
-jq-idealforms packs custom input elements, inline validation into a small plugin
+**[Demo here](http://elclanrs.github.com/jq-idealforms/)**
