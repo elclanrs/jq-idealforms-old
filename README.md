@@ -206,6 +206,6 @@ The width of all inputs is auto-calculated but you can change the width of any i
 ```css
 #comments { width: 200px; }
 ```
-Don't forget the compile into `css`.
+Don't forget to compile into `css`.
 
 Enjoy.
