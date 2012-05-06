@@ -113,7 +113,7 @@ Must be a valid URL.
 * No more than `x` checkboxes checked.
 
 `date`  
-Must be a valid date in this format `mm/dd/yy/`
+Must be a valid date in this format `mm/dd/yy`
 
 `exclude`  
 * Prevent validation if the value matches any value in the given array.
