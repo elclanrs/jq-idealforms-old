@@ -96,7 +96,7 @@ Must be at least 8 characters long and contain at least one uppercase and one lo
 Must be a valid e-mail address.
 
 `phone`  
-Must be a valid US phone number. (you can add a customs filters for other countries)
+Must be a valid US phone number. (you can add custom filters for other countries)
 
 `zip`  
 Must be a valid US zip code. (ditto)
