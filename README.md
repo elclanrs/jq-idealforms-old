@@ -12,7 +12,7 @@
 ### Features:
 * Fully responsive (aka adaptive, adapts to the container, no css media queries needed)
 * Keyboard support
-* Customizable input types with [LESS](http://lesscss.org/).
+* All input types are fully customizable built with [LESS](http://lesscss.org/).
 * "On the spot" validation
 * `placeholder` support for every browser
 
@@ -34,6 +34,7 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
 
     <!-- Select -->
     <p>
+        <label>Colors:</label>
         <select name="colors">
             <option value="Choose a color">Choose a color</option>
             <option value="Red">Red</option>
@@ -57,6 +58,11 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
         <label><input type="radio" name="options" value="Two"/>Two</label>
         <label><input type="radio" name="options" value="Three"/>Three</label>
     </p>
+    
+    <!-- Buttons -->
+    <!-- Empty label to align with all the other inputs -->
+    <p><label>&nbsp;</label><input type="button" value="Button"/></p>
+    <p><label>&nbsp;</label><button>Button</button></p>
 
 </form>
 ```
@@ -90,10 +96,10 @@ Must be at least 8 characters long and contain at least one uppercase and one lo
 Must be a valid e-mail address.
 
 `phone`  
-Must be a valid US phone number. (you can add a customs filters for other countries)
+Must be a valid US phone number.
 
 `zip`  
-Must be a valid US zip code. (ditto)
+Must be a valid US zip code.
 
 `url`  
 Must be a valid URL.
@@ -107,7 +113,7 @@ Must be a valid URL.
 * No more than `x` checkboxes checked.
 
 `date`  
-Must be a valid date in this format `mm/dd/yy/` (ditto)
+Must be a valid date in this format `mm/dd/yy`
 
 `exclude`  
 * Prevent validation if the value matches any value in the given array.
@@ -155,9 +161,12 @@ $('#my-form').idealforms({
             }
         },
         'options': {
-            filters: 'required'
+            filters: 'min'
+            data: {
+                min: 1
+            }
             errors: {
-                required: 'Check only <strong>1</strong> option.'
+                min: 'Check only <strong>1</strong> option.'
             }
         }
     },
@@ -203,6 +212,6 @@ The width of all inputs is auto-calculated but you can change the width of any i
 ```css
 #comments { width: 200px; }
 ```
-Don't forget the compile into `css`.
+Don't forget to compile into `css`.
 
 Enjoy.
