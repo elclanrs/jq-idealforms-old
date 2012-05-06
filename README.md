@@ -34,6 +34,7 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
 
     <!-- Select -->
     <p>
+        <label>Colors:</label>
         <select name="colors">
             <option value="Choose a color">Choose a color</option>
             <option value="Red">Red</option>
