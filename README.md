@@ -96,10 +96,10 @@ Must be at least 8 characters long and contain at least one uppercase and one lo
 Must be a valid e-mail address.
 
 `phone`  
-Must be a valid US phone number. (you can add custom filters for other countries)
+Must be a valid US phone number.
 
 `zip`  
-Must be a valid US zip code. (ditto)
+Must be a valid US zip code.
 
 `url`  
 Must be a valid URL.
@@ -113,7 +113,7 @@ Must be a valid URL.
 * No more than `x` checkboxes checked.
 
 `date`  
-Must be a valid date in this format `mm/dd/yy/` (ditto)
+Must be a valid date in this format `mm/dd/yy/`
 
 `exclude`  
 * Prevent validation if the value matches any value in the given array.
