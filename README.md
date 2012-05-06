@@ -58,6 +58,11 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
         <label><input type="radio" name="options" value="Two"/>Two</label>
         <label><input type="radio" name="options" value="Three"/>Three</label>
     </p>
+    
+    <!-- Buttons -->
+    <!-- Empty label to align to the rest of inputs -->
+    <p><label>&nbsp;</label><input type="button" value="Button"/></p>
+    <p><label>&nbsp;</label><button>Button</button></p>
 
 </form>
 ```
