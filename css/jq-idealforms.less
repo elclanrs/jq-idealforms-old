@@ -151,9 +151,20 @@
         outline: 0;
         border-radius: 0~'\9'!important; /* IE9 doesn't like gradients + border radius */
     }
+    /* Clearfix */
+    &:before,
+    &:after {
+        content:"";
+        display:table;
+    }
+
+    &:after {
+        clear:both;
+    }
+    /**/
     font-size: @font-size;
     font-family: @font-family;
-    p {
+    div {
         float: left;
         clear: both;
         position: relative;
