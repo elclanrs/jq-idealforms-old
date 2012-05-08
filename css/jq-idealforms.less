@@ -63,7 +63,7 @@
     @error-width: @input-width / 1.2;
     @icon-padding: @icon-size/2;
     @arrow-size: (@font-size/1.4);
-    @select-scroll-size: 7; /* 7 items in scroll view */
+    @select-scroll-size: 7; /* 9 items in scroll view */
     @select-valid-border: none;
     @select-invalid-border: none;
     
@@ -277,10 +277,10 @@
         .error {
             @total: (@input-width + @icon-size + (@icon-padding * 2));
             @icon: @icon-size + (@icon-padding * 2);
-            @percent:  (@icon / @total) * 100;
-            width: 100% - @percent
+            @percent: (@icon / @total) * 100;
+            width: 100% - @percent;
         }
-        p,
+        div,
         input[type="text"],
         input[type="password"],
         textarea,
