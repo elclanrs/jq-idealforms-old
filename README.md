@@ -28,12 +28,12 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
 <form id="my-form">
 
     <!-- Text -->
-    <p><label>Username:</label><input name="username" type="text" /></p>
-    <p><label>Date:</label><input name="date" type="text" placeholder="mm/dd/yy"/></p>
-    <p><label>Comments:</label><textarea name="comments"></textarea></p>
-
+    <div><label>Username:</label><input name="username" type="text" /></div>
+    <div><label>Date:</label><input name="date" type="text" placeholder="mm/dd/yy"/></div>
+    <div><label>Comments:</label><textarea name="comments"></textarea></div>
+    
     <!-- Select -->
-    <p>
+    <div>
         <label>Colors:</label>
         <select name="colors">
             <option value="Choose a color">Choose a color</option>
@@ -41,28 +41,28 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
             <option value="Blue">Blue</option>
             <option value="Green">Green</option>
         </select>
-    </p>
-
+    </div>
+    
     <!-- Checkbox -->
-    <p>
+    <div>
         <label>Languages:</label>
         <label><input type="checkbox" name="langs[]" value="English"/>English</label>
         <label><input type="checkbox" name="langs[]" value="Chinese"/>Chinese</label>
         <label><input type="checkbox" name="langs[]" value="Spanish"/>Spanish</label>
-    </p>
-
+    </div>
+    
     <!-- Radio -->
-    <p>
+    <div>
         <label>Options:</label>
         <label><input type="radio" name="options" value="One"/>One</label>
         <label><input type="radio" name="options" value="Two"/>Two</label>
         <label><input type="radio" name="options" value="Three"/>Three</label>
-    </p>
+    </div>
     
     <!-- Buttons -->
     <!-- Empty label to align with all the other inputs -->
-    <p><label>&nbsp;</label><input type="button" value="Button"/></p>
-    <p><label>&nbsp;</label><button>Button</button></p>
+    <div><label>&nbsp;</label><input type="button" value="Button"/></div>
+    <div><label>&nbsp;</label><button>Button</button></div>
 
 </form>
 ```
