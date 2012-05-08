@@ -41,7 +41,7 @@
 -------------------------------------------------------- */
 
     var lessVars = {
-        inputWidth: utils.getLessVar('qval-field-width', 'width')
+        inputWidth: utils.getLessVar('ideal-field-width', 'width')
     };
 
 /* --------------------------------------------------------
@@ -59,13 +59,13 @@
             
             var Select = (function() {
                 var $options = $select.find('option'),
-                    $newSelect = $('<ul class="qval-select"/>'),
+                    $newSelect = $('<ul class="ideal-select"/>'),
                     $menu = $('<li><span class="title">' + $options.filter(':selected').text() + '</span></li>'),
                     items = (function() {
                         var items = [];
                         $options.each(function() {
                             var $this = $(this);
-                            items.push('<li><span qval-value="' + $this.val() + '">' + $this.text() + '</span></li>');
+                            items.push('<li><span ideal-value="' + $this.val() + '">' + $this.text() + '</span></li>');
                         });
                         return items;
                     }());
@@ -220,9 +220,9 @@
                 },
                 'hideOutside.menu': function(){
                     $select.off('blur.menu');
-                    $(document).on('mousedown.qval', function (evt) {
+                    $(document).on('mousedown.ideal', function (evt) {
                         if (!$(evt.target).closest(Select.select).length) {
-                            $(document).off('mousedown.qval');
+                            $(document).off('mousedown.ideal');
                             $select.on('blur.menu', events['blur.menu']);
                         } else {
                             actions.focusHack();
@@ -293,7 +293,7 @@
         return this.each(function() {
             var $this = $(this),
                 $span = $('<span/>');
-            $this.is(':checkbox') ? $span.addClass('qval-check') : $span.addClass('qval-radio');
+            $this.is(':checkbox') ? $span.addClass('ideal-check') : $span.addClass('ideal-radio');
             $this.is(':checked') && $span.addClass('checked');
             $span.insertAfter($this);
             $this.css({
@@ -304,8 +304,8 @@
                     var $this = $(this);
                     $this.trigger('focus');
                     if ($this.is(':radio')) {
-                        $this.parent().siblings('label').children('.qval-radio').removeClass('checked');
-                        $this.next('.qval-radio').addClass('checked');
+                        $this.parent().siblings('label').children('.ideal-radio').removeClass('checked');
+                        $this.next('.ideal-radio').addClass('checked');
                     } else {
                         $this.is(':checked') ? $span.addClass('checked') : $span.removeClass('checked');
                     }
@@ -488,13 +488,13 @@
                         $(valid).add(invalid).hide().appendTo($field);
                     };
 
-                $form.css('visibility', 'visible').addClass('qval-form');
+                $form.css('visibility', 'visible').addClass('ideal-form');
 
                 // Autocomplete causes some problems...
                 formInputs.inputs.attr('autocomplete', 'off');
 
                 // Labels
-                formInputs.labels.addClass('qval-label').width(utils.getMaxWidth(formInputs.labels));
+                formInputs.labels.addClass('ideal-label').width(utils.getMaxWidth(formInputs.labels));
 
                 // Text inputs & select
                 formInputs.text.add(formInputs.select).each(function() {
@@ -506,7 +506,7 @@
                 // Radio & Checkbox
                 (function() {
                     formInputs.radiocheck.parent().filter(':last-child').children().each(function() {
-                        $(this).parent().siblings('label:not(.qval-label)').andSelf().wrapAll('<span class="field qval-radiocheck"/>');
+                        $(this).parent().siblings('label:not(.ideal-label)').andSelf().wrapAll('<span class="field ideal-radiocheck"/>');
                     });
                     insertNewEls(formInputs.radiocheck.parents('.field'));
                 }());
@@ -671,7 +671,7 @@
                 
                 // Custom select
                 (function(){
-                    var $customSelect = formInputs.select.next('.qval-select');
+                    var $customSelect = formInputs.select.next('.ideal-select');
                     $form.is('.stack') ? $customSelect.trigger('list') : $customSelect.trigger('menu');
                 }());
             }

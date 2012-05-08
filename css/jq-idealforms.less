@@ -79,7 +79,7 @@
 
 ------------------------------------------------------- */
 
-.qval-field-width {
+.ideal-field-width {
     width: @input-width + @error-width + @icon-size + (@icon-padding * 2);
 }
 
@@ -140,7 +140,7 @@
                
 -------------------------------------------------------- */
 
-.qval-form {
+.ideal-form {
     /* -------------------------------------------------------
         Global:
     -------------------------------------------------------- */
@@ -171,12 +171,12 @@
         margin: .5em 0;
     }
     ul, li { margin: 0; padding: 0; }
-    .qval-label,
+    .ideal-label,
     .field {
         float: left;
         position: relative;
     }
-    .qval-label {
+    .ideal-label {
         max-width: @label-width;
         padding-right: 1.7em;
         text-align: @label-align;
@@ -208,10 +208,10 @@
     }
     textarea ~ .valid-icon,
     textarea ~ .invalid-icon,
-    .qval-select ~ .valid-icon,
-    .qval-select ~ .invalid-icon,
-    .qval-radiocheck .valid-icon,
-    .qval-radiocheck .invalid-icon    {
+    .ideal-select ~ .valid-icon,
+    .ideal-select ~ .invalid-icon,
+    .ideal-radiocheck .valid-icon,
+    .ideal-radiocheck .invalid-icon    {
         top: @font-size / 2; /* Aproximation */
         margin-top: 0;
     }
@@ -338,13 +338,13 @@
     /* --------------------------------------------------------
         Global:     
     -------------------------------------------------------- */
-    .qval-select,
-    .qval-select .sub {
+    .ideal-select,
+    .ideal-select .sub {
         margin: 0;
         padding: 0;
         list-style: none;
     }
-    .qval-select {
+    .ideal-select {
         width: @input-width;
         span {
             .ui-input;
@@ -355,8 +355,8 @@
     /* --------------------------------------------------------
         Title:     
     -------------------------------------------------------- */
-    .qval-select.menu,
-    .qval-select.list {
+    .ideal-select.menu,
+    .ideal-select.list {
         font-size: @small-font-size;
         .title {
             .ui-color(@select-title);
@@ -388,8 +388,8 @@
     /* --------------------------------------------------------
         Options:     
     -------------------------------------------------------- */
-    .qval-select.menu,
-    .qval-select.list    {
+    .ideal-select.menu,
+    .ideal-select.list    {
         .sub {
             @color: darken(@select-bg, 60%);
             min-width: 100%; /* `min-width` instead of `width` to fix IE9 bug */
@@ -425,7 +425,7 @@
     /* --------------------------------------------------------
         List mode:     
     -------------------------------------------------------- */
-    .qval-select.list {
+    .ideal-select.list {
         .title:after,
         &.focus .title:after,
         &:hover .title:after {
@@ -447,7 +447,7 @@
     /* --------------------------------------------------------
         Responsive:     
     -------------------------------------------------------- */    
-    &.stack .qval-select.list {
+    &.stack .ideal-select.list {
         width: 100%;
     }
     
@@ -457,7 +457,7 @@
                
 -------------------------------------------------------- */
 
-    .qval-radiocheck {
+    .ideal-radiocheck {
         position: relative;
         width: @input-width;
         padding: .8em;
@@ -476,24 +476,24 @@
             margin-left: @radiocheck-icon-width / 2;
         }
     }
-    .qval-check,
-    .qval-radio {
+    .ideal-check,
+    .ideal-radio {
         float: left;
         background: url(@radiocheck-sprite) left top no-repeat;
         width: @radiocheck-icon-width;
         height: @radiocheck-icon-height;
         margin-right: .5em;
     }
-    .qval-radio {
+    .ideal-radio {
         background-position: left bottom;
     }
-    .qval-check.checked {
+    .ideal-check.checked {
         background-position: right top;
     }
-    .qval-radio.checked {
+    .ideal-radio.checked {
         background-position: right bottom;
     }
-    .qval-radiocheck .focus {
+    .ideal-radiocheck .focus {
         /* border: @border-width solid black; */
         font-weight: bold;
         color: @radiocheck-focus-color;
