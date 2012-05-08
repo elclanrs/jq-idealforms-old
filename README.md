@@ -63,13 +63,6 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
     <!-- Empty label to align with all the other inputs -->
     <div><label>&nbsp;</label><input type="button" value="Button"/></div>
     <div><label>&nbsp;</label><button>Button</button></div>
-    
-    <!-- Your own stuff -->
-    <div>
-        <h2>Section:</h2>
-        <p>Lorem ipsum dolor sit amet</p>
-        ...
-    </div>
 
 </form>
 ```
