@@ -233,6 +233,9 @@
         color: darken(@invalid, 80%);
         border: @border-width solid darken(@invalid, 50%);
     }
+	.invalid input[type="password"] {
+		font-family: Arial~'\9'; /* For IE8 empty character bug with custom fonts */
+	}
     .valid textarea,
     .valid input,
     .valid select    {
