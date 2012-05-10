@@ -1,23 +1,29 @@
-/* --------------------------------------------------------
+/*--------------------------------------------------------------------------
 
     jq-idealforms 2.0
 
     * Author: Cedric Ruiz
     * License: GPLv2
+    * Demo: http://elclanrs.github.com/jq-idealforms/
 
--------------------------------------------------------- */
+--------------------------------------------------------------------------*/
 
 (function($) {
 
     'use strict';
-
-/* --------------------------------------------------------
-
-    Utils:
-
--------------------------------------------------------- */
-
-    var utils = {
+	
+/*--------------------------------------------------------------------------*/
+    
+    /**
+	 * @namespace A chest for various Utils
+	 */
+    var Utils = {
+        /**
+         * Get width of widest element in the collection.
+         * @memberOf Utils
+         * @param {jQuery object} $elms
+         * @returns {number}
+         */ 
         getMaxWidth: function($elms) {
             var maxWidth = 0;
             $elms.each(function() {
@@ -27,6 +33,13 @@
             });
             return maxWidth;
         },
+        /**
+         * Hacky way of getting LESS variables
+         * @memberOf Utils
+         * @param {string} name The name of the LESS class.
+         * @param {string} prop The css property where the data is stored.
+         * @returns {number, string}
+         */         
         getLessVar: function(name, prop) {
             var value = $('<p class="' + name + '"></p>').hide().appendTo('body').css(prop);
             $('.' + name).remove();
@@ -34,29 +47,30 @@
         }
     };
 
-/* --------------------------------------------------------
-
-    Less variables:
-
--------------------------------------------------------- */
-
-    var lessVars = {
-        inputWidth: utils.getLessVar('ideal-field-width', 'width')
+/*--------------------------------------------------------------------------*/
+    
+    /**
+	 * @namespace Contains LESS data
+	 */
+    var LessVars = {
+        inputWidth: Utils.getLessVar('ideal-field-width', 'width')
     };
 
-/* --------------------------------------------------------
+/*--------------------------------------------------------------------------*/
 
-    Custom select:
-
--------------------------------------------------------- */
-
+    /** 
+	 * A custom <select> menu jQuery plugin
+     * @example `$('select').toCustomSelect()`
+     */
     $.fn.toCustomSelect = function() {
 
         return this.each(function() {
             var $select = $(this);
-
-            // Elements
             
+            /**
+			 * Markup and elements of custom select
+			 * @returns {object} All elements of the new select replacement
+			 */
             var Select = (function() {
                 var $options = $select.find('option'),
                     $newSelect = $('<ul class="ideal-select"/>'),
@@ -80,9 +94,13 @@
                 };
             }());
 
-            // Actions
-            
-            var actions = {
+            /**
+			 * @namespace Methods of custom select
+			 */
+            var Actions = {
+				/**
+				 * @private
+				 */
                 init: (function() {
                     $select.css({
                         position: 'absolute',
@@ -90,7 +108,8 @@
                     });
                     Select.select.insertAfter($select);
                     Select.sub.hide();
-                    Select.items.eq(Select.options.filter(':selected').index())
+                    Select.items
+                        .eq(Select.options.filter(':selected').index())
                         .find('span')
                         .addClass('selected');
                 }()),
@@ -108,7 +127,7 @@
                 },
                 focus: function(){
                     Select.select.addClass('focus');
-                    $(document).on('keydown.noscroll', actions.noWindowScroll);
+                    $(document).on('keydown.noscroll', Actions.noWindowScroll);
                 },
                 blur: function() {
                     Select.select.removeClass('open focus');
@@ -138,7 +157,7 @@
                 showMenu: function() {
                     Select.sub.show();
                     Select.select.addClass('open');
-                    actions.scrollToItem();
+                    Actions.scrollToItem();
                 },
                 hideMenu: function(){
                     Select.sub.hide();
@@ -157,8 +176,8 @@
                     var keys = {
                         9: function(){ // Tab
                             if (Select.select.is('.menu')) {
-                                actions.blur();
-                                actions.hideMenu();
+                                Actions.blur();
+                                Actions.hideMenu();
                             } else {
                                 return false;
                             }
@@ -181,41 +200,42 @@
                                     var re = new RegExp('^' + letter, 'i');
                                     return re.test($(this).text());
                                 }).first().index();
-                            actions.change(!~curIdx ? selIdx : curIdx);
-                            actions.scrollToItem();
+                            Actions.change(!~curIdx ? selIdx : curIdx);
+                            Actions.scrollToItem();
                             $select.trigger('blur');
-                            actions.showMenu();
-                            actions.focusHack();
+                            Actions.showMenu();
+                            Actions.focusHack();
                         }
                     };
                     keys[key] ? keys[key]() : keys['default']();
                 }
             };
 
-            // Events
-
+            /**
+			 * @namespace Holds all events of custom select for "menu mode" and "list mode"
+			 */
             var events = {
-                focus: actions.focus,
+                focus: Actions.focus,
                 'blur.menu': function(){
-                    actions.blur();
-                    actions.hideMenu();    
+                    Actions.blur();
+                    Actions.hideMenu();    
                 },
                 'blur.list': function(){
-                    actions.blur();
+                    Actions.blur();
                 },
                 keydown: function(e){
-                    actions.keydown(e.which);
+                    Actions.keydown(e.which);
                 },
                 'clickItem.menu': function(){
-                    actions.change($(this).index());
-                    actions.hideMenu();
+                    Actions.change($(this).index());
+                    Actions.hideMenu();
                 },
                 'clickItem.list': function(){
-                    actions.change($(this).index());
+                    Actions.change($(this).index());
                 },
                 'clickTitle.menu': function(){
-                    actions.focus();
-                    actions.showMenu();
+                    Actions.focus();
+                    Actions.showMenu();
                     $select.trigger('focus');
                 },
                 'hideOutside.menu': function(){
@@ -225,21 +245,16 @@
                             $(document).off('mousedown.ideal');
                             $select.on('blur.menu', events['blur.menu']);
                         } else {
-                            actions.focusHack();
+                            Actions.focusHack();
                         }
                     });
                 },
                 'mousedown.list': function(){
-                    actions.focusHack();
+                    Actions.focusHack();
                 }
             };
-            
-                        
+ 
             // Bind events
-            
-            // Custom events to change between
-            // `menu mode` and `list mode`
-            
             var disableEvents = function(){
                 Select.select.removeClass('menu list');
                 $select.off('.menu .list');
@@ -253,7 +268,7 @@
                 .on('menu', function(){
                     disableEvents();
                     Select.select.addClass('menu');
-                    actions.hideMenu();
+                    Actions.hideMenu();
                     $select.on({
                         'blur.menu': events['blur.menu'],
                         'focus.menu' : events.focus,
@@ -269,7 +284,7 @@
                 .on('list', function(){
                     disableEvents();
                     Select.select.addClass('list');
-                    actions.showMenu();
+                    Actions.showMenu();
                     $select.on({
                         'blur.list': events['blur.list'],
                         'focus.list' : events.focus,
@@ -279,16 +294,16 @@
                     Select.items.on('mousedown.list', events['clickItem.list']);
                 });
                 
-            Select.select.on('menu'); // Default to `menu mode`   
+            Select.select.on('menu'); // Default to "menu mode"   
         });
     };
 
-/* --------------------------------------------------------
+/*--------------------------------------------------------------------------*/
 
-    Custom radio & checkbox:
-
--------------------------------------------------------- */
-
+    /** 
+	 * A custom <input type="radio|checkbox"> jQuery plugin
+     * @example `$(':radio, :checkbox').toCustomRadioCheck()`
+     */
     $.fn.toCustomRadioCheck = function() {
         return this.each(function() {
             var $this = $(this),
@@ -323,13 +338,12 @@
         });
     };
 
-/* --------------------------------------------------------
+/*--------------------------------------------------------------------------*/
 
-    Filters:
-
--------------------------------------------------------- */
-
-    var filters = {
+    /**
+	 * @namespace All default filters used for validation 
+	 */
+    var Filters = {
         number: {
             regex: /\d+/,
             error: 'Must be a number.'
@@ -372,18 +386,20 @@
         },
         min: {
             regex: function(input, value) {
+                var min = input.userOptions.data.min;
                 if (input.input.is(':checkbox, :radio')) {
-                    this.error = 'Check at least <strong>' + input.userOptions.data.min + '</strong>';
-                    return input.input.filter(':checked').length >= input.userOptions.data.min;
+                    this.error = 'Check at least <strong>' + min + '</strong>';
+                    return input.input.filter(':checked').length >= min;
                 }
-                this.error = 'Must be at least <strong>' + input.userOptions.data.min + '</strong> characters long.';
-                return value.length > input.userOptions.data.min - 1;
+                this.error = 'Must be at least <strong>' + min + '</strong> characters long.';
+                return value.length > min - 1;
             }
         },
         max: {
             regex: function(input, value) {
-                this.error = '<strong>' + input.userOptions.data.max + '</strong> characters max.';
-                return value.length <= input.userOptions.data.max;
+                var max = input.userOptions.data.max;
+                this.error = '<strong>' + max + '</strong> characters max.';
+                return value.length <= max;
             }
         },
         date: {
@@ -403,13 +419,12 @@
             }
         }
     };
+    
+/*--------------------------------------------------------------------------*/
 
-/* --------------------------------------------------------
-###########################################################
-###################      Plugin:      ##################### 
-###########################################################
--------------------------------------------------------- */
-
+    /**
+	 * @namespace jq-idealforms jQuery plugin
+	 */
     $.fn.idealforms = function(ops) {
 
         // Default options
@@ -426,20 +441,21 @@
             filters: {
                 // Add your own filters
                 // ie. myfilter: { regex: /something/, error: 'My error' }
-            }
+            },
+            responsive: true
         }, ops);
 
         // Merge custom and default filters
-        $.extend(true, filters, o.filters);
+        $.extend(true, Filters, o.filters);
 
-/* --------------------------------------------------------
-
-    Form elements:
-    
--------------------------------------------------------- */
-
+/*--------------------------------------------------------------------------*/
+        
         var $form = this,
-            formInputs = (function() {
+			/**
+			 * @namespace All form inputs of the given form
+			 * @returns {object}
+			 */
+            FormInputs = (function() {
                 var $inputs = $form.find('input, select, textarea'),
                     $labels = $form.find('label:first-child'),
                     $text = $inputs.filter(':text, :password, textarea'),
@@ -454,50 +470,46 @@
                 };
             }());
             
-/* --------------------------------------------------------
+/*--------------------------------------------------------------------------*/
 
-    Actions:
+        /**
+		 * @namespace Methods of the form
+		 */
+        var Actions = {
 
--------------------------------------------------------- */
-
-        var actions = {
-
-/* --------------------------------------------------------
-
-    Init:
-
--------------------------------------------------------- */
-
+            /** Create validation elements and neccesary markup 
+			 * @private
+			 */
             init: (function() {
 
-                var insertNewEls = function($field) {
-                        var error = '<span class="error" />',
-                            valid = '<i class="valid-icon" />',
-                            invalid = $('<i/>', {
-                                'class': 'invalid-icon',
-                                click: function() {
-                                    var $this = $(this);
-                                    if ($this.siblings('label').length) { // radio & check
-                                        $this.siblings('label:first').find('input').focus();
-                                    } else {
-                                        $this.siblings('input, select, textarea').focus();
-                                    }
-                                }
-                            });
-                        $(error).hide().insertAfter($field);
-                        $(valid).add(invalid).hide().appendTo($field);
-                    };
+                var insertNewEls = function ($field) {
+                	var error = '<span class="error" />',
+                	valid = '<i class="valid-icon" />',
+                	invalid = $('<i/>', {
+                			'class' : 'invalid-icon',
+                			click : function () {
+                				var $this = $(this);
+                				if ($this.siblings('label').length) { // radio & check
+                					$this.siblings('label:first').find('input').focus();
+                				} else {
+                					$this.siblings('input, select, textarea').focus();
+                				}
+                			}
+                		});
+                	$(error).hide().insertAfter($field);
+                	$(valid).add(invalid).hide().appendTo($field);
+                };
 
                 $form.css('visibility', 'visible').addClass('ideal-form');
 
                 // Autocomplete causes some problems...
-                formInputs.inputs.attr('autocomplete', 'off');
+                FormInputs.inputs.attr('autocomplete', 'off');
 
                 // Labels
-                formInputs.labels.addClass('ideal-label').width(utils.getMaxWidth(formInputs.labels));
+                FormInputs.labels.addClass('ideal-label').width(Utils.getMaxWidth(FormInputs.labels));
 
                 // Text inputs & select
-                formInputs.text.add(formInputs.select).each(function() {
+                FormInputs.text.add(FormInputs.select).each(function() {
                     var $this = $(this);
                     $this.wrapAll('<span class="field"/>');
                     insertNewEls($this.parent());
@@ -505,19 +517,19 @@
 
                 // Radio & Checkbox
                 (function() {
-                    formInputs.radiocheck.parent().filter(':last-child').children().each(function() {
+                    FormInputs.radiocheck.parent().filter(':last-child').children().each(function() {
                         $(this).parent().siblings('label:not(.ideal-label)').andSelf().wrapAll('<span class="field ideal-radiocheck"/>');
                     });
-                    insertNewEls(formInputs.radiocheck.parents('.field'));
+                    insertNewEls(FormInputs.radiocheck.parents('.field'));
                 }());
 
                 // Custom elements
-                formInputs.select.addClass('custom').toCustomSelect();
-                formInputs.radiocheck.addClass('custom').toCustomRadioCheck();
+                FormInputs.select.addClass('custom').toCustomSelect();
+                FormInputs.radiocheck.addClass('custom').toCustomRadioCheck();
 
                 // Placeholder support
                 if (!('placeholder' in $('<input/>')[0])) {
-                    formInputs.text.each(function() {
+                    FormInputs.text.each(function() {
                         $(this).val($(this).attr('placeholder'));
                     }).on({
                         focus: function() {
@@ -530,18 +542,12 @@
                 }
             }()),
 
-/* --------------------------------------------------------
-
-    Validate:
-
-    * input: {
-        userOptions:
-        input:
-    }
-    * value: the value of the input being processed
-
--------------------------------------------------------- */
-
+            /** Validates an input
+             * @param {object} input Object that contains the jQuery input object [input.input] 
+             * and the user options of that input [input.userOptions]
+             * @param {string} value The value of the given input
+             * @returns {object} Returns [isValid] plus [error] if it fails 
+             */
             validate: function(input, value) {
                 var isValid = true,
                     error = '',
@@ -560,13 +566,14 @@
                     if (value) {
                         userFilters = userFilters.split(/\s/);
                         $.each(userFilters, function(i, uf) {
-                            if (filters[uf]) {
+							var theFilter = Filters[uf];
+                            if (theFilter) {
                                 if (
-                                    typeof filters[uf].regex === 'function' && !filters[uf].regex(input, value) || 
-                                    filters[uf].regex instanceof RegExp && !filters[uf].regex.test(value)
+                                    typeof theFilter.regex === 'function' && !theFilter.regex(input, value) || 
+                                    theFilter.regex instanceof RegExp && !theFilter.regex.test(value)
                                 ) {
                                     isValid = false;
-                                    error = (userOptions.errors && userOptions.errors[uf]) || filters[uf].error;
+                                    error = (userOptions.errors && userOptions.errors[uf]) || theFilter.error;
                                     return false;
                                 }
                             }
@@ -581,23 +588,18 @@
                 };
             },
 
-/* --------------------------------------------------------
+/*--------------------------------------------------------------------------*/
 
-    Analyze:
-
-    * input: {
-        input : $input,
-        custom : $input.next()
-    }
-    * evt: the event on which `analyze()` is invoked
-
--------------------------------------------------------- */
-
+            /** Shows or hides validation errors
+             * @param {object} input Object that contains the jQuery input object [input.input] 
+             * and the user options of that input [input.userOptions]
+             * @param {string} evt The event on which `analyze()` is being called
+             */
             analyze: function(input, evt) {
 
                 evt = evt || '';
                 
-                var $input = formInputs.inputs.filter('[name="' + input.input.attr('name') + '"]'),
+                var $input = FormInputs.inputs.filter('[name="' + input.input.attr('name') + '"]'),
                     userOptions = o.inputs[input.input.attr('name')] || '',
                     value = (function(){
                         if (input.input.val() === input.input.attr('placeholder')) {
@@ -611,7 +613,7 @@
                     }());
 
                 // Validate
-                var test = actions.validate({
+                var test = Actions.validate({
                     userOptions: userOptions,
                     input: $input
                 }, value);
@@ -651,19 +653,17 @@
                 }
             },
 
-/* --------------------------------------------------------
+/*--------------------------------------------------------------------------*/
 
-    Responsive:
-
--------------------------------------------------------- */
-
+            /** Adjust elements to become responsive **/
+            
             responsive: function() {
-                var maxWidth = lessVars.inputWidth + formInputs.labels.outerWidth();
+                var maxWidth = LessVars.inputWidth + FormInputs.labels.outerWidth();
                 $form.width() < maxWidth ? $form.addClass('stack') : $form.removeClass('stack');
 
                 // Labels
                 (function() {
-                    var $emptyLabel = formInputs.labels.filter(function() {
+                    var $emptyLabel = FormInputs.labels.filter(function() {
                         return $(this).html() === '&nbsp;';
                     });
                     $form.is('.stack') ? $emptyLabel.hide() : $emptyLabel.show();
@@ -671,27 +671,25 @@
                 
                 // Custom select
                 (function(){
-                    var $customSelect = formInputs.select.next('.ideal-select');
+                    var $customSelect = FormInputs.select.next('.ideal-select');
                     $form.is('.stack') ? $customSelect.trigger('list') : $customSelect.trigger('menu');
                 }());
             }
         };
 
-/* --------------------------------------------------------
+/*--------------------------------------------------------------------------*/
 
-    Events:
+        /** Attach events to the form **/
 
--------------------------------------------------------- */
-
-        formInputs.inputs.on('keyup change focus blur', function(e) {
+        FormInputs.inputs.on('keyup change focus blur', function(e) {
             var $this = $(this);
             if ($this.is('.custom')) {
-                actions.analyze({
+                Actions.analyze({
                     input: $this,
                     custom: $this.next()
                 }, e.type);
             } else {
-                actions.analyze({
+                Actions.analyze({
                     input: $this
                 }, e.type);
             }
@@ -706,11 +704,10 @@
             }
         });
 
-        $(window).resize(function() {
-            actions.responsive();
-        });
-
-        actions.responsive();
+        if (o.responsive) {
+            $(window).resize(Actions.responsive);
+            Actions.responsive();
+        }
 
         return this;
 
