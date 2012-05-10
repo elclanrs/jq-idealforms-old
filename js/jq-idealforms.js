@@ -11,12 +11,12 @@
 (function($) {
 
     'use strict';
-	
+    
 /*--------------------------------------------------------------------------*/
     
     /**
-	 * @namespace A chest for various Utils
-	 */
+     * @namespace A chest for various Utils
+     */
     var Utils = {
         /**
          * Get width of widest element in the collection.
@@ -50,8 +50,8 @@
 /*--------------------------------------------------------------------------*/
     
     /**
-	 * @namespace Contains LESS data
-	 */
+     * @namespace Contains LESS data
+     */
     var LessVars = {
         inputWidth: Utils.getLessVar('ideal-field-width', 'width')
     };
@@ -59,7 +59,7 @@
 /*--------------------------------------------------------------------------*/
 
     /** 
-	 * A custom <select> menu jQuery plugin
+     * A custom <select> menu jQuery plugin
      * @example `$('select').toCustomSelect()`
      */
     $.fn.toCustomSelect = function() {
@@ -68,9 +68,9 @@
             var $select = $(this);
             
             /**
-			 * Markup and elements of custom select
-			 * @returns {object} All elements of the new select replacement
-			 */
+             * Markup and elements of custom select
+             * @returns {object} All elements of the new select replacement
+             */
             var Select = (function() {
                 var $options = $select.find('option'),
                     $newSelect = $('<ul class="ideal-select"/>'),
@@ -95,12 +95,12 @@
             }());
 
             /**
-			 * @namespace Methods of custom select
-			 */
+             * @namespace Methods of custom select
+             */
             var Actions = {
-				/**
-				 * @private
-				 */
+                /**
+                 * @private
+                 */
                 init: (function() {
                     $select.css({
                         position: 'absolute',
@@ -212,8 +212,8 @@
             };
 
             /**
-			 * @namespace Holds all events of custom select for "menu mode" and "list mode"
-			 */
+             * @namespace Holds all events of custom select for "menu mode" and "list mode"
+             */
             var events = {
                 focus: Actions.focus,
                 'blur.menu': function(){
@@ -301,7 +301,7 @@
 /*--------------------------------------------------------------------------*/
 
     /** 
-	 * A custom <input type="radio|checkbox"> jQuery plugin
+     * A custom <input type="radio|checkbox"> jQuery plugin
      * @example `$(':radio, :checkbox').toCustomRadioCheck()`
      */
     $.fn.toCustomRadioCheck = function() {
@@ -341,8 +341,8 @@
 /*--------------------------------------------------------------------------*/
 
     /**
-	 * @namespace All default filters used for validation 
-	 */
+     * @namespace All default filters used for validation 
+     */
     var Filters = {
         number: {
             regex: /\d+/,
@@ -423,8 +423,8 @@
 /*--------------------------------------------------------------------------*/
 
     /**
-	 * @namespace jq-idealforms jQuery plugin
-	 */
+     * @namespace jq-idealforms jQuery plugin
+     */
     $.fn.idealforms = function(ops) {
 
         // Default options
@@ -451,10 +451,10 @@
 /*--------------------------------------------------------------------------*/
         
         var $form = this,
-			/**
-			 * @namespace All form inputs of the given form
-			 * @returns {object}
-			 */
+            /**
+             * @namespace All form inputs of the given form
+             * @returns {object}
+             */
             FormInputs = (function() {
                 var $inputs = $form.find('input, select, textarea'),
                     $labels = $form.find('label:first-child'),
@@ -473,31 +473,31 @@
 /*--------------------------------------------------------------------------*/
 
         /**
-		 * @namespace Methods of the form
-		 */
+         * @namespace Methods of the form
+         */
         var Actions = {
 
             /** Create validation elements and neccesary markup 
-			 * @private
-			 */
+             * @private
+             */
             init: (function() {
 
                 var insertNewEls = function ($field) {
-                	var error = '<span class="error" />',
-                	valid = '<i class="valid-icon" />',
-                	invalid = $('<i/>', {
-                			'class' : 'invalid-icon',
-                			click : function () {
-                				var $this = $(this);
-                				if ($this.siblings('label').length) { // radio & check
-                					$this.siblings('label:first').find('input').focus();
-                				} else {
-                					$this.siblings('input, select, textarea').focus();
-                				}
-                			}
-                		});
-                	$(error).hide().insertAfter($field);
-                	$(valid).add(invalid).hide().appendTo($field);
+                    var error = '<span class="error" />',
+                    valid = '<i class="valid-icon" />',
+                    invalid = $('<i/>', {
+                            'class' : 'invalid-icon',
+                            click : function () {
+                                var $this = $(this);
+                                if ($this.siblings('label').length) { // radio & check
+                                    $this.siblings('label:first').find('input').focus();
+                                } else {
+                                    $this.siblings('input, select, textarea').focus();
+                                }
+                            }
+                        });
+                    $(error).hide().insertAfter($field);
+                    $(valid).add(invalid).hide().appendTo($field);
                 };
 
                 $form.css('visibility', 'visible').addClass('ideal-form');
@@ -566,7 +566,7 @@
                     if (value) {
                         userFilters = userFilters.split(/\s/);
                         $.each(userFilters, function(i, uf) {
-							var theFilter = Filters[uf];
+                            var theFilter = Filters[uf];
                             if (theFilter) {
                                 if (
                                     typeof theFilter.regex === 'function' && !theFilter.regex(input, value) || 
