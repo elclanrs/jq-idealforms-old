@@ -543,6 +543,7 @@
             }()),
 
             /** Validates an input
+             * @memberOf Actions
              * @param {object} input Object that contains the jQuery input object [input.input] 
              * and the user options of that input [input.userOptions]
              * @param {string} value The value of the given input
@@ -588,9 +589,8 @@
                 };
             },
 
-/*--------------------------------------------------------------------------*/
-
             /** Shows or hides validation errors
+             * @memberOf Actions
              * @param {object} input Object that contains the jQuery input object [input.input] 
              * and the user options of that input [input.userOptions]
              * @param {string} evt The event on which `analyze()` is being called
@@ -638,13 +638,13 @@
                 $field.removeClass('valid invalid');
                 $error.add($invalid).add($valid).hide();
 
-                // Valid
+                // Validates
                 if (value && test.isValid) {
                     $error.add($invalid).hide();
                     $field.addClass('valid');
                     $valid.show();
                 }
-                // Invalid
+                // Does NOT validate
                 if (!test.isValid) {
                     $invalid.show();
                     $field.addClass('invalid');
@@ -653,10 +653,9 @@
                 }
             },
 
-/*--------------------------------------------------------------------------*/
-
-            /** Adjust elements to become responsive **/
-            
+            /** Deals with responsiveness aka adaptation
+             * @memberOf Actions
+             */
             responsive: function() {
                 var maxWidth = LessVars.inputWidth + FormInputs.labels.outerWidth();
                 $form.width() < maxWidth ? $form.addClass('stack') : $form.removeClass('stack');
