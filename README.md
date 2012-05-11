@@ -22,7 +22,8 @@ Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
 Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plugin and the `jq-idealforms.css` stylesheet into your project as well as the [`normalize.css`](http://necolas.github.com/normalize.css/) reset.
 
-### Markup:
+Markup
+------
 
 ```html
 <form id="my-form">
@@ -67,15 +68,17 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
 </form>
 ```
 
-### Invoke the plugin:
+Invoke the plugin
+-----------------
 Call your plugin on each form separately.
 ```javascript
 $('#my-form').idealforms({ options });
 ```
 
-### Options: 
+Options
+-------
 
-**Inputs to validate:**
+#### Inputs to validate:
 
 ```javascript
 inputs: {
@@ -94,7 +97,7 @@ inputs: {
     }
 }
 ``` 
-**Custom filters:**
+#### Custom filters:
 
 ```javascript
 filters: {
@@ -118,7 +121,7 @@ filters: {
 }
 ```
 
-**Callbacks:**  
+#### Callbacks:
 ```javascript
 onSuccess: function(e){ 
     // Form validates
@@ -128,7 +131,7 @@ onFail: function(){
 }
 ```
 
-**Responsiveness:**  
+#### Responsiveness:  
 By default, jq-idealforms will make the form "adaptive". It will adapt to the container allowing it to work with any grid responsive grid system.
 You can change this behavior by assigning a number value to the `responsiveAt` option.
 ```javascript
@@ -137,57 +140,59 @@ You can change this behavior by assigning a number value to the `responsiveAt` o
 responsiveAt: 480
 ```
 
-### Built-in filters:
+Built-in filters:
+-----------------
 You may use any of these filters in any order.
 
-`required`  
+####`required`
 The field is required.
 
-`number`  
+####`number`
 Must be a number.
 
-`digits`  
+####`digits`
 Only digits.
 
-`name`  
+####`name`
 Must be at least 3 characters long, and must only contain letters.
 
-`username`  
+####`username`
 Must be at between 4 and 32 characters long and start with a letter. You may use letters, numbers, underscores, and one dot (.)
 
-`pass`  
+####`pass`
 Must be at least 6 characters long, and contain at least one number, one uppercase and one lowercase letter.
 
-`strongpass`  
+####`strongpass`
 Must be at least 8 characters long and contain at least one uppercase and one lowercase letter and one number or special character.
 
-`email`  
+####`email`
 Must be a valid e-mail address.
 
-`phone`  
+####`phone`
 Must be a valid US phone number.
 
-`zip`  
+####`zip`
 Must be a valid US zip code.
 
-`url`  
+####`url`
 Must be a valid URL.
 
-`min`  
+####`min`
 * Must be at least `x` characters minimum.
 * Must have at least `x` checkboxes checked.
 
-`max`  
+####`max`
 * `x` characters maximum.
 * No more than `x` checkboxes checked.
 
-`date`  
+####`date`
 Must be a valid date in this format `mm/dd/yy`
 
-`exclude`  
+####`exclude`
 * Prevent validation if the value matches any value in the given array.
 
-### Example:
+Example
+-------
 With the markup provided above you'd call the plugin like this:
 
 ```javascript
@@ -243,7 +248,8 @@ $('#my-form').idealforms({
 });
 ```
 
-### Theming:
+Theming
+-------
 
 **jq-idealforms** relays on a carefully crafted [LESS](http://lesscss.org/) stylesheet, `../css/jq-idealforms.less`. From this file you can tweak every detail of the input's appearance, from the simplest text input, to the select menus, radios, and checkboxes.
 
