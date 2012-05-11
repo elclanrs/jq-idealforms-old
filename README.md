@@ -69,14 +69,14 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
 
 ### Using the plugin:
 
-**Invoke the plugin**
+**Invoke the plugin**  
 Call your plugin on each form separately.
 ```javascript
 $('#my-form').idealforms({ options });
 ```
 
-**Options**
-`inputs`
+**Options**  
+* Inputs 
 An object containing all the inputs to validate.
 ```javascript
 inputs: {
@@ -95,8 +95,6 @@ inputs: {
     }
 }
 ```
-`inputs`
-An object containing all the inputs to validate.
 
 **Built-in filters**
 You may use any of these filters in any order.
