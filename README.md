@@ -190,8 +190,6 @@ Must be a valid date in this format `mm/dd/yy`
 ### Example:
 With the markup provided above you'd call the plugin like this:
 
-Call **jq-idealforms** on your form. Since the plugin works on each form separately you need to make a call on each and every form you want to make ideal. In most cases it will only be one form.
-
 ```javascript
 $('#my-form').idealforms({
     
