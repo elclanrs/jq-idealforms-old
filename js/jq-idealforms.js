@@ -649,16 +649,18 @@
                   , input: $input
                 }, value)
 
-                // Validation elements
-                var $field = input.input.parents('.field'),
-                    $error = $field.next('.error'),
-                    $invalid = (function(){
+                /**
+                 * @namespace Validation elements
+                 */
+                var $field = input.input.parents('.field')
+                  , $error = $field.next('.error')
+                  , $invalid = (function(){
                         if ($input.is(':checkbox, :radio')) {
                             return input.input.parent().siblings('.invalid-icon')
                         }
                         return input.input.siblings('.invalid-icon')
-                    }()),
-                    $valid = (function(){
+                    }())
+                  , $valid = (function(){
                         if ($input.is(':checkbox, :radio')) {
                             return input.input.parent().siblings('.valid-icon')
                         }
