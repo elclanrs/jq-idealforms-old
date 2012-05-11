@@ -103,8 +103,8 @@
                  */
                 init: (function() {
                     $select.css({
-                        position: 'absolute',
-                        left: '-9999px'
+                        position: 'absolute'
+                      , left: '-9999px'
                     })
                     Select.select.insertAfter($select)
                     Select.sub.hide()
@@ -334,8 +334,8 @@
             if ($this.is(':checked')) $span.addClass('checked')
             $span.insertAfter($this)
             $this.css({
-                position: 'absolute',
-                left: '-9999px'
+                position: 'absolute'
+              , left: '-9999px'
             }).on({
                 change: function() {
                     var $this = $(this)
@@ -474,23 +474,23 @@
 
 /*--------------------------------------------------------------------------*/
 
-        var $form = this,
+        var $form = this
             /**
              * @namespace All form inputs of the given form
              * @returns {object}
              */
-            FormInputs = (function() {
-                var $inputs = $form.find('input, select, textarea'),
-                    $labels = $form.find('label:first-child'),
-                    $text = $inputs.filter(':text, :password, textarea'),
-                    $select = $inputs.filter('select'),
-                    $radiocheck = $inputs.filter(':checkbox, :radio')
+          , FormInputs = (function() {
+                var $inputs = $form.find('input, select, textarea')
+                  , $labels = $form.find('label:first-child')
+                  , $text = $inputs.filter(':text, :password, textarea')
+                  , $select = $inputs.filter('select')
+                  , $radiocheck = $inputs.filter(':checkbox, :radio')
                 return {
-                    inputs: $inputs,
-                    labels: $labels,
-                    text: $text,
-                    select: $select,
-                    radiocheck: $radiocheck
+                    inputs: $inputs
+                  , labels: $labels
+                  , text: $text
+                  , select: $select
+                  , radiocheck: $radiocheck
                 }
             }())
 
@@ -575,10 +575,10 @@
              * @returns {object} Returns [isValid] plus [error] if it fails
              */
             validate: function(input, value) {
-                var isValid = true,
-                    error = '',
-                    userOptions = input.userOptions,
-                    userFilters
+                var isValid = true
+                  , error = ''
+                  , userOptions = input.userOptions
+                  , userFilters
                 if (userOptions.filters) {
                     userFilters = userOptions.filters
                     if (!value && /required/.test(userFilters)) {
@@ -609,8 +609,8 @@
                     isValid = true
                 }
                 return {
-                    isValid: isValid,
-                    error: error
+                    isValid: isValid
+                  , error: error
                 }
             },
 
@@ -639,8 +639,8 @@
 
                 // Validate
                 var test = Actions.validate({
-                    userOptions: userOptions,
-                    input: $input
+                    userOptions: userOptions
+                  , input: $input
                 }, value)
 
                 // Validation elements
@@ -720,8 +720,8 @@
             var $this = $(this)
             if ($this.is('.custom')) {
                 Actions.analyze({
-                    input: $this,
-                    custom: $this.next()
+                    input: $this
+                  , custom: $this.next()
                 }, e.type)
             } else {
                 Actions.analyze({
