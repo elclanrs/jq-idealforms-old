@@ -112,28 +112,28 @@
                         .eq(Select.options.filter(':selected').index())
                         .find('span')
                         .addClass('selected')
-                }()),
-                noWindowScroll: function(e){
+                }())
+              , noWindowScroll: function(e){
                     if (e.which === 40 || e.which === 38 || e.which === 13) {
                         e.preventDefault()
                     }
-                },
+                }
                 // Fix loosing focus when scrolling
                 // and selecting item with keyboard
-                focusHack: function(){
+              , focusHack: function(){
                     setTimeout(function () {
                         $select.trigger('focus')
                     }, 1)
-                },
-                focus: function(){
+                }
+              , focus: function(){
                     Select.select.addClass('focus')
                     $(document).on('keydown.noscroll', Actions.noWindowScroll)
-                },
-                blur: function() {
+                }
+              , blur: function() {
                     Select.select.removeClass('open focus')
                     $(document).off('.noscroll')
-                },
-                scrollIntoView: function(dir) {
+                }
+              , scrollIntoView: function(dir) {
                     var $selected = Select.items.find('.selected').parent()
                       , itemHeight = $selected.outerHeight()
                       , menuHeight = Select.sub.outerHeight()
@@ -149,37 +149,37 @@
                             : -itemHeight
                         Select.sub.scrollTop(Select.sub.scrollTop() + itemHeight)
                     }
-                },
-                scrollToItem: function() {
+                }
+              , scrollToItem: function() {
                     var idx = Select.items.find('.selected').parent().index()
                       , height = Select.items.outerHeight()
                       , items = Select.items.length
                       , allHeight = height * items
                       , curHeight = height * (items - idx)
                     Select.sub.scrollTop(allHeight - curHeight)
-                },
-                showMenu: function() {
+                }
+              , showMenu: function() {
                     Select.sub.show()
                     Select.select.addClass('open')
                     Actions.select(Select.options.filter(':selected').index())
                     Actions.scrollToItem()
-                },
-                hideMenu: function(){
+                }
+              , hideMenu: function(){
                     Select.sub.hide()
                     Select.select.removeClass('open')
-                },
-                select: function(idx) {
+                }
+              , select: function(idx) {
                     Select.items.find('span').removeClass('selected')
                     Select.items.eq(idx).find('span').addClass('selected')
-                },
-                change: function(idx) {
+                }
+              , change: function(idx) {
                     var text = Select.items.eq(idx).text()
                     Actions.select(idx)
                     Select.title.text(text)
                     Select.options.eq(idx).prop('selected', true)
                     $select.trigger('change')
-                },
-                keydown: function(key) {
+                }
+              , keydown: function(key) {
                     var idx = Select.items.find('.selected').parent().index()
                     var keys = {
                         9: function(){ // TAB
