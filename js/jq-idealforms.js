@@ -183,15 +183,15 @@
                             }
                         },
                         13: function() { // Enter
-                            Select.sub.is(':visible') ? actions.hideMenu() : actions.showMenu();
+                            Select.sub.is(':visible') ? Actions.hideMenu() : Actions.showMenu();
                         },
                         40: function() { // Down arrow
-                            idx < Select.options.length - 1 && actions.change(idx + 1);
-                            actions.scrollIntoView('down');
+                            idx < Select.options.length - 1 && Actions.change(idx + 1);
+                            Actions.scrollIntoView('down');
                         },
                         38: function() { // Up arrow
-                            idx > 0 && actions.change(idx - 1);
-                            actions.scrollIntoView('up');
+                            idx > 0 && Actions.change(idx - 1);
+                            Actions.scrollIntoView('up');
                         },
                         'default': function() { // Letter
                             var letter = String.fromCharCode(key),
