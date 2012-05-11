@@ -181,6 +181,9 @@
                 }
               , keydown: function(key) {
                     var idx = Select.items.find('.selected').parent().index()
+                    /**
+                     * @namespace Key pressed
+                     */
                     var keys = {
                         9: function(){ // TAB
                             if (Select.select.is('.menu')) {
@@ -341,7 +344,10 @@
                     var $this = $(this)
                     $this.trigger('focus')
                     if ($this.is(':radio')) {
-                        $this.parent().siblings('label').children('.ideal-radio').removeClass('checked')
+                        $this.parent()
+                            .siblings('label')
+                            .children('.ideal-radio')
+                            .removeClass('checked')
                         $this.next('.ideal-radio').addClass('checked')
                     } else {
                         $this.is(':checked')
