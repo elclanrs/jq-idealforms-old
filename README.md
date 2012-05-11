@@ -67,17 +67,15 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
 </form>
 ```
 
-### Using the plugin:
-
-**Invoke the plugin**  
+### Invoke the plugin:
 Call your plugin on each form separately.
 ```javascript
 $('#my-form').idealforms({ options });
 ```
 
-**Options**  
-* Inputs 
-An object containing all the inputs to validate.
+### Options: 
+**Inputs**  
+Object containing all the inputs to validate.
 
 ```javascript
 inputs: {
@@ -95,6 +93,51 @@ inputs: {
         }
     }
 }
+```
+
+**Filters**  
+Custom filters.
+
+```javascript
+filters: {
+    custom: {
+        regex: /regularexpression/,
+        error: 'My custom error'
+    },
+    another: {
+         /**
+         * @param {object} input Contains two objects, 
+         * the user options of the input as [input.userOptions] 
+         * and the jQuery element as [input.input]
+         * @param {string} value The value of the input
+         */
+        regex: function(input, value) {
+            // Declare error within `regex` 
+            // to have access to `value` and `input`
+            this.error = 'My custom ' + value;     
+        }
+    }
+}
+```
+
+**Callbacks**  
+```javascript
+// Callbacks
+onSuccess: function(e){ 
+    // Form validates
+},
+onFail: function(){
+    // Form does NOT validate    
+}
+```
+
+**Responsiveness**
+By default, jq-idealforms will make the form "adaptive". It will adapt to the container allowing it to work with any grid responsive grid system.
+You can change this behavior by assigning a number value to the `responsiveAt` option.
+```javascript
+// Make responsive only at a certain window size.
+// Default is `auto` to adapt to the container
+responsiveAt: 480
 ```
 
 **Built-in filters**
@@ -198,33 +241,7 @@ $('#my-form').idealforms({
                 min: 'Check only <strong>1</strong> option.'
             }
         }
-    },
-    // Custom filters
-    filters: {
-        custom: {
-            regex: /regularexpression/,
-            error: 'My custom error'
-        },
-        another: {
-            regex: function(input, value) {
-                // input: {
-                //    userOptions: user options of the field (filters, data, errors)
-                //    input: the jQuery input object
-                //}
-                this.error = 'My custom ' + value;     
-            }
-        }
     }
-    // Callbacks
-    onSuccess: function(e){ 
-        // Form validates
-    },
-    onFail: function(){
-        // Form does NOT validate        
-    },
-    // Make responsive only at a certain window size.
-    // Default is `auto` to adapt to the container
-    responsiveAt: 480
 });
 ```
 
