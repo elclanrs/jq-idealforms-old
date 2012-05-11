@@ -513,19 +513,19 @@
             init: (function() {
 
                 var insertNewEls = function ($field) {
-                    var error = '<span class="error" />',
-                    valid = '<i class="valid-icon" />',
-                    invalid = $('<i/>', {
-                            'class' : 'invalid-icon',
-                            click : function () {
-                                var $this = $(this)
-                                if ($this.siblings('label').length) { // radio & check
-                                    $this.siblings('label:first').find('input').focus()
-                                } else {
-                                    $this.siblings('input, select, textarea').focus()
+                    var error = '<span class="error" />'
+                      , valid = '<i class="valid-icon" />'
+                      , invalid = $('<i/>', {
+                                'class' : 'invalid-icon'
+                              , click : function () {
+                                    var $this = $(this)
+                                    if ($this.siblings('label').length) { // radio & check
+                                        $this.siblings('label:first').find('input').focus()
+                                    } else {
+                                        $this.siblings('input, select, textarea').focus()
+                                    }
                                 }
-                            }
-                        })
+                            })
                     $(error).hide().insertAfter($field)
                     $(valid).add(invalid).hide().appendTo($field)
                 }
