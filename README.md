@@ -187,7 +187,7 @@ Must be a valid date in this format `mm/dd/yy`
 `exclude`  
 * Prevent validation if the value matches any value in the given array.
 
-=== Example
+### Example
 With the markup provided above you'd call the plugin like this:
 
 Call **jq-idealforms** on your form. Since the plugin works on each form separately you need to make a call on each and every form you want to make ideal. In most cases it will only be one form.
