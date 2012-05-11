@@ -52,8 +52,7 @@
     @radiocheck-sprite: "../img/radiocheck.png";
     @radiocheck-icon-width: 17px;
     @radiocheck-icon-height: 17px;
-    @radiocheck-marker-color: @error-color;
-    @radiocheck-focus-color: @radiocheck-marker-color;    
+    @radiocheck-focus-bg: hsl(hue(@error-color), 20%, 92%);
     
 /*--------------------------------------------------------
     Extra:
@@ -164,7 +163,7 @@
     /**/
     font-size: @font-size;
     font-family: @font-family;
-    div {
+    .ideal-wrap {
         float: left;
         clear: both;
         position: relative;
@@ -233,9 +232,9 @@
         color: darken(@invalid, 80%);
         border: @border-width solid darken(@invalid, 50%);
     }
-	.invalid input[type="password"] {
-		font-family: Arial~'\9'; /* For IE8 empty character bug with custom fonts */
-	}
+    .invalid input[type="password"] {
+        font-family: Arial~'\9'; /* For IE8 empty character bug with custom fonts */
+    }
     .valid textarea,
     .valid input,
     .valid select    {
@@ -283,7 +282,7 @@
             @percent: (@icon / @total) * 100;
             width: 100% - @percent;
         }
-        div,
+        .ideal-wrap,
         input[type="text"],
         input[type="password"],
         textarea,
@@ -474,9 +473,9 @@
             line-height: @radiocheck-icon-height;
             float: left;
             clear: left;
-            margin: .4em 0;
+			padding: .4em;
+			width: 100%;
             vertical-align: bottom;
-            margin-left: @radiocheck-icon-width / 2;
         }
     }
     .ideal-check,
@@ -496,19 +495,11 @@
     .ideal-radio.checked {
         background-position: right bottom;
     }
-    .ideal-radiocheck .focus {
-        /* border: @border-width solid black; */
-        font-weight: bold;
-        color: @radiocheck-focus-color;
-        &:after {
-            content: "";
-            position: absolute;
-            right: 0;
-            margin-top: @arrow-size/2;
-            border-style: solid;
-            border-width: @arrow-size/1.5;
-            border-color: transparent @radiocheck-marker-color transparent transparent;
-        }
+    .ideal-radiocheck label.focus {
+		/* font-weight: bold; */
+		background: @radiocheck-focus-bg;
+		border-radius: @border-radius;
+        color: darken(@radiocheck-focus-bg, 60%);
     }
     
 /* --------------------------------------------------------
