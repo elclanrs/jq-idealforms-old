@@ -571,7 +571,7 @@
                         }
                     })
                 }
-            }()),
+            }())
 
             /** Validates an input
              * @memberOf Actions
@@ -580,7 +580,7 @@
              * @param {string} value The value of the given input
              * @returns {object} Returns [isValid] plus [error] if it fails
              */
-            validate: function(input, value) {
+          , validate: function(input, value) {
                 var isValid = true
                   , error = ''
                   , userOptions = input.userOptions
@@ -618,7 +618,7 @@
                     isValid: isValid
                   , error: error
                 }
-            },
+            }
 
             /** Shows or hides validation errors
              * @memberOf Actions
@@ -626,7 +626,7 @@
              * and the user options of that input [input.userOptions]
              * @param {string} evt The event on which `analyze()` is being called
              */
-            analyze: function(input, evt) {
+          , analyze: function(input, evt) {
 
                 evt = evt || ''
 
@@ -684,12 +684,12 @@
                     // hide error on blur
                     if (evt !== 'blur') $error.html(test.error).show()
                 }
-            },
+            }
 
             /** Deals with responsiveness aka adaptation
              * @memberOf Actions
              */
-            responsive: function() {
+          , responsive: function() {
 
                 var maxWidth = LessVars.inputWidth + FormInputs.labels.outerWidth()
                 if (o.responsiveAt === 'auto') {
