@@ -525,5 +525,11 @@
         &:focus {
             .ui-focus(@button-focus);
         }
+        &:active {
+            background: @button-focus;
+            position: relative;
+            top: 1px;
+            .box-shadow(none);
+        }
     }
 }
