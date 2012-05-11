@@ -192,8 +192,10 @@ $('#my-form').idealforms({
     },
     onFail: function(){
         // Form does NOT validate        
-    }
-    
+    },
+    // Make responsive only at a certain window size.
+    // Default is `auto` to adapt to the container
+    responsiveAt: 480
 });
 ```
 
