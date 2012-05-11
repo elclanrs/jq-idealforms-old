@@ -69,7 +69,37 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
 
 ### Using the plugin:
 
-**You may use any of these filters in any order:**
+**Invoke the plugin**
+Call your plugin on each form separately.
+```javascript
+$('#my-form').idealforms({ options });
+```
+
+**Options**
+`inputs`
+An object containing all the inputs to validate.
+```javascript
+inputs: {
+    // The name attribute of the input in quotes 
+    'name': {
+        filters: 'filterName filterName filterName', // {string} Space separated list
+        // Some filters take a `data` attribute 
+        // such as `exclude`, `min` and `max`
+        data: {
+            filterName: data // {number, array, string}
+        },
+        // Custom errors
+        errors: {
+            filterName: error // {string} Can contain inline HTML tags
+        }
+    }
+}
+```
+`inputs`
+An object containing all the inputs to validate.
+
+**Built-in filters**
+You may use any of these filters in any order.
 
 `required`  
 The field is required.
