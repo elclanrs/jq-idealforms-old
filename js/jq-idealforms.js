@@ -442,7 +442,7 @@
                 // Add your own filters
                 // ie. myfilter: { regex: /something/, error: 'My error' }
             },
-            responsive: true
+            responsiveAt: 'auto'
         }, ops);
 
         // Merge custom and default filters
@@ -658,9 +658,14 @@
              * @memberOf Actions
              */
             responsive: function() {
+                
                 var maxWidth = LessVars.inputWidth + FormInputs.labels.outerWidth();
-                $form.width() < maxWidth ? $form.addClass('stack') : $form.removeClass('stack');
-
+                if (o.responsiveAt === 'auto') {
+                    $form.width() < maxWidth ? $form.addClass('stack') : $form.removeClass('stack');
+                } else {
+                    $(window).width() < o.responsiveAt ? $form.addClass('stack') : $form.removeClass('stack');
+                }
+                
                 // Labels
                 (function() {
                     var $emptyLabel = FormInputs.labels.filter(function() {
@@ -703,11 +708,12 @@
                 o.onSuccess();
             }
         });
-
-        if (o.responsive) {
-            $(window).resize(Actions.responsive);
+            
+        $(window).resize(function () {
             Actions.responsive();
-        }
+        });
+        
+        Actions.responsive();
 
         return this;
 
