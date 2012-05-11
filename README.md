@@ -118,7 +118,7 @@ filters: {
 }
 ```
 
-**Callbacks**  
+**Callbacks:**  
 ```javascript
 onSuccess: function(e){ 
     // Form validates
@@ -128,7 +128,7 @@ onFail: function(){
 }
 ```
 
-**Responsiveness**  
+**Responsiveness:**  
 By default, jq-idealforms will make the form "adaptive". It will adapt to the container allowing it to work with any grid responsive grid system.
 You can change this behavior by assigning a number value to the `responsiveAt` option.
 ```javascript
