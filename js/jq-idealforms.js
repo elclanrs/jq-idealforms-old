@@ -354,14 +354,14 @@
                             ? $span.addClass('checked')
                             : $span.removeClass('checked')
                     }
-                },
-                focus: function() {
+                }
+              , focus: function() {
                     $span.parent().addClass('focus')
-                },
-                blur: function() {
+                }
+              , blur: function() {
                     $span.parent().removeClass('focus')
-                },
-                click: function(){
+                }
+              , click: function(){
                     $(this).trigger('focus')
                 }
             })
