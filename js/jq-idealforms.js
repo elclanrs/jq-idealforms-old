@@ -630,9 +630,9 @@
 
                 evt = evt || ''
 
-                var $input = FormInputs.inputs.filter('[name="' + input.input.attr('name') + '"]'),
-                    userOptions = o.inputs[input.input.attr('name')] || '',
-                    value = (function(){
+                var $input = FormInputs.inputs.filter('[name="' + input.input.attr('name') + '"]')
+                  , userOptions = o.inputs[input.input.attr('name')] || ''
+                  , value = (function(){
                         if (input.input.val() === input.input.attr('placeholder')) {
                             return
                         }
