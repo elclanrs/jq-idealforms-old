@@ -22,7 +22,8 @@ Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
 Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plugin and the `jq-idealforms.css` stylesheet into your project as well as the [`normalize.css`](http://necolas.github.com/normalize.css/) reset.
 
-### Markup:
+Markup
+------
 
 ```html
 <form id="my-form">
@@ -67,15 +68,17 @@ Load the latest [jQuery library](http://jquery.com), the `jq-idealforms.js` plug
 </form>
 ```
 
-### Invoke the plugin:
+Invoke the plugin
+-----------------
 Call your plugin on each form separately.
 ```javascript
 $('#my-form').idealforms({ options });
 ```
 
-### Options: 
+Options
+-------
 
-**Inputs to validate:**
+#### Inputs to validate:
 
 ```javascript
 inputs: {
@@ -94,7 +97,7 @@ inputs: {
     }
 }
 ``` 
-**Custom filters:**
+#### Custom filters:
 
 ```javascript
 filters: {
@@ -137,7 +140,8 @@ You can change this behavior by assigning a number value to the `responsiveAt` o
 responsiveAt: 480
 ```
 
-### Built-in filters:
+Built-in filters:
+-----------------
 You may use any of these filters in any order.
 
 ####`required`
@@ -170,7 +174,7 @@ Must be a valid US phone number.
 ####`zip`
 Must be a valid US zip code.
 
-####`url
+####`url`
 Must be a valid URL.
 
 ####`min`
@@ -187,7 +191,8 @@ Must be a valid date in this format `mm/dd/yy`
 ####`exclude`
 * Prevent validation if the value matches any value in the given array.
 
-### Example:
+Example
+-------
 With the markup provided above you'd call the plugin like this:
 
 ```javascript
@@ -243,7 +248,8 @@ $('#my-form').idealforms({
 });
 ```
 
-### Theming:
+Theming
+-------
 
 **jq-idealforms** relays on a carefully crafted [LESS](http://lesscss.org/) stylesheet, `../css/jq-idealforms.less`. From this file you can tweak every detail of the input's appearance, from the simplest text input, to the select menus, radios, and checkboxes.
 
