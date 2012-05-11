@@ -78,6 +78,7 @@ $('#my-form').idealforms({ options });
 **Options**  
 * Inputs 
 An object containing all the inputs to validate.
+
 ```javascript
 inputs: {
     // The name attribute of the input in quotes 
