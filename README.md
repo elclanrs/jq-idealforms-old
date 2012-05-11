@@ -120,7 +120,6 @@ filters: {
 
 **Callbacks**  
 ```javascript
-// Callbacks
 onSuccess: function(e){ 
     // Form validates
 },
