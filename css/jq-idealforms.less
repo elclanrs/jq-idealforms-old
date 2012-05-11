@@ -52,7 +52,7 @@
     @radiocheck-sprite: "../img/radiocheck.png";
     @radiocheck-icon-width: 17px;
     @radiocheck-icon-height: 17px;
-    @radiocheck-focus-bg: hsl(hue(@error-color), 20%, 92%);
+    @radiocheck-focus-bg: hsl(hue(@error-color), 40%, 92%);
     
 /*--------------------------------------------------------
     Extra:
@@ -473,9 +473,10 @@
             line-height: @radiocheck-icon-height;
             float: left;
             clear: left;
-			padding: .4em;
-			width: 100%;
+            padding: .4em;
+            width: 100%;
             vertical-align: bottom;
+            border: @border-width solid transparent;
         }
     }
     .ideal-check,
@@ -496,9 +497,10 @@
         background-position: right bottom;
     }
     .ideal-radiocheck label.focus {
-		/* font-weight: bold; */
-		background: @radiocheck-focus-bg;
-		border-radius: @border-radius;
+        /* font-weight: bold; */
+        background: @radiocheck-focus-bg;
+        border-radius: @border-radius;
+        border: @border-width solid darken(@radiocheck-focus-bg, 10%);
         color: darken(@radiocheck-focus-bg, 60%);
     }
     

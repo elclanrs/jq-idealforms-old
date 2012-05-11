@@ -501,7 +501,7 @@
                 };
 
                 $form.css('visibility', 'visible').addClass('ideal-form');
-				$form.children('div').addClass('ideal-wrap');
+                $form.children('div').addClass('ideal-wrap');
 
                 // Autocomplete causes some problems...
                 FormInputs.inputs.attr('autocomplete', 'off');
