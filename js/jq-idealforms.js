@@ -459,20 +459,20 @@
 
         // Default options
         var o = $.extend({
-            inputs: {},
-            onSuccess: function(e) {
+            inputs: {}
+          , onSuccess: function(e) {
                 alert('Thank you...')
-            },
-            onFail: function() {
+            }
+          , onFail: function() {
                 // What happens on submit if the form
                 // does NOT validate.
                 alert('The form does not validate! Check again...')
-            },
-            filters: {
+            }
+          , filters: {
                 // Add your own filters
                 // ie. myfilter: { regex: /something/, error: 'My error' }
-            },
-            responsiveAt: 'auto'
+            }
+          , responsiveAt: 'auto'
         }, ops)
 
         // Merge custom and default filters
