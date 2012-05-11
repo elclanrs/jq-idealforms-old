@@ -69,6 +69,7 @@
 
             /**
              * Markup and elements of custom select
+             * @memberOf $.fn.toCustomSelect
              * @returns {object} All elements of the new select replacement
              */
             var Select = (function() {
@@ -96,6 +97,7 @@
 
             /**
              * @namespace Methods of custom select
+             * @memberOf $.fn.toCustomSelect
              */
             var Actions = {
                 /**
@@ -236,6 +238,7 @@
 
             /**
              * @namespace Holds all events of custom select for "menu mode" and "list mode"
+             * @memberOf $.fn.toCustomSelect
              */
             var events = {
                 focus: Actions.focus
@@ -483,6 +486,7 @@
         var $form = this
             /**
              * @namespace All form inputs of the given form
+             * @memberOf $.fn.idealforms
              * @returns {object}
              */
           , FormInputs = (function() {
@@ -504,6 +508,7 @@
 
         /**
          * @namespace Methods of the form
+         * @memberOf $.fn.idealforms
          */
         var Actions = {
 
@@ -579,7 +584,7 @@
              * and the user options of that input [input.userOptions]
              * @param {string} value The value of the given input
              * @returns {object} Returns [isValid] plus [error] if it fails
-             */
+             */  
           , validate: function(input, value) {
                 var isValid = true
                   , error = ''
