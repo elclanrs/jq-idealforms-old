@@ -189,33 +189,33 @@
                             } else {
                                 return false
                             }
-                        },
-                        13: function() { // ENTER
+                        }
+                      , 13: function() { // ENTER
                             Select.select.is('.open')
                                 ? Actions.hideMenu()
                                 : Actions.showMenu()
                             Actions.change(idx)
-                        },
-                        27: function(){ // ESC
+                        }
+                      , 27: function(){ // ESC
                             Actions.hideMenu()
-                        },
-                        40: function() { // DOWN
+                        }
+                      , 40: function() { // DOWN
                             if (idx < Select.options.length - 1) {
                                 Select.select.is('.open')
                                     ? Actions.select(idx + 1)
                                     : Actions.change(idx + 1)
                             }
                             Actions.scrollIntoView('down')
-                        },
-                        38: function() { // UP
+                        }
+                      , 38: function() { // UP
                             if (idx > 0) {
                                 Select.select.is('.open')
                                     ? Actions.select(idx - 1)
                                     : Actions.change(idx - 1)
                             }
                             Actions.scrollIntoView('up')
-                        },
-                        'default': function() { // Letter
+                        }
+                      , 'default': function() { // Letter
                             var letter = String.fromCharCode(key)
                               , selIdx = Select.items.find('.selected').parent().index()
                               , curIdx = Select.items.filter(function() {
