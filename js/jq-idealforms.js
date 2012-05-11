@@ -11,9 +11,9 @@
 (function($) {
 
     'use strict';
-    
+
 /*--------------------------------------------------------------------------*/
-    
+
     /**
      * @namespace A chest for various Utils
      */
@@ -23,7 +23,7 @@
          * @memberOf Utils
          * @param {jQuery object} $elms
          * @returns {number}
-         */ 
+         */
         getMaxWidth: function($elms) {
             var maxWidth = 0;
             $elms.each(function() {
@@ -39,7 +39,7 @@
          * @param {string} name The name of the LESS class.
          * @param {string} prop The css property where the data is stored.
          * @returns {number, string}
-         */         
+         */
         getLessVar: function(name, prop) {
             var value = $('<p class="' + name + '"></p>').hide().appendTo('body').css(prop);
             $('.' + name).remove();
@@ -48,7 +48,7 @@
     };
 
 /*--------------------------------------------------------------------------*/
-    
+
     /**
      * @namespace Contains LESS data
      */
@@ -58,7 +58,7 @@
 
 /*--------------------------------------------------------------------------*/
 
-    /** 
+    /**
      * A custom <select> menu jQuery plugin
      * @example `$('select').toCustomSelect()`
      */
@@ -66,7 +66,7 @@
 
         return this.each(function() {
             var $select = $(this);
-            
+
             /**
              * Markup and elements of custom select
              * @returns {object} All elements of the new select replacement
@@ -139,10 +139,14 @@
                         menuHeight = Select.sub.outerHeight(),
                         isInView = (function() {
                             var elPos = $selected.position().top + itemHeight;
-                            return dir === 'down' ? elPos <= menuHeight : elPos > 0;
+                            return dir === 'down'
+                                ? elPos <= menuHeight
+                                : elPos > 0;
                         }());
                     if (!isInView) {
-                        itemHeight = (dir === 'down') ? itemHeight : -itemHeight;
+                        itemHeight = (dir === 'down')
+                            ? itemHeight
+                            : -itemHeight;
                         Select.sub.scrollTop(Select.sub.scrollTop() + itemHeight);
                     }
                 },
@@ -157,24 +161,28 @@
                 showMenu: function() {
                     Select.sub.show();
                     Select.select.addClass('open');
+                    Actions.select(Select.options.filter(':selected').index());
                     Actions.scrollToItem();
                 },
                 hideMenu: function(){
                     Select.sub.hide();
                     Select.select.removeClass('open');
                 },
-                change: function(idx) {
-                    var text = Select.items.eq(idx).text();
-                    Select.title.text(text);
-                    Select.options.eq(idx).prop('selected', true);
+                select: function(idx) {
                     Select.items.find('span').removeClass('selected');
                     Select.items.eq(idx).find('span').addClass('selected');
+                },
+                change: function(idx) {
+                    var text = Select.items.eq(idx).text();
+                    Actions.select(idx);
+                    Select.title.text(text);
+                    Select.options.eq(idx).prop('selected', true);
                     $select.trigger('change');
                 },
                 keydown: function(key) {
-                    var idx = $select.find('option:selected').index();
+                    var idx = Select.items.find('.selected').parent().index();
                     var keys = {
-                        9: function(){ // Tab
+                        9: function(){ // TAB
                             if (Select.select.is('.menu')) {
                                 Actions.blur();
                                 Actions.hideMenu();
@@ -182,15 +190,29 @@
                                 return false;
                             }
                         },
-                        13: function() { // Enter
-                            Select.sub.is(':visible') ? Actions.hideMenu() : Actions.showMenu();
+                        13: function() { // ENTER
+                            Select.select.is('.open') 
+                                ? Actions.hideMenu() 
+                                : Actions.showMenu();
+                            Actions.change(idx);    
                         },
-                        40: function() { // Down arrow
-                            idx < Select.options.length - 1 && Actions.change(idx + 1);
+                        27: function(){ // ESC
+                            Actions.hideMenu();
+                        },
+                        40: function() { // DOWN
+                            if (idx < Select.options.length - 1) {
+                                Select.select.is('.open')
+                                    ? Actions.select(idx + 1)
+                                    : Actions.change(idx + 1);
+                            }
                             Actions.scrollIntoView('down');
                         },
-                        38: function() { // Up arrow
-                            idx > 0 && Actions.change(idx - 1);
+                        38: function() { // UP
+                            if (idx > 0) {
+                                Select.select.is('.open')
+                                    ? Actions.select(idx - 1)
+                                    : Actions.change(idx - 1);
+                            }
                             Actions.scrollIntoView('up');
                         },
                         'default': function() { // Letter
@@ -202,8 +224,6 @@
                                 }).first().index();
                             Actions.change(!~curIdx ? selIdx : curIdx);
                             Actions.scrollToItem();
-                            $select.trigger('blur');
-                            Actions.showMenu();
                             Actions.focusHack();
                         }
                     };
@@ -218,7 +238,7 @@
                 focus: Actions.focus,
                 'blur.menu': function(){
                     Actions.blur();
-                    Actions.hideMenu();    
+                    Actions.hideMenu();
                 },
                 'blur.list': function(){
                     Actions.blur();
@@ -253,7 +273,7 @@
                     Actions.focusHack();
                 }
             };
- 
+
             // Bind events
             var disableEvents = function(){
                 Select.select.removeClass('menu list');
@@ -262,7 +282,7 @@
                 Select.select.off('.menu .list');
                 Select.title.off('.menu .list');
             };
-            
+
             // Menu
             Select.select
                 .on('menu', function(){
@@ -293,14 +313,14 @@
                     Select.select.on('mousedown.list', events['mousedown.list']);
                     Select.items.on('mousedown.list', events['clickItem.list']);
                 });
-                
-            Select.select.on('menu'); // Default to "menu mode"   
+
+            Select.select.on('menu'); // Default to "menu mode"
         });
     };
 
 /*--------------------------------------------------------------------------*/
 
-    /** 
+    /**
      * A custom <input type="radio|checkbox"> jQuery plugin
      * @example `$(':radio, :checkbox').toCustomRadioCheck()`
      */
@@ -308,7 +328,9 @@
         return this.each(function() {
             var $this = $(this),
                 $span = $('<span/>');
-            $this.is(':checkbox') ? $span.addClass('ideal-check') : $span.addClass('ideal-radio');
+            $this.is(':checkbox')
+                ? $span.addClass('ideal-check')
+                : $span.addClass('ideal-radio');
             $this.is(':checked') && $span.addClass('checked');
             $span.insertAfter($this);
             $this.css({
@@ -322,7 +344,9 @@
                         $this.parent().siblings('label').children('.ideal-radio').removeClass('checked');
                         $this.next('.ideal-radio').addClass('checked');
                     } else {
-                        $this.is(':checked') ? $span.addClass('checked') : $span.removeClass('checked');
+                        $this.is(':checked')
+                            ? $span.addClass('checked')
+                            : $span.removeClass('checked');
                     }
                 },
                 focus: function() {
@@ -341,7 +365,7 @@
 /*--------------------------------------------------------------------------*/
 
     /**
-     * @namespace All default filters used for validation 
+     * @namespace All default filters used for validation
      */
     var Filters = {
         number: {
@@ -419,7 +443,7 @@
             }
         }
     };
-    
+
 /*--------------------------------------------------------------------------*/
 
     /**
@@ -449,7 +473,7 @@
         $.extend(true, Filters, o.filters);
 
 /*--------------------------------------------------------------------------*/
-        
+
         var $form = this,
             /**
              * @namespace All form inputs of the given form
@@ -469,7 +493,7 @@
                     radiocheck: $radiocheck
                 };
             }());
-            
+
 /*--------------------------------------------------------------------------*/
 
         /**
@@ -477,7 +501,7 @@
          */
         var Actions = {
 
-            /** Create validation elements and neccesary markup 
+            /** Create validation elements and neccesary markup
              * @private
              */
             init: (function() {
@@ -545,10 +569,10 @@
 
             /** Validates an input
              * @memberOf Actions
-             * @param {object} input Object that contains the jQuery input object [input.input] 
+             * @param {object} input Object that contains the jQuery input object [input.input]
              * and the user options of that input [input.userOptions]
              * @param {string} value The value of the given input
-             * @returns {object} Returns [isValid] plus [error] if it fails 
+             * @returns {object} Returns [isValid] plus [error] if it fails
              */
             validate: function(input, value) {
                 var isValid = true,
@@ -571,7 +595,7 @@
                             var theFilter = Filters[uf];
                             if (theFilter) {
                                 if (
-                                    typeof theFilter.regex === 'function' && !theFilter.regex(input, value) || 
+                                    typeof theFilter.regex === 'function' && !theFilter.regex(input, value) ||
                                     theFilter.regex instanceof RegExp && !theFilter.regex.test(value)
                                 ) {
                                     isValid = false;
@@ -592,14 +616,14 @@
 
             /** Shows or hides validation errors
              * @memberOf Actions
-             * @param {object} input Object that contains the jQuery input object [input.input] 
+             * @param {object} input Object that contains the jQuery input object [input.input]
              * and the user options of that input [input.userOptions]
              * @param {string} evt The event on which `analyze()` is being called
              */
             analyze: function(input, evt) {
 
                 evt = evt || '';
-                
+
                 var $input = FormInputs.inputs.filter('[name="' + input.input.attr('name') + '"]'),
                     userOptions = o.inputs[input.input.attr('name')] || '',
                     value = (function(){
@@ -634,7 +658,7 @@
                         }
                         return input.input.siblings('.valid-icon');
                     }());
-                    
+
                 // Reset
                 $field.removeClass('valid invalid');
                 $error.add($invalid).add($valid).hide();
@@ -658,14 +682,18 @@
              * @memberOf Actions
              */
             responsive: function() {
-                
+
                 var maxWidth = LessVars.inputWidth + FormInputs.labels.outerWidth();
                 if (o.responsiveAt === 'auto') {
-                    $form.width() < maxWidth ? $form.addClass('stack') : $form.removeClass('stack');
+                    $form.width() < maxWidth
+                        ? $form.addClass('stack')
+                        : $form.removeClass('stack');
                 } else {
-                    $(window).width() < o.responsiveAt ? $form.addClass('stack') : $form.removeClass('stack');
+                    $(window).width() < o.responsiveAt
+                        ? $form.addClass('stack')
+                        : $form.removeClass('stack');
                 }
-                
+
                 // Labels
                 (function() {
                     var $emptyLabel = FormInputs.labels.filter(function() {
@@ -673,7 +701,7 @@
                     });
                     $form.is('.stack') ? $emptyLabel.hide() : $emptyLabel.show();
                 }());
-                
+
                 // Custom select
                 (function(){
                     var $customSelect = FormInputs.select.next('.ideal-select');
@@ -708,11 +736,11 @@
                 o.onSuccess();
             }
         });
-            
+
         $(window).resize(function () {
             Actions.responsive();
         });
-        
+
         Actions.responsive();
 
         return this;
