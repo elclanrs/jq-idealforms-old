@@ -137,7 +137,7 @@ You can change this behavior by assigning a number value to the `responsiveAt` o
 responsiveAt: 480
 ```
 
-=== Built-in filters
+### Built-in filters
 You may use any of these filters in any order.
 
 `required`  
