@@ -74,8 +74,8 @@ $('#my-form').idealforms({ options });
 ```
 
 ### Options: 
-**Inputs**  
-Object containing all the inputs to validate.
+
+**Inputs to validate:**
 
 ```javascript
 inputs: {
@@ -93,10 +93,8 @@ inputs: {
         }
     }
 }
-```
-
-**Filters**  
-Custom filters.
+``` 
+**Custom filters:**
 
 ```javascript
 filters: {
