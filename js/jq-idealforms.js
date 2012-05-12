@@ -542,12 +542,14 @@
           })
 
           // Radio & Checkbox
-          ;(function () {
-            FormInputs.radiocheck.parent().filter(':last-child').children().each(function () {
+          FormInputs.radiocheck
+            .parent()
+            .filter(':last-child')
+            .children()
+            .each(function () {
               $(this).parent().siblings('label:not(.ideal-label)').andSelf().wrapAll('<span class="field ideal-radiocheck"/>')
             })
-            insertNewEls(FormInputs.radiocheck.parents('.field'))
-          }())
+          insertNewEls(FormInputs.radiocheck.parents('.field'))
 
           // Custom elements
           FormInputs.select.addClass('custom').toCustomSelect()
