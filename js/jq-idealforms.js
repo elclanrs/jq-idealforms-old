@@ -542,7 +542,9 @@
           FormInputs.inputs.attr('autocomplete', 'off')
 
           // Labels
-          FormInputs.labels.addClass('ideal-label').width(Utils.getMaxWidth(FormInputs.labels))
+          FormInputs.labels
+            .addClass('ideal-label')
+            .width(Utils.getMaxWidth(FormInputs.labels))
 
           // Text inputs & select
           FormInputs.text.add(FormInputs.select).each(function () {
@@ -653,10 +655,10 @@
                 return iVal
               }())
 
-            // Validate
+          // Validate
           var test = Actions.validate({
-            userOptions: userOptions,
-            input: $input
+            input: $input,
+            userOptions: userOptions
           }, value)
 
           /**
