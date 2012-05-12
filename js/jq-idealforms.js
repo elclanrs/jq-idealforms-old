@@ -723,6 +723,7 @@
           }, e.type)
         }
       }).blur() // Start fresh
+      
       $form.submit(function (e) {
         if($form.find('.field.invalid').length) {
           e.preventDefault()
