@@ -188,8 +188,6 @@
                 if (Select.select.is('.menu')) {
                   Actions.blur()
                   Actions.hideMenu()
-                } else {
-                  return false
                 }
               },
               13: function () { // ENTER
@@ -482,26 +480,26 @@
 /*--------------------------------------------------------------------------*/
 
       var $form = this,
-        /**
-         * @namespace All form inputs of the given form
-         * @memberOf $.fn.idealforms
-         * @returns {object}
-         */
-        FormInputs = (function () {
-          var $inputs = $form.find('input, select, textarea'),
-              $labels = $form.find('label:first-child'),
-              $text = $inputs.filter(':text, :password, textarea'),
-              $select = $inputs.filter('select'),
-              $radiocheck = $inputs.filter(':checkbox, :radio')
+          /**
+           * @namespace All form inputs of the given form
+           * @memberOf $.fn.idealforms
+           * @returns {object}
+           */
+          FormInputs = (function () {
+            var $inputs = $form.find('input, select, textarea'),
+                $labels = $form.find('label:first-child'),
+                $text = $inputs.filter(':text, :password, textarea'),
+                $select = $inputs.filter('select'),
+                $radiocheck = $inputs.filter(':checkbox, :radio')
 
-          return {
-            inputs: $inputs,
-            labels: $labels,
-            text: $text,
-            select: $select,
-            radiocheck: $radiocheck
-          }
-        }())
+            return {
+              inputs: $inputs,
+              labels: $labels,
+              text: $text,
+              select: $select,
+              radiocheck: $radiocheck
+            }
+          }())
 
 /*--------------------------------------------------------------------------*/
 
@@ -542,7 +540,9 @@
           FormInputs.inputs.attr('autocomplete', 'off')
 
           // Labels
-          FormInputs.labels.addClass('ideal-label').width(Utils.getMaxWidth(FormInputs.labels))
+          FormInputs.labels
+            .addClass('ideal-label')
+            .width(Utils.getMaxWidth(FormInputs.labels))
 
           // Text inputs & select
           FormInputs.text.add(FormInputs.select).each(function () {
@@ -637,8 +637,6 @@
          */
         analyze: function (input, evt) {
 
-          evt = evt || ''
-
           var $input = FormInputs.inputs.filter('[name="' + input.attr('name') + '"]'),
               userOptions = o.inputs[input.attr('name')] || '',
               value = (function () {
@@ -653,10 +651,10 @@
                 return iVal
               }())
 
-            // Validate
+          // Validate
           var test = Actions.validate({
-            userOptions: userOptions,
-            input: $input
+            input: $input,
+            userOptions: userOptions
           }, value)
 
           /**
