@@ -195,7 +195,7 @@
               13: function () { // ENTER
                 if (Select.select.is('.menu')) {
                   Select.select.is('.open')
-                    ? Actions.hideMenu() 
+                    ? Actions.hideMenu()
                     : Actions.showMenu()
                 }
                 Actions.change(idx)
@@ -205,16 +205,16 @@
               },
               40: function () { // DOWN
                 if (idx < Select.options.length - 1) {
-                  Select.select.is('.open') 
-                    ? Actions.select(idx + 1) 
+                  Select.select.is('.open')
+                    ? Actions.select(idx + 1)
                     : Actions.change(idx + 1)
                 }
                 Actions.scrollIntoView('down')
               },
               38: function () { // UP
                 if (idx > 0) {
-                  Select.select.is('.open') 
-                    ? Actions.select(idx - 1) 
+                  Select.select.is('.open')
+                    ? Actions.select(idx - 1)
                     : Actions.change(idx - 1)
                 }
                 Actions.scrollIntoView('up')
@@ -351,8 +351,8 @@
                 $this.parent().siblings('label').children('.ideal-radio').removeClass('checked')
                 $this.next('.ideal-radio').addClass('checked')
               } else {
-                $this.is(':checked') 
-                  ? $span.addClass('checked') 
+                $this.is(':checked')
+                  ? $span.addClass('checked')
                   : $span.removeClass('checked')
               }
             },
@@ -611,7 +611,7 @@
                 var theFilter = Filters[uf]
                 if (theFilter) {
                   if (
-                    typeof theFilter.regex === 'function ' && !theFilter.regex(input, value) || 
+                    typeof theFilter.regex === 'function ' && !theFilter.regex(input, value) ||
                     theFilter.regex instanceof RegExp && !theFilter.regex.test(value)
                   ) {
                     isValid = false
@@ -704,19 +704,19 @@
 
           var maxWidth = LessVars.inputWidth + FormInputs.labels.outerWidth()
           if (o.responsiveAt === 'auto') {
-            $form.width() < maxWidth 
-              ? $form.addClass('stack') 
+            $form.width() < maxWidth
+              ? $form.addClass('stack')
               : $form.removeClass('stack')
           } else {
-            $(window).width() < o.responsiveAt 
-              ? $form.addClass('stack') 
+            $(window).width() < o.responsiveAt
+              ? $form.addClass('stack')
               : $form.removeClass('stack')
           }
 
           // Labels
           ;(function () {
             var $emptyLabel = FormInputs.labels.filter(function () {
-              return $(this).html() === '&nbsp'
+              return $(this).html() === '&nbsp;'
             })
             $form.is('.stack') ? $emptyLabel.hide() : $emptyLabel.show()
           }())
@@ -724,8 +724,8 @@
           // Custom select
           ;(function () {
             var $customSelect = FormInputs.select.next('.ideal-select')
-            $form.is('.stack') 
-              ? $customSelect.trigger('list') 
+            $form.is('.stack')
+              ? $customSelect.trigger('list')
               : $customSelect.trigger('menu')
           }())
         }
@@ -748,7 +748,7 @@
           }, e.type)
         }
       }).blur() // Start fresh
-      
+
       $form.submit(function (e) {
         if ($form.find('.field.invalid').length) {
           e.preventDefault()
