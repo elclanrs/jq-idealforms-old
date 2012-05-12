@@ -1,90 +1,90 @@
 /* --------------------------------------------------------
 
-    jq-idealforms 2.0
+  jq-idealforms 2.0
 
-    * Author: Cedric Ruiz
-    * License: GPLv2
+  * Author: Cedric Ruiz
+  * License: GPLv2
 
 /* ----------------------------------------------------- */
-/* ##################################################### */    
-/* #############    User config:    #################### */    
-/* ##################################################### */     
+/* ##################################################### */  
+/* #############  User config:  #################### */  
+/* ##################################################### */   
 /* --------------------------------------------------------
-    Layout:
-    * keep same units
+  Layout:
+  * keep same units
 /*------------------------------------------------------ */
 
-    @font-size: 15px;
-    @small-font-size: 85%;
-    @input-width: @font-size * 15;
-    @label-align: right;
-    @label-width: auto; /* `auto` for auto-adjust */
-    @border-width: 1px;
-    @border-radius: 2px;
-    
+  @font-size: 15px;
+  @small-font-size: 85%;
+  @input-width: @font-size * 15;
+  @label-align: right;
+  @label-width: auto; /* `auto` for auto-adjust */
+  @border-width: 1px;
+  @border-radius: 2px;
+  
 /*--------------------------------------------------------
-    Theme:
+  Theme:
 ------------------------------------------------------- */
 
-    /* Validation */
-    @error-color: #183E59;
-    @icon-size: 16px;
-    @valid-icon: "../img/valid.png";
-    @invalid-icon: "../img/invalid.png";
-    
-    /* Text inputs */
-    @text-bg: white;
-    @invalid: #FFFBD4;
-    @valid: #EDFCD9;
-    
-    /* Buttons */
-    @button: #E6E8E8;
-    @button-focus: #D1DEED;
-    
-    /* Select */
-    @select-title: @button;
-    @select-bg: #fafafa;
-    @select-selected: @error-color;
-    @select-focus: @button-focus;
-    
-    /* Radio & Checkbox */
-    @radiocheck-bg: #fff;
-    @radiocheck-sprite: "../img/radiocheck.png";
-    @radiocheck-icon-width: 17px;
-    @radiocheck-icon-height: 17px;
-    @radiocheck-focus-bg: hsl(hue(@error-color), 40%, 92%);
-    
+  /* Validation */
+  @error-color: #183E59;
+  @icon-size: 16px;
+  @valid-icon: "../img/valid.png";
+  @invalid-icon: "../img/invalid.png";
+  
+  /* Text inputs */
+  @text-bg: white;
+  @invalid: #FFFBD4;
+  @valid: #EDFCD9;
+  
+  /* Buttons */
+  @button: #E6E8E8;
+  @button-focus: #D1DEED;
+  
+  /* Select */
+  @select-title: @button;
+  @select-bg: #fafafa;
+  @select-selected: @error-color;
+  @select-focus: @button-focus;
+  
+  /* Radio & Checkbox */
+  @radiocheck-bg: #fff;
+  @radiocheck-sprite: "../img/radiocheck.png";
+  @radiocheck-icon-width: 17px;
+  @radiocheck-icon-height: 17px;
+  @radiocheck-focus-bg: hsl(hue(@error-color), 40%, 92%);
+  
 /*--------------------------------------------------------
-    Extra:
-    Edit these variables wisely...
+  Extra:
+  Edit these variables wisely...
 ------------------------------------------------------- */
 
-    @error-width: @input-width / 1.2;
-    @icon-padding: @icon-size/2;
-    @arrow-size: (@font-size/1.4);
-    @select-scroll-size: 7; /* 9 items in scroll view */
-    @select-valid-border: none;
-    @select-invalid-border: none;
-    
+  @error-width: @input-width / 1.2;
+  @icon-padding: @icon-size/2;
+  @arrow-size: (@font-size/1.4);
+  @select-scroll-size: 7; /* 9 items in scroll view */
+  @select-valid-border: none;
+  @select-invalid-border: none;
+  
 /*--------------------------------------------------------
-/* #################################################### */    
-/* ##############    end user config    ############### */    
-/* #################################################### */          
+/* #################################################### */  
+/* ##############  end user config  ############### */  
+/* #################################################### */      
 /*--------------------------------------------------------
 
-    Careful from here on...
+  Careful from here on...
 
-    jQuery data:
+  jQuery data:
 
 ------------------------------------------------------- */
 
 .ideal-field-width {
-    width: @input-width + @error-width + @icon-size + (@icon-padding * 2);
+  width: @input-width + @error-width + @icon-size + (@icon-padding * 2);
 }
 
 /*--------------------------------------------------------
 
-    Global mixins & variables:
+  Global mixins & variables:
 
 ------------------------------------------------------- */
 
@@ -93,443 +93,453 @@
 @select-max-height: @select-item-height * @select-scroll-size; /* `auto` for no scrollbar */
 
 .gradient(@startColor, @endColor) {
-    background-color: @startColor;
-    background-repeat: no-repeat;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
-    background-image: -webkit-linear-gradient(@startColor, @endColor);
-    background-image: -moz-linear-gradient(@startColor, @endColor);
-    background-image: -o-linear-gradient(top,  @startColor,  @endColor);
-    filter: e(%("progid:DXImageTransform.Microsoft.Gradient(StartColorStr='%d', EndColorStr='%d', GradientType=0)",@startColor,@endColor));
-    -ms-filter: %("progid:DXImageTransform.Microsoft.gradient(startColorStr='%d', EndColorStr='%d', GradientType=0))",@startColor,@endColor);
+  background-color: @startColor;
+  background-repeat: no-repeat;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+  background-image: -webkit-linear-gradient(@startColor, @endColor);
+  background-image: -moz-linear-gradient(@startColor, @endColor);
+  background-image: -o-linear-gradient(top,  @startColor,  @endColor);
+  filter: e(%("progid:DXImageTransform.Microsoft.Gradient(StartColorStr='%d', EndColorStr='%d', GradientType=0)",@startColor,@endColor));
+  -ms-filter: %("progid:DXImageTransform.Microsoft.gradient(startColorStr='%d', EndColorStr='%d', GradientType=0))",@startColor,@endColor);
 }
 .box-shadow (@string) {
-    -webkit-box-shadow: @string;
-    -moz-box-shadow: @string;
-    box-shadow: @string;
+  -webkit-box-shadow: @string;
+  -moz-box-shadow: @string;
+  box-shadow: @string;
 }
 .ie-refresh { /* IE8 hack :after pseudo force refresh */
-    content: ".";
-    line-height: 0;
-    text-indent: -9999px;
+  content: ".";
+  line-height: 0;
+  text-indent: -9999px;
+}
+.no-user-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .ui-input {
-    font-family: @font-family;
-    @size: floor(@font-size * 2.2);
-    height: @size;
-    line-height: @size;
-    padding: 0 .8em;
+  font-family: @font-family;
+  @size: floor(@font-size * 2.2);
+  height: @size;
+  line-height: @size;
+  padding: 0 .8em;
 }
 .ui-color (@color) {
-    .gradient(lighten(@color, 10%), @color);
-    .box-shadow(inset 0 @border-width 0 rgba(255,255,255,.5));
-    border: @border-width solid darken(@color, 20%);
-    border-radius: @border-radius;
-    color: darken(@select-title, 60%);
-}           
+  .gradient(lighten(@color, 10%), @color);
+  .box-shadow(inset 0 @border-width 0 rgba(255,255,255,.5));
+  border: @border-width solid darken(@color, 20%);
+  border-radius: @border-radius;
+  color: darken(@select-title, 60%);
+}       
 .ui-focus (@focus) {
-    border: @border-width solid darken(@focus, 30%);
-    .gradient(lighten(@focus, 10%),@focus);
-    .box-shadow(0 0 @border-width*2 rgba(0,0,0,.3));
-    color: darken(@focus, 60%);
+  border: @border-width solid darken(@focus, 30%);
+  .gradient(lighten(@focus, 10%),@focus);
+  .box-shadow(0 0 @border-width*2 rgba(0,0,0,.3));
+  color: darken(@focus, 60%);
 }
 
 /* --------------------------------------------------------
 
-    Form:
-               
+  Form:
+         
 -------------------------------------------------------- */
 
 .ideal-form {
-    /* -------------------------------------------------------
-        Global:
-    -------------------------------------------------------- */
-    * {
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        outline: 0;
-        border-radius: 0~'\9'!important; /* IE9 doesn't like gradients + border radius */
-    }
-    /* Clearfix */
-    &:before,
-    &:after {
-        content:"";
-        display:table;
-    }
+  /* -------------------------------------------------------
+    Global:
+  -------------------------------------------------------- */
+  * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 0;
+    border-radius: 0~'\9'!important; /* IE9 doesn't like gradients + border radius */
+  }
+  /* Clearfix */
+  &:before,
+  &:after {
+    content:"";
+    display:table;
+  }
 
-    &:after {
-        clear:both;
-    }
-    /**/
-    font-size: @font-size;
+  &:after {
+    clear:both;
+  }
+  /**/
+  font-size: @font-size;
+  font-family: @font-family;
+  .ideal-wrap {
+    float: left;
+    clear: both;
+    position: relative;
+    margin: .5em 0;
+  }
+  ul, li { margin: 0; padding: 0; }
+  .ideal-label,
+  .field {
+    float: left;
+    position: relative;
+  }
+  .ideal-label {
+    max-width: @label-width;
+    padding-right: 1.7em;
+    text-align: @label-align;
+  }
+  input[type="text"],
+  input[type="password"],
+  textarea,
+  select {
+    padding: .4em;
+    width: @input-width;
+    border: @border-width solid darken(@text-bg, 30%);
+    background: @text-bg;
+    outline: 0;
     font-family: @font-family;
-    .ideal-wrap {
-        float: left;
-        clear: both;
-        position: relative;
-        margin: .5em 0;
+    border-radius: @border-radius;
+  }
+  textarea { resize: none; }
+  /* -------------------------------------------------------
+    Icons:
+  -------------------------------------------------------- */
+  .valid-icon,
+  .invalid-icon {
+    position: absolute;
+    top: 50%;
+    margin-top: -@icon-size/2;
+    right: -(@icon-size + @icon-padding);
+    height: @icon-size;
+    width: @icon-size;
+  }
+  textarea ~ .valid-icon,
+  textarea ~ .invalid-icon,
+  .ideal-select ~ .valid-icon,
+  .ideal-select ~ .invalid-icon,
+  .ideal-radiocheck .valid-icon,
+  .ideal-radiocheck .invalid-icon  {
+    top: @font-size / 2; /* Aproximation */
+    margin-top: 0;
+  }
+  .valid-icon {
+    background: url(@valid-icon) no-repeat;
+  }
+  .invalid-icon {
+    background: url(@invalid-icon) no-repeat;
+    cursor: pointer;
+  }
+  /* -------------------------------------------------------
+    Valid & Invalid:
+  -------------------------------------------------------- */
+  .invalid input[type="text"],
+  .invalid input[type="password"],
+  .invalid textarea,
+  .invalid select {
+    background: @invalid;
+    color: darken(@invalid, 80%);
+    border: @border-width solid darken(@invalid, 50%);
+  }
+  .invalid input[type="password"] {
+    font-family: Arial~'\9'; /* For IE8 empty character bug with custom fonts */
+  }
+  .valid textarea,
+  .valid input,
+  .valid select  {
+    background: @valid;
+    color: darken(@valid, 80%);
+    border: @border-width solid darken(@valid, 50%);
+  }
+  /* -------------------------------------------------------
+    Error:
+  -------------------------------------------------------- */
+  .error {
+    position: absolute;
+    width: @error-width;
+    right: -(@error-width + @icon-size + (@icon-padding * 2));
+    margin-right: -10px; /* Same as arrow border-width */
+    top: @font-size;
+    z-index: 999;
+    padding: .8em 1.2em;
+    font-size: @small-font-size;
+    text-shadow: .1em .1em 0 rgba(0,0,0,.5);
+    .gradient(@error-color, lighten(@error-color, 10%));
+    color: white;
+    border-bottom: @border-width solid @error-color;
+    .box-shadow(0px @border-width @border-width rgba(0,0,0,0.3));
+    border-radius: 0 @border-radius @border-radius @border-radius;
+    filter: 0; /* IE doesn't play nice with :after pseudo */
+  }
+  .error:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -((@arrow-size - 1) * 2); /* `-1` to fix gap */
+    border-style: solid;
+    border-width: 0 @arrow-size @arrow-size @arrow-size;
+    border-color: transparent @error-color transparent transparent;
+  }
+  /* ----------------------------------------------------
+    Responsive:
+  ------------------------------------------------------ */
+  &.stack {
+    .field,
+    .error {
+      @total: (@input-width + @icon-size + (@icon-padding * 2));
+      @icon: @icon-size + (@icon-padding * 2);
+      @percent: (@icon / @total) * 100;
+      width: 100% - @percent;
     }
-    ul, li { margin: 0; padding: 0; }
-    .ideal-label,
-    .field {
-        float: left;
-        position: relative;
-    }
-    .ideal-label {
-        max-width: @label-width;
-        padding-right: 1.7em;
-        text-align: @label-align;
-    }
+    .ideal-wrap,
     input[type="text"],
     input[type="password"],
     textarea,
     select {
-        padding: .4em;
-        width: @input-width;
-        border: @border-width solid darken(@text-bg, 30%);
-        background: @text-bg;
-        outline: 0;
-        font-family: @font-family;
-        border-radius: @border-radius;
+      width: 100%!important;
+      max-width: @input-width * 1.5;
     }
-    textarea { resize: none; }
-    /* -------------------------------------------------------
-        Icons:
-    -------------------------------------------------------- */
-    .valid-icon,
-    .invalid-icon {
-        position: absolute;
-        top: 50%;
-        margin-top: -@icon-size/2;
-        right: -(@icon-size + @icon-padding);
-        height: @icon-size;
-        width: @icon-size;
+    label {
+      text-align: left;
+      padding-bottom: .3em;
     }
-    textarea ~ .valid-icon,
-    textarea ~ .invalid-icon,
-    .ideal-select ~ .valid-icon,
-    .ideal-select ~ .invalid-icon,
-    .ideal-radiocheck .valid-icon,
-    .ideal-radiocheck .invalid-icon    {
-        top: @font-size / 2; /* Aproximation */
-        margin-top: 0;
-    }
-    .valid-icon {
-        background: url(@valid-icon) no-repeat;
-    }
-    .invalid-icon {
-        background: url(@invalid-icon) no-repeat;
-        cursor: pointer;
-    }
-    /* -------------------------------------------------------
-        Valid & Invalid:
-    -------------------------------------------------------- */
-    .invalid input[type="text"],
-    .invalid input[type="password"],
-    .invalid textarea,
-    .invalid select {
-        background: @invalid;
-        color: darken(@invalid, 80%);
-        border: @border-width solid darken(@invalid, 50%);
-    }
-    .invalid input[type="password"] {
-        font-family: Arial~'\9'; /* For IE8 empty character bug with custom fonts */
-    }
-    .valid textarea,
-    .valid input,
-    .valid select    {
-        background: @valid;
-        color: darken(@valid, 80%);
-        border: @border-width solid darken(@valid, 50%);
-    }
-    /* -------------------------------------------------------
-        Error:
-    -------------------------------------------------------- */
     .error {
-        position: absolute;
-        width: @error-width;
-        right: -(@error-width + @icon-size + (@icon-padding * 2));
-        margin-right: -10px; /* Same as arrow border-width */
-        top: @font-size;
-        z-index: 999;
-        padding: .8em 1.2em;
-        font-size: @small-font-size;
-        text-shadow: .1em .1em 0 rgba(0,0,0,.5);
-        .gradient(@error-color, lighten(@error-color, 10%));
-        color: white;
-        border-bottom: @border-width solid @error-color;
-        .box-shadow(0px @border-width @border-width rgba(0,0,0,0.3));
-        border-radius: 0 @border-radius @border-radius @border-radius;
-        filter: 0; /* IE doesn't play nice with :after pseudo */
+      position: inherit;
+      float: left;
+      clear: left;
+      right: 0;
+      margin-right: 0;
+      top: 100%;
+      margin-top: 4px;
+      z-index: 999;
+      border-radius: @border-radius;
     }
     .error:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -((@arrow-size - 1) * 2); /* `-1` to fix gap */
-        border-style: solid;
-        border-width: 0 @arrow-size @arrow-size @arrow-size;
-        border-color: transparent @error-color transparent transparent;
+      .ie-refresh;
+      position: absolute;
+      top: 0;
+      margin-top: -((@arrow-size - 1)* 2);
+      left: 50%;
+      margin-left: -@arrow-size;
+      border-style: solid;
+      border-width: @arrow-size @arrow-size @arrow-size @arrow-size;
+      border-color: transparent transparent @error-color transparent;
     }
-    /* ----------------------------------------------------
-        Responsive:
-    ------------------------------------------------------ */
-    &.stack {
-        .field,
-        .error {
-            @total: (@input-width + @icon-size + (@icon-padding * 2));
-            @icon: @icon-size + (@icon-padding * 2);
-            @percent: (@icon / @total) * 100;
-            width: 100% - @percent;
-        }
-        .ideal-wrap,
-        input[type="text"],
-        input[type="password"],
-        textarea,
-        select {
-            width: 100%!important;
-            max-width: @input-width * 1.5;
-        }
-        label {
-            text-align: left;
-            padding-bottom: .3em;
-        }
-        .error {
-            position: inherit;
-            float: left;
-            clear: left;
-            right: 0;
-            margin-right: 0;
-            top: 100%;
-            margin-top: 4px;
-            z-index: 999;
-            border-radius: @border-radius;
-        }
-        .error:after {
-            .ie-refresh;
-            position: absolute;
-            top: 0;
-            margin-top: -((@arrow-size - 1)* 2);
-            left: 50%;
-            margin-left: -@arrow-size;
-            border-style: solid;
-            border-width: @arrow-size @arrow-size @arrow-size @arrow-size;
-            border-color: transparent transparent @error-color transparent;
-        }
-    }
+  }
 
 /* --------------------------------------------------------
 
-    Custom select:
-                
+  Custom select:
+        
 -------------------------------------------------------- */
 
-    /* --------------------------------------------------------
-        Mixins:     
-    -------------------------------------------------------- */
-    .drop-arrow {
-        @size: @arrow-size / 1.7;
-        content: "";
-        position: absolute;
-        right: @size*1.7;
-        top: 50%;
-        margin-top: -@size/3;
-        border-style: solid;
-        border-width: @size @size @size @size;
+  /* --------------------------------------------------------
+    Mixins:   
+  -------------------------------------------------------- */
+  .drop-arrow {
+    @size: @arrow-size / 1.7;
+    content: "";
+    position: absolute;
+    right: @size*1.7;
+    top: 50%;
+    margin-top: -@size/3;
+    border-style: solid;
+    border-width: @size @size @size @size;
+  }
+  /* --------------------------------------------------------
+    Global:   
+  -------------------------------------------------------- */
+  .ideal-select,
+  .ideal-select .sub {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    .no-user-select;
+  }
+  .ideal-select {
+    width: @input-width;
+    span {
+      .ui-input;
+      display: block;
+      cursor: pointer;
     }
-    /* --------------------------------------------------------
-        Global:     
-    -------------------------------------------------------- */
-    .ideal-select,
-    .ideal-select .sub {
-        margin: 0;
-        padding: 0;
-        list-style: none;
+  }
+  /* --------------------------------------------------------
+    Title:   
+  -------------------------------------------------------- */
+  .ideal-select.menu,
+  .ideal-select.list {
+    font-size: @small-font-size;
+    .title {
+      .ui-color(@select-title);
+      padding-right: 3em;
+      position: relative;
+      &:after {
+        .drop-arrow;
+        border-color: darken(@select-title, 30%) transparent transparent transparent;
+      }
     }
-    .ideal-select {
-        width: @input-width;
-        span {
-            .ui-input;
-            display: block;
-            cursor: pointer;
-        }
+    &.focus .title,
+    &:hover .title {
+      .ui-focus(@select-focus);
+      &:after {
+        .drop-arrow;
+        border-color: darken(@select-focus, 30%) transparent transparent transparent;
+      }
     }
-    /* --------------------------------------------------------
-        Title:     
-    -------------------------------------------------------- */
-    .ideal-select.menu,
-    .ideal-select.list {
-        font-size: @small-font-size;
-        .title {
-            .ui-color(@select-title);
-            padding-right: 3em;
-            position: relative;
-            &:after {
-                .drop-arrow;
-                border-color: darken(@select-title, 30%) transparent transparent transparent;
-            }
-        }
-        &.focus .title,
-        &:hover .title {
-            .ui-focus(@select-focus);
-            &:after {
-                .drop-arrow;
-                border-color: darken(@select-focus, 30%) transparent transparent transparent;
-            }
-        }
-        &.open .title {
-            border-radius: @border-radius @border-radius 0 0;
-        }
-        &.valid .title {
-            border-color: @select-valid-border;
-        }
-        &.invalid .title {
-            border-color: @select-invalid-border;
-        }
+    &.open .title {
+      border-radius: @border-radius @border-radius 0 0;
     }
-    /* --------------------------------------------------------
-        Options:     
-    -------------------------------------------------------- */
-    .ideal-select.menu,
-    .ideal-select.list    {
-        .sub {
-            @color: darken(@select-bg, 60%);
-            min-width: 100%; /* `min-width` instead of `width` to fix IE9 bug */
-            max-height: @select-max-height;
-            height: @select-max-height~'\9'; /* Fix IE */
-            overflow-y: scroll;
-            z-index: 999;
-            position: absolute;
-            .gradient(@select-bg, lighten(@select-bg, 10%));
-            .box-shadow(0 @border-width @border-width rgba(0,0,0,.2));
-            color: @color;
-            border: @border-width solid darken(@select-bg, 30%);
-            border-top: 0;
-            border-radius: 0 0 @border-radius @border-radius;
-            /* Last item fix round border */
-            span {
-                @size: floor(@select-item-height);
-                height: @size;
-                line-height: @size;
-            }
-            li:last-child span { 
-                border-radius: 0 0 @border-radius @border-radius; 
-            }
-            /* Option selected/hover */
-            span:hover,
-            span.selected {
-                .gradient(@select-selected, lighten(@select-selected, 10%));
-                .box-shadow(inset 0 @border-width @border-width*2 rgba(0,0,0,.3));
-                color: white;
-            }
-        }      
+    &.valid .title {
+      border-color: @select-valid-border;
     }
-    /* --------------------------------------------------------
-        List mode:     
-    -------------------------------------------------------- */
-    .ideal-select.list {
-        .title:after,
-        &.focus .title:after,
-        &:hover .title:after {
-            .ie-refresh;
-            border: 0;
-        }
-        &.open .title,
-        .title {
-            border-radius: @border-radius @border-radius 0 0;
-        }
-        .sub { 
-            /* Fix IE8 adding 1px to scrollbar */
-            min-width: auto~'\9';
-            width: 100% ~'\9'; 
-            /**/
-            position: relative;
-        }
+    &.invalid .title {
+      border-color: @select-invalid-border;
     }
-    /* --------------------------------------------------------
-        Responsive:     
-    -------------------------------------------------------- */    
-    &.stack .ideal-select.list {
-        width: 100%;
+  }
+  /* --------------------------------------------------------
+    Options:   
+  -------------------------------------------------------- */
+  .ideal-select.menu,
+  .ideal-select.list  {
+    .sub {
+      @color: darken(@select-bg, 60%);
+      min-width: 100%; /* `min-width` instead of `width` to fix IE9 bug */
+      max-height: @select-max-height;
+      height: @select-max-height~'\9'; /* Fix IE */
+      overflow-y: scroll;
+      z-index: 999;
+      position: absolute;
+      .gradient(@select-bg, lighten(@select-bg, 10%));
+      .box-shadow(0 @border-width @border-width rgba(0,0,0,.2));
+      color: @color;
+      border: @border-width solid darken(@select-bg, 30%);
+      border-top: 0;
+      border-radius: 0 0 @border-radius @border-radius;
+      /* Last item fix round border */
+      span {
+        @size: floor(@select-item-height);
+        height: @size;
+        line-height: @size;
+      }
+      li:last-child span { 
+        border-radius: 0 0 @border-radius @border-radius; 
+      }
+      /* Option selected/hover */
+      span:hover,
+      span.selected {
+        .gradient(@select-selected, lighten(@select-selected, 10%));
+        .box-shadow(inset 0 @border-width @border-width*2 rgba(0,0,0,.3));
+        color: white;
+      }
+    }    
+  }
+  /* --------------------------------------------------------
+    List mode:   
+  -------------------------------------------------------- */
+  .ideal-select.list {
+    .title:after,
+    &.focus .title:after,
+    &:hover .title:after {
+      .ie-refresh;
+      border: 0;
     }
-    
+    &.open .title,
+    .title {
+      border-radius: @border-radius @border-radius 0 0;
+    }
+    .sub { 
+      /* Fix IE8 adding 1px to scrollbar */
+      min-width: auto~'\9';
+      width: 100% ~'\9'; 
+      /**/
+      position: relative;
+    }
+  }
+  /* --------------------------------------------------------
+    Responsive:   
+  -------------------------------------------------------- */  
+  &.stack .ideal-select.list {
+    width: 100%;
+  }
+  
 /* --------------------------------------------------------
 
-    Custom radio & check:
-               
+  Custom radio & check:
+         
 -------------------------------------------------------- */
 
-    .ideal-radiocheck {
-        position: relative;
-        width: @input-width;
-        padding: .8em;
-        font-size: @small-font-size;
-        color: darken(@radiocheck-bg, 80%);
-        border-radius: @border-radius;
-        border: @border-width solid darken(@radiocheck-bg, 30%);
-        .gradient(@radiocheck-bg, lighten(@radiocheck-bg, 20%));
-        label, input { cursor: pointer; }
-        label {
-            line-height: @radiocheck-icon-height;
-            float: left;
-            clear: left;
-            padding: .4em;
-            width: 100%;
-            vertical-align: bottom;
-            border: @border-width solid transparent;
-        }
+  .ideal-radiocheck {
+    .no-user-select;
+    position: relative;
+    width: @input-width;
+    padding: .8em;
+    font-size: @small-font-size;
+    color: darken(@radiocheck-bg, 80%);
+    border-radius: @border-radius;
+    border: @border-width solid darken(@radiocheck-bg, 30%);
+    .gradient(@radiocheck-bg, lighten(@radiocheck-bg, 20%));
+    label, input { cursor: pointer; }
+    label {
+      line-height: @radiocheck-icon-height;
+      float: left;
+      clear: left;
+      padding: .4em;
+      width: 100%;
+      vertical-align: bottom;
+      border: @border-width solid transparent;
     }
-    .ideal-check,
-    .ideal-radio {
-        float: left;
-        background: url(@radiocheck-sprite) left top no-repeat;
-        width: @radiocheck-icon-width;
-        height: @radiocheck-icon-height;
-        margin-right: .5em;
-    }
-    .ideal-radio {
-        background-position: left bottom;
-    }
-    .ideal-check.checked {
-        background-position: right top;
-    }
-    .ideal-radio.checked {
-        background-position: right bottom;
-    }
-    .ideal-radiocheck label.focus {
-        /* font-weight: bold; */
-        background: @radiocheck-focus-bg;
-        border-radius: @border-radius;
-        border: @border-width solid darken(@radiocheck-focus-bg, 10%);
-        color: darken(@radiocheck-focus-bg, 60%);
-    }
-    
+  }
+  .ideal-check,
+  .ideal-radio {
+    float: left;
+    background: url(@radiocheck-sprite) left top no-repeat;
+    width: @radiocheck-icon-width;
+    height: @radiocheck-icon-height;
+    margin-right: .5em;
+  }
+  .ideal-radio {
+    background-position: left bottom;
+  }
+  .ideal-check.checked {
+    background-position: right top;
+  }
+  .ideal-radio.checked {
+    background-position: right bottom;
+  }
+  .ideal-radiocheck label.focus {
+    /* font-weight: bold; */
+    background: @radiocheck-focus-bg;
+    border-radius: @border-radius;
+    border: @border-width solid darken(@radiocheck-focus-bg, 10%);
+    color: darken(@radiocheck-focus-bg, 60%);
+  }
+  
 /* --------------------------------------------------------
 
-    Buttons:
-               
+  Buttons:
+         
 -------------------------------------------------------- */
 
-    button,
-    input[type="button"]
-    input[type="submit"],
-    input[type="reset"] {
-        .ui-input;
-        .ui-color(@button);
-        font-size: @small-font-size;    
-        padding-right: 1.5em;
-        padding-left: 1.5em;
-        margin-right: 1em;
-        margin-bottom: 1em;
-        &:hover,
-        &:focus {
-            .ui-focus(@button-focus);
-        }
-        &:active {
-            background: @button-focus;
-            position: relative;
-            top: 1px;
-            .box-shadow(none);
-        }
+  button,
+  input[type="button"]
+  input[type="submit"],
+  input[type="reset"] {
+    .no-user-select;
+    .ui-input;
+    .ui-color(@button);
+    font-size: @small-font-size;  
+    padding-right: 1.5em;
+    padding-left: 1.5em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    &:hover,
+    &:focus {
+      .ui-focus(@button-focus);
     }
+    &:active {
+      background: @button-focus;
+      position: relative;
+      top: 1px;
+      .box-shadow(none);
+    }
+  }
 }
