@@ -482,26 +482,26 @@
 /*--------------------------------------------------------------------------*/
 
       var $form = this,
-        /**
-         * @namespace All form inputs of the given form
-         * @memberOf $.fn.idealforms
-         * @returns {object}
-         */
-        FormInputs = (function () {
-          var $inputs = $form.find('input, select, textarea'),
-              $labels = $form.find('label:first-child'),
-              $text = $inputs.filter(':text, :password, textarea'),
-              $select = $inputs.filter('select'),
-              $radiocheck = $inputs.filter(':checkbox, :radio')
+          /**
+           * @namespace All form inputs of the given form
+           * @memberOf $.fn.idealforms
+           * @returns {object}
+           */
+          FormInputs = (function () {
+            var $inputs = $form.find('input, select, textarea'),
+                $labels = $form.find('label:first-child'),
+                $text = $inputs.filter(':text, :password, textarea'),
+                $select = $inputs.filter('select'),
+                $radiocheck = $inputs.filter(':checkbox, :radio')
 
-          return {
-            inputs: $inputs,
-            labels: $labels,
-            text: $text,
-            select: $select,
-            radiocheck: $radiocheck
-          }
-        }())
+            return {
+              inputs: $inputs,
+              labels: $labels,
+              text: $text,
+              select: $select,
+              radiocheck: $radiocheck
+            }
+          }())
 
 /*--------------------------------------------------------------------------*/
 
