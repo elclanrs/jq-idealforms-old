@@ -471,12 +471,12 @@
 
 /*--------------------------------------------------------------------------*/
 
-      var $form = this
-      /**
-       * @namespace All form inputs of the given form
-       * @memberOf $.fn.idealforms
-       * @returns {object}
-       */,
+      var $form = this,
+        /**
+         * @namespace All form inputs of the given form
+         * @memberOf $.fn.idealforms
+         * @returns {object}
+         */
         FormInputs = (function () {
           var $inputs = $form.find('input, select, textarea'),
               $labels = $form.find('label:first-child'),
