@@ -143,10 +143,10 @@
                   return dir === 'down' ? elPos <= menuHeight : elPos > 0
                 }())
 
-              if (!isInView) {
-                itemHeight = (dir === 'down') ? itemHeight : -itemHeight
-                Select.sub.scrollTop(Select.sub.scrollTop() + itemHeight)
-              }
+            if (!isInView) {
+              itemHeight = (dir === 'down') ? itemHeight : -itemHeight
+              Select.sub.scrollTop(Select.sub.scrollTop() + itemHeight)
+            }
           },
           scrollToItem: function () {
             var idx = Select.items.find('.selected').parent().index(),
@@ -155,7 +155,7 @@
                 allHeight = height * items,
                 curHeight = height * (items - idx)
 
-              Select.sub.scrollTop(allHeight - curHeight)
+            Select.sub.scrollTop(allHeight - curHeight)
           },
           showMenu: function () {
             Select.sub.show()
@@ -219,9 +219,9 @@
                       return re.test($(this).text())
                     }).first().index()
 
-                  Actions.change(!~curIdx ? selIdx : curIdx)
-                  Actions.scrollToItem()
-                  Actions.focusHack()
+                Actions.change(!~curIdx ? selIdx : curIdx)
+                Actions.scrollToItem()
+                Actions.focusHack()
               }
             }
             keys[key] ? keys[key]() : keys['default']()
@@ -274,12 +274,12 @@
 
         // Bind events
         var disableEvents = function () {
-            Select.select.removeClass('menu list')
-            $select.off('.menu .list')
-            Select.items.off('.menu .list')
-            Select.select.off('.menu .list')
-            Select.title.off('.menu .list')
-          }
+          Select.select.removeClass('menu list')
+          $select.off('.menu .list')
+          Select.items.off('.menu .list')
+          Select.select.off('.menu .list')
+          Select.title.off('.menu .list')
+        }
 
         // Menu
         Select.select.on('menu', function () {
@@ -484,13 +484,13 @@
               $select = $inputs.filter('select'),
               $radiocheck = $inputs.filter(':checkbox, :radio')
 
-            return {
-              inputs: $inputs,
-              labels: $labels,
-              text: $text,
-              select: $select,
-              radiocheck: $radiocheck
-            }
+          return {
+            inputs: $inputs,
+            labels: $labels,
+            text: $text,
+            select: $select,
+            radiocheck: $radiocheck
+          }
         }())
 
 /*--------------------------------------------------------------------------*/
@@ -507,22 +507,22 @@
         init: (function () {
 
           var insertNewEls = function ($field) {
-              var error = '<span class="error" />',
-                  valid = '<i class="valid-icon" />',
-                  invalid = $('<i/>', {
-                    'class': 'invalid-icon',
-                    click: function () {
-                      var $this = $(this)
-                      if ($this.siblings('label').length) { // radio & check
-                        $this.siblings('label:first').find('input').focus()
-                      } else {
-                        $this.siblings('input, select, textarea').focus()
-                      }
+            var error = '<span class="error" />',
+                valid = '<i class="valid-icon" />',
+                invalid = $('<i/>', {
+                  'class': 'invalid-icon',
+                  click: function () {
+                    var $this = $(this)
+                    if ($this.siblings('label').length) { // radio & check
+                      $this.siblings('label:first').find('input').focus()
+                    } else {
+                      $this.siblings('input, select, textarea').focus()
                     }
-                  })
+                  }
+                })
 
-                $(error).hide().insertAfter($field)
-                $(valid).add(invalid).hide().appendTo($field)
+              $(error).hide().insertAfter($field)
+              $(valid).add(invalid).hide().appendTo($field)
             }
 
           $form.css('visibility', 'visible').addClass('ideal-form')
