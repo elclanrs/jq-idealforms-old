@@ -12,7 +12,7 @@
 
   'use strict';
 
-  /*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
   /**
    * @namespace A chest for various Utils
@@ -47,7 +47,7 @@
     }
   }
 
-  /*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
   /**
    * @namespace Contains LESS data
@@ -56,7 +56,7 @@
     inputWidth: Utils.getLessVar('ideal-field-width', 'width')
   }
 
-  /*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
   /**
    * A custom <select> menu jQuery plugin
@@ -314,7 +314,7 @@
       })
     }
 
-    /*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
     /**
      * A custom <input type="radio|checkbox"> jQuery plugin
@@ -357,11 +357,11 @@
       })
     }
 
-    /*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
-    /**
-     * @namespace All default filters used for validation
-     */
+  /**
+   * @namespace All default filters used for validation
+   */
   var Filters = {
     number: {
       regex: /\d+/,
@@ -439,7 +439,7 @@
     }
   }
 
-  /*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
   /**
    * @namespace jq-idealforms jQuery plugin
@@ -467,7 +467,7 @@
       // Merge custom and default filters
       $.extend(true, Filters, o.filters)
 
-      /*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
       var $form = this
       /**
@@ -491,12 +491,12 @@
             }
         }())
 
-        /*--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 
-        /**
-         * @namespace Methods of the form
-         * @memberOf $.fn.idealforms
-         */
+      /**
+       * @namespace Methods of the form
+       * @memberOf $.fn.idealforms
+       */
       var Actions = {
 
         /** Create validation elements and neccesary markup
@@ -564,7 +564,7 @@
               }
             })
           }
-        }())
+        }()),
 
         /** Validates an input
          * @memberOf Actions
@@ -572,7 +572,7 @@
          * and the user options of that input [input.userOptions]
          * @param {string} value The value of the given input
          * @returns {object} Returns [isValid] plus [error] if it fails
-         */,
+         */
         validate: function (input, value) {
           var isValid = true,
               error = '',
@@ -610,14 +610,14 @@
             isValid: isValid,
             error: error
           }
-        }
+        },
 
         /** Shows or hides validation errors
          * @memberOf Actions
          * @param {object} input Object that contains the jQuery input object [input.input]
          * and the user options of that input [input.userOptions]
          * @param {string} evt The event on which `analyze()` is being called
-         */,
+         */
         analyze: function (input, evt) {
 
           evt = evt || ''
@@ -676,11 +676,11 @@
             // hide error on blur
             if(evt !== 'blur') $error.html(test.error).show()
           }
-        }
+        },
 
         /** Deals with responsiveness aka adaptation
          * @memberOf Actions
-         */,
+         */
         responsive: function () {
 
           var maxWidth = LessVars.inputWidth + FormInputs.labels.outerWidth()
