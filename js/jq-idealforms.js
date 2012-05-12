@@ -343,7 +343,9 @@
                 $this.parent().siblings('label').children('.ideal-radio').removeClass('checked')
                 $this.next('.ideal-radio').addClass('checked')
               } else {
-                $this.is(':checked') ? $span.addClass('checked') : $span.removeClass('checked')
+                $this.is(':checked') 
+                  ? $span.addClass('checked') 
+                  : $span.removeClass('checked')
               }
             },
             focus: function () {
@@ -547,7 +549,9 @@
             .filter(':last-child')
             .children()
             .each(function () {
-              $(this).parent().siblings('label:not(.ideal-label)').andSelf().wrapAll('<span class="field ideal-radiocheck"/>')
+              $(this).parent()
+                .siblings('label:not(.ideal-label)').andSelf()
+                .wrapAll('<span class="field ideal-radiocheck"/>')
             })
           insertNewEls(FormInputs.radiocheck.parents('.field'))
 
@@ -631,14 +635,15 @@
           var $input = FormInputs.inputs.filter('[name="' + input.input.attr('name') + '"]'),
               userOptions = o.inputs[input.input.attr('name')] || '',
               value = (function () {
-                if (input.input.val() === input.input.attr('placeholder')) {
+                var iVal = input.input.val()
+                if (iVal === input.input.attr('placeholder')) {
                   return
                 }
                 // IE8 and IE9 fix empty value bug
                 if (input.input.is(':checkbox, :radio')) {
                   return userOptions && ' '
                 }
-                return input.input.val()
+                return iVal
               }())
 
             // Validate
@@ -691,9 +696,13 @@
 
           var maxWidth = LessVars.inputWidth + FormInputs.labels.outerWidth()
           if (o.responsiveAt === 'auto') {
-            $form.width() < maxWidth ? $form.addClass('stack') : $form.removeClass('stack')
+            $form.width() < maxWidth 
+              ? $form.addClass('stack') 
+              : $form.removeClass('stack')
           } else {
-            $(window).width() < o.responsiveAt ? $form.addClass('stack') : $form.removeClass('stack')
+            $(window).width() < o.responsiveAt 
+              ? $form.addClass('stack') 
+              : $form.removeClass('stack')
           }
 
           // Labels
@@ -707,7 +716,9 @@
           // Custom select
           ;(function () {
             var $customSelect = FormInputs.select.next('.ideal-select')
-            $form.is('.stack') ? $customSelect.trigger('list') : $customSelect.trigger('menu')
+            $form.is('.stack') 
+              ? $customSelect.trigger('list') 
+              : $customSelect.trigger('menu')
           }())
         }
       }
