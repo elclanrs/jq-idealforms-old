@@ -521,9 +521,9 @@
                   }
                 })
 
-              $(error).hide().insertAfter($field)
-              $(valid).add(invalid).hide().appendTo($field)
-            }
+            $(error).hide().insertAfter($field)
+            $(valid).add(invalid).hide().appendTo($field)
+          }
 
           $form.css('visibility', 'visible').addClass('ideal-form')
           $form.children('div').addClass('ideal-wrap')
