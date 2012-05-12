@@ -281,36 +281,36 @@
             Select.title.off('.menu .list')
           }
 
-          // Menu
-          Select.select.on('menu', function () {
-            disableEvents()
-            Select.select.addClass('menu')
-            Actions.hideMenu()
-            $select.on({
-              'blur.menu': events['blur.menu'],
-              'focus.menu': events.focus,
-              'keydown.menu': events.keydown
-            })
-            Select.select.on('mousedown.menu', events['hideOutside.menu'])
-            Select.items.on('click.menu', events['clickItem.menu'])
-            Select.title.on('click.menu', events['clickTitle.menu'])
+        // Menu
+        Select.select.on('menu', function () {
+          disableEvents()
+          Select.select.addClass('menu')
+          Actions.hideMenu()
+          $select.on({
+            'blur.menu': events['blur.menu'],
+            'focus.menu': events.focus,
+            'keydown.menu': events.keydown
           })
+          Select.select.on('mousedown.menu', events['hideOutside.menu'])
+          Select.items.on('click.menu', events['clickItem.menu'])
+          Select.title.on('click.menu', events['clickTitle.menu'])
+        })
 
-          // List
-          Select.select.on('list', function () {
-            disableEvents()
-            Select.select.addClass('list')
-            Actions.showMenu()
-            $select.on({
-              'blur.list': events['blur.list'],
-              'focus.list': events.focus,
-              'keydown.list': events.keydown
-            })
-            Select.select.on('mousedown.list', events['mousedown.list'])
-            Select.items.on('mousedown.list', events['clickItem.list'])
+        // List
+        Select.select.on('list', function () {
+          disableEvents()
+          Select.select.addClass('list')
+          Actions.showMenu()
+          $select.on({
+            'blur.list': events['blur.list'],
+            'focus.list': events.focus,
+            'keydown.list': events.keydown
           })
+          Select.select.on('mousedown.list', events['mousedown.list'])
+          Select.items.on('mousedown.list', events['clickItem.list'])
+        })
 
-          Select.select.on('menu') // Default to "menu mode"
+        Select.select.on('menu') // Default to "menu mode"
       })
     }
 
@@ -330,30 +330,32 @@
           if ($this.is(':checked')) $span.addClass('checked')
           $span.insertAfter($this)
 
-          $this.css({
-            position: 'absolute',
-            left: '-9999px'
-          }).on({
-            change: function () {
-              var $this = $(this)
-              $this.trigger('focus')
-              if ($this.is(':radio')) {
-                $this.parent().siblings('label').children('.ideal-radio').removeClass('checked')
-                $this.next('.ideal-radio').addClass('checked')
-              } else {
-                $this.is(':checked') ? $span.addClass('checked') : $span.removeClass('checked')
+          $this
+            .css({
+              position: 'absolute',
+              left: '-9999px'
+            })
+            .on({
+              change: function () {
+                var $this = $(this)
+                $this.trigger('focus')
+                if ($this.is(':radio')) {
+                  $this.parent().siblings('label').children('.ideal-radio').removeClass('checked')
+                  $this.next('.ideal-radio').addClass('checked')
+                } else {
+                  $this.is(':checked') ? $span.addClass('checked') : $span.removeClass('checked')
+                }
+              },
+              focus: function () {
+                $span.parent().addClass('focus')
+              },
+              blur: function () {
+                $span.parent().removeClass('focus')
+              },
+              click: function () {
+                $(this).trigger('focus')
               }
-            },
-            focus: function () {
-              $span.parent().addClass('focus')
-            },
-            blur: function () {
-              $span.parent().removeClass('focus')
-            },
-            click: function () {
-              $(this).trigger('focus')
-            }
-          })
+            })
       })
     }
 
