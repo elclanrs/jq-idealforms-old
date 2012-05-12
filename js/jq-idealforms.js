@@ -190,6 +190,7 @@
                   Actions.hideMenu()
                 } else {
                   return false
+<<<<<<< HEAD
                 }
               },
               13: function () { // ENTER
@@ -208,14 +209,32 @@
                   Select.select.is('.open') 
                     ? Actions.select(idx + 1) 
                     : Actions.change(idx + 1)
+=======
+                }
+              },
+              13: function () { // ENTER
+                Select.select.is('.open') ? Actions.hideMenu() : Actions.showMenu()
+                Actions.change(idx)
+              },
+              27: function () { // ESC
+                Actions.hideMenu()
+              },
+              40: function () { // DOWN
+                if (idx < Select.options.length - 1) {
+                  Select.select.is('.open') ? Actions.select(idx + 1) : Actions.change(idx + 1)
+>>>>>>> 51cae209cd716207570714bcbcbd35af221fbb50
                 }
                 Actions.scrollIntoView('down')
               },
               38: function () { // UP
                 if (idx > 0) {
+<<<<<<< HEAD
                   Select.select.is('.open') 
                     ? Actions.select(idx - 1) 
                     : Actions.change(idx - 1)
+=======
+                  Select.select.is('.open') ? Actions.select(idx - 1) : Actions.change(idx - 1)
+>>>>>>> 51cae209cd716207570714bcbcbd35af221fbb50
                 }
                 Actions.scrollIntoView('up')
               },
