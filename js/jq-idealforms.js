@@ -85,16 +85,16 @@
                 return items
               }())
 
-            $menu.append('<ul class="sub">' + items.join('') + '</ul>')
-            $newSelect.append($menu)
+          $menu.append('<ul class="sub">' + items.join('') + '</ul>')
+          $newSelect.append($menu)
 
-            return {
-              options: $options,
-              select: $newSelect,
-              title: $menu.find('.title'),
-              sub: $menu.find('.sub'),
-              items: $menu.find('.sub li')
-            }
+          return {
+            options: $options,
+            select: $newSelect,
+            title: $menu.find('.title'),
+            sub: $menu.find('.sub'),
+            items: $menu.find('.sub li')
+          }
         }())
 
         /**
