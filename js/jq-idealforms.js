@@ -27,7 +27,7 @@
     getMaxWidth: function ($elms) {
       var maxWidth = 0
       $elms.each(function () {
-        if($(this).outerWidth() > maxWidth) {
+        if ($(this).outerWidth() > maxWidth) {
           maxWidth = $(this).outerWidth()
         }
       })
@@ -115,7 +115,7 @@
             Select.items.eq(Select.options.filter(':selected').index()).find('span').addClass('selected')
           }()),
           noWindowScroll: function (e) {
-            if(e.which === 40 || e.which === 38 || e.which === 13) {
+            if (e.which === 40 || e.which === 38 || e.which === 13) {
               e.preventDefault()
             }
           },
@@ -143,7 +143,7 @@
                   return dir === 'down' ? elPos <= menuHeight : elPos > 0
                 }())
 
-              if(!isInView) {
+              if (!isInView) {
                 itemHeight = (dir === 'down') ? itemHeight : -itemHeight
                 Select.sub.scrollTop(Select.sub.scrollTop() + itemHeight)
               }
@@ -185,7 +185,7 @@
              */
             var keys = {
               9: function () { // TAB
-                if(Select.select.is('.menu')) {
+                if (Select.select.is('.menu')) {
                   Actions.blur()
                   Actions.hideMenu()
                 } else {
@@ -200,13 +200,13 @@
                 Actions.hideMenu()
               },
               40: function () { // DOWN
-                if(idx < Select.options.length - 1) {
+                if (idx < Select.options.length - 1) {
                   Select.select.is('.open') ? Actions.select(idx + 1) : Actions.change(idx + 1)
                 }
                 Actions.scrollIntoView('down')
               },
               38: function () { // UP
-                if(idx > 0) {
+                if (idx > 0) {
                   Select.select.is('.open') ? Actions.select(idx - 1) : Actions.change(idx - 1)
                 }
                 Actions.scrollIntoView('up')
@@ -259,7 +259,7 @@
           'hideOutside.menu': function () {
             $select.off('blur.menu')
             $(document).on('mousedown.ideal', function (evt) {
-              if(!$(evt.target).closest(Select.select).length) {
+              if (!$(evt.target).closest(Select.select).length) {
                 $(document).off('mousedown.ideal')
                 $select.on('blur.menu', events['blur.menu'])
               } else {
@@ -327,7 +327,7 @@
 
           $this.is(':checkbox') ? $span.addClass('ideal-check') : $span.addClass('ideal-radio')
 
-          if($this.is(':checked')) $span.addClass('checked')
+          if ($this.is(':checked')) $span.addClass('checked')
           $span.insertAfter($this)
 
           $this.css({
@@ -337,7 +337,7 @@
             change: function () {
               var $this = $(this)
               $this.trigger('focus')
-              if($this.is(':radio')) {
+              if ($this.is(':radio')) {
                 $this.parent().siblings('label').children('.ideal-radio').removeClass('checked')
                 $this.next('.ideal-radio').addClass('checked')
               } else {
@@ -406,7 +406,7 @@
     min: {
       regex: function (input, value) {
         var min = input.userOptions.data.min
-        if(input.input.is(':checkbox, :radio')) {
+        if (input.input.is(':checkbox, :radio')) {
           this.error = 'Check at least <strong>' + min + '</strong>'
           return input.input.filter(':checked').length >= min
         }
@@ -511,7 +511,7 @@
                     'class': 'invalid-icon',
                     click: function () {
                       var $this = $(this)
-                      if($this.siblings('label').length) { // radio & check
+                      if ($this.siblings('label').length) { // radio & check
                         $this.siblings('label:first').find('input').focus()
                       } else {
                         $this.siblings('input, select, textarea').focus()
@@ -552,12 +552,12 @@
           FormInputs.radiocheck.addClass('custom').toCustomRadioCheck()
 
           // Placeholder support
-          if(!('placeholder' in $('<input/>')[0])) {
+          if (!('placeholder' in $('<input/>')[0])) {
             FormInputs.text.each(function () {
               $(this).val($(this).attr('placeholder'))
             }).on({
               focus: function () {
-                if(this.value === $(this).attr('placeholder')) $(this).val('')
+                if (this.value === $(this).attr('placeholder')) $(this).val('')
               },
               blur: function () {
                 $(this).val() || $(this).val($(this).attr('placeholder'))
@@ -579,23 +579,25 @@
               userOptions = input.userOptions,
               userFilters
 
-          if(userOptions.filters) {
+          if (userOptions.filters) {
             userFilters = userOptions.filters
-            if(!value && /required/.test(userFilters)) {
-              if(userOptions.errors && userOptions.errors.required) {
+            if (!value && /required/.test(userFilters)) {
+              if (userOptions.errors && userOptions.errors.required) {
                 error = userOptions.errors.required
               } else {
                 error = 'This field is required.'
               }
               isValid = false
             }
-            if(value) {
+            if (value) {
               userFilters = userFilters.split(/\s/)
               $.each(userFilters, function (i, uf) {
                 var theFilter = Filters[uf]
-                if(theFilter) {
-                  if(
-                  typeof theFilter.regex === 'function ' && !theFilter.regex(input, value) || theFilter.regex instanceof RegExp && !theFilter.regex.test(value)) {
+                if (theFilter) {
+                  if (
+                    typeof theFilter.regex === 'function ' && !theFilter.regex(input, value) || 
+                    theFilter.regex instanceof RegExp && !theFilter.regex.test(value)
+                  ) {
                     isValid = false
                     error = (userOptions.errors && userOptions.errors[uf]) || theFilter.error
                     return false
@@ -625,11 +627,11 @@
           var $input = FormInputs.inputs.filter('[name="' + input.input.attr('name') + '"]'),
               userOptions = o.inputs[input.input.attr('name')] || '',
               value = (function () {
-                if(input.input.val() === input.input.attr('placeholder')) {
+                if (input.input.val() === input.input.attr('placeholder')) {
                   return
                 }
                 // IE8 and IE9 fix empty value bug
-                if(input.input.is(':checkbox, :radio')) {
+                if (input.input.is(':checkbox, :radio')) {
                   return userOptions && ' '
                 }
                 return input.input.val()
@@ -647,13 +649,13 @@
           var $field = input.input.parents('.field'),
               $error = $field.next('.error'),
               $invalid = (function () {
-                if($input.is(':checkbox, :radio')) {
+                if ($input.is(':checkbox, :radio')) {
                   return input.input.parent().siblings('.invalid-icon')
                 }
                 return input.input.siblings('.invalid-icon')
               }()),
               $valid = (function () {
-                if($input.is(':checkbox, :radio')) {
+                if ($input.is(':checkbox, :radio')) {
                   return input.input.parent().siblings('.valid-icon')
                 }
                 return input.input.siblings('.valid-icon')
@@ -664,17 +666,17 @@
           $error.add($invalid).add($valid).hide()
 
           // Validates
-          if(value && test.isValid) {
+          if (value && test.isValid) {
             $error.add($invalid).hide()
             $field.addClass('valid')
             $valid.show()
           }
           // Does NOT validate
-          if(!test.isValid) {
+          if (!test.isValid) {
             $invalid.show()
             $field.addClass('invalid')
             // hide error on blur
-            if(evt !== 'blur') $error.html(test.error).show()
+            if (evt !== 'blur') $error.html(test.error).show()
           }
         },
 
@@ -684,7 +686,7 @@
         responsive: function () {
 
           var maxWidth = LessVars.inputWidth + FormInputs.labels.outerWidth()
-          if(o.responsiveAt === 'auto') {
+          if (o.responsiveAt === 'auto') {
             $form.width() < maxWidth ? $form.addClass('stack') : $form.removeClass('stack')
           } else {
             $(window).width() < o.responsiveAt ? $form.addClass('stack') : $form.removeClass('stack')
@@ -712,7 +714,7 @@
 
       FormInputs.inputs.on('keyup change focus blur', function (e) {
         var $this = $(this)
-        if($this.is('.custom')) {
+        if ($this.is('.custom')) {
           Actions.analyze({
             input: $this,
             custom: $this.next()
@@ -725,7 +727,7 @@
       }).blur() // Start fresh
       
       $form.submit(function (e) {
-        if($form.find('.field.invalid').length) {
+        if ($form.find('.field.invalid').length) {
           e.preventDefault()
           o.onFail()
         } else {
