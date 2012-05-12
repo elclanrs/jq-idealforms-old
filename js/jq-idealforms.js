@@ -53,7 +53,7 @@
    * @namespace Contains LESS data
    */
   var LessVars = {
-    inputWidth: Utils.getLessVar('ideal-field-width', 'width')
+    fieldWidth: Utils.getLessVar('ideal-field-width', 'width')
   }
 
 /*--------------------------------------------------------------------------*/
@@ -611,7 +611,7 @@
                 var theFilter = Filters[uf]
                 if (theFilter) {
                   if (
-                    typeof theFilter.regex === 'function ' && !theFilter.regex(input, value) ||
+                    typeof theFilter.regex === 'function' && !theFilter.regex(input, value) ||
                     theFilter.regex instanceof RegExp && !theFilter.regex.test(value)
                   ) {
                     isValid = false
@@ -632,23 +632,22 @@
 
         /** Shows or hides validation errors
          * @memberOf Actions
-         * @param {object} input Object that contains the jQuery input object [input.input]
-         * and the user options of that input [input.userOptions]
+         * @param {object} input jQuery object
          * @param {string} evt The event on which `analyze()` is being called
          */
         analyze: function (input, evt) {
 
           evt = evt || ''
 
-          var $input = FormInputs.inputs.filter('[name="' + input.input.attr('name') + '"]'),
-              userOptions = o.inputs[input.input.attr('name')] || '',
+          var $input = FormInputs.inputs.filter('[name="' + input.attr('name') + '"]'),
+              userOptions = o.inputs[input.attr('name')] || '',
               value = (function () {
-                var iVal = input.input.val()
-                if (iVal === input.input.attr('placeholder')) {
+                var iVal = input.val()
+                if (iVal === input.attr('placeholder')) {
                   return
                 }
                 // IE8 and IE9 fix empty value bug
-                if (input.input.is(':checkbox, :radio')) {
+                if (input.is(':checkbox, :radio')) {
                   return userOptions && ' '
                 }
                 return iVal
@@ -663,19 +662,19 @@
           /**
            * @namespace Validation elements
            */
-          var $field = input.input.parents('.field'),
+          var $field = input.parents('.field'),
               $error = $field.next('.error'),
               $invalid = (function () {
                 if ($input.is(':checkbox, :radio')) {
-                  return input.input.parent().siblings('.invalid-icon')
+                  return input.parent().siblings('.invalid-icon')
                 }
-                return input.input.siblings('.invalid-icon')
+                return input.siblings('.invalid-icon')
               }()),
               $valid = (function () {
                 if ($input.is(':checkbox, :radio')) {
-                  return input.input.parent().siblings('.valid-icon')
+                  return input.parent().siblings('.valid-icon')
                 }
-                return input.input.siblings('.valid-icon')
+                return input.siblings('.valid-icon')
               }())
 
           // Reset
@@ -702,7 +701,8 @@
          */
         responsive: function () {
 
-          var maxWidth = LessVars.inputWidth + FormInputs.labels.outerWidth()
+          var maxWidth = LessVars.fieldWidth + FormInputs.labels.outerWidth()
+
           if (o.responsiveAt === 'auto') {
             $form.width() < maxWidth
               ? $form.addClass('stack')
@@ -735,19 +735,11 @@
 
       /** Attach events to the form **/
 
-      FormInputs.inputs.on('keyup change focus blur', function (e) {
-        var $this = $(this)
-        if ($this.is('.custom')) {
-          Actions.analyze({
-            input: $this,
-            custom: $this.next()
-          }, e.type)
-        } else {
-          Actions.analyze({
-            input: $this
-          }, e.type)
-        }
-      }).blur() // Start fresh
+      FormInputs.inputs
+        .on('keyup change focus blur', function (e) {
+          Actions.analyze($(this), e.type)
+        })
+        .blur() // Start fresh
 
       $form.submit(function (e) {
         if ($form.find('.field.invalid').length) {
