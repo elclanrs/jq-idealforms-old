@@ -659,11 +659,11 @@
                 return input.input.siblings('.valid-icon')
               }())
 
-            // Reset
-            $field.removeClass('valid invalid')
-            $error.add($invalid).add($valid).hide()
+          // Reset
+          $field.removeClass('valid invalid')
+          $error.add($invalid).add($valid).hide()
 
-            // Validates
+          // Validates
           if(value && test.isValid) {
             $error.add($invalid).hide()
             $field.addClass('valid')
