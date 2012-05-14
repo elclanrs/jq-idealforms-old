@@ -78,7 +78,7 @@ $('#my-form').idealforms({ options });
 Options
 -------
 
-#### Inputs to validate:
+####`inputs`
 
 ```javascript
 inputs: {
@@ -97,7 +97,7 @@ inputs: {
     }
 }
 ``` 
-#### Custom filters:
+####`filters`
 
 ```javascript
 filters: {
@@ -121,17 +121,21 @@ filters: {
 }
 ```
 
-#### Callbacks:
+####`onSuccess`
 ```javascript
 onSuccess: function(e){ 
     // Form validates
-},
+}
+```
+
+####`onFail`
+```javascript
 onFail: function(){
     // Form does NOT validate    
 }
 ```
 
-#### Responsiveness:  
+####`responsiveAt`
 By default, jq-idealforms will make the form "adaptive". It will adapt to the container allowing it to work with any grid responsive grid system.
 You can change this behavior by assigning a number value to the `responsiveAt` option.
 ```javascript
@@ -141,7 +145,7 @@ You can change this behavior by assigning a number value to the `responsiveAt` o
 responsiveAt: 480
 ```
 
-#### Custom inputs:
+####`customInputs`
 Disable custom inputs (select, radio, checkbox, button) 
 ```javascript
 customInputs: false
