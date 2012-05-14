@@ -270,7 +270,7 @@ The names of the user config variables are pretty self-explanatory. If you screw
 
 You'll have to try out different values for `@input-width` depending on your container's width. Usually, adjusting the `@font-size` should be enough in most cases. The error is included in the width of the form, meaning that the form will become responsive as soon as the container can no longer wrap the the field including the error. This helps to prevent the error from hiding outside the window if the form is aligned to the right and the browser's window is small.
 
-The width of all inputs is auto-calculated but you can change the width of any input by targeting its id:
+The width of all inputs is auto-calculated but you can change the width of any input by targeting its id. This won't affect the responsive layout.
 
 ```css
 #comments { width: 200px; }
