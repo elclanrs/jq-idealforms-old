@@ -12,7 +12,7 @@
 ### Features:
 * Fully responsive (aka adaptive, adapts to the container, no css media queries needed)
 * Keyboard support
-* All input types are fully customizable built with [LESS](http://lesscss.org/).
+* Customizable input types (select, radio, checkbox)
 * "On the spot" validation
 * `placeholder` support for every browser
 
