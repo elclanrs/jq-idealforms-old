@@ -80,7 +80,7 @@
               var items = []
               $options.each(function () {
                 var $this = $(this)
-                items.push('<li><span ideal-value="' + $this.val() + '">' + $this.text() + '</span></li>')
+                items.push('<li><span class="item" ideal-value="' + $this.val() + '">' + $this.text() + '</span></li>')
               })
               return items
             }())
