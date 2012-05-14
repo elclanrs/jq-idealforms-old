@@ -140,7 +140,7 @@ By default, jq-idealforms will make the form "adaptive". It will adapt to the co
 You can change this behavior by assigning a number value to the `responsiveAt` option.
 ```javascript
 // Make responsive only at a certain window size.
-// Default is `auto` to adapt to the container
+// Default is `"auto"` to adapt to the container
 // Set to `false` to disable responsiveness
 responsiveAt: 480
 ```
