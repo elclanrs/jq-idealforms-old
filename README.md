@@ -137,7 +137,14 @@ You can change this behavior by assigning a number value to the `responsiveAt` o
 ```javascript
 // Make responsive only at a certain window size.
 // Default is `auto` to adapt to the container
+// Set to `false` to disable responsiveness
 responsiveAt: 480
+```
+
+#### Custom inputs:
+Disable custom inputs (select, radio, checkbox, button) 
+```javascript
+customInputs: false
 ```
 
 Built-in filters:
