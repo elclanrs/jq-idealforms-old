@@ -70,7 +70,7 @@ Markup
 
 Invoke the plugin
 -----------------
-Call your plugin on each form separately.
+Call **jq-idealforms** on each form separately.
 ```javascript
 $('#my-form').idealforms({ options });
 ```
