@@ -268,13 +268,14 @@ When you open `jq-idealforms.less`, all user options are located at the beginnin
 
 The names of the user config variables are pretty self-explanatory. If you screw up you can always go back.
 
-You'll have to try out different values and widths depending on your container's width. Usually, adjusting the font should be enough in most cases, but if the font becomes too big or too small then it's a good idea to tweak the input's and/or error's width. The error is included in the width of the form, meaning that the form will become responsive as soon as the container can no longer wrap the the field including the error. This helps to prevent the error from hiding outside the window if the form is aligned to the right and the browser's window is small.
+You'll have to try out different `@input-width` depending on your container's width. Usually, adjusting the font should be enough in most cases, but if the font becomes too big or too small then it's a good idea to tweak the input's and/or error's width. The error is included in the width of the form, meaning that the form will become responsive as soon as the container can no longer wrap the the field including the error. This helps to prevent the error from hiding outside the window if the form is aligned to the right and the browser's window is small.
 
 The width of all inputs is auto-calculated but you can change the width of any input by targeting its id:
 
 ```css
 #comments { width: 200px; }
 ```
+
 Don't forget to compile into `css`.
 
 Enjoy.
