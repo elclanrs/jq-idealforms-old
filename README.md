@@ -142,6 +142,7 @@ You can change this behavior by assigning a number value to the `responsiveAt` o
 // Make responsive only at a certain window size.
 // Default is `"auto"` to adapt to the container
 // Set to `false` to disable responsiveness
+// To always show the responsive layout use a large number ie `3000`
 responsiveAt: 480
 ```
 
