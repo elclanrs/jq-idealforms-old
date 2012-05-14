@@ -523,9 +523,9 @@
 
           var insertNewEls = function ($field) {
             var error = '<span class="error" />',
-                valid = '<i class="valid-icon" />',
+                valid = '<i class="icon valid-icon" />',
                 invalid = $('<i/>', {
-                  'class': 'invalid-icon',
+                  'class': 'icon invalid-icon',
                   click: function () {
                     var $this = $(this)
                     if ($this.siblings('label').length) { // radio & check
@@ -535,7 +535,6 @@
                     }
                   }
                 })
-
             $(error).hide().insertAfter($field)
             $(valid).add(invalid).hide().appendTo($field)
           }
@@ -557,7 +556,7 @@
           // Text inputs & select
           FormInputs.text.add(FormInputs.select).each(function () {
             var $this = $(this)
-            $this.wrapAll('<span class="field"/>')
+            $this.wrapAll('<span class="ideal-field"/>')
             insertNewEls($this.parent())
           })
 
@@ -569,9 +568,9 @@
             .each(function () {
               $(this).parent()
                 .siblings('label:not(.ideal-label)').andSelf()
-                .wrapAll('<span class="field ideal-radiocheck"/>')
+                .wrapAll('<span class="ideal-field ideal-radiocheck"/>')
             })
-          insertNewEls(FormInputs.radiocheck.parents('.field'))
+          insertNewEls(FormInputs.radiocheck.parents('.ideal-field'))
 
           // Custom inputs
           if (o.customInputs) {
@@ -673,7 +672,7 @@
           /**
            * @namespace Validation elements
            */
-          var $field = input.parents('.field'),
+          var $field = input.parents('.ideal-field'),
               $error = $field.next('.error'),
               $invalid = (function () {
                 if ($input.is(':checkbox, :radio')) {
@@ -749,7 +748,7 @@
         .blur() // Start fresh
 
       $form.submit(function (e) {
-        if ($form.find('.field.invalid').length) {
+        if ($form.find('.ideal-field.invalid').length) {
           e.preventDefault()
           o.onFail()
         } else {
