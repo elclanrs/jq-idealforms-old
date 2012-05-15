@@ -1,7 +1,7 @@
 * * *
 
 **[DEMO](http://elclanrs.github.com/jq-idealforms/)**  
-**Tested:** IE8+, Webkit, Firefox & Opera
+**Tested:** IE8+, Webkit, Firefox & Opera  
 **License:** GPL
 
 * * *
