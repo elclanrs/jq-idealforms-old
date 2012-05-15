@@ -16,7 +16,7 @@
 * "On the spot" validation
 * Support HTML5 `placeholder` attribute for every browser
 
-Check out the **[demo](http://elclanrs.github.com/Ideal Forms/)**!
+Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
 # How to use it:
 
