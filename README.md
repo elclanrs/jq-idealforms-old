@@ -14,7 +14,7 @@
 * Keyboard support
 * Customizable input types (select, radio, checkbox)
 * "On the spot" validation
-* `placeholder` support for every browser
+* Support HTML5 `placeholder` attribute for every browser
 
 Check out the **[demo](http://elclanrs.github.com/Ideal Forms/)**!
 
