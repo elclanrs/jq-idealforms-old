@@ -5,9 +5,9 @@
 
 * * *
 
-# What's jq-idealforms:
+# What's Ideal Forms:
 
-**jq-idealforms** is a small framework to build awesome responsive forms. It's built on top of jQuery and LESS.
+**Ideal Forms** is a small framework to build awesome responsive forms. It's built on top of jQuery and LESS.
 
 ### Features:
 * Fully responsive (aka adaptive, adapts to the container, no css media queries needed)
@@ -16,7 +16,7 @@
 * "On the spot" validation
 * `placeholder` support for every browser
 
-Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
+Check out the **[demo](http://elclanrs.github.com/Ideal Forms/)**!
 
 # How to use it:
 
@@ -24,6 +24,8 @@ Load the latest [jQuery library](http://jquery.com), the `jquery-idealforms.js` 
 
 Markup
 ------
+
+For **Ideal Forms** to work its magic you need to create your markup using this template, nothing fancy, just the usual form tags wrapped in a `<div>`.
 
 ```html
 <form id="my-form">
@@ -70,7 +72,7 @@ Markup
 
 Invoke the plugin
 -----------------
-Call **jq-idealforms** on each form separately.
+Call **Ideal Forms** on each form separately.
 ```javascript
 $('#my-form').idealforms({ options });
 ```
@@ -136,7 +138,7 @@ onFail: function(){
 ```
 
 ####`responsiveAt`
-By default, jq-idealforms will make the form "adaptive". It will adapt to the container allowing it to work with any responsive grid system.
+By default, Ideal Forms will make the form "adaptive". It will adapt to the container allowing it to work with any responsive grid system.
 You can change this behavior by assigning a number value to the `responsiveAt` option.
 ```javascript
 // Make responsive only at a certain window size.
@@ -263,9 +265,9 @@ $('#my-form').idealforms({
 Theming
 -------
 
-**jq-idealforms** relays on a carefully crafted [LESS](http://lesscss.org/) stylesheet, `../css/jq-idealforms.less`. From this file you can tweak every detail of the input's appearance, from the simplest text input, to the select menus, radios, and checkboxes.
+**Ideal Forms** relays on a carefully crafted [LESS](http://lesscss.org/) stylesheet, `../css/Ideal Forms.less`. From this file you can tweak every detail of the input's appearance, from the simplest text input, to the select menus, radios, and checkboxes.
 
-When you open `jq-idealforms.less`, all user options are located at the beginning of the file. You can safely edit all values from the "user config". The "extra" options must be edited wisely since most of the variables here are relative to other variables defined elsewhere.
+When you open `Ideal Forms.less`, all user options are located at the beginning of the file. You can safely edit all values from the "user config". The "extra" options must be edited wisely since most of the variables here are relative to other variables defined elsewhere.
 
 The names of the user config variables are pretty self-explanatory. If you screw up you can always go back.
 
