@@ -20,7 +20,7 @@ Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
 # How to use it:
 
-Load the latest [jQuery library](http://jquery.com), the `jquery.idealforms.js` plugin and the `jquery.idealforms.css` stylesheet into your project as well as the [`normalize.css`](http://necolas.github.com/normalize.css/) reset.
+Load the latest [jQuery library](http://jquery.com), the `jquery.idealforms.min.js` plugin and the `jquery.idealforms.css` stylesheet into your project as well as the [`normalize.css`](http://necolas.github.com/normalize.css/) reset.
 
 Markup
 ------
