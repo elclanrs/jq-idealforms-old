@@ -20,7 +20,7 @@
   @label-align: right;
   @label-width: auto; /* `auto` for auto-adjust */
   @border-width: 1px;
-  @border-radius: 2px;
+  @border-radius: 3px;
   
 /*--------------------------------------------------------
   Theme:
@@ -34,8 +34,11 @@
   
   /* Text inputs */
   @text-bg: white;
+  @text-text: darken(@text-bg, 60%);
   @invalid: #FFFBD4;
   @valid: #EDFCD9;
+  @invalid-text: darken(@invalid, 70%);
+  @valid-text: darken(@valid, 70%);
   
   /* Buttons */
   @button: #E6E8E8;
@@ -207,6 +210,11 @@
   }
   input[type="text"],
   input[type="password"],
+  textarea {
+    color: @text-text;
+  }
+  input[type="text"],
+  input[type="password"],
   textarea,
   select {
     padding: .4em;
@@ -264,14 +272,14 @@
   .invalid textarea,
   .invalid select {
     background: @invalid;
-    color: darken(@invalid, 80%);
+    color: @invalid-text;
     border: @border-width solid darken(@invalid, 50%);
   }
   .valid textarea,
   .valid input,
   .valid select  {
     background: @valid;
-    color: darken(@valid, 80%);
+    color: @valid-text;
     border: @border-width solid darken(@valid, 50%);
   }
   /* -------------------------------------------------------
