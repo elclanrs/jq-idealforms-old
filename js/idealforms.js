@@ -1,8 +1,3 @@
-/*--------------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------------*/
-
 /**
  * @namespace jq-idealforms jQuery plugin
  */
@@ -64,7 +59,7 @@ $.fn.idealforms = function (ops) {
   var LessVars = {
     fieldWidth: Utils.getLessVar('ideal-field-width', 'width')
   }
-  
+
 /*--------------------------------------------------------------------------*/
 
   /**
@@ -101,7 +96,7 @@ $.fn.idealforms = function (ops) {
 
       // Add novalidate tag if HTML5.
       FormInputs.inputs.attr('novalidate', 'novalidate')
-      
+
       // Autocomplete causes some problems...
       FormInputs.inputs.attr('autocomplete', 'off')
 
@@ -313,7 +308,7 @@ $.fn.idealforms = function (ops) {
     }
   })
 
-  // Responsive  
+  // Responsive
   if (o.responsiveAt) {
     $(window).resize(function () {
       Actions.responsive()
