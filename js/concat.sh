@@ -1,5 +1,6 @@
 #!/bin/sh
-cat start.js \
+cat \
+start.js \
 utils.js \
 to.custom.select.js \
 to.custom.radiocheck.js \
