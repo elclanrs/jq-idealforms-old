@@ -281,7 +281,7 @@ The overall font size. Usually adjusting the font-size should be enough in most 
 By default some inputs render with a smaller font. Change to `100%` to use the default font-size.
 
 ####`@input-width`
-The width of all inputs. Adjust this option to if the form doesn't quite fit your container. It's recommended to use this format `@font-size * number`. Adjust to fit ytou
+The width of all inputs. Adjust this option if the form doesn't quite fit your container. It's recommended to use this format `@font-size * number`.
 
 ####`@label-align`
 Align labels to either `left` or `right`.
