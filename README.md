@@ -21,7 +21,7 @@ Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
 # How to use it:
 
-Load the latest [jQuery library](http://jquery.com), the `js/min/jquery.idealforms.min.js` plugin and the `css/jquery.idealforms.min.css` stylesheet into your project.
+Load the latest [jQuery library](http://jquery.com), the `js/min/jquery.idealforms.min.js` plugin and the `css/jquery.idealforms.css` stylesheet into your project.
 
 Markup
 ------
