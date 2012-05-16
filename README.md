@@ -274,6 +274,8 @@ All user options are located in `less/user.config.less`. You can safely edit all
 
 The names of the user config variables are pretty self-explanatory. If you screw up you can always go back.
 
+When you finish editing the user config don't forget to compile `less/jquery.idealforms.less` into `css`.
+
 ####`@font-size`
 The overall font size. Usually adjusting the font-size should be enough in most cases.
 
@@ -293,6 +295,4 @@ Align labels to either `left` or `right`.
 ####`@label-width`
 Most of the time `auto` will work just fine but if you have really long label names then it's a good idea to tweak this value.
 
-When you finish editing the user config don't forget to compile `less/jquery.idealforms.less` into `css`.
-
-Enjoy.
+Enjoy :)
