@@ -20,7 +20,7 @@ $.fn.toCustomSelect = function () {
             var items = []
             $options.each(function () {
               var $this = $(this)
-              items.push('<li><span class="item" ideal-value="' + $this.val() + '">' + $this.text() + '</span></li>')
+              items.push('<li class="item" ideal-value="' + $this.val() + '">' + $this.text() + '</li>')
             })
             return items
           }())
@@ -52,7 +52,7 @@ $.fn.toCustomSelect = function () {
         })
         Select.select.insertAfter($select)
         Select.sub.hide()
-        Select.items.eq(Select.options.filter(':selected').index()).find('span').addClass('selected')
+        Select.items.eq(Select.options.filter(':selected').index()).addClass('selected')
       }()),
       noWindowScroll: function (e) {
         if (e.which === 40 || e.which === 38 || e.which === 13) {
@@ -75,7 +75,7 @@ $.fn.toCustomSelect = function () {
         $(document).off('.noscroll')
       },
       scrollIntoView: function (dir) {
-        var $selected = Select.items.find('.selected').parent(),
+        var $selected = Select.items.filter('.selected'),
             itemHeight = $selected.outerHeight(),
             menuHeight = Select.sub.outerHeight(),
             isInView = (function () {
@@ -93,7 +93,7 @@ $.fn.toCustomSelect = function () {
         }
       },
       scrollToItem: function () {
-        var idx = Select.items.find('.selected').parent().index(),
+        var idx = Select.items.filter('.selected').index(),
             height = Select.items.outerHeight(),
             items = Select.items.length,
             allHeight = height * items,
@@ -112,8 +112,8 @@ $.fn.toCustomSelect = function () {
         Select.select.removeClass('open')
       },
       select: function (idx) {
-        Select.items.find('span').removeClass('selected')
-        Select.items.eq(idx).find('span').addClass('selected')
+        Select.items.removeClass('selected')
+        Select.items.eq(idx).addClass('selected')
       },
       change: function (idx) {
         var text = Select.items.eq(idx).text()
@@ -123,7 +123,7 @@ $.fn.toCustomSelect = function () {
         $select.trigger('change')
       },
       keydown: function (key) {
-        var idx = Select.items.find('.selected').parent().index()
+        var idx = Select.items.filter('.selected').index()
         /**
          * @namespace Key pressed
          */
@@ -163,7 +163,7 @@ $.fn.toCustomSelect = function () {
           },
           'default': function () { // Letter
             var letter = String.fromCharCode(key),
-                selIdx = Select.items.find('.selected').parent().index(),
+                selIdx = Select.items.filter('.selected').parent().index(),
                 curIdx = Select.items.filter(function () {
                   var re = new RegExp('^' + letter, 'i')
                   return re.test($(this).text())
