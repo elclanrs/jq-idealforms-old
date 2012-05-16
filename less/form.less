@@ -39,10 +39,11 @@
     position: relative;
   }
   .ideal-label {
-    top: .3em; /* Aprox. align */
+    top: .4em; /* Aprox. align */
     max-width: @label-width;
     padding-right: 1.5em;
     text-align: @label-align;
+    line-height: 1.5;
   }
   input[type="text"],
   input[type="password"],
@@ -139,6 +140,7 @@
     z-index: 999;
     padding: .8em 1.2em;
     font-size: @small-font-size;
+    line-height: 1.5;
     .gradient(@error-color, lighten(@error-color, 10%));
     color: @error-text;
     border-bottom: @border-width solid @error-color;

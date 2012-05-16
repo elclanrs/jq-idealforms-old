@@ -12,10 +12,11 @@
   @font-size: 15px;
   @small-font-size: 85%;
   @input-width: @font-size * 15;
-  @label-align: right;
+  @label-align: left;
   @label-width: auto; /* `auto` for auto-adjust */
   @border-width: 1px;
   @border-radius: 3px;
+  @error-width: @input-width / 1.2;
 
 /*--------------------------------------------------------
   Theme:
@@ -64,7 +65,6 @@
   Edit these variables wisely...
 ------------------------------------------------------- */
 
-  @error-width: @input-width / 1.2;
   @icon-padding: @icon-size/2;
   @arrow-size: (@font-size/1.4);
   @select-scroll-size: 7; /* 7 items in scroll view */
