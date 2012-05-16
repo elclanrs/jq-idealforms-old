@@ -27,7 +27,7 @@ var Filters = {
     error: 'Must be at least 8 characters long and contain at least one uppercase and one lowercase letter and one number or special character.'
   },
   email: {
-    regex: /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/,
+    regex: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
     error: 'Must be a valid e-mail address. <em>(e.g. user@gmail.com)</em>'
   },
   phone: {
