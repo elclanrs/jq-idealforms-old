@@ -282,18 +282,16 @@ By default some inputs render with a smaller font. Change to `100%` to use the d
 
 ####`@input-width`
 The width of all inputs. Adjust this option if the form doesn't quite fit your container. It's recommended to use this format `@font-size * number`.
+All inputs will have the same width but you can change the width of a particular input by targeting its id. This won't affect the responsive layout.
+```css
+#comments { width: 200px; }
+```
 
 ####`@label-align`
 Align labels to either `left` or `right`.
 
 ####`@label-width`
 Most of the time `auto` will work just fine but if you have really long label names then it's a good idea to tweak this value.
-
-The width of all inputs is auto-calculated but you can change the width of any input by targeting its id. This won't affect the responsive layout.
-
-```css
-#comments { width: 200px; }
-```
 
 When you finish editing the user config don't forget to compile `less/jquery.idealforms.less` into `css`.
 
