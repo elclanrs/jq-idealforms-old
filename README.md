@@ -20,7 +20,7 @@ Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
 # How to use it:
 
-Load the latest [jQuery library](http://jquery.com), the `jquery.idealforms.min.js` plugin and the `jquery.idealforms.css` stylesheet into your project as well as the [`normalize.css`](http://necolas.github.com/normalize.css/) reset.
+Load the latest [jQuery library](http://jquery.com), the `js/min/jquery.idealforms.min.js` plugin and the `less/min/jquery.idealforms.min.css` stylesheet into your project as well as the
 
 Markup
 ------
@@ -265,9 +265,9 @@ $('#my-form').idealforms({
 Theming
 -------
 
-**Ideal Forms** relays on a carefully crafted [LESS](http://lesscss.org/) stylesheet, `../css/jquery.idealforms.less`. From this file you can tweak every detail of the input's appearance, from the simplest text input, to the select menus, radios, and checkboxes.
+**Ideal Forms** relays on a carefully crafted [LESS](http://lesscss.org/) stylesheet. Everything is customizable, from the simplest text input, to the select menus, radios, and checkboxes.
 
-When you open `Ideal Forms.less`, all user options are located at the beginning of the file. You can safely edit all values from the "user config". The "extra" options must be edited wisely since most of the variables here are relative to other variables defined elsewhere.
+All user options are located in `less/user.config.less`. You can safely edit all values from the "user config". The "extra" options must be edited wisely since most of the variables here are relative to other variables defined elsewhere.
 
 The names of the user config variables are pretty self-explanatory. If you screw up you can always go back.
 

@@ -1,0 +1,71 @@
+/* --------------------------------------------------------
+  
+  User Config:
+
+/*------------------------------------------------------ */
+
+/* --------------------------------------------------------
+  Layout:
+  * keep same units
+/*------------------------------------------------------ */
+
+  @font-size: 15px;
+  @small-font-size: 85%;
+  @input-width: @font-size * 15;
+  @label-align: right;
+  @label-width: auto; /* `auto` for auto-adjust */
+  @border-width: 1px;
+  @border-radius: 3px;
+
+/*--------------------------------------------------------
+  Theme:
+------------------------------------------------------- */
+
+  /* Validation */
+  @error-color: #183E59;
+  @icon-size: 16px;
+  @valid-icon: "../img/valid.png";
+  @invalid-icon: "../img/invalid.png";
+
+  /* Text inputs */
+  @text-bg: white;
+  @text-text: darken(@text-bg, 60%);
+  @invalid: #FFFBD4;
+  @valid: #EDFCD9;
+  @invalid-text: darken(@invalid, 70%);
+  @valid-text: darken(@valid, 70%);
+
+  /* Buttons */
+  @button: #E6E8E8;
+  @button-focus: #D1DEED;
+  @button-text: darken(@button, 60%);
+  @button-focus-text: darken(@button-focus, 60%);
+
+  /* Select */
+  @select-title: @button;
+  @select-sub-bg: #fafafa;
+  @select-sub-text: darken(@select-sub-bg, 60%);
+  @select-sub-selected: @error-color;
+  @select-sub-selected-text: lighten(@select-sub-selected, 70%);
+  @select-focus: @button-focus;
+  @select-title-text: darken(@select-title, 60%);
+  @select-title-focus-text: darken(@select-focus, 60%);
+
+  /* Radio & Checkbox */
+  @radiocheck-bg: #fff;
+  @radiocheck-sprite: "../img/radiocheck.png";
+  @radiocheck-icon-width: 17px;
+  @radiocheck-icon-height: 17px;
+  @radiocheck-focus-bg: hsl(hue(@error-color), 40%, 92%);
+
+/*--------------------------------------------------------
+  Extra:
+  Edit these variables wisely...
+------------------------------------------------------- */
+
+  @error-width: @input-width / 1.2;
+  @icon-padding: @icon-size/2;
+  @arrow-size: (@font-size/1.4);
+  @select-scroll-size: 7; /* 7 items in scroll view */
+  @select-valid-border: none;
+  @select-invalid-border: none;

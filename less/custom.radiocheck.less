@@ -1,0 +1,50 @@
+/* --------------------------------------------------------
+
+  Custom radio & check:
+         
+-------------------------------------------------------- */
+
+  .ideal-radiocheck {
+    .no-user-select;
+    position: relative;
+    width: @input-width;
+    padding: .8em;
+    font-size: @small-font-size;
+    color: darken(@radiocheck-bg, 80%);
+    border-radius: @border-radius;
+    border: @border-width solid darken(@radiocheck-bg, 30%);
+    .gradient(@radiocheck-bg, lighten(@radiocheck-bg, 20%));
+    label, input { cursor: pointer; }
+    label {
+      line-height: @radiocheck-icon-height;
+      float: left;
+      clear: left;
+      padding: .4em;
+      width: 100%;
+      vertical-align: bottom;
+      border: @border-width solid transparent;
+    }
+  }
+  .ideal-check,
+  .ideal-radio {
+    float: left;
+    background: url("@{radiocheck-sprite}") left top no-repeat;
+    width: @radiocheck-icon-width;
+    height: @radiocheck-icon-height;
+    margin-right: .5em;
+  }
+  .ideal-radio {
+    background-position: left bottom;
+  }
+  .ideal-check.checked {
+    background-position: right top;
+  }
+  .ideal-radio.checked {
+    background-position: right bottom;
+  }
+  .ideal-radiocheck label.focus {
+    background: @radiocheck-focus-bg;
+    border-radius: @border-radius;
+    border: @border-width solid darken(@radiocheck-focus-bg, 10%);
+    color: darken(@radiocheck-focus-bg, 60%);
+  }

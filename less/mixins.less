@@ -1,0 +1,70 @@
+/*--------------------------------------------------------
+
+  Global mixins & variables:
+
+------------------------------------------------------- */
+
+  @font-family: inherit;
+  @select-item-height: floor(@font-size * 1.7);
+  @select-max-height: @select-item-height * @select-scroll-size; /* `auto` for no scrollbar */
+
+  .gradient(@startColor, @endColor) {
+    background-color: @startColor;
+    background-repeat: no-repeat;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+    background-image: -webkit-linear-gradient(@startColor, @endColor);
+    background-image: -moz-linear-gradient(@startColor, @endColor);
+    background-image: -o-linear-gradient(top,  @startColor,  @endColor);
+    filter: e(%("progid:DXImageTransform.Microsoft.Gradient(StartColorStr='%d', EndColorStr='%d', GradientType=0)",@startColor,@endColor));
+    -ms-filter: %("progid:DXImageTransform.Microsoft.gradient(startColorStr='%d', EndColorStr='%d', GradientType=0))",@startColor,@endColor);
+  }
+  .box-shadow (@shadow1, @shadow2: transparent 0 0 0) {
+    -moz-box-shadow: @shadow1, @shadow2;
+    -webkit-box-shadow: @shadow1, @shadow2;
+    box-shadow: @shadow1, @shadow2;
+  }
+  .ie-refresh { /* IE8 hack :after pseudo force refresh */
+    content: ".";
+    line-height: 0;
+    text-indent: -9999px;
+  }
+  .no-user-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* ui-inputs: Select & button inputs */
+  .ui-input {
+    font-family: @font-family;
+    @size: floor(@font-size * 2.2);
+    height: @size;
+    line-height: @size;
+    padding: 0 .8em;
+  }
+  .ui-color (@color, @text-color) {
+    .gradient(lighten(@color, 20%), @color);
+    .box-shadow(
+      0 1px 1px rgba(0,0,0,.08),
+      inset 0 @border-width 0 rgba(255,255,255,.5)
+    );
+    border: @border-width solid darken(@color, 20%);
+    border-bottom-color: darken(@color, 30%);
+    border-radius: @border-radius;
+    color: @text-color;
+  }
+  .ui-focus (@color, @text-color) {
+    border: @border-width solid darken(@color, 20%);
+    border-bottom-color: darken(@color, 30%);
+    .gradient(lighten(@color, 20%),@color);
+    color: @text-color;
+  }
+  .ui-active (@color) {
+    background: @color;
+    .box-shadow(
+      inset 0 @border-width @border-width*2 rgba(0,0,0,.2),
+      inset 0 4px @border-width*2 rgba(0,0,0,.08)
+    );
+  }
