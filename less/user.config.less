@@ -1,5 +1,5 @@
 /* --------------------------------------------------------
-  
+
   User Config:
 
 /*------------------------------------------------------ */
@@ -69,3 +69,13 @@
   @select-scroll-size: 7; /* 7 items in scroll view */
   @select-valid-border: none;
   @select-invalid-border: none;
+
+/* --------------------------------------------------------
+
+  *** PRIVATE ***
+
+/*------------------------------------------------------ */
+
+  .ideal-field-width {
+    width: @input-width + @error-width + @icon-size + (@icon-padding * 2);
+  }

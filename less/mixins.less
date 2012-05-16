@@ -23,7 +23,8 @@
     -webkit-box-shadow: @shadow1, @shadow2;
     box-shadow: @shadow1, @shadow2;
   }
-  .ie-refresh { /* IE8 hack :after pseudo force refresh */
+  /* IE8 hack :after pseudo force refresh */
+  .ie-refresh {
     content: ".";
     line-height: 0;
     text-indent: -9999px;
@@ -36,7 +37,9 @@
     user-select: none;
   }
 
-  /* ui-inputs: Select & button inputs */
+/*--------------------------------------------------------
+  UI Inputs (select & button)
+------------------------------------------------------- */
   .ui-input {
     font-family: @font-family;
     @size: floor(@font-size * 2.2);
