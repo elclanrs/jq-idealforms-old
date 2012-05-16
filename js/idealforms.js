@@ -73,10 +73,27 @@ $.fn.idealforms = function (ops) {
      */
     init: (function () {
 
-      var insertNewEls = function ($field) {
-        var error = '<span class="error" />',
-            valid = '<i class="icon valid-icon" />',
-            invalid = $('<i/>', {
+      $form.css('visibility', 'visible').addClass('ideal-form')
+      $form.children('div').addClass('ideal-wrap')
+
+      // Add novalidate tag if HTML5.
+      FormInputs.inputs.attr('novalidate', 'novalidate')
+
+      // Autocomplete causes some problems...
+      FormInputs.inputs.attr('autocomplete', 'off')
+      
+      // Auto-adjust labels
+      FormInputs.labels
+        .addClass('ideal-label')
+        .width(Utils.getMaxWidth(FormInputs.labels))
+      
+      // Generate necessary markup
+      ;(function generateMarkup () {
+      
+        // Icons and error elements
+        var $error = $('<span class="error" />'),
+            $valid = $('<i class="icon valid-icon" />'),
+            $invalid = $('<i/>', {
               'class': 'icon invalid-icon',
               click: function () {
                 var $this = $(this)
@@ -87,42 +104,30 @@ $.fn.idealforms = function (ops) {
                 }
               }
             })
-        $(error).hide().insertAfter($field)
-        $(valid).add(invalid).hide().appendTo($field)
-      }
-
-      $form.css('visibility', 'visible').addClass('ideal-form')
-      $form.children('div').addClass('ideal-wrap')
-
-      // Add novalidate tag if HTML5.
-      FormInputs.inputs.attr('novalidate', 'novalidate')
-
-      // Autocomplete causes some problems...
-      FormInputs.inputs.attr('autocomplete', 'off')
-
-      // Labels
-      FormInputs.labels
-        .addClass('ideal-label')
-        .width(Utils.getMaxWidth(FormInputs.labels))
-
-      // Text inputs & select
-      FormInputs.text.add(FormInputs.select).each(function () {
-        var $this = $(this)
-        $this.wrapAll('<span class="ideal-field"/>')
-        insertNewEls($this.parent())
-      })
-
-      // Radio & Checkbox
-      FormInputs.radiocheck
-        .parent()
-        .filter(':last-child')
-        .children()
-        .each(function () {
-          $(this).parent()
-            .siblings('label:not(.ideal-label)').andSelf()
-            .wrapAll('<span class="ideal-field ideal-radiocheck"/>')
-        })
-      insertNewEls(FormInputs.radiocheck.parents('.ideal-field'))
+            
+        // Text inputs & select markup
+        FormInputs.text
+          .add(FormInputs.select)
+          .each(function () {
+            var $this = $(this)
+            $this.wrapAll('<span class="ideal-field"/>')
+          })
+        
+        // Radio & Checkbox markup
+        FormInputs.radiocheck
+          .parents('.ideal-wrap')
+          .each(function () {
+            $(this)
+              .find('label:not(.ideal-label)')
+              .wrapAll('<span class="ideal-field ideal-radiocheck"/>')      
+          })
+        
+        // Insert icons and error in DOM
+        $form.find('.ideal-field')
+          .append($valid.add($invalid))
+          .after($error)
+          
+      }())
 
       // Custom inputs
       if (o.customInputs) {
