@@ -77,7 +77,7 @@ $.fn.idealforms = function (ops) {
       $form.children('div').addClass('ideal-wrap')
 
       // Add novalidate tag if HTML5.
-      FormInputs.inputs.attr('novalidate', 'novalidate')
+      $form.attr('novalidate', 'novalidate')
 
       // Autocomplete causes some problems...
       FormInputs.inputs.attr('autocomplete', 'off')
@@ -199,7 +199,7 @@ $.fn.idealforms = function (ops) {
       }
     },
 
-    /** Shows or hides validation errors
+    /** Shows or hides validation errors and icons
      * @memberOf Actions
      * @param {object} input jQuery object
      * @param {string} evt The event on which `analyze()` is being called
