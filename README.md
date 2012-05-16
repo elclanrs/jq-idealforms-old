@@ -275,13 +275,13 @@ All user options are located in `less/user.config.less`. You can safely edit all
 The names of the user config variables are pretty self-explanatory. If you screw up you can always go back.
 
 ####`@font-size`
-The overall font size.
+The overall font size. Usually adjusting the font-size should be enough in most cases.
 
 ####`@small-font-size`
 By default some inputs render with a smaller font. Change to `100%` to use the default font-size.
 
 ####`@input-width`
-The width of all inputs. It's recommended to use this format `@font-size * number`.
+The width of all inputs. Adjust this option to if the form doesn't quite fit your container. It's recommended to use this format `@font-size * number`. Adjust to fit ytou
 
 ####`@label-align`
 Align labels to either `left` or `right`.
