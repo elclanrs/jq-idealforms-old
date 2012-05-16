@@ -272,6 +272,21 @@ All user options are located in `less/user.config.less`. You can safely edit all
 
 The names of the user config variables are pretty self-explanatory. If you screw up you can always go back.
 
+####`@font-size`
+The overall font size.
+
+####`@small-font-size`
+By default some inputs render with a smaller font. Change to `100%` to use the default font-size.
+
+####`@input-width`
+The width of all inputs. It's recommended to use this format `@font-size * number`.
+
+####`@label-align`
+Align labels to either `left` or `right`.
+
+####`@label-width`
+Most of the time `auto` will work just fine but if you have really long label names then it's a good idea to tweak this value.
+
 Usually, adjusting the `@font-size` should be enough in most cases but you may want to try different values for `@input-width` depending on your container's width. The error is included in the width of the form, meaning that the form will become responsive as soon as the container can no longer wrap the the field including the error. This helps to prevent the error from hiding outside the window if the form is aligned to the right and the browser's window is small.
 
 The width of all inputs is auto-calculated but you can change the width of any input by targeting its id. This won't affect the responsive layout.
