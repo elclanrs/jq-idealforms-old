@@ -1,13 +1,14 @@
 * * *
 
 **[DEMO](http://elclanrs.github.com/jq-idealforms/)**  
-**Tested:** IE8+, Webkit, Firefox & Opera
+**Tested:** IE8+, Webkit, Firefox & Opera  
+**License:** GPL
 
 * * *
 
 # What's Ideal Forms:
 
-**Ideal Forms** is a small framework to build awesome responsive forms. It's built on top of jQuery and LESS.
+**Ideal Forms** is a small framework to build awesome responsive forms with validation. It's built on top of jQuery and LESS.
 
 ### Features:
 * Fully responsive (aka adaptive, adapts to the container, no css media queries needed)
