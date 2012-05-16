@@ -280,6 +280,6 @@ The width of all inputs is auto-calculated but you can change the width of any i
 #comments { width: 200px; }
 ```
 
-Don't forget to compile into `css`.
+When you finish editing th euser cofig don't forget to compile `less/jquery.idealforms.less` into `css`.
 
 Enjoy.
