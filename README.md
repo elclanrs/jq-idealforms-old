@@ -295,4 +295,4 @@ Align labels to either `left` or `right`.
 ####`@label-width`
 Most of the time `auto` will work just fine but if you have really long label names then it's a good idea to tweak this value.
 
-Enjoy :)
+**Enjoy :)**
