@@ -33,7 +33,6 @@ $.fn.idealforms = function (ops) {
        * @memberOf $.fn.idealforms
        * @returns {object}
        */
-      
       FormInputs = {
         inputs: $form.find('input, select, textarea, :button'),
         labels: $form.find('label:first-child'),
