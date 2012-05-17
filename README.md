@@ -26,7 +26,7 @@ Load the latest [jQuery library](http://jquery.com), the `js/min/jquery.idealfor
 Markup
 ------
 
-For **Ideal Forms** to work its magic you need to create your markup using this template, nothing fancy, just the usual form tags wrapped in a `<div>`.
+For **Ideal Forms** to work its magic create your markup using this as a template, nothing fancy, just the usual form tags wrapped in a `<div>`.
 
 ```html
 <form id="my-form">
@@ -277,14 +277,14 @@ The names of the user config variables are pretty self-explanatory. If you screw
 When you finish editing the user config don't forget to compile `less/jquery.idealforms.less` into `css`.
 
 ####`@font-size`
-The overall font size. Usually adjusting the font-size should be enough in most cases.
+The overall font size. Usually adjusting this option should be enough in most cases.
 
 ####`@small-font-size`
-By default some inputs render with a smaller font. Change to `100%` to use the default font-size.
+Ideal Forms uses a smaller font-size for `button`, `select`, `radio` and `checkbox`. Change to `100%` to use the default font-size.
 
 ####`@input-width`
-The width of all inputs. Adjust this option if the form doesn't quite fit your container. It's recommended to use this format `@font-size * number`.
-All inputs will have the same width but you can change the width of a particular input by targeting its id. This won't affect the responsive layout.
+Adjust this option if the form doesn't quite fit your container. It's recommended to use this format `@font-size * number`.
+All inputs will have the width set here but you can change the width of any particular input by targeting its id. This won't affect the responsive layout.
 ```css
 #comments { width: 200px; }
 ```
@@ -294,5 +294,14 @@ Align labels to either `left` or `right`.
 
 ####`@label-width`
 Most of the time `auto` will work just fine but if you have really long label names then it's a good idea to tweak this value.
+
+####`@border-width`
+Width of every border property. Usually there's no need to change the default value of `1px` unless you want a "thick" border look, suitable for sime occasions. `box-shadow` properties depend on this option.
+
+####`@border-radius`
+Radius for round corners.
+
+####`@css3-anim`
+`true` or `false` to enable or disable css3 animations (transitions).
 
 **Enjoy :)**
