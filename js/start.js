@@ -3,7 +3,7 @@
   jq-idealforms 2.0
 
   * Author: Cedric Ruiz
-  * License: GPLv2
+  * License: GPL
   * Demo: http://elclanrs.github.com/jq-idealforms/
 
 --------------------------------------------------------------------------*/

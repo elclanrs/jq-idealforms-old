@@ -6,17 +6,12 @@ $.fn.idealforms = function (ops) {
   // Default options
   var o = $.extend({
     inputs: {},
+    filters: {},
     onSuccess: function (e) {
       alert('Thank you...')
     },
     onFail: function () {
-      // What happens on submit if the form
-      // does NOT validate.
       alert('The form does not validate! Check again...')
-    },
-    filters: {
-      // Add your own filters
-      // ie. myfilter: { regex: /something/, error: 'My error' }
     },
     responsiveAt: 'auto',
     customInputs: true
@@ -72,15 +67,15 @@ $.fn.idealforms = function (ops) {
 
       // Autocomplete causes some problems...
       FormInputs.inputs.attr('autocomplete', 'off')
-      
+
       // Auto-adjust labels
       FormInputs.labels
         .addClass('ideal-label')
         .width(Utils.getMaxWidth(FormInputs.labels))
-      
+
       // Generate necessary markup
       ;(function generateMarkup () {
-      
+
         // Icons and error elements
         var $error = $('<span class="error" />'),
             $valid = $('<i class="icon valid-icon" />'),
@@ -95,7 +90,7 @@ $.fn.idealforms = function (ops) {
                 }
               }
             })
-            
+
         // Text inputs & select markup
         FormInputs.text
           .add(FormInputs.select)
@@ -103,21 +98,21 @@ $.fn.idealforms = function (ops) {
             var $this = $(this)
             $this.wrapAll('<span class="ideal-field"/>')
           })
-        
+
         // Radio & Checkbox markup
         FormInputs.radiocheck
           .parents('.ideal-wrap')
           .each(function () {
             $(this)
               .find('label:not(.ideal-label)')
-              .wrapAll('<span class="ideal-field ideal-radiocheck"/>')      
+              .wrapAll('<span class="ideal-field ideal-radiocheck"/>')
           })
-        
+
         // Insert icons and error in DOM
         $form.find('.ideal-field')
           .append($valid.add($invalid))
           .after($error)
-          
+
       }())
 
       // Custom inputs
@@ -150,13 +145,16 @@ $.fn.idealforms = function (ops) {
      * @returns {object} Returns [isValid] plus [error] if it fails
      */
     validate: function (input, value) {
+
       var isValid = true,
           error = '',
+          $input = input.input,
           userOptions = input.userOptions,
-          userFilters
+          userFilters = userOptions.filters
 
-      if (userOptions.filters) {
-        userFilters = userOptions.filters
+      if (userFilters) {
+
+        // Required
         if (!value && /required/.test(userFilters)) {
           if (userOptions.errors && userOptions.errors.required) {
             error = userOptions.errors.required
@@ -165,29 +163,35 @@ $.fn.idealforms = function (ops) {
           }
           isValid = false
         }
+
+        // All other filters
         if (value) {
           userFilters = userFilters.split(/\s/)
-          $.each(userFilters, function (i, uf) {
-            var theFilter = Filters[uf]
+          for (var i = 0, len = userFilters.length; i < len; i++) {
+            var uf = userFilters[i],
+                theFilter = typeof Filters[uf] === 'undefined' ? '' : Filters[uf],
+                isFunction = typeof theFilter.regex === 'function',
+                isRegex = theFilter.regex instanceof RegExp
             if (theFilter) {
               if (
-                typeof theFilter.regex === 'function' && !theFilter.regex(input, value) ||
-                theFilter.regex instanceof RegExp && !theFilter.regex.test(value)
+                isFunction && !theFilter.regex(input, value) ||
+                isRegex && !theFilter.regex.test(value)
               ) {
                 isValid = false
                 error = (userOptions.errors && userOptions.errors[uf]) || theFilter.error
-                return false
+                break
               }
             }
-          })
+          }
         }
-      } else {
-        isValid = true
+
       }
+
       return {
         isValid: isValid,
         error: error
       }
+
     },
 
     /** Shows or hides validation errors and icons
@@ -204,7 +208,8 @@ $.fn.idealforms = function (ops) {
             if (iVal === input.attr('placeholder')) {
               return
             }
-            // IE8 and IE9 fix empty value bug
+            // Always send a value when validating
+            // :checkboxes and :radio
             if (input.is(':checkbox, :radio')) {
               return userOptions && ' '
             }
