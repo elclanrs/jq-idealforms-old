@@ -82,7 +82,7 @@ Options
 -------
 
 ####`inputs`
-Add all the inputs you want to validate here.
+Add all the inputs you want to validate here. Use the name attribute of the input as key. To be consistent always put the key in quotes. Array group names can be used too, ie. `name[]`.
 
 ```javascript
 inputs: {
