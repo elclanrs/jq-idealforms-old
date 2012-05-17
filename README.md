@@ -26,7 +26,7 @@ Load the latest [jQuery library](http://jquery.com), the `js/min/jquery.idealfor
 Markup
 ------
 
-For **Ideal Forms** to work its magic create your markup using this a reference, nothing fancy, just the usual form tags wrapped in a `<div>`. Drop the form into a container of any size and Ideal Forms will do the rest.
+For **Ideal Forms** to work its magic create your markup using the following template as a reference, nothing fancy, just the usual form tags wrapped in a `<div>`. Drop the form into a container of any size and Ideal Forms will do the rest.
 
 ```html
 <form id="my-form">
