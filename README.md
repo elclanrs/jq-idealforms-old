@@ -206,7 +206,7 @@ Must be a valid URL.
 Must be a valid date in this format `mm/dd/yy`
 
 ####`exclude`
-* Prevent validation if the value matches any value in the given array.
+Prevent validation if the value matches any value in the given array.
 
 Example
 -------
