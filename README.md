@@ -296,7 +296,7 @@ Align labels to either `left` or `right`.
 Most of the time `auto` will work just fine but if you have really long label names then it's a good idea to tweak this value.
 
 ####`@border-width`
-Width of every border property. Usually there's no need to change the default value of `1px` unless you want a "thick" border look, suitable for sime occasions. `box-shadow` properties depend on this option.
+Width of every border property. Usually there's no need to change the default value of `1px` unless you want a "thick" border look, suitable for some occasions. `box-shadow` properties depend on this option.
 
 ####`@border-radius`
 Radius for round corners.
