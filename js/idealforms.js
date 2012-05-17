@@ -36,7 +36,7 @@ $.fn.idealforms = function (ops) {
       FormInputs = {
         inputs: $form.find('input, select, textarea, :button'),
         labels: $form.find('label:first-child'),
-        text: $form.find(':text, :password, textarea'),
+        text: $form.find('input:text, input:password, textarea'),
         select: $form.find('select'),
         radiocheck: $form.find('input:radio, input:checkbox'),
         buttons: $form.find(':button')
