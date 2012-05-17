@@ -16,6 +16,7 @@
     .gradient(@radiocheck-bg, lighten(@radiocheck-bg, 20%));
     label, input { cursor: pointer; }
     label {
+      .transition(~"background .15s ease-in-out, color .15s ease-in-out, border .15s ease-in-out");
       line-height: @radiocheck-icon-height;
       float: left;
       clear: left;
@@ -23,6 +24,7 @@
       width: 100%;
       vertical-align: bottom;
       border: @border-width solid transparent;
+      border-radius: @border-radius;
     }
   }
   .ideal-check,
@@ -44,7 +46,6 @@
   }
   .ideal-radiocheck label.focus {
     background: @radiocheck-focus-bg;
-    border-radius: @border-radius;
     border: @border-width solid darken(@radiocheck-focus-bg, 10%);
     color: darken(@radiocheck-focus-bg, 60%);
   }

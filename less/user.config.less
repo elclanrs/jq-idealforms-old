@@ -17,6 +17,7 @@
   @border-width: 1px;
   @border-radius: 3px;
   @error-width: @input-width / 1.2;
+  @css3-anim: true;
 
 /*--------------------------------------------------------
   Theme:
@@ -77,6 +78,11 @@
 
 /*------------------------------------------------------ */
 
+  @font-family: inherit;
+  @select-item-height: floor(@font-size * 1.7);
+  @select-max-height: @select-item-height * @select-scroll-size; /* `auto` for no scrollbar */
+  
+  /* jQuery data */
   .ideal-field-width {
     width: @input-width + @error-width + @icon-size + (@icon-padding * 2);
   }

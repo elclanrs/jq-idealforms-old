@@ -4,10 +4,6 @@
 
 ------------------------------------------------------- */
 
-  @font-family: inherit;
-  @select-item-height: floor(@font-size * 1.7);
-  @select-max-height: @select-item-height * @select-scroll-size; /* `auto` for no scrollbar */
-
   .gradient(@startColor, @endColor) {
     background-color: @startColor;
     background-repeat: no-repeat;
@@ -23,12 +19,13 @@
     -webkit-box-shadow: @shadow1, @shadow2;
     box-shadow: @shadow1, @shadow2;
   }
-  /* IE8 hack :after pseudo force refresh */
-  .ie-refresh {
-    content: ".";
-    line-height: 0;
-    text-indent: -9999px;
+  .transition(@string: all .30s ease-in-out) when (@css3-anim) {
+    -webkit-transition: @string;
+    -moz-transition: @string;
+    -ms-transition: @string;
+    -o-transition: @string;
   }
+  .transition() when not (@css3-anim) {}
   .no-user-select {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -36,10 +33,17 @@
     -ms-user-select: none;
     user-select: none;
   }
-
+  /* IE8 hack :after pseudo force refresh */
+  .ie-refresh {
+    content: ".";
+    line-height: 0;
+    text-indent: -9999px;
+  }
+  
 /*--------------------------------------------------------
   UI Inputs (select & button)
 ------------------------------------------------------- */
+
   .ui-input {
     font-family: @font-family;
     @size: floor(@font-size * 2.2);
@@ -56,18 +60,18 @@
     border: @border-width solid darken(@color, 20%);
     border-bottom-color: darken(@color, 30%);
     border-radius: @border-radius;
-    color: @text-color;
+    color: @text-color; 
   }
   .ui-focus (@color, @text-color) {
     border: @border-width solid darken(@color, 20%);
     border-bottom-color: darken(@color, 30%);
     .gradient(lighten(@color, 20%),@color);
-    color: @text-color;
+    color: @text-color;   
   }
   .ui-active (@color) {
     background: @color;
     .box-shadow(
       inset 0 @border-width @border-width*2 rgba(0,0,0,.2),
       inset 0 4px @border-width*2 rgba(0,0,0,.08)
-    );
+    );  
   }

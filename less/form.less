@@ -57,6 +57,7 @@
     color: @text-text;
     border-radius: @border-radius;
     .box-shadow(inset 0 @border-width @border-width * 2 rgba(0,0,0,.1));
+    .transition(background .3s ease-in-out);
   }
   input[type="password"] {
     font-family: Arial~'\9'; /* For IE8 empty character bug with custom fonts */
