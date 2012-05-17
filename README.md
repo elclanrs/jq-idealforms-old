@@ -152,7 +152,7 @@ responsiveAt: 480
 ```
 
 ####`customInputs`
-Disable custom inputs (select, radio, checkbox, button) 
+Disables custom inputs and uses system default. (select, radio, checkbox, button)
 ```javascript
 customInputs: false
 ```
