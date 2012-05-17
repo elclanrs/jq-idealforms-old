@@ -102,7 +102,7 @@ $.fn.toCustomSelect = function () {
         Select.sub.scrollTop(allHeight - curHeight)
       },
       showMenu: function () {
-        Select.sub.show()
+        Select.sub.fadeIn('fast')
         Select.select.addClass('open')
         Actions.select(Select.options.filter(':selected').index())
         Actions.scrollToItem()
