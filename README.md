@@ -26,7 +26,7 @@ Load the latest [jQuery library](http://jquery.com), the `js/min/jquery.idealfor
 Markup
 ------
 
-For **Ideal Forms** to work its magic create your markup using this as a template, nothing fancy, just the usual form tags wrapped in a `<div>`.
+For **Ideal Forms** to work its magic create your markup using this a reference, nothing fancy, just the usual form tags wrapped in a `<div>`. Drop the form into a container of any size and Ideal Forms will do the rest.
 
 ```html
 <form id="my-form">
@@ -82,6 +82,7 @@ Options
 -------
 
 ####`inputs`
+Add all the inputs you want to validate here.
 
 ```javascript
 inputs: {
@@ -101,6 +102,7 @@ inputs: {
 }
 ``` 
 ####`filters`
+Adding custom filters is very easy and straightforward.
 
 ```javascript
 filters: {
