@@ -33,23 +33,15 @@ $.fn.idealforms = function (ops) {
        * @memberOf $.fn.idealforms
        * @returns {object}
        */
-      FormInputs = (function () {
-        var $inputs = $form.find('input, select, textarea, :button'),
-            $labels = $form.find('label:first-child'),
-            $text = $inputs.filter(':text, :password, textarea'),
-            $select = $inputs.filter('select'),
-            $radiocheck = $inputs.filter(':checkbox, :radio'),
-            $buttons = $inputs.filter(':button')
-
-        return {
-          inputs: $inputs,
-          labels: $labels,
-          text: $text,
-          select: $select,
-          radiocheck: $radiocheck,
-          buttons: $buttons
-        }
-      }())
+      
+      FormInputs = {
+        inputs: $form.find('input, select, textarea, :button'),
+        labels: $form.find('label:first-child'),
+        text: $form.find(':text, :password, textarea'),
+        select: $form.find('select'),
+        radiocheck: $form.find('input:radio, input:checkbox'),
+        buttons: $form.find(':button')
+      }
 
 /*--------------------------------------------------------------------------*/
 
