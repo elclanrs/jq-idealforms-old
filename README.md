@@ -279,7 +279,7 @@ The names of the user config variables are pretty self-explanatory. If you screw
 When you finish editing the user config don't forget to compile `less/jquery.idealforms.less` into `css`.
 
 ####`@font-size`
-The overall font size. Usually adjusting this option should be enough in most cases.
+The overall font size. Usually adjusting this option should be enough in most cases. Keep in mind that the bigger the font, the bigger the icons need to be. Ideal Forms will try to align everything as close as possible, but it's recommended that the icons are aprox. the same size as the font-size.
 
 ####`@small-font-size`
 Ideal Forms uses a smaller font-size for `button`, `select`, `radio` and `checkbox`. Change to `100%` to use the default font-size.
