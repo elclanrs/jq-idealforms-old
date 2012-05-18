@@ -264,8 +264,12 @@ $.fn.idealforms = function (ops) {
      */
     responsive: function () {
 
-      var maxWidth = LessVars.fieldWidth + FormInputs.labels.outerWidth()
-
+      var maxWidth = LessVars.fieldWidth + FormInputs.labels.outerWidth(),
+          $emptyLabel = FormInputs.labels.filter(function () {
+            return $(this).html() === '&nbsp;'
+          }),
+          $customSelect = FormInputs.select.next('.ideal-select')
+          
       if (o.responsiveAt === 'auto') {
         $form.width() < maxWidth
           ? $form.addClass('stack')
@@ -277,13 +281,11 @@ $.fn.idealforms = function (ops) {
       }
 
       // Labels
-      var $emptyLabel = FormInputs.labels.filter(function () {
-        return $(this).html() === '&nbsp;'
-      })
-      $form.is('.stack') ? $emptyLabel.hide() : $emptyLabel.show()
+      $form.is('.stack') 
+        ? $emptyLabel.hide() 
+        : $emptyLabel.show()
 
       // Custom select
-      var $customSelect = FormInputs.select.next('.ideal-select')
       $form.is('.stack')
         ? $customSelect.trigger('list')
         : $customSelect.trigger('menu')
