@@ -306,7 +306,7 @@ Radius for round corners.
 ####`@css3-anim`
 `true` or `false` to enable or disable css3 animations (transitions).
 
-####`@css3-effects
+####`@css3-effects`
 `true` or `false` to enable or disable css3 box-shadow and gradients.
 
 **Enjoy :)**
