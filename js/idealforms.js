@@ -3,8 +3,10 @@
  */
 $.fn.idealforms = function (ops) {
 
+  var
+  
   // Default options
-  var o = $.extend({
+  o = $.extend({
     inputs: {},
     filters: {},
     onSuccess: function (e) {
@@ -15,36 +17,32 @@ $.fn.idealforms = function (ops) {
     },
     responsiveAt: 'auto',
     customInputs: true
-  }, ops)
+  }, ops),
 
-  // Merge custom and default filters
-  $.extend(true, Filters, o.filters)
-
-/*--------------------------------------------------------------------------*/
-
-  var $form = this,
-      /**
-       * @namespace All form inputs of the given form
-       * @memberOf $.fn.idealforms
-       * @returns {object}
-       */
-      FormInputs = {
-        inputs: $form.find('input, select, textarea, :button'),
-        labels: $form.find('label:first-child'),
-        text: $form.find('input:text, input:password, textarea'),
-        select: $form.find('select'),
-        radiocheck: $form.find('input:radio, input:checkbox'),
-        buttons: $form.find(':button')
-      }
+  $form = this, // The form
+  
+  /**
+   * @namespace All form inputs of the given form
+   * @memberOf $.fn.idealforms
+   * @returns {object}
+   */
+  FormInputs = {
+    inputs: $form.find('input, select, textarea, :button'),
+    labels: $form.find('label:first-child'),
+    text: $form.find('input:text, input:password, textarea'),
+    select: $form.find('select'),
+    radiocheck: $form.find('input:radio, input:checkbox'),
+    buttons: $form.find(':button')
+  },
 
 /*--------------------------------------------------------------------------*/
 
   /**
   * @namespace Contains LESS data
   */
-  var LessVars = {
+  LessVars = {
     fieldWidth: Utils.getLessVar('ideal-field-width', 'width')
-  }
+  },
 
 /*--------------------------------------------------------------------------*/
 
@@ -52,7 +50,7 @@ $.fn.idealforms = function (ops) {
    * @namespace Methods of the form
    * @memberOf $.fn.idealforms
    */
-  var Actions = {
+  Actions = {
 
     /** Create validation elements and neccesary markup
      * @private
@@ -316,6 +314,9 @@ $.fn.idealforms = function (ops) {
     })
     Actions.responsive()
   }
+  
+  // Merge custom and default filters
+  $.extend(true, Filters, o.filters)
 
   return this
 
