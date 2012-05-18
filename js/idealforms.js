@@ -305,7 +305,7 @@ $.fn.idealforms = function (ops) {
     if ($invalid.length) {
       e.preventDefault()
       o.onFail()
-      $invalid.first().find('input').focus()
+      $invalid.first().find('input:first').focus()
     } else {
       o.onSuccess()
     }
