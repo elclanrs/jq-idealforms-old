@@ -199,44 +199,46 @@ $.fn.idealforms = function (ops) {
      */
     analyze: function (input, evt) {
 
-      var $input = FormInputs.inputs.filter('[name="' + input.attr('name') + '"]'),
-          userOptions = o.inputs[input.attr('name')] || '',
-          value = (function () {
-            var iVal = input.val()
-            if (iVal === input.attr('placeholder')) {
-              return
-            }
-            // Always send a value when validating
-            // :checkboxes and :radio
-            if (input.is(':checkbox, :radio')) {
-              return userOptions && ' '
-            }
-            return iVal
-          }())
+      var 
+      
+      $input = FormInputs.inputs.filter('[name="' + input.attr('name') + '"]'),
+      userOptions = o.inputs[input.attr('name')] || '',
+      value = (function () {
+        var iVal = input.val()
+        if (iVal === input.attr('placeholder')) {
+          return
+        }
+        // Always send a value when validating
+        // :checkboxes and :radio
+        if (input.is(':checkbox, :radio')) {
+          return userOptions && ' '
+        }
+        return iVal
+      }()),
 
       // Validate
-      var test = Actions.validate({
+      test = Actions.validate({
         input: $input,
         userOptions: userOptions
-      }, value)
+      }, value),
 
       /**
        * @namespace Validation elements
        */
-      var $field = input.parents('.ideal-field'),
-          $error = $field.next('.error'),
-          $invalid = (function () {
-            if ($input.is(':checkbox, :radio')) {
-              return input.parent().siblings('.invalid-icon')
-            }
-            return input.siblings('.invalid-icon')
-          }()),
-          $valid = (function () {
-            if ($input.is(':checkbox, :radio')) {
-              return input.parent().siblings('.valid-icon')
-            }
-            return input.siblings('.valid-icon')
-          }())
+      $field = input.parents('.ideal-field'),
+      $error = $field.next('.error'),
+      $invalid = (function () {
+        if ($input.is(':checkbox, :radio')) {
+          return input.parent().siblings('.invalid-icon')
+        }
+        return input.siblings('.invalid-icon')
+      }()),
+      $valid = (function () {
+        if ($input.is(':checkbox, :radio')) {
+          return input.parent().siblings('.valid-icon')
+        }
+        return input.siblings('.valid-icon')
+      }())
 
       // Reset
       $field.removeClass('valid invalid')
@@ -299,9 +301,11 @@ $.fn.idealforms = function (ops) {
     .blur() // Start fresh
 
   $form.submit(function (e) {
-    if ($form.find('.ideal-field.invalid').length) {
+    var $invalid = $form.find('.ideal-field.invalid')
+    if ($invalid.length) {
       e.preventDefault()
       o.onFail()
+      $invalid.first().find('input').focus()
     } else {
       o.onSuccess()
     }
