@@ -9,7 +9,7 @@
     position: relative;
     min-width: @input-width;
     max-width: @ideal-field-width;
-    padding: 1.6em .8em;
+    padding: 1.6em 0;
     font-size: @small-font-size;
     color: darken(@radiocheck-bg, 80%);
     border-radius: @border-radius;
@@ -19,11 +19,12 @@
     label {
       .transition(~"background .15s ease-in-out, color .15s ease-in-out, border .15s ease-in-out");
       display: block;
+      position: relative;
+      margin: 0 .8em;
       padding: .4em;
       padding-left: @radiocheck-icon-width*2;
       border: @border-width solid transparent;
       border-radius: @border-radius;
-      position: relative;
     }
   }
   .ideal-check,
