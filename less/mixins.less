@@ -1,10 +1,10 @@
 /*--------------------------------------------------------
 
-  Global mixins & variables:
+  Global mixins
 
 ------------------------------------------------------- */
 
-  .gradient(@startColor, @endColor) {
+  .gradient(@startColor, @endColor) when (@css3-effects) {
     background-color: @startColor;
     background-repeat: no-repeat;
     background-image: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
@@ -14,10 +14,18 @@
     filter: e(%("progid:DXImageTransform.Microsoft.Gradient(StartColorStr='%d', EndColorStr='%d', GradientType=0)",@startColor,@endColor));
     -ms-filter: %("progid:DXImageTransform.Microsoft.gradient(startColorStr='%d', EndColorStr='%d', GradientType=0))",@startColor,@endColor);
   }
-  .box-shadow (@shadow1, @shadow2: transparent 0 0 0) {
+  .gradient(@startColor, @endColor) when not (@css3-effects) {
+    background-color: @startColor;
+  }
+  .box-shadow (@shadow1, @shadow2: transparent 0 0 0) when (@css3-effects) {
     -moz-box-shadow: @shadow1, @shadow2;
     -webkit-box-shadow: @shadow1, @shadow2;
     box-shadow: @shadow1, @shadow2;
+  }
+  .box-shadow(@string, @shadow2: transparent 0 0 0) when not (@css3-effects) {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
   }
   .transition(@string: all .30s ease-in-out) when (@css3-anim) {
     -webkit-transition: @string;
@@ -25,7 +33,12 @@
     -ms-transition: @string;
     -o-transition: @string;
   }
-  .transition() when not (@css3-anim) {}
+  .transition(@string) when not (@css3-anim) {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+  }
   .no-user-select {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
