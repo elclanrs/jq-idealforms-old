@@ -109,7 +109,7 @@ $.fn.idealforms = function (ops) {
         // Insert icons and error in DOM
         $form.find('.ideal-field')
           .append($valid.add($invalid))
-          .after($error)
+          .after($error.hide())
 
       }())
 
@@ -202,6 +202,7 @@ $.fn.idealforms = function (ops) {
       var 
       
       $input = FormInputs.inputs.filter('[name="' + input.attr('name') + '"]'),
+      isRadiocheck = input.is(':checkbox, :radio'),
       userOptions = o.inputs[input.attr('name')] || '',
       value = (function () {
         var iVal = input.val()
@@ -210,7 +211,7 @@ $.fn.idealforms = function (ops) {
         }
         // Always send a value when validating
         // :checkboxes and :radio
-        if (input.is(':checkbox, :radio')) {
+        if (isRadiocheck) {
           return userOptions && ' '
         }
         return iVal
@@ -228,13 +229,13 @@ $.fn.idealforms = function (ops) {
       $field = input.parents('.ideal-field'),
       $error = $field.next('.error'),
       $invalid = (function () {
-        if ($input.is(':checkbox, :radio')) {
+        if (isRadiocheck) {
           return input.parent().siblings('.invalid-icon')
         }
         return input.siblings('.invalid-icon')
       }()),
       $valid = (function () {
-        if ($input.is(':checkbox, :radio')) {
+        if (isRadiocheck) {
           return input.parent().siblings('.valid-icon')
         }
         return input.siblings('.valid-icon')
