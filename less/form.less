@@ -11,6 +11,7 @@
   -------------------------------------------------------- */
   font-size: @font-size;
   font-family: @font-family;
+  line-height: 1.5;
   * {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -43,7 +44,6 @@
     max-width: @label-width;
     padding-right: 1.5em;
     text-align: @label-align;
-    line-height: 1.5;
   }
   input[type="text"],
   input[type="password"],
@@ -82,6 +82,10 @@
   input[type="reset"],
   input[type="submit"] {
     font-size: @small-font-size;
+  }
+  p {
+    margin: 0;
+    padding: 0;
   }
 
   /* -------------------------------------------------------
@@ -141,7 +145,6 @@
     z-index: 999;
     padding: .8em 1.2em;
     font-size: @small-font-size;
-    line-height: 1.5;
     .gradient(@error-color, lighten(@error-color, 10%));
     color: @error-text;
     border-bottom: @border-width solid @error-color;

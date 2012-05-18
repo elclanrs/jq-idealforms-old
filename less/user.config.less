@@ -84,6 +84,7 @@
   @select-max-height: @select-item-height * @select-scroll-size; /* `auto` for no scrollbar */
   
   /* jQuery data */
+  @ideal-field-width: @input-width + @error-width + @icon-size + (@icon-padding * 2) + @arrow-size;
   .ideal-field-width {
-    width: @input-width + @error-width + @icon-size + (@icon-padding * 2);
+    width: @ideal-field-width;
   }
