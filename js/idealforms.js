@@ -4,7 +4,7 @@
 $.fn.idealforms = function (ops) {
 
   var
-  
+
   // Default options
   o = $.extend({
     inputs: {},
@@ -20,7 +20,7 @@ $.fn.idealforms = function (ops) {
   }, ops),
 
   $form = this, // The form
-  
+
   /**
    * @namespace All form inputs of the given form
    * @memberOf $.fn.idealforms
@@ -57,6 +57,20 @@ $.fn.idealforms = function (ops) {
      */
     init: (function () {
 
+      var $error = $('<span class="error" />'),
+          $valid = $('<i class="icon valid-icon" />'),
+          $invalid = $('<i/>', {
+            'class': 'icon invalid-icon',
+            click: function () {
+              var $this = $(this)
+              if ($this.siblings('label').length) { // radio & check
+                $this.siblings('label:first').find('input').focus()
+              } else {
+                $this.siblings('input, select, textarea').focus()
+              }
+            }
+          })
+
       $form.css('visibility', 'visible').addClass('ideal-form')
       $form.children('div').addClass('ideal-wrap')
 
@@ -71,47 +85,27 @@ $.fn.idealforms = function (ops) {
         .addClass('ideal-label')
         .width(Utils.getMaxWidth(FormInputs.labels))
 
-      // Generate necessary markup
-      ;(function generateMarkup () {
+      // Text inputs & select markup
+      FormInputs.text
+        .add(FormInputs.select)
+        .each(function () {
+          var $this = $(this)
+          $this.wrapAll('<span class="ideal-field"/>')
+        })
 
-        // Icons and error elements
-        var $error = $('<span class="error" />'),
-            $valid = $('<i class="icon valid-icon" />'),
-            $invalid = $('<i/>', {
-              'class': 'icon invalid-icon',
-              click: function () {
-                var $this = $(this)
-                if ($this.siblings('label').length) { // radio & check
-                  $this.siblings('label:first').find('input').focus()
-                } else {
-                  $this.siblings('input, select, textarea').focus()
-                }
-              }
-            })
+      // Radio & Checkbox markup
+      FormInputs.radiocheck
+        .parents('.ideal-wrap')
+        .each(function () {
+          $(this)
+            .find('label:not(.ideal-label)')
+            .wrapAll('<span class="ideal-field ideal-radiocheck"/>')
+        })
 
-        // Text inputs & select markup
-        FormInputs.text
-          .add(FormInputs.select)
-          .each(function () {
-            var $this = $(this)
-            $this.wrapAll('<span class="ideal-field"/>')
-          })
-
-        // Radio & Checkbox markup
-        FormInputs.radiocheck
-          .parents('.ideal-wrap')
-          .each(function () {
-            $(this)
-              .find('label:not(.ideal-label)')
-              .wrapAll('<span class="ideal-field ideal-radiocheck"/>')
-          })
-
-        // Insert icons and error in DOM
-        $form.find('.ideal-field')
-          .append($valid.add($invalid))
-          .after($error.hide())
-
-      }())
+      // Insert icons and error in DOM
+      $form.find('.ideal-field')
+        .append($valid.add($invalid))
+        .after($error.hide())
 
       // Custom inputs
       if (o.customInputs) {
@@ -154,11 +148,11 @@ $.fn.idealforms = function (ops) {
 
         // Required
         if (!value && /required/.test(userFilters)) {
-          if (userOptions.errors && userOptions.errors.required) {
-            error = userOptions.errors.required
-          } else {
-            error = 'This field is required.'
-          }
+          error = (
+            userOptions.errors && userOptions.errors.required
+              ? userOptions.errors.required
+              : 'This field is required.'
+          )
           isValid = false
         }
 
@@ -170,15 +164,18 @@ $.fn.idealforms = function (ops) {
                 theFilter = typeof Filters[uf] === 'undefined' ? '' : Filters[uf],
                 isFunction = typeof theFilter.regex === 'function',
                 isRegex = theFilter.regex instanceof RegExp
-            if (theFilter) {
-              if (
+            if (
+              theFilter && (
                 isFunction && !theFilter.regex(input, value) ||
                 isRegex && !theFilter.regex.test(value)
-              ) {
-                isValid = false
-                error = (userOptions.errors && userOptions.errors[uf]) || theFilter.error
-                break
-              }
+              )
+            ) {
+              isValid = false
+              error = (
+                userOptions.errors && userOptions.errors[uf] ||
+                theFilter.error
+              )
+              break
             }
           }
         }
@@ -189,7 +186,6 @@ $.fn.idealforms = function (ops) {
         isValid: isValid,
         error: error
       }
-
     },
 
     /** Shows or hides validation errors and icons
@@ -199,47 +195,36 @@ $.fn.idealforms = function (ops) {
      */
     analyze: function (input, evt) {
 
-      var 
-      
+      var
+
       $input = FormInputs.inputs.filter('[name="' + input.attr('name') + '"]'),
       isRadiocheck = input.is(':checkbox, :radio'),
       userOptions = o.inputs[input.attr('name')] || '',
       value = (function () {
         var iVal = input.val()
-        if (iVal === input.attr('placeholder')) {
-          return
-        }
+        if (iVal === input.attr('placeholder')) return
         // Always send a value when validating
         // :checkboxes and :radio
-        if (isRadiocheck) {
-          return userOptions && ' '
-        }
+        if (isRadiocheck) return userOptions && ' '
         return iVal
       }()),
-
+      
+      $field = input.parents('.ideal-field'),
+      $error = $field.next('.error'),
+      $invalid = (function () {
+        if (isRadiocheck) return input.parent().siblings('.invalid-icon')
+        return input.siblings('.invalid-icon')
+      }()),
+      $valid = (function () {
+        if (isRadiocheck) return input.parent().siblings('.valid-icon')
+        return input.siblings('.valid-icon')
+      }()),
+      
       // Validate
       test = Actions.validate({
         input: $input,
         userOptions: userOptions
-      }, value),
-
-      /**
-       * @namespace Validation elements
-       */
-      $field = input.parents('.ideal-field'),
-      $error = $field.next('.error'),
-      $invalid = (function () {
-        if (isRadiocheck) {
-          return input.parent().siblings('.invalid-icon')
-        }
-        return input.siblings('.invalid-icon')
-      }()),
-      $valid = (function () {
-        if (isRadiocheck) {
-          return input.parent().siblings('.valid-icon')
-        }
-        return input.siblings('.valid-icon')
-      }())
+      }, value)
 
       // Reset
       $field.removeClass('valid invalid')
@@ -265,12 +250,14 @@ $.fn.idealforms = function (ops) {
      */
     responsive: function () {
 
-      var maxWidth = LessVars.fieldWidth + FormInputs.labels.outerWidth(),
-          $emptyLabel = FormInputs.labels.filter(function () {
-            return $(this).html() === '&nbsp;'
-          }),
-          $customSelect = FormInputs.select.next('.ideal-select')
-          
+      var
+
+      maxWidth = LessVars.fieldWidth + FormInputs.labels.outerWidth(),
+      $emptyLabel = FormInputs.labels.filter(function () {
+        return $(this).html() === '&nbsp;'
+      }),
+      $customSelect = FormInputs.select.next('.ideal-select')
+
       if (o.responsiveAt === 'auto') {
         $form.width() < maxWidth
           ? $form.addClass('stack')
@@ -282,9 +269,7 @@ $.fn.idealforms = function (ops) {
       }
 
       // Labels
-      $form.is('.stack') 
-        ? $emptyLabel.hide() 
-        : $emptyLabel.show()
+      $form.is('.stack') ? $emptyLabel.hide() : $emptyLabel.show()
 
       // Custom select
       $form.is('.stack')
@@ -321,7 +306,7 @@ $.fn.idealforms = function (ops) {
     })
     Actions.responsive()
   }
-  
+
   // Merge custom and default filters
   $.extend(true, Filters, o.filters)
 
