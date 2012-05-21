@@ -33,8 +33,8 @@ var Utils = {
    * Like ES5 Object.keys
    */
   getKeys: function(obj){
-   var keys = []
-   for(var key in obj) keys.push(key)
-   return keys
+    var keys = []
+    for(var key in obj) keys.push(key)
+    return keys
   }
 }
