@@ -260,6 +260,6 @@ $.fn.toCustomSelect = function () {
       Select.items.on('mousedown.list', events['clickItem.list'])
     })
 
-    Select.select.on('menu') // Default to "menu mode"
+    Select.select.trigger('menu') // Default to "menu mode"
   })
 }

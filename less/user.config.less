@@ -10,6 +10,7 @@
 /*------------------------------------------------------ */
 
   @font-size: 15px;
+  @font-family: inherit;
   @small-font-size: 85%;
   @input-width: @font-size * 15;
   @label-align: left;
@@ -54,6 +55,8 @@
   @select-focus: @button-focus;
   @select-title-text: darken(@select-title, 60%);
   @select-title-focus-text: darken(@select-focus, 60%);
+  @select-scroll: false;
+  @select-scroll-size: 7; /* 7 items in scroll view */  
 
   /* Radio & Checkbox */
   @radiocheck-bg: #fff;
@@ -78,10 +81,6 @@
   *** PRIVATE ***
 
 /*------------------------------------------------------ */
-
-  @font-family: inherit;
-  @select-item-height: floor(@font-size * 1.7);
-  @select-max-height: @select-item-height * @select-scroll-size; /* `auto` for no scrollbar */
   
   /* jQuery data */
   @ideal-field-width: @input-width + @error-width + @icon-size + (@icon-padding * 2) + @arrow-size;

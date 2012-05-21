@@ -7,7 +7,9 @@ $.fn.toCustomRadioCheck = function () {
     var $this = $(this),
         $span = $('<span/>')
 
-    $this.is(':checkbox') ? $span.addClass('ideal-check') : $span.addClass('ideal-radio')
+    $this.is(':checkbox') 
+      ? $span.addClass('ideal-check') 
+      : $span.addClass('ideal-radio')
 
     if ($this.is(':checked')) $span.addClass('checked')
     $span.insertAfter($this)

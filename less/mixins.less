@@ -15,7 +15,7 @@
     -ms-filter: %("progid:DXImageTransform.Microsoft.gradient(startColorStr='%d', EndColorStr='%d', GradientType=0))",@startColor,@endColor);
   }
   .gradient(@startColor, @endColor) when not (@css3-effects) {
-    background-color: @startColor;
+    background-color: @endColor;
   }
   .box-shadow (@shadow1, @shadow2: transparent 0 0 0) when (@css3-effects) {
     -moz-box-shadow: @shadow1, @shadow2;

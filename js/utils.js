@@ -28,5 +28,13 @@ var Utils = {
     var value = $('<p class="' + name + '"></p>').hide().appendTo('body').css(prop)
     $('.' + name).remove()
     return (/^\d+/).test(value) ? parseInt(value, 10) : value
+  },
+  /**
+   * Like ES5 Object.keys
+   */
+  getKeys: function(obj){
+   var keys = []
+   for(var key in obj) keys.push(key)
+   return keys
   }
 }

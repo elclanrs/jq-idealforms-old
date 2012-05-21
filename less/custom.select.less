@@ -4,9 +4,20 @@
         
 -------------------------------------------------------- */
 
+  @select-scroll: true;
+  @select-scroll-size: 7; /* 7 items in scroll view */
+  @select-item-height: floor(@font-size * 1.7);
+  @select-max-height: @select-item-height * @select-scroll-size; /* `auto` for no scrollbar */
+  
   /* --------------------------------------------------------
     Mixins:   
   -------------------------------------------------------- */
+  .select-scroll() when (@select-scroll){
+    max-height: @select-max-height;
+    height: @select-max-height~'\9'; /* Fix IE */
+    overflow-y: scroll;
+  }
+  .select-scroll() when not (@select-scroll){}  
   .drop-arrow {
     @size: @arrow-size / 1.7;
     content: "";
@@ -79,10 +90,8 @@
   .ideal-select.menu,
   .ideal-select.list  {
     .sub {
+      .select-scroll;
       min-width: 100%; /* `min-width` instead of `width` to fix IE9 bug */
-      max-height: @select-max-height;
-      height: @select-max-height~'\9'; /* Fix IE */
-      overflow-y: scroll;
       z-index: 999;
       position: absolute;
       .gradient(@select-sub-bg, lighten(@select-sub-bg, 10%));

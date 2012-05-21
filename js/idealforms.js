@@ -34,6 +34,10 @@ $.fn.idealforms = function (ops) {
     radiocheck: $form.find('input:radio, input:checkbox'),
     buttons: $form.find(':button')
   },
+  /**
+   * All inputs specified by the user when calling the plugin
+   */
+  UserInputs = $('[name="'+ Utils.getKeys(o.inputs).join('"], [name="') +'"]'),
 
 /*--------------------------------------------------------------------------*/
 
@@ -65,9 +69,8 @@ $.fn.idealforms = function (ops) {
               var $this = $(this)
               if ($this.siblings('label').length) { // radio & check
                 $this.siblings('label:first').find('input').focus()
-              } else {
-                $this.siblings('input, select, textarea').focus()
-              }
+              } 
+              else $this.siblings('input, select, textarea').focus()
             }
           })
 
@@ -103,7 +106,8 @@ $.fn.idealforms = function (ops) {
         })
 
       // Insert icons and error in DOM
-      $form.find('.ideal-field')
+      // only for specified user inputs
+      UserInputs.parents('.ideal-field')
         .append($valid.add($invalid))
         .after($error.hide())
 
@@ -197,7 +201,7 @@ $.fn.idealforms = function (ops) {
 
       var
 
-      $input = FormInputs.inputs.filter('[name="' + input.attr('name') + '"]'),
+      $input = UserInputs.filter('[name="' + input.attr('name') + '"]'),
       isRadiocheck = input.is(':checkbox, :radio'),
       userOptions = o.inputs[input.attr('name')] || '',
       value = (function () {
@@ -282,7 +286,7 @@ $.fn.idealforms = function (ops) {
 
   /** Attach events to the form **/
 
-  FormInputs.inputs
+  UserInputs
     .on('keyup change focus blur', function (e) {
       Actions.analyze($(this), e.type)
     })
@@ -293,10 +297,9 @@ $.fn.idealforms = function (ops) {
     if ($invalid.length) {
       e.preventDefault()
       o.onFail()
-      $invalid.first().find('input:first').focus()
-    } else {
-      o.onSuccess()
-    }
+      $invalid.first().find(':first').focus()
+    } 
+    else o.onSuccess(e)
   })
 
   // Responsive
