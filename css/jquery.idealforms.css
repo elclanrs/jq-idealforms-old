@@ -41,6 +41,7 @@ textarea{overflow:auto;vertical-align:top;}
 .ideal-form{font-size:15px;font-family:inherit;line-height:1.5;}.ideal-form *{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;outline:0;border-radius:0 \9 !important;}
 .ideal-form:before,.ideal-form:after{content:"";display:table;}
 .ideal-form:after{clear:both;}
+.ideal-form fieldset{border:none;margin:0;padding:0;}
 .ideal-form .ideal-wrap{float:left;clear:both;position:relative;margin:.5em 0;}
 .ideal-form .ideal-label,.ideal-form .ideal-field{float:left;position:relative;}
 .ideal-form .ideal-label{top:.4em;max-width:auto;padding-right:1.5em;text-align:left;}
@@ -61,7 +62,7 @@ textarea{overflow:auto;vertical-align:top;}
 .ideal-form .error:after{content:"";position:absolute;top:0;left:-19.42857142857143px;border-style:solid;border-width:0 10.714285714285715px 10.714285714285715px 10.714285714285715px;border-color:transparent #1f4f73 transparent transparent;}
 .ideal-form.stack .ideal-field,.ideal-form.stack .error{width:87.54863813229572%;}
 .ideal-form.stack .ideal-wrap,.ideal-form.stack input[type="text"],.ideal-form.stack input[type="password"],.ideal-form.stack textarea,.ideal-form.stack select{width:100% !important;max-width:337.5px;}
-.ideal-form.stack label{text-align:left;padding-bottom:.3em;top:0;}
+.ideal-form.stack .ideal-label{text-align:left;padding-bottom:.4em;top:0;}
 .ideal-form.stack .error{position:inherit;float:left;clear:left;right:0;margin-right:0;top:100%;margin-top:.3em;z-index:999;border-radius:3px;}
 .ideal-form.stack .error:after{content:".";line-height:0;text-indent:-9999px;position:absolute;top:0;margin-top:-19.42857142857143px;left:50%;margin-left:-10.714285714285715px;border-style:solid;border-width:10.714285714285715px 10.714285714285715px 10.714285714285715px 10.714285714285715px;border-color:transparent transparent #1f4f73 transparent;}
 .ideal-field-width{width:455.2142857142857px;}
