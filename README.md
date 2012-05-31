@@ -1,7 +1,7 @@
 * * *
 
-**[DEMO](http://elclanrs.github.com/jq-idealforms/)**  
-**Tested:** IE8+, Webkit, Firefox & Opera  
+**[DEMO](http://elclanrs.github.com/jq-idealforms/)**
+**Support:** IE8+, Webkit, Firefox, Opera, iOS 5+.
 **License:** [GPL](http://www.gnu.org/licenses/gpl.html)
 
 * * *
@@ -35,7 +35,7 @@ For **Ideal Forms** to work its magic create your markup using the following tem
     <div><label>Username:</label><input name="username" type="text" /></div>
     <div><label>Date:</label><input name="date" type="text" placeholder="mm/dd/yy"/></div>
     <div><label>Comments:</label><textarea name="comments"></textarea></div>
-    
+
     <!-- Select -->
     <div>
         <label>Colors:</label>
@@ -46,7 +46,7 @@ For **Ideal Forms** to work its magic create your markup using the following tem
             <option value="Green">Green</option>
         </select>
     </div>
-    
+
     <!-- Checkbox -->
     <div>
         <label>Languages:</label>
@@ -54,7 +54,7 @@ For **Ideal Forms** to work its magic create your markup using the following tem
         <label><input type="checkbox" name="langs[]" value="Chinese"/>Chinese</label>
         <label><input type="checkbox" name="langs[]" value="Spanish"/>Spanish</label>
     </div>
-    
+
     <!-- Radio -->
     <div>
         <label>Options:</label>
@@ -62,7 +62,7 @@ For **Ideal Forms** to work its magic create your markup using the following tem
         <label><input type="radio" name="options" value="Two"/>Two</label>
         <label><input type="radio" name="options" value="Three"/>Three</label>
     </div>
-    
+
     <!-- Buttons -->
     <!-- Empty label to align with all the other inputs -->
     <div><label>&nbsp;</label><input type="button" value="Button"/></div>
@@ -86,10 +86,10 @@ Add all the inputs you want to validate here. Use the name attribute of the inpu
 
 ```javascript
 inputs: {
-    // The name attribute of the input in quotes 
+    // The name attribute of the input in quotes
     'name': {
         filters: 'filterName filterName filterName', // {string} Space separated list
-        // Some filters take a `data` attribute 
+        // Some filters take a `data` attribute
         // such as `exclude`, `min` and `max`
         data: {
             filterName: data // {number, array, string}
@@ -100,7 +100,7 @@ inputs: {
         }
     }
 }
-``` 
+```
 ####`filters`
 Adding custom filters is very easy and straightforward.
 
@@ -112,15 +112,15 @@ filters: {
     },
     another: {
          /**
-         * @param {object} input Contains two objects, 
-         * the user options of the input as [input.userOptions] 
+         * @param {object} input Contains two objects,
+         * the user options of the input as [input.userOptions]
          * and the jQuery element as [input.input]
          * @param {string} value The value of the input
          */
         regex: function(input, value) {
-            // Declare error within `regex` 
+            // Declare error within `regex`
             // to have access to `value` and `input`
-            this.error = 'My custom ' + value;     
+            this.error = 'My custom ' + value;
         }
     }
 }
@@ -128,7 +128,7 @@ filters: {
 
 ####`onSuccess`
 ```javascript
-onSuccess: function(e){ 
+onSuccess: function(e){
     // Form validates
 }
 ```
@@ -136,7 +136,7 @@ onSuccess: function(e){
 ####`onFail`
 ```javascript
 onFail: function(){
-    // Form does NOT validate    
+    // Form does NOT validate
 }
 ```
 
@@ -214,7 +214,7 @@ With the markup provided above you'd call the plugin like this:
 
 ```javascript
 $('#my-form').idealforms({
-    
+
     // For consistency all keys
     // must be in quotes
     inputs: {
@@ -225,7 +225,7 @@ $('#my-form').idealforms({
             }
         },
         'date': {
-            filters: 'date'            
+            filters: 'date'
         },
         'comments': {
             filters: 'min max',
