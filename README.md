@@ -1,7 +1,7 @@
 * * *
-
-_I need feedback for mobile devices. Please report any bugs you might find in iOS or Android._
-
+```javascript
+"I need feedback for mobile devices. Please report any bugs you might find in iOS or Android."
+```
 **[DEMO](http://elclanrs.github.com/jq-idealforms/)**
 
 **Support:** IE8+, Webkit, Firefox, Opera.
