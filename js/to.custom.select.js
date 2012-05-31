@@ -14,7 +14,7 @@ $.fn.toCustomSelect = function () {
      */
     var Select = (function () {
       var $options = $select.find('option'),
-          $newSelect = $('<ul class="ideal-select"/>'),
+          $newSelect = $('<ul class="ideal-select '+ $select.attr('name') +'"/>'),
           $menu = $('<li><span class="title">' + $options.filter(':selected').text() + '</span></li>'),
           items = (function () {
             var items = []

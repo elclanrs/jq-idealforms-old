@@ -7,12 +7,15 @@ $.fn.toCustomRadioCheck = function () {
     var $this = $(this),
         $span = $('<span/>')
 
-    $this.is(':checkbox') 
-      ? $span.addClass('ideal-check') 
+    $this.is(':checkbox')
+      ? $span.addClass('ideal-check')
       : $span.addClass('ideal-radio')
 
     if ($this.is(':checked')) $span.addClass('checked')
     $span.insertAfter($this)
+
+    // Fix clicking label in iOS (iPhone, iPad)
+    $(this).parent('label').attr('onclick','');
 
     $this
       .css({

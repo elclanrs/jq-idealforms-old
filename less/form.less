@@ -28,11 +28,6 @@
   &:after {
     clear: both;
   }
-  fieldset {
-    border: none;
-    margin: 0;
-    padding: 0;
-  }
   .ideal-wrap {
     float: left;
     clear: both;
@@ -160,19 +155,13 @@
     filter: 0; /* IE doesn't play nice with :after pseudo */
   }
   .error:after {
-    .arrow-color() when (@css3-effects) { 
-      border-color: transparent @error-color transparent transparent; 
-    }
-    .arrow-color() when not (@css3-effects) {
-      border-color: transparent lighten(@error-color, 10%) transparent transparent; 
-    }
     content: "";
     position: absolute;
     top: 0;
     left: -((@arrow-size - 1) * 2); /* `-1` to fix gap */
     border-style: solid;
     border-width: 0 @arrow-size @arrow-size @arrow-size;
-    .arrow-color();
+    border-color: transparent @error-color transparent transparent;
   }
   /* ----------------------------------------------------
     Responsive:
@@ -193,9 +182,9 @@
       width: 100% !important;
       max-width: @input-width * 1.5;
     }
-    .ideal-label {
+    label {
       text-align: left;
-      padding-bottom: .4em;
+      padding-bottom: .3em;
       top: 0;
     }
     .error {
