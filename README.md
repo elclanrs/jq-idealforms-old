@@ -166,8 +166,8 @@ Disables custom inputs and uses system default. (select, radio, checkbox, button
 customInputs: false
 ```
 
-Built-in filters:
------------------
+Built-in filters
+----------------
 You may use any of these filters in any order.
 
 ####`required`
