@@ -7,7 +7,7 @@
 * * *
 # Updates:
 
-* Enhancement, [issue #9](https://github.com/elclanrs/jq-idealforms/issues/9).
+* Add filters by class, [issue #9](https://github.com/elclanrs/jq-idealforms/issues/9).
 
 * * *
 
