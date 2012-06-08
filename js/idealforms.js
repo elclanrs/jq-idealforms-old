@@ -35,9 +35,12 @@ $.fn.idealforms = function (ops) {
     buttons: $form.find(':button')
   },
   /**
-   * All inputs specified by the user when calling the plugin
+   * All inputs specified by the user
    */
-  UserInputs = $('[name="'+ Utils.getKeys(o.inputs).join('"], [name="') +'"]'),
+  UserInputs = $(
+    '[name="'+ Utils.getKeys(o.inputs).join('"], [name="') +'"],' + // by name attribute
+    '.' + Utils.getKeys(Filters).join(', .') // by class
+  ),
 
 /*--------------------------------------------------------------------------*/
 
@@ -61,6 +64,8 @@ $.fn.idealforms = function (ops) {
      */
     init: (function () {
 
+      //console.log(UserInputs)
+
       var $error = $('<span class="error" />'),
           $valid = $('<i class="icon valid-icon" />'),
           $invalid = $('<i/>', {
@@ -69,7 +74,7 @@ $.fn.idealforms = function (ops) {
               var $this = $(this)
               if ($this.siblings('label').length) { // radio & check
                 $this.siblings('label:first').find('input').focus()
-              } 
+              }
               else $this.siblings('input, select, textarea').focus()
             }
           })
@@ -201,9 +206,16 @@ $.fn.idealforms = function (ops) {
 
       var
 
-      $input = UserInputs.filter('[name="' + input.attr('name') + '"]'),
+      $input = (function(){
+        if (input.is(':checkbox, :radio'))
+          return UserInputs.filter('[name="' + input.attr('name') + '"]')
+        return UserInputs.filter(input)
+      }()),
       isRadiocheck = input.is(':checkbox, :radio'),
-      userOptions = o.inputs[input.attr('name')] || '',
+      userOptions = (
+        o.inputs[input.attr('name')] || // by name attribute
+        { filters: input.attr('class') } // by class
+      ),
       value = (function () {
         var iVal = input.val()
         if (iVal === input.attr('placeholder')) return
@@ -212,7 +224,7 @@ $.fn.idealforms = function (ops) {
         if (isRadiocheck) return userOptions && ' '
         return iVal
       }()),
-      
+
       $field = input.parents('.ideal-field'),
       $error = $field.next('.error'),
       $invalid = (function () {
@@ -223,7 +235,7 @@ $.fn.idealforms = function (ops) {
         if (isRadiocheck) return input.parent().siblings('.valid-icon')
         return input.siblings('.valid-icon')
       }()),
-      
+
       // Validate
       test = Actions.validate({
         input: $input,
@@ -298,7 +310,7 @@ $.fn.idealforms = function (ops) {
       e.preventDefault()
       o.onFail()
       $invalid.first().find(':first').focus()
-    } 
+    }
     else o.onSuccess(e)
   })
 
