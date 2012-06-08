@@ -37,6 +37,9 @@ Markup
 
 For **Ideal Forms** to work its magic create your markup using the following template as a reference, nothing fancy, just the usual form tags wrapped in a `<div>`. Drop the form into a container of any size and Ideal Forms will do the rest.
 
+To add filters to your inputs, you can either add them as classes in the markup or list the inputs in
+the plugin's options by their name attribute. The second option provides more flexibility.
+
 ```html
 <form id="my-form">
 
