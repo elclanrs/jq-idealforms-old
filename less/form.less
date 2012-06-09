@@ -45,7 +45,15 @@
     padding-right: 1.5em;
     text-align: @label-align;
   }
-  input:not([type="chekbox"]):not([type="checkbox"]),
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="number"],
+  input[type="search"],
+  input[type="url"],
+  input[type="tel"],  input[type="text"],
+  input[type="password"],
+  input[type="email"],
   textarea,
   select {
     font-size: @font-size;
@@ -119,14 +127,26 @@
   /* -------------------------------------------------------
     Valid & Invalid:
   -------------------------------------------------------- */
-  .invalid input:not([type="chekbox"]):not([type="checkbox"]),
+  .invalid input[type="text"],
+  .invalid input[type="password"],
+  .invalid input[type="email"],
+  .invalid input[type="number"],
+  .invalid input[type="search"],
+  .invalid input[type="url"],
+  .invalid input[type="tel"],
   .invalid textarea,
   .invalid select {
     background: @invalid;
     color: @invalid-text;
     border: @border-width solid darken(@invalid, 50%);
   }
-  .valid input:not([type="chekbox"]):not([type="checkbox"]),
+  .valid input[type="text"],
+  .valid input[type="password"],
+  .valid input[type="email"],
+  .valid input[type="number"],
+  .valid input[type="search"],
+  .valid input[type="url"],
+  .valid input[type="tel"],
   .valid textarea,
   .valid select {
     background: @valid;
@@ -173,7 +193,13 @@
       width: 100% - @percent;
     }
     .ideal-wrap,
-    input:not([type="chekbox"]):not([type="checkbox"]),
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="number"],
+    input[type="search"],
+    input[type="url"],
+    input[type="tel"],
     textarea,
     select {
       width: 100% !important;
