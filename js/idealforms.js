@@ -29,7 +29,7 @@ $.fn.idealforms = function (ops) {
   FormInputs = {
     inputs: $form.find('input, select, textarea, :button'),
     labels: $form.find('label:first-child'),
-    text: $form.find('input:not(:checkbox, :radio)'),
+    text: $form.find('input:not(:checkbox, :radio), textarea'),
     select: $form.find('select'),
     radiocheck: $form.find('input:radio, input:checkbox'),
     buttons: $form.find(':button')
@@ -117,8 +117,8 @@ $.fn.idealforms = function (ops) {
       // Custom inputs
       if (o.customInputs) {
         FormInputs.buttons.addClass('ideal-button')
-        FormInputs.select.addClass('custom').toCustomSelect()
-        FormInputs.radiocheck.addClass('custom').toCustomRadioCheck()
+        FormInputs.select.toCustomSelect()
+        FormInputs.radiocheck.toCustomRadioCheck()
       }
 
       // Placeholder support
