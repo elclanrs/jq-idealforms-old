@@ -45,8 +45,7 @@
     padding-right: 1.5em;
     text-align: @label-align;
   }
-  input[type="text"],
-  input[type="password"],
+  input:not([type="chekbox"]):not([type="checkbox"]),
   textarea,
   select {
     font-size: @font-size;
@@ -120,15 +119,14 @@
   /* -------------------------------------------------------
     Valid & Invalid:
   -------------------------------------------------------- */
-  .invalid input[type="text"],
-  .invalid input[type="password"],
+  .invalid input:not([type="chekbox"]):not([type="checkbox"]),
   .invalid textarea,
   .invalid select {
     background: @invalid;
     color: @invalid-text;
     border: @border-width solid darken(@invalid, 50%);
   }
-  .valid textarea,
+  .valid input:not([type="chekbox"]):not([type="checkbox"]),
   .valid input,
   .valid select  {
     background: @valid;
@@ -175,8 +173,7 @@
       width: 100% - @percent;
     }
     .ideal-wrap,
-    input[type="text"],
-    input[type="password"],
+    input:not([type="chekbox"]):not([type="checkbox"]),
     textarea,
     select {
       width: 100% !important;
