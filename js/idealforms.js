@@ -64,8 +64,6 @@ $.fn.idealforms = function (ops) {
      */
     init: (function () {
 
-      //console.log(UserInputs)
-
       var $error = $('<span class="error" />'),
           $valid = $('<i class="icon valid-icon" />'),
           $invalid = $('<i/>', {
