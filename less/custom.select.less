@@ -1,35 +1,35 @@
 /* --------------------------------------------------------
 
   Custom select:
-        
+
 -------------------------------------------------------- */
 
   @select-scroll: true;
   @select-scroll-size: 7; /* 7 items in scroll view */
   @select-item-height: floor(@font-size * 1.7);
   @select-max-height: @select-item-height * @select-scroll-size; /* `auto` for no scrollbar */
-  
+
   /* --------------------------------------------------------
-    Mixins:   
+    Mixins:
   -------------------------------------------------------- */
   .select-scroll() when (@select-scroll){
     max-height: @select-max-height;
     height: @select-max-height~'\9'; /* Fix IE */
     overflow-y: scroll;
   }
-  .select-scroll() when not (@select-scroll){}  
+  .select-scroll() when not (@select-scroll){}
   .drop-arrow {
     @size: @arrow-size / 1.7;
     content: "";
     position: absolute;
     right: @size*1.7;
     top: 50%;
-    margin-top: -@size/3;
+    margin-top: -(@size - @size/1.5);
     border-style: solid;
     border-width: @size;
   }
   /* --------------------------------------------------------
-    Global:   
+    Global:
   -------------------------------------------------------- */
   .ideal-select,
   .ideal-select .sub,
@@ -76,6 +76,11 @@
     }
     &.open .title {
       border-radius: @border-radius @border-radius 0 0;
+      &:after {
+        .drop-arrow;
+        border-color: transparent transparent darken(@select-focus, 30%) transparent;
+        margin-top: -(@size + @size/1.5);
+      }
     }
     &.valid .title {
       border-color: @select-valid-border;
@@ -85,7 +90,7 @@
     }
   }
   /* --------------------------------------------------------
-    Options:   
+    options:
   -------------------------------------------------------- */
   .ideal-select.menu,
   .ideal-select.list  {
@@ -107,8 +112,8 @@
         line-height: @size;
         .box-shadow(none);
       }
-      .item:last-child { 
-        border-radius: 0 0 @border-radius @border-radius; 
+      .item:last-child {
+        border-radius: 0 0 @border-radius @border-radius;
       }
       /* Option selected/hover */
       .item:hover,
@@ -117,10 +122,10 @@
         .box-shadow(inset 0 @border-width @border-width*2 rgba(0,0,0,.3));
         color: @select-sub-selected-text;
       }
-    }    
+    }
   }
   /* --------------------------------------------------------
-    List mode:   
+    List mode:
   -------------------------------------------------------- */
   .ideal-select.list {
     .title:after,
@@ -132,17 +137,21 @@
     &.open .title,
     .title {
       border-radius: @border-radius @border-radius 0 0;
+      &:after {
+        .ie-refresh;
+        border: 0;
+      }
     }
-    .sub { 
+    .sub {
       /* Fix IE8 adding 1px to scrollbar */
       min-width: auto~'\9';
-      width: 100% ~'\9'; 
+      width: 100% ~'\9';
       position: relative;
     }
   }
   /* --------------------------------------------------------
-    Responsive:   
-  -------------------------------------------------------- */  
+    Responsive:
+  -------------------------------------------------------- */
   .ideal-form.stack .ideal-select.list {
     width: 100%;
   }
