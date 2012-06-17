@@ -189,6 +189,7 @@ Flags are simply functions that add or remove functionality from an input or rea
 * `noicons`: hide the icons
 * `novalidicon`: hide the valid icon
 * `noinvalidicon`: hide the invalid icon
+
 ```javascript
 flags: {
   custom: function($input){
