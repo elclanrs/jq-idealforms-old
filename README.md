@@ -27,11 +27,11 @@
 **Ideal Forms** is a small framework to build awesome responsive forms with validation. It's built on top of jQuery and LESS.
 
 ### Features:
-* Fully responsive (aka adaptive, adapts to the container, no css media queries needed)
-* Keyboard support
-* Everything can be customized (select, radio, checkbox)
-* "On the spot" validation
-* Support HTML5 `placeholder` attribute for every browser
+* Fully responsive (aka adaptive, adapts to the container, no css media queries needed).
+* Keyboard support.
+* Every input type can be customized including select, radio and checkbox.
+* "On the spot" validation.
+* Support HTML5 `placeholder` attribute for every browser.
 
 Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
