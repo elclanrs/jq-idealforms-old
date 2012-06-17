@@ -8,8 +8,8 @@ $.fn.idealforms = function (ops) {
   // Default options
   o = $.extend({
     inputs: {},
-    filters: {},
-    flags: {},
+    customFilters: {},
+    customFlags: {},
     globalFlags: '',
     onSuccess: function (e) {
       alert('Thank you...')
@@ -339,10 +339,10 @@ $.fn.idealforms = function (ops) {
   }
 
   // Merge custom and default filters
-  $.extend(true, Filters, o.filters)
+  $.extend(true, Filters, o.customFilters)
 
   // Merge custom and default flags
-  $.extend(true, Flags, o.flags)
+  $.extend(true, Flags, o.customFlags)
 
   return this
 

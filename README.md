@@ -131,7 +131,7 @@ inputs: {
 Adding custom filters is very easy and straightforward.
 
 ```javascript
-filters: {
+customFilters: {
     custom: {
         regex: /regularexpression/,
         error: 'My custom error'
@@ -183,7 +183,7 @@ Disables custom inputs and uses system default. (select, radio, checkbox, button
 customInputs: false
 ```
 
-####`flags`
+####`customFlags`
 Flags are simply functions that add or remove functionality from an input or really whatever you want to run when an input tries to validate. `focus`, `blur`, `change` and `keyup` all trigger validation. Add your custom flags here. The built-in flags are:
 * `noerror`: hide the error from the input
 * `noicons`: hide the icons
