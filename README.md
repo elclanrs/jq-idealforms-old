@@ -92,6 +92,8 @@ The `name` attribute will be used in the plugin's options to add filters to each
 Alternatively, for very simple forms, you can do it "the easy way" and just add the filters as classes.
 ```html
 <div><label>Username:</label><input name="username" class="required username" type="text" /></div>
+<div><label>Password:</label><input name="password" class="required password" type="text"/></div>
+<div><label>E-Mail:</label><textarea name="email" class="required email"></textarea></div>
 ```
 
 Invoke the plugin
