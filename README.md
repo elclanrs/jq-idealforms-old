@@ -86,7 +86,7 @@ For **Ideal Forms** to work its magic create your markup using the following tem
 
 </form>
 ```
-  Alternatively, for very simple forms, you can do it "the easy way" and just add the filters as classes and not bother about the plugin's options.
+Alternatively, for very simple forms, you can do it "the easy way" and just add the filters as classes.
 ```html
 <div><label>Username:</label><input name="username" type="text" /></div>
 ```
