@@ -211,6 +211,9 @@ Must be a valid US zip code.
 ####`url`
 Must be a valid URL.
 
+####`date`
+Must be a valid date in this format `mm/dd/yy`
+
 ####`min`
 * Must be at least `x` characters minimum.
 * Must have at least `x` checkboxes checked.
@@ -236,9 +239,6 @@ Must be a valid URL.
   }
 }
 ```
-
-####`date`
-Must be a valid date in this format `mm/dd/yy`
 
 ####`exclude`
 Prevent validation if the value matches any value in the given array.
