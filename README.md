@@ -123,7 +123,7 @@ inputs: {
         errors: {
             filterName: error // {string} Can contain inline HTML tags
         },
-        flags: 'noerror noicons novalidicon noinvalidicon nobg novalidbg noinvalidbg'
+        flags: 'noerror noicons novalidicon noinvalidicon'
     }
 }
 ```
