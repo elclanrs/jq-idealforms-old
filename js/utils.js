@@ -11,9 +11,8 @@ var Utils = {
   getMaxWidth: function ($elms) {
     var maxWidth = 0
     $elms.each(function () {
-      if ($(this).outerWidth() > maxWidth) {
+      if ($(this).outerWidth() > maxWidth)
         maxWidth = $(this).outerWidth()
-      }
     })
     return maxWidth
   },
@@ -27,14 +26,20 @@ var Utils = {
   getLessVar: function (name, prop) {
     var value = $('<p class="' + name + '"></p>').hide().appendTo('body').css(prop)
     $('.' + name).remove()
-    return (/^\d+/).test(value) ? parseInt(value, 10) : value
+    return /^\d+/.test(value) ? parseInt(value, 10) : value
   },
   /**
    * Like ES5 Object.keys
    */
-  getKeys: function(obj){
+  getKeys: function (obj) {
     var keys = []
     for(var key in obj) keys.push(key)
     return keys
+  },
+  isFunction: function (obj) {
+    return typeof obj === 'function'
+  },
+  isRegex: function (obj) {
+    return obj instanceof RegExp
   }
 }

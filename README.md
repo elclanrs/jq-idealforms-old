@@ -7,6 +7,8 @@
 * * *
 # Updates:
 
+* **NEW** `flags` option. Hide errors and/or icons from a particular input. Create your custom flags.
+* **NEW**  `equalsto` filter.
 * Add filters by class, [issue #9](https://github.com/elclanrs/jq-idealforms/issues/9).
 
 * * *
@@ -16,7 +18,7 @@
 ```javascript
 "I need feedback for mobile devices. Please report any bugs you might find in iOS or Android."
 ```
-* **50** stackoverflow points for a solution to **[Android - text inputs not validating](http://stackoverflow.com/questions/10822758/android-text-inputs-not-validating-with-custom-validation-plugin)**
+* **[Android - text inputs not validating](http://stackoverflow.com/questions/10822758/android-text-inputs-not-validating-with-custom-validation-plugin)**
 
 * * *
 
@@ -25,11 +27,11 @@
 **Ideal Forms** is a small framework to build awesome responsive forms with validation. It's built on top of jQuery and LESS.
 
 ### Features:
-* Fully responsive (aka adaptive, adapts to the container, no css media queries needed)
-* Keyboard support
-* Customizable input types (select, radio, checkbox)
-* "On the spot" validation
-* Support HTML5 `placeholder` attribute for every browser
+* Fully responsive (AKA adaptive, adapts to the container, no css media queries needed).
+* Keyboard support.
+* Every input type can be customized including `select`, `radio` and `checkbox`.
+* "On the spot" validation.
+* Support HTML5 `placeholder` attribute for every browser.
 
 Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
@@ -42,15 +44,12 @@ Markup
 
 For **Ideal Forms** to work its magic create your markup using the following template as a reference, nothing fancy, just the usual form tags wrapped in a `<div>`. Drop the form into a container of any size and Ideal Forms will do the rest.
 
-To add filters to your inputs, you can either add them as classes in the markup or list the inputs in
-the plugin's options by their name attribute. The second option provides more flexibility.
-
 ```html
 <form id="my-form">
 
     <!-- Text -->
-    <div><label>Username:</label><input name="username" type="text" /></div>
-    <div><label>Date:</label><input name="date" type="text" placeholder="mm/dd/yy"/></div>
+    <div><label>Username:</label><input type="text" name="username"/></div>
+    <div><label>Date:</label><input type="text" name="date" placeholder="mm/dd/yy"/></div>
     <div><label>Comments:</label><textarea name="comments"></textarea></div>
 
     <!-- Select -->
@@ -88,6 +87,15 @@ the plugin's options by their name attribute. The second option provides more fl
 </form>
 ```
 
+The `name` attribute will be used in the plugin's options to add filters to each input. This provides a lot of flexibility and the possibility to create custom errors, and tweak the filter's values.
+
+Alternatively, for very simple forms, you can do it "the easy way" and just add the filters as classes.
+```html
+<div><label>Username:</label><input type="text" name="username" class="required username"/></div>
+<div><label>Password:</label><input type="text" name="password" class="required password"/></div>
+<div><label>E-Mail:</label><textarea name="email" class="required email"></textarea></div>
+```
+
 Invoke the plugin
 -----------------
 Call **Ideal Forms** on each form separately.
@@ -114,7 +122,8 @@ inputs: {
         // Custom errors
         errors: {
             filterName: error // {string} Can contain inline HTML tags
-        }
+        },
+        flags: 'noerror noicons novalidicon noinvalidicon'
     }
 }
 ```
@@ -211,19 +220,58 @@ Must be a valid US zip code.
 ####`url`
 Must be a valid URL.
 
+####`date`
+Must be a valid date in this format `mm/dd/yy`
+
 ####`min`
 * Must be at least `x` characters minimum.
 * Must have at least `x` checkboxes checked.
+
+```javascript
+'myinput': {
+  filters: 'min',
+  data: {
+    min: 10
+  }
+}
+```
 
 ####`max`
 * `x` characters maximum.
 * No more than `x` checkboxes checked.
 
-####`date`
-Must be a valid date in this format `mm/dd/yy`
+```javascript
+'myinput': {
+  filters: 'max',
+  data: {
+    max: 10
+  }
+}
+```
 
 ####`exclude`
 Prevent validation if the value matches any value in the given array.
+```javascript
+'myinput': {
+  filters: 'exclude',
+  data: {
+    // Always an array even if just one value
+    exclude: ['one', 'two', 'three']
+  }
+}
+```
+
+####`equalto`
+The value must match a value of another input.
+```javascript
+'myinput': {
+  filters: 'equalto',
+  data: {
+    // You can use any valid jQuery selector
+    equalto: '#myid'
+  }
+}
+```
 
 Example
 -------
