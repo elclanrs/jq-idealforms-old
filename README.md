@@ -7,7 +7,7 @@
 * * *
 # Updates:
 
-* **NEW** `flags` option. Hide errors and/or icons from a particular input. Create your custom flags and run whatever you want when an input tries to validate. Powerful stuff.
+* **NEW** `flags` option. Hide errors and/or icons from a particular input. Create own your custom flags and run whatever you want when an input tries to validate. Powerful stuff.
 * **NEW**  `equalto` filter.
 * Add filters by class, [issue #9](https://github.com/elclanrs/jq-idealforms/issues/9).
 
