@@ -168,13 +168,11 @@ $.fn.idealforms = function (ops) {
           userFilters = userFilters.split(/\s/)
           for (var i = 0, len = userFilters.length; i < len; i++) {
             var uf = userFilters[i],
-                theFilter = typeof Filters[uf] === 'undefined' ? '' : Filters[uf],
-                isFunction = typeof theFilter.regex === 'function',
-                isRegex = theFilter.regex instanceof RegExp
+                theFilter = Filters[uf] || ''
             if (
               theFilter && (
-                isFunction && !theFilter.regex(input, value) ||
-                isRegex && !theFilter.regex.test(value)
+                Utils.isFunction(theFilter.regex) && !theFilter.regex(input, value) ||
+                Utils.isRegex(theFilter.regex) && !theFilter.regex.test(value)
               )
             ) {
               isValid = false
@@ -238,7 +236,17 @@ $.fn.idealforms = function (ops) {
       test = Actions.validate({
         input: $input,
         userOptions: userOptions
-      }, value)
+      }, value),
+
+      // Flags
+      flags = userOptions.flags ? userOptions.flags.split(/\s/) : '',
+      doFlags = function () {
+        for (var i = 0, len = flags.length, f; i < len; i++) {
+          f = flags[i]
+          if (Flags[f]) Flags[f]($input)
+          else break
+        }
+      }
 
       // Reset
       $field.removeClass('valid invalid')
@@ -249,6 +257,7 @@ $.fn.idealforms = function (ops) {
         $error.add($invalid).hide()
         $field.addClass('valid')
         $valid.show()
+        doFlags()
       }
       // Does NOT validate
       if (!test.isValid) {
@@ -256,6 +265,7 @@ $.fn.idealforms = function (ops) {
         $field.addClass('invalid')
         // hide error on blur
         if (evt !== 'blur') $error.html(test.error).show()
+        doFlags()
       }
     },
 
@@ -314,7 +324,9 @@ $.fn.idealforms = function (ops) {
 
   // Responsive
   if (o.responsiveAt) {
-    $(window).resize(Actions.responsive)
+    $(window).resize(function () {
+      Actions.responsive()
+    })
     Actions.responsive()
   }
 

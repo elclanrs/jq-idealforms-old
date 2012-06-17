@@ -5,6 +5,7 @@ utils.js \
 to.custom.select.js \
 to.custom.radiocheck.js \
 filters.js \
+flags.js \
 idealforms.js \
 end.js \
 | uglifyjs -o min/jquery.idealforms.min.js

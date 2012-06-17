@@ -115,6 +115,7 @@ inputs: {
         errors: {
             filterName: error // {string} Can contain inline HTML tags
         }
+        flags: 'noerror noicon novalidicon noinvalidicon'
     }
 }
 ```

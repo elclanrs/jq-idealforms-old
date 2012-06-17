@@ -32,9 +32,15 @@ var Utils = {
   /**
    * Like ES5 Object.keys
    */
-  getKeys: function(obj){
+  getKeys: function (obj) {
     var keys = []
     for(var key in obj) keys.push(key)
     return keys
+  },
+  isFunction: function (obj) {
+    return typeof obj === 'function'
+  },
+  isRegex: function (obj) {
+    return obj instanceof RegExp
   }
 }
