@@ -1,14 +1,23 @@
 var Flags = {
-  noerror: function ($input) {
-    $input.parent().siblings('.error').hide()
+  noerror: function (i) {
+    i.parent().siblings('.error').hide()
   },
-  noicons: function ($input) {
-    $input.siblings('.valid-icon, .invalid-icon').hide()
+  noicons: function (i) {
+    i.siblings('.valid-icon, .invalid-icon').hide()
   },
-  novalidicon: function ($input) {
-    $input.siblings('.valid-icon').hide()
+  novalidicon: function (i) {
+    i.siblings('.valid-icon').hide()
   },
-  noinvalidicon: function ($input) {
-    $input.siblings('.invalid-icon').hide()
+  noinvalidicon: function (i) {
+    i.siblings('.invalid-icon').hide()
+  },
+  nobg: function (i) {
+    i.parents('.ideal-field').removeClass('valid invalid')
+  },
+  novalidbg: function (i) {
+    i.parents('.ideal-field').removeClass('valid')
+  },
+  noinvalidbg: function (i) {
+    i.parents('.ideal-field').removeClass('invalid')
   }
 }

@@ -9,6 +9,8 @@ $.fn.idealforms = function (ops) {
   o = $.extend({
     inputs: {},
     filters: {},
+    flags: {},
+    globalFlags: '',
     onSuccess: function (e) {
       alert('Thank you...')
     },
@@ -239,7 +241,13 @@ $.fn.idealforms = function (ops) {
       }, value),
 
       // Flags
-      flags = userOptions.flags ? userOptions.flags.split(/\s/) : '',
+      flags = (function(){
+        // Input flags
+        var f = userOptions.flags ? userOptions.flags : ''
+        // Append global flags
+        if (o.globalFlags) f += o.globalFlags
+        return f.split(/\s/)
+      }()),
       doFlags = function () {
         for (var i = 0, len = flags.length, f; i < len; i++) {
           f = flags[i]
@@ -332,6 +340,9 @@ $.fn.idealforms = function (ops) {
 
   // Merge custom and default filters
   $.extend(true, Filters, o.filters)
+
+  // Merge custom and default flags
+  $.extend(true, Flags, o.flags)
 
   return this
 
