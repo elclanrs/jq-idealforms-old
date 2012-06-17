@@ -332,9 +332,7 @@ $.fn.idealforms = function (ops) {
 
   // Responsive
   if (o.responsiveAt) {
-    $(window).resize(function () {
-      Actions.responsive()
-    })
+    $(window).resize(Actions.responsive)
     Actions.responsive()
   }
 
