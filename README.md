@@ -18,7 +18,7 @@
 ```javascript
 "I need feedback for mobile devices. Please report any bugs you might find in iOS or Android."
 ```
-* **50** stackoverflow points for a solution to **[Android - text inputs not validating](http://stackoverflow.com/questions/10822758/android-text-inputs-not-validating-with-custom-validation-plugin)**
+* **[Android - text inputs not validating](http://stackoverflow.com/questions/10822758/android-text-inputs-not-validating-with-custom-validation-plugin)**
 
 * * *
 
