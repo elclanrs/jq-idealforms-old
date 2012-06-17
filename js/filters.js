@@ -75,5 +75,16 @@ var Filters = {
       this.error = '"' + value + '" is not available.'
       return !~$.inArray(value, input.userOptions.data.exclude)
     }
+  },
+  equalto: {
+    regex: function (input, value) {
+      var $equals = $(input.userOptions.data.equalto),
+          $input = input.input,
+          name = $equals.attr('name') || $equals.attr('id')
+      this.error = 'Must be the same value as <strong>"'+ name +'"</strong>'
+      if ($equals.parents('.ideal-field.invalid').length)
+        return false
+      return $input.val() === $equals.val()
+    }
   }
 }
