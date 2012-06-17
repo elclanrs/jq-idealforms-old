@@ -265,7 +265,6 @@ $.fn.idealforms = function (ops) {
         $error.add($invalid).hide()
         $field.addClass('valid')
         $valid.show()
-        doFlags()
       }
       // Does NOT validate
       if (!test.isValid) {
@@ -273,8 +272,9 @@ $.fn.idealforms = function (ops) {
         $field.addClass('invalid')
         // hide error on blur
         if (evt !== 'blur') $error.html(test.error).show()
-        doFlags()
       }
+
+      doFlags()
     },
 
     /** Deals with responsiveness aka adaptation
