@@ -29,7 +29,7 @@
 ### Features:
 * Fully responsive (aka adaptive, adapts to the container, no css media queries needed).
 * Keyboard support.
-* Every input type can be customized including select, radio and checkbox.
+* Every input type can be customized including `select`, `radio` and `checkbox`.
 * "On the spot" validation.
 * Support HTML5 `placeholder` attribute for every browser.
 
