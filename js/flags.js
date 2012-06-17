@@ -10,14 +10,5 @@ var Flags = {
   },
   noinvalidicon: function (i) {
     i.siblings('.invalid-icon').hide()
-  },
-  nobg: function (i) {
-    i.parents('.ideal-field').removeClass('valid invalid')
-  },
-  novalidbg: function (i) {
-    i.parents('.ideal-field').removeClass('valid')
-  },
-  noinvalidbg: function (i) {
-    i.parents('.ideal-field').removeClass('invalid')
   }
 }

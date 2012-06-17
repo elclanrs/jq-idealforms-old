@@ -123,7 +123,7 @@ inputs: {
         errors: {
             filterName: error // {string} Can contain inline HTML tags
         },
-        flags: 'noerror noicons novalidicon noinvalidicon'
+        flags: 'noerror noicons novalidicon noinvalidicon nobg novalidbg noinvalidbg'
     }
 }
 ```
@@ -181,6 +181,30 @@ responsiveAt: 480
 Disables custom inputs and uses system default. (select, radio, checkbox, button)
 ```javascript
 customInputs: false
+```
+
+####`flags`
+Flags are simply functions that add or remove functionality from an input. Add your custom flags here. The built-in flags are:
+* `noerror`: hide the error from the input
+* `noicons`: hide the icons
+* `novalidicon`: hide the valid icon
+* `noinvalidicon`: hide the invalid icon
+```javascript
+flags: {
+  custom: function($input){
+    // do something...
+    // this runs everytime the input
+    // tries to validate,
+    // `focus`, `blur`, `change` and `keyup`
+    // events trigger validation
+  }
+}
+```
+
+####`globalFlags`
+List the flags that you want to apply to all inputs.
+```javascript
+globalFlags: 'noerror noicons'
 ```
 
 Built-in filters
