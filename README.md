@@ -214,16 +214,53 @@ Must be a valid URL.
 ####`min`
 * Must be at least `x` characters minimum.
 * Must have at least `x` checkboxes checked.
+```javascript
+'myinput': {
+  filters: 'min',
+  data: {
+    min: 10
+  }
+}
+```
 
 ####`max`
 * `x` characters maximum.
 * No more than `x` checkboxes checked.
+```javascript
+'myinput': {
+  filters: 'max',
+  data: {
+    max: 10
+  }
+}
+```
 
 ####`date`
 Must be a valid date in this format `mm/dd/yy`
 
 ####`exclude`
 Prevent validation if the value matches any value in the given array.
+```javascript
+'myinput': {
+  filters: 'exclude',
+  data: {
+    // Always an array even if just one value
+    exclude: ['one', 'two', 'three']
+  }
+}
+```
+
+####`equalto`
+The value must match a value of another input.
+```javascript
+'myinput': {
+  filters: 'equalto',
+  data: {
+    // You can use any valid jQuery selector
+    equalto: '#myid'
+  }
+}
+```
 
 Example
 -------
