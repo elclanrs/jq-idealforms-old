@@ -127,7 +127,7 @@ inputs: {
     }
 }
 ```
-####`filters`
+####`customFilters`
 Adding custom filters is very easy and straightforward.
 
 ```javascript
@@ -191,7 +191,7 @@ Flags are simply functions that add or remove functionality from an input or rea
 * `noinvalidicon`: hide the invalid icon
 
 ```javascript
-flags: {
+customFlags: {
   custom: function($input){
     // do something...
   }
