@@ -184,7 +184,7 @@ customInputs: false
 ```
 
 ####`flags`
-Flags are simply functions that add or remove functionality from an input. Add your custom flags here. The built-in flags are:
+Flags are simply functions that add or remove functionality from an input or really whatever you want to run when an input tries to validate. `focus`, `blur`, `change` and `keyup` all trigger validation. Add your custom flags here. The built-in flags are:
 * `noerror`: hide the error from the input
 * `noicons`: hide the icons
 * `novalidicon`: hide the valid icon
@@ -193,10 +193,6 @@ Flags are simply functions that add or remove functionality from an input. Add y
 flags: {
   custom: function($input){
     // do something...
-    // this runs everytime the input
-    // tries to validate,
-    // `focus`, `blur`, `change` and `keyup`
-    // events trigger validation
   }
 }
 ```
