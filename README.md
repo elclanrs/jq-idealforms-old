@@ -214,6 +214,7 @@ Must be a valid URL.
 ####`min`
 * Must be at least `x` characters minimum.
 * Must have at least `x` checkboxes checked.
+
 ```javascript
 'myinput': {
   filters: 'min',
@@ -226,6 +227,7 @@ Must be a valid URL.
 ####`max`
 * `x` characters maximum.
 * No more than `x` checkboxes checked.
+
 ```javascript
 'myinput': {
   filters: 'max',
