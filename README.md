@@ -7,6 +7,8 @@
 * * *
 # Updates:
 
+* **NEW** `flags` option. Hide errors and/or icons from a particular input or add your custom flags. Powerful stuff!
+* **NEW**  `equalsto` filter.
 * Add filters by class, [issue #9](https://github.com/elclanrs/jq-idealforms/issues/9).
 
 * * *
