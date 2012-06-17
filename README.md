@@ -193,7 +193,7 @@ Flags are simply functions that add or remove functionality from an input or rea
 ```javascript
 customFlags: {
   custom: function($input){
-    // do something...
+    console.log($input.val())  
   }
 }
 ```
