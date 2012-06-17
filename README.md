@@ -93,7 +93,7 @@ Alternatively, for very simple forms, you can do it "the easy way" and just add 
 ```html
 <div><label>Username:</label><input type="text" name="username" class="required username"/></div>
 <div><label>Password:</label><input type="text" name="password" class="required password"/></div>
-<div><label>E-Mail:</label><textarea name="email" class="required email"></textarea></div>
+<div><label>E-Mail:</label><input type="text" name="email" class="required email"/></div>
 ```
 
 Invoke the plugin
