@@ -44,9 +44,7 @@ Markup
 
 For **Ideal Forms** to work its magic create your markup using the following template as a reference, nothing fancy, just the usual form tags wrapped in a `<div>`. Drop the form into a container of any size and Ideal Forms will do the rest.
 
-To add filters to your inputs, you can either add them as classes in the markup or list the inputs in
-the plugin's options by their name attribute. The second option provides more flexibility.
-
+To add filters to your inputs list each input you want to validate in the plugin's options by their name attribute. 
 ```html
 <form id="my-form">
 
@@ -88,6 +86,10 @@ the plugin's options by their name attribute. The second option provides more fl
     <div><label>&nbsp;</label><button>Button</button></div>
 
 </form>
+```
+Alternatively, for very simple forms, you can do it "the easy way" and just add the filters as classes and not bother about the plugin's options.
+```html
+<div><label>Username:</label><input name="username" type="text" /></div>
 ```
 
 Invoke the plugin
