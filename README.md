@@ -143,7 +143,7 @@ customFilters: {
      * the user options of the input as [input.userOptions]
      * and the jQuery element as [input.input]
      * @param {string} value The value of the input
-     * @return {bool} Truthy or flasy values too
+     * @return {bool} Truthy or falsy values too
      */
     regex: function(input, value) {
       // Declare error within `regex`
