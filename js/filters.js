@@ -82,8 +82,12 @@ var Filters = {
           $input = input.input,
           name = $equals.attr('name') || $equals.attr('id')
       this.error = 'Must be the same value as <strong>"'+ name +'"</strong>'
-      if ($equals.parents('.ideal-field.invalid').length)
-        return false
+      if (
+        $equals
+          .parents('.ideal-field')
+          .filter(function(){ return $(this).data('isValid') === false })
+          .length
+      ) return false
       return $input.val() === $equals.val()
     }
   }
