@@ -7,9 +7,9 @@
 * * *
 # Updates:
 
-* **NEW** Methods, `reset`, `focusFirst`, `focusFirstInvalid`, `isValid`.
-* **NEW** `flags` option. Hide errors and/or icons from a particular input. Create own your custom flags and run whatever you want when an input tries to validate. Powerful stuff.
-* **NEW**  `equalto` filter.
+* Added public methods, `reset`, `focusFirst`, `focusFirstInvalid`, `isValid`.
+* New `flags` option. Hide errors and/or icons from a particular input. Create own your custom flags and run whatever you want when an input tries to validate. Powerful stuff.
+* New `equalto` filter.
 * Add filters by class, [issue #9](https://github.com/elclanrs/jq-idealforms/issues/9).
 
 * * *
