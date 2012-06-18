@@ -295,7 +295,7 @@ The value must match a value of another input.
 ```
 Built-in flags
 --------------
-Flags are simply functions that add or remove functionality from an input. You can run whatever code you want when an input tries to validate. `focus`, `blur`, `change` and `keyup` events all trigger validation. The built-in flags are:
+Flags are simply functions that add or remove functionality from an input. You can run whatever code you want when an input tries to validate. `focus`, `blur`, `change` and `keyup` events all trigger validation on an input.
 * `noerror`: hide the error from the input
 * `noicons`: hide the icons
 * `novalidicon`
