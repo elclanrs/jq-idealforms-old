@@ -337,20 +337,21 @@ $.fn.idealforms = function (ops) {
           ? $form.addClass('stack')
           : $form.removeClass('stack')
       }
+      
+      if ($form.is('.stack')) {
+        $emptyLabel.hide() 
+        $customSelect.trigger('list')
+      } else {
+        $emptyLabel.show() 
+        $customSelect.trigger('menu')
+      }
 
-      // Labels
-      $form.is('.stack') ? $emptyLabel.hide() : $emptyLabel.show()
-
-      // Custom select
-      $form.is('.stack')
-        ? $customSelect.trigger('list')
-        : $customSelect.trigger('menu')
     }
   }
 
 /*--------------------------------------------------------------------------*/
 
-  // Attach public methods
+  // attach public methods
   for (var m in PublicMethods) $form[m] = PublicMethods[m]
 
   // Attach events
