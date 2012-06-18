@@ -283,6 +283,7 @@ Prevent validation if the value matches any value in the given array.
   filters: 'exclude',
   data: {
     // Always an array even if just one value
+    // Values are case-sensitive
     exclude: ['one', 'two', 'three']
   }
 }
@@ -343,7 +344,7 @@ $('#my-form').idealforms({
     'username': {
       filters: 'required username exclude',
       data: {
-        exclude: ['user', 'username', 'admin'] // Case sensitive
+        exclude: ['user', 'username', 'admin']
       }
     },
     'date': {
@@ -362,7 +363,7 @@ $('#my-form').idealforms({
         exclude: ['Choose a color']
       },
       errors: {
-        exclude: 'Choose a color from the list.' // Custom error
+        exclude: 'Choose a color from the list.' 
       }
     },
     'langs[]': {
