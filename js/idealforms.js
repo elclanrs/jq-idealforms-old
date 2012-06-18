@@ -54,6 +54,44 @@ $.fn.idealforms = function (ops) {
   },
 
 /*--------------------------------------------------------------------------*/
+  /**
+  * @namespace Public methods
+  */
+  PublicMethods = {
+    isValid: function () {
+      var $invalid = $form.find('.ideal-field').filter(function(){
+        return $(this).data('isValid') === false
+      })
+      console.log($invalid)
+      return !$invalid.length 
+    },
+    focusFirst: function () {
+      $form.find('input:first').focus();
+      return $form
+    },
+    focusFirstInvalid: function () {
+      $form
+        .find('.ideal-field')
+        .filter(function(){ return $(this).data('isValid') === false })
+        .first()
+        .find('input:first')
+        .focus()
+      return $form
+    },
+    reset: function () {
+      FormInputs.text.val('') // text inputs
+      FormInputs.radiocheck.removeAttr('checked') // :radio & :checkbox
+      // Select and custom select
+      FormInputs.select.find('option').first().prop('selected', true)
+      $form.find('.ideal-select').trigger('reset')
+      // Reset all
+      FormInputs.inputs.change().blur()
+      this.focusFirst()
+      return $form
+    }
+  },
+
+/*--------------------------------------------------------------------------*/
 
   /**
    * @namespace Methods of the form
@@ -257,19 +295,19 @@ $.fn.idealforms = function (ops) {
       }
 
       // Reset
-      $field.removeClass('valid invalid')
+      $field.removeClass('valid invalid').data('isValid', true)
       $error.add($invalid).add($valid).hide()
 
       // Validates
       if (value && test.isValid) {
         $error.add($invalid).hide()
-        $field.addClass('valid')
+        $field.addClass('valid').data('isValid', true)
         $valid.show()
       }
       // Does NOT validate
       if (!test.isValid) {
         $invalid.show()
-        $field.addClass('invalid')
+        $field.addClass('invalid').data('isValid', false)
         // hide error on blur
         if (evt !== 'blur') $error.html(test.error).show()
       }
@@ -312,8 +350,10 @@ $.fn.idealforms = function (ops) {
 
 /*--------------------------------------------------------------------------*/
 
-  /** Attach events to the form **/
+  // Attach public methods
+  for (var m in PublicMethods) $form[m] = PublicMethods[m]
 
+  // Attach events
   UserInputs
     .on('keyup change focus blur', function (e) {
       Actions.analyze($(this), e.type)
@@ -321,11 +361,11 @@ $.fn.idealforms = function (ops) {
     .blur() // Start fresh
 
   $form.submit(function (e) {
-    var $invalid = $form.find('.ideal-field.invalid')
-    if ($invalid.length) {
+    if (!$form.isValid()) {
       e.preventDefault()
       o.onFail()
-      $invalid.first().find(':first').focus()
+      //$form.find('.ideal-field').each(function(){ console.log($(this).data()) })
+      $form.focusFirstInvalid()
     }
     else o.onSuccess(e)
   })

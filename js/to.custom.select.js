@@ -222,7 +222,7 @@ $.fn.toCustomSelect = function () {
       }
     }
 
-    // Bind events
+    // Reset events
     var disableEvents = function () {
       Select.select.removeClass('menu list')
       $select.off('.menu .list')
@@ -231,7 +231,7 @@ $.fn.toCustomSelect = function () {
       Select.title.off('.menu .list')
     }
 
-    // Menu
+    // Menu mode
     Select.select.on('menu', function () {
       disableEvents()
       Select.select.addClass('menu')
@@ -246,7 +246,7 @@ $.fn.toCustomSelect = function () {
       Select.title.on('click.menu', events['clickTitle.menu'])
     })
 
-    // List
+    // List mode
     Select.select.on('list', function () {
       disableEvents()
       Select.select.addClass('list')
@@ -258,6 +258,11 @@ $.fn.toCustomSelect = function () {
       })
       Select.select.on('mousedown.list', events['mousedown.list'])
       Select.items.on('mousedown.list', events['clickItem.list'])
+    })
+
+    // Reset
+    Select.select.on('reset', function(){
+      Actions.change(0)
     })
 
     Select.select.trigger('menu') // Default to "menu mode"

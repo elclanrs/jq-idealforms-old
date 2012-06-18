@@ -28,7 +28,8 @@ $.fn.toCustomRadioCheck = function () {
           $this.trigger('focus')
           if ($this.is(':radio')) {
             $this.parent().siblings('label').children('.ideal-radio').removeClass('checked')
-            $this.next('.ideal-radio').addClass('checked')
+            if ($this.is(':checked'))
+              $this.next('.ideal-radio').addClass('checked')
           } else {
             $this.is(':checked')
               ? $span.addClass('checked')

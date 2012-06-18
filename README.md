@@ -123,7 +123,7 @@ inputs: {
         errors: {
             filterName: error // {string} Can contain inline HTML tags
         },
-        flags: 'noerror noicons novalidicon noinvalidicon'
+        flags: 'noerror noicons ...' // See "customFlags" for more info
     }
 }
 ```
@@ -187,13 +187,16 @@ customInputs: false
 Flags are simply functions that add or remove functionality from an input or really whatever you want to run when an input tries to validate. `focus`, `blur`, `change` and `keyup` all trigger validation. Add your custom flags here. The built-in flags are:
 * `noerror`: hide the error from the input
 * `noicons`: hide the icons
-* `novalidicon`: hide the valid icon
-* `noinvalidicon`: hide the invalid icon
+* `novalidicon`
+* `noinvalidicon`
+* `noclass`: no valid/invalid class
+* `novalidclass`
+* `noinvalidclass`
 
 ```javascript
 customFlags: {
   custom: function($input){
-    console.log($input.val())  
+    console.log($input.val()) 
   }
 }
 ```
@@ -292,6 +295,34 @@ The value must match a value of another input.
     equalto: '#myid'
   }
 }
+```
+
+Public Methods
+--------------
+```javascript
+var $myIdealForm = $('#my-form').idealforms({ options });
+```
+
+####`isValid`
+```javascript
+if ($myIdealForm.isValid()) {
+  // do something...
+}
+```
+
+####`focusFirst`
+```javascript
+$myIdealForm.focusFirst()
+```
+
+####`focusFirstInvalid`
+```javascript
+$myIdealForm.focusFirstInvalid()
+```
+
+####`reset`
+```javascript
+$myIdealForm.reset()
 ```
 
 Example
