@@ -299,9 +299,13 @@ The value must match a value of another input.
 
 Public Methods
 --------------
+Assign the form to a variable first:
+
 ```javascript
 var $myIdealForm = $('#my-form').idealforms({ options });
 ```
+
+Then use any of these methods wherever and whenever you want.
 
 ####`isValid`
 ```javascript
