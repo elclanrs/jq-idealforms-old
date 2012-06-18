@@ -63,7 +63,7 @@ $.fn.idealforms = function (ops) {
         return $(this).data('isValid') === false
       })
       console.log($invalid)
-      return !$invalid.length 
+      return !$invalid.length
     },
     focusFirst: function () {
       $form.find('input:first').focus();
