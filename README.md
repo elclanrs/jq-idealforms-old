@@ -48,42 +48,42 @@ For **Ideal Forms** to work its magic create your markup using the following tem
 ```html
 <form id="my-form">
 
-    <!-- Text -->
-    <div><label>Username:</label><input type="text" name="username"/></div>
-    <div><label>Date:</label><input type="text" name="date" placeholder="mm/dd/yy"/></div>
-    <div><label>Comments:</label><textarea name="comments"></textarea></div>
+  <!-- Text -->
+  <div><label>Username:</label><input type="text" name="username"/></div>
+  <div><label>Date:</label><input type="text" name="date" placeholder="mm/dd/yy"/></div>
+  <div><label>Comments:</label><textarea name="comments"></textarea></div>
 
-    <!-- Select -->
-    <div>
-        <label>Colors:</label>
-        <select name="colors">
-            <option value="Choose a color">Choose a color</option>
-            <option value="Red">Red</option>
-            <option value="Blue">Blue</option>
-            <option value="Green">Green</option>
-        </select>
-    </div>
+  <!-- Select -->
+  <div>
+    <label>Colors:</label>
+    <select name="colors">
+        <option value="Choose a color">Choose a color</option>
+        <option value="Red">Red</option>
+        <option value="Blue">Blue</option>
+        <option value="Green">Green</option>
+    </select>
+  </div>
 
-    <!-- Checkbox -->
-    <div>
-        <label>Languages:</label>
-        <label><input type="checkbox" name="langs[]" value="English"/>English</label>
-        <label><input type="checkbox" name="langs[]" value="Chinese"/>Chinese</label>
-        <label><input type="checkbox" name="langs[]" value="Spanish"/>Spanish</label>
-    </div>
+  <!-- Checkbox -->
+  <div>
+    <label>Languages:</label>
+    <label><input type="checkbox" name="langs[]" value="English"/>English</label>
+    <label><input type="checkbox" name="langs[]" value="Chinese"/>Chinese</label>
+    <label><input type="checkbox" name="langs[]" value="Spanish"/>Spanish</label>
+  </div>
 
-    <!-- Radio -->
-    <div>
-        <label>Options:</label>
-        <label><input type="radio" name="options" value="One"/>One</label>
-        <label><input type="radio" name="options" value="Two"/>Two</label>
-        <label><input type="radio" name="options" value="Three"/>Three</label>
-    </div>
+  <!-- Radio -->
+  <div>
+    <label>Options:</label>
+    <label><input type="radio" name="options" value="One"/>One</label>
+    <label><input type="radio" name="options" value="Two"/>Two</label>
+    <label><input type="radio" name="options" value="Three"/>Three</label>
+  </div>
 
-    <!-- Buttons -->
-    <!-- Empty label to align with all the other inputs -->
-    <div><label>&nbsp;</label><input type="button" value="Button"/></div>
-    <div><label>&nbsp;</label><button>Button</button></div>
+  <!-- Buttons -->
+  <!-- Empty label to align with all the other inputs -->
+  <div><label>&nbsp;</label><input type="button" value="Button"/></div>
+  <div><label>&nbsp;</label><button>Button</button></div>
 
 </form>
 ```
@@ -112,20 +112,20 @@ Add all the inputs you want to validate here. Use the name attribute of the inpu
 
 ```javascript
 inputs: {
-    // The name attribute of the input in quotes
-    'name': {
-        filters: 'filterName filterName filterName', // {string} Space separated list
-        // Some filters take a `data` attribute
-        // such as `exclude`, `min` and `max`
-        data: {
-            filterName: data // {number, array, string}
-        },
-        // Custom errors
-        errors: {
-            filterName: error // {string} Can contain inline HTML tags
-        },
-        flags: 'noerror noicons ...' // See "customFlags" for more info
-    }
+  // The name attribute of the input in quotes
+  'name': {
+    filters: 'filterName filterName filterName', // {string} Space separated list
+    // Some filters take a `data` attribute
+    // such as `exclude`, `min` and `max`
+    data: {
+      filterName: data // {number, array, string}
+    },
+    // Custom errors
+    errors: {
+      filterName: error // {string} Can contain inline HTML tags
+    },
+    flags: 'noerror noicons ...' // See "customFlags" for more info
+  }
 }
 ```
 ####`customFilters`
@@ -133,37 +133,37 @@ Adding custom filters is very easy and straightforward.
 
 ```javascript
 customFilters: {
-    custom: {
-        regex: /regularexpression/,
-        error: 'My custom error'
-    },
-    another: {
-         /**
-         * @param {object} input Contains two objects,
-         * the user options of the input as [input.userOptions]
-         * and the jQuery element as [input.input]
-         * @param {string} value The value of the input
-         */
-        regex: function(input, value) {
-            // Declare error within `regex`
-            // to have access to `value` and `input`
-            this.error = 'My custom ' + value;
-        }
+  custom: {
+    regex: /regularexpression/,
+    error: 'My custom error'
+  },
+  another: {
+     /**
+     * @param {object} input Contains two objects,
+     * the user options of the input as [input.userOptions]
+     * and the jQuery element as [input.input]
+     * @param {string} value The value of the input
+     */
+    regex: function(input, value) {
+      // Declare error within `regex`
+      // to have access to `value` and `input`
+      this.error = 'My custom ' + value;
     }
+  }
 }
 ```
 
 ####`onSuccess`
 ```javascript
 onSuccess: function(e){
-    // Form validates
+  // Form validates
 }
 ```
 
 ####`onFail`
 ```javascript
 onFail: function(){
-    // Form does NOT validate
+  // Form does NOT validate
 }
 ```
 
@@ -339,53 +339,51 @@ With the markup provided above you'd call the plugin like this:
 ```javascript
 $('#my-form').idealforms({
 
-    // For consistency all keys
-    // must be in quotes
-    inputs: {
-        'username': {
-            filters: 'required username exclude',
-            data: {
-                exclude: ['user', 'username', 'admin'] // Case sensitive
-            }
-        },
-        'date': {
-            filters: 'date'
-        },
-        'comments': {
-            filters: 'min max',
-            data: {
-                min: 50
-                max: 200
-            }
-        },
-        'colors': {
-            filters: 'exclude',
-            data: {
-                exclude: ['Choose a color']
-            },
-            errors: {
-                exclude: 'Choose a color from the list.' // Custom error
-            }
-        },
-        'langs[]': {
-            filters: 'min',
-            data: {
-                min: 2
-            },
-            errors: {
-                min: 'Check at least <strong>2</strong> languages.'
-            }
-        },
-        'options': {
-            filters: 'min'
-            data: {
-                min: 1
-            }
-            errors: {
-                min: 'Check only <strong>1</strong> option.'
-            }
-        }
+  inputs: {
+    'username': {
+      filters: 'required username exclude',
+      data: {
+        exclude: ['user', 'username', 'admin'] // Case sensitive
+      }
+    },
+    'date': {
+      filters: 'date'
+    },
+    'comments': {
+      filters: 'min max',
+      data: {
+          min: 50
+          max: 200
+      }
+    },
+    'colors': {
+      filters: 'exclude',
+      data: {
+        exclude: ['Choose a color']
+      },
+      errors: {
+        exclude: 'Choose a color from the list.' // Custom error
+      }
+    },
+    'langs[]': {
+      filters: 'min',
+      data: {
+        min: 2
+      },
+      errors: {
+        min: 'Check at least <strong>2</strong> languages.'
+      }
+    },
+    'options': {
+      filters: 'min'
+      data: {
+        min: 1
+      }
+      errors: {
+        min: 'Check only <strong>1</strong> option.'
+      }
     }
+  }
 });
 ```
 
