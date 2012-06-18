@@ -364,7 +364,6 @@ $.fn.idealforms = function (ops) {
     if (!$form.isValid()) {
       e.preventDefault()
       o.onFail()
-      //$form.find('.ideal-field').each(function(){ console.log($(this).data()) })
       $form.focusFirstInvalid()
     }
     else o.onSuccess(e)
