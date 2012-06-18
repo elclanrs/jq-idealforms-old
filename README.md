@@ -124,7 +124,7 @@ inputs: {
     errors: {
       filterName: error // {string} Can contain inline HTML tags
     },
-    flags: 'noerror noicons ...' // See "customFlags" for more info
+    flags: 'noerror noicons ...'
   }
 }
 ```
@@ -143,10 +143,11 @@ customFilters: {
      * the user options of the input as [input.userOptions]
      * and the jQuery element as [input.input]
      * @param {string} value The value of the input
+     * @return {bool} Truthy or flasy values too
      */
     regex: function(input, value) {
       // Declare error within `regex`
-      // to have access to `value` and `input`
+      // to have access to `value` and `input`      
       this.error = 'My custom ' + value;
     }
   }
@@ -185,15 +186,6 @@ customInputs: false
 ```
 
 ####`customFlags`
-Flags are simply functions that add or remove functionality from an input. You can run whatever code you want when an input tries to validate. `focus`, `blur`, `change` and `keyup` events all trigger validation. The built-in flags are:
-* `noerror`: hide the error from the input
-* `noicons`: hide the icons
-* `novalidicon`
-* `noinvalidicon`
-* `noclass`: no valid/invalid class
-* `novalidclass`
-* `noinvalidclass`
-
 Add custom flags:
 
 ```javascript
@@ -299,7 +291,18 @@ The value must match a value of another input.
     equalto: '#myid'
   }
 }
+
 ```
+Built-in flags
+--------------
+Flags are simply functions that add or remove functionality from an input. You can run whatever code you want when an input tries to validate. `focus`, `blur`, `change` and `keyup` events all trigger validation. The built-in flags are:
+* `noerror`: hide the error from the input
+* `noicons`: hide the icons
+* `novalidicon`
+* `noinvalidicon`
+* `noclass`: no valid/invalid class
+* `novalidclass`
+* `noinvalidclass`
 
 Methods
 -------
