@@ -185,7 +185,7 @@ customInputs: false
 ```
 
 ####`customFlags`
-Flags are simply functions that add or remove functionality from an input or really whatever you want to run when an input tries to validate. `focus`, `blur`, `change` and `keyup` all trigger validation. Add your custom flags here. The built-in flags are:
+Flags are simply functions that add or remove functionality from an input. You can run whatever code you want when an input tries to validate. `focus`, `blur`, `change` and `keyup` events all trigger validation. The built-in flags are:
 * `noerror`: hide the error from the input
 * `noicons`: hide the icons
 * `novalidicon`
@@ -193,6 +193,8 @@ Flags are simply functions that add or remove functionality from an input or rea
 * `noclass`: no valid/invalid class
 * `novalidclass`
 * `noinvalidclass`
+
+Add custom flags:
 
 ```javascript
 customFlags: {
