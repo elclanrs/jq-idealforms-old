@@ -315,8 +315,17 @@ var $myIdealForm = $('#my-form').idealforms({ options });
 Then use any of these methods wherever and whenever you want.
 
 ####`isValid`
+Check if the form is valid.
 ```javascript
 if ($myIdealForm.isValid()) {
+  // do something...
+}
+```
+
+####`isValidField`
+Check if a particular input is valid. The function takes a string. Ideal Forms will look for the name attribute first and then for the id.
+```javascript
+if ($myIdealForm.isValidField('username')) { // name="username" OR #username
   // do something...
 }
 ```
