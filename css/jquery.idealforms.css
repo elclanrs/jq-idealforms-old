@@ -469,15 +469,18 @@ textarea {
   -o-transition: background .15s ease-in-out, color .15s ease-in-out, border .15s ease-in-out;
   display: block;
   position: relative;
-  margin: 0 .8em;
-  padding: .4em .2em;
+  margin: 0 1em;
+  padding: .4em .8em;
+  padding-left: 34px;
   border: 1px solid transparent;
   border-radius: 3px;
+  text-indent: -17px;
 }
 .ideal-check,
 .ideal-radio {
   display: inline-block;
-  margin: 0 8.5px;
+  position: relative;
+  left: -8.5px;
   background: url("../img/radiocheck.png") left top no-repeat;
   width: 17px;
   height: 17px;

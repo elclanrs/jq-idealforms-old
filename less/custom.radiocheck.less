@@ -20,10 +20,12 @@
       .transition(~"background .15s ease-in-out, color .15s ease-in-out, border .15s ease-in-out");
       display: block;
       position: relative;
-      margin: 0 .8em;
-      padding: .4em .2em;
+      margin: 0 1em;
+      padding: .4em .8em;
+      padding-left: @radiocheck-icon-width*2;
       border: @border-width solid transparent;
       border-radius: @border-radius;
+      text-indent: -@radiocheck-icon-width;
     }
   }
   .ideal-check,
@@ -31,7 +33,8 @@
     .vertical-align() when (@radiocheck-icon-height >= @font-size) { vertical-align: text-bottom; }
     .vertical-align() when (@radiocheck-icon-height < @font-size) { vertical-align: text-top; }
     display: inline-block;
-    margin: 0 @radiocheck-icon-width/2;
+    position: relative;
+    left: -@radiocheck-icon-width/2;
     background: url("@{radiocheck-sprite}") left top no-repeat;
     width: @radiocheck-icon-width;
     height: @radiocheck-icon-height;
