@@ -62,8 +62,14 @@ $.fn.idealforms = function (ops) {
       var $invalid = $form.find('.ideal-field').filter(function(){
         return $(this).data('isValid') === false
       })
-      console.log($invalid)
       return !$invalid.length
+    },
+    isValidField: function (name) {
+      var $input = 
+        $('[name="'+ name +'"]').length 
+          ? $('[name="'+ name +'"]')
+          : $('#' + name)
+      return $input.parents('.ideal-field').data('isValid') === false
     },
     focusFirst: function () {
       $form.find('input:first').focus();
