@@ -323,9 +323,12 @@ if ($myIdealForm.isValid()) {
 ```
 
 ####`isValidField`
-Check if a particular input is valid. The function takes a string. Ideal Forms will look for the name attribute first and then for the id. Use array group names for groups of checkboxes and radios, `name[]`
+Check if a particular input is valid. The function takes a string. Ideal Forms will look for the name attribute first and then for the id. Use array group names for groups of checkboxes and radios.
 ```javascript
 if ($myIdealForm.isValidField('username')) { // name="username" OR #username
+  // do something...
+}
+if ($myIdealForm.isValidField('colors[]')) { // name="colors[]"
   // do something...
 }
 ```
