@@ -54,50 +54,6 @@ $.fn.idealforms = function (ops) {
   },
 
 /*--------------------------------------------------------------------------*/
-  /**
-  * @namespace Public methods
-  */
-  PublicMethods = {
-    isValid: function () {
-      var $invalid = $form.find('.ideal-field').filter(function(){
-        return $(this).data('isValid') === false
-      })
-      return !$invalid.length
-    },
-    isValidField: function (name) {
-      var $input = 
-        $('[name="'+ name +'"]').length 
-          ? $('[name="'+ name +'"]')
-          : $('#' + name)
-      return $input.parents('.ideal-field').data('isValid') === false
-    },
-    focusFirst: function () {
-      $form.find('input:first').focus();
-      return $form
-    },
-    focusFirstInvalid: function () {
-      $form
-        .find('.ideal-field')
-        .filter(function(){ return $(this).data('isValid') === false })
-        .first()
-        .find('input:first')
-        .focus()
-      return $form
-    },
-    reset: function () {
-      FormInputs.text.val('') // text inputs
-      FormInputs.radiocheck.removeAttr('checked') // :radio & :checkbox
-      // Select and custom select
-      FormInputs.select.find('option').first().prop('selected', true)
-      $form.find('.ideal-select').trigger('reset')
-      // Reset all
-      FormInputs.inputs.change().blur()
-      this.focusFirst()
-      return $form
-    }
-  },
-
-/*--------------------------------------------------------------------------*/
 
   /**
    * @namespace Methods of the form
@@ -352,6 +308,51 @@ $.fn.idealforms = function (ops) {
         $customSelect.trigger('menu')
       }
 
+    }
+  },
+
+/*--------------------------------------------------------------------------*/
+
+  /**
+  * @namespace Public methods
+  */
+  PublicMethods = {
+    isValid: function () {
+      var $invalid = $form.find('.ideal-field').filter(function(){
+        return $(this).data('isValid') === false
+      })
+      return !$invalid.length
+    },
+    isValidField: function (name) {
+      var $input = 
+        $('[name="'+ name +'"]').length 
+          ? $('[name="'+ name +'"]')
+          : $('#' + name)
+      return $input.parents('.ideal-field').data('isValid') === false
+    },
+    focusFirst: function () {
+      $form.find('input:first').focus();
+      return $form
+    },
+    focusFirstInvalid: function () {
+      $form
+        .find('.ideal-field')
+        .filter(function(){ return $(this).data('isValid') === false })
+        .first()
+        .find('input:first')
+        .focus()
+      return $form
+    },
+    reset: function () {
+      FormInputs.text.val('') // text inputs
+      FormInputs.radiocheck.removeAttr('checked') // :radio & :checkbox
+      // Select and custom select
+      FormInputs.select.find('option').first().prop('selected', true)
+      $form.find('.ideal-select').trigger('reset')
+      // Reset all
+      FormInputs.inputs.change().blur()
+      this.focusFirst()
+      return $form
     }
   }
 
