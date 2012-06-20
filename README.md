@@ -7,7 +7,7 @@
 * * *
 # Updates:
 
-* Added public methods, `reset`, `focusFirst`, `focusFirstInvalid`, `isValid`, `isValidField`.
+* Added public methods, `reset`, `fresh`, `focusFirst`, `focusFirstInvalid`, `isValid`, `isValidField`.
 * New `flags` option. Hide errors and/or icons from a particular input. Create own your custom flags and run whatever you want when an input tries to validate. Powerful stuff.
 * New `equalto` filter.
 
