@@ -251,7 +251,7 @@ $.fn.idealforms = function (ops) {
       doFlags = function () {
         for (var i = 0, len = flags.length, f; i < len; i++) {
           f = flags[i]
-          if (Flags[f]) Flags[f]($input)
+          if (Flags[f]) Flags[f]($input, evt)
           else break
         }
       }
