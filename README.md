@@ -200,7 +200,7 @@ customFlags: {
    * @param event The event that was triggered on the input (focus, blur, change, keyup)
    */
   custom: function(input, event){
-    if (event === 'keyup') console.log($input.val()) 
+    if (event === 'keyup') console.log(input.val()) 
   }
 }
 ```
