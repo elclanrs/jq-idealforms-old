@@ -189,7 +189,11 @@ Add custom flags:
 
 ```javascript
 customFlags: {
-  custom: function($input){
+  /*
+   * @param $input jQuery input object
+   * @param event The event that was triggered on the input (focus, blur, change, keyup)
+   */
+  custom: function($input, event){
     console.log($input.val()) 
   }
 }
