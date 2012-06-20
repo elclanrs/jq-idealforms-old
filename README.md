@@ -315,6 +315,7 @@ Then use any of these methods wherever and whenever you want.
 
 ####`isValid`
 Check if the form is valid.
+**chainable**: no
 ```javascript
 if ($myIdealForm.isValid()) {
   // do something...
@@ -323,6 +324,7 @@ if ($myIdealForm.isValid()) {
 
 ####`isValidField`
 Check if a particular input is valid. The function takes a string. Ideal Forms will look for the name attribute first and then for the id. Use array group names for groups of checkboxes and radios.
+**chainable**: no
 ```javascript
 if ($myIdealForm.isValidField('username')) { // name="username" OR #username
   // do something...
@@ -333,16 +335,19 @@ if ($myIdealForm.isValidField('colors[]')) { // name="colors[]"
 ```
 
 ####`focusFirst`
+**chainable**: yes
 ```javascript
 $myIdealForm.focusFirst()
 ```
 
 ####`focusFirstInvalid`
+**chainable**: yes
 ```javascript
 $myIdealForm.focusFirstInvalid()
 ```
 
 ####`reset`
+**chainable**: yes
 ```javascript
 $myIdealForm.reset()
 ```
