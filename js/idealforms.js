@@ -343,6 +343,13 @@ $.fn.idealforms = function (ops) {
         .focus()
       return $form
     },
+    fresh: function () {
+      UserInputs
+        .blur()
+        .parents('.ideal-field')
+        .removeClass('valid invalid')
+      return $form
+    },
     reset: function () {
       FormInputs.text.val('') // text inputs
       FormInputs.radiocheck.removeAttr('checked') // :radio & :checkbox
@@ -365,8 +372,9 @@ $.fn.idealforms = function (ops) {
   UserInputs
     .on('keyup change focus blur', function (e) {
       Actions.analyze($(this), e.type)
-    })
-    .blur() // Start fresh
+    }) 
+
+  $form.fresh()
 
   $form.submit(function (e) {
     if (!$form.isValid()) {
