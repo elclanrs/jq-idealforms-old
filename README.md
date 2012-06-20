@@ -359,6 +359,7 @@ $myIdealForm.focusFirstInvalid()
 
 ####`fresh`
 Reload the form as if it were the first load and the form was never focused.
+
 **chainable**: yes
 ```javascript
 $myIdealForm.fresh()
@@ -366,6 +367,7 @@ $myIdealForm.fresh()
 
 ####`reset`
 Reset all fields to zero including checkboxes, radios, and selects.
+
 **chainable**: yes
 ```javascript
 $myIdealForm.reset()
