@@ -351,7 +351,7 @@ $.fn.idealforms = function (ops) {
       $form.find('.ideal-select').trigger('reset')
       // Reset all
       FormInputs.inputs.change().blur()
-      this.focusFirst()
+      $form.focusFirst()
       return $form
     }
   }
