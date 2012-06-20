@@ -359,6 +359,7 @@ $myIdealForm.focusFirstInvalid()
 
 ####`fresh`
 Load the form as if it was never focused. This removes `valid` and `invalid` classes until first focus.
+
 **chainable**: yes
 ```javascript
 $myIdealForm.reset().fresh() // Usually combined with `reset()`
