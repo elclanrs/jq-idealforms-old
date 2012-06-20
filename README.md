@@ -362,7 +362,7 @@ Reload the form as if it were the first load and the form was never focused.
 
 **chainable**: yes
 ```javascript
-$myIdealForm.fresh()
+$myIdealForm.reset().fresh() // Usually combined with `reset()`
 ```
 
 ####`reset`
