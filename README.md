@@ -109,24 +109,30 @@ Options
 ####`inputs`
 Add all the inputs you want to validate here. Use the name attribute of the input as key. To be consistent always put the key in quotes. Array group names can be used too, ie. `name[]`.
 
+
+Each input can be customized with **filters**, **data**, **errors** and **flags**.
+
+* `filters`: A space separated string of filters.
+* `data`: Filters that take values can be specified in here. Check documentation on **Built-in filters** for more info.
+* `errors`: Use the filter name as the key value and add your custom error. You can use inline HTML tags within the error string.
+* `flags`: Flags are simply functions that run when an input tries to validate. See documentation on **Built-it flags** and **customFlags**.
+
 ```javascript
 inputs: {
   // The name attribute of the input in quotes
-  'name': {
-    filters: 'filterName filterName filterName', // {string} Space separated list
-    // Some filters take a `data` attribute
-    // such as `exclude`, `min` and `max`
+  'myinput': {
+    filters: 'required min',
     data: {
-      filterName: data // {number, array, string}
+      min: 10
     },
-    // Custom errors
     errors: {
-      filterName: error // {string} Can contain inline HTML tags
+      min: 'At least 10 characters'
     },
-    flags: 'noerror noicons ...'
+    flags: 'noclass noinvalidicon'
   }
 }
 ```
+
 ####`customFilters`
 Adding custom filters is very easy and straightforward.
 
@@ -194,7 +200,7 @@ customFlags: {
    * @param event The event that was triggered on the input (focus, blur, change, keyup)
    */
   custom: function($input, event){
-    console.log($input.val()) 
+    if (event === 'keyup') console.log($input.val()) 
   }
 }
 ```
