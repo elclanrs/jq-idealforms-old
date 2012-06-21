@@ -249,7 +249,16 @@ Must be a valid US zip code.
 Must be a valid URL.
 
 ####`date`
-Must be a valid date in this format `mm/dd/yy`
+Must be a valid date. You can use any format with 4 digit year and any delimiter character. The default format is `mm/dd/yyyy`
+
+```javascript
+'myinput': {
+  filters: 'date',
+  data: {
+    format: 'dd-mm-yyyy'
+  }
+}
+```
 
 ####`min`
 * Must be at least `x` characters minimum.
