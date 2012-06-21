@@ -11,9 +11,9 @@
     max-width: @ideal-field-width;
     padding: 1.6em 0;
     font-size: @small-font-size;
-    color: darken(@radiocheck-bg, 80%);
+    color: @radiocheck-text;
     border-radius: @border-radius;
-    border: @border-width solid darken(@radiocheck-bg, 30%);
+    border: @radiocheck-bg-border;
     .gradient(@radiocheck-bg, lighten(@radiocheck-bg, 20%));
     label, input { cursor: pointer; }
     label {
@@ -51,6 +51,6 @@
   }
   .ideal-radiocheck label.focus {
     background: @radiocheck-focus-bg;
-    border: @border-width solid darken(@radiocheck-focus-bg, 30%);
-    color: darken(@radiocheck-focus-bg, 60%);
+    border: @radiocheck-focus-border;
+    color: @radiocheck-focus-text;
   }

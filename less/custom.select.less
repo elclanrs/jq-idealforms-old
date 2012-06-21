@@ -61,7 +61,7 @@
       position: relative;
       &:after {
         .drop-arrow;
-        border-color: darken(@select-title, 30%) transparent transparent transparent;
+        border-color: @select-arrow transparent transparent transparent;
       }
     }
     &.focus .title,
@@ -69,14 +69,14 @@
       .ui-focus(@select-focus, @select-title-focus-text);
       &:after {
         .drop-arrow;
-        border-color: darken(@select-focus, 30%) transparent transparent transparent;
+        border-color: @select-focus-arrow transparent transparent transparent;
       }
     }
     &.open .title {
       border-radius: @border-radius @border-radius 0 0;
       &:after {
         .drop-arrow;
-        border-color: transparent transparent darken(@select-focus, 30%) transparent;
+        border-color: transparent transparent @select-focus-arrow transparent;
         margin-top: -(@size + @size/1.5);
       }
     }

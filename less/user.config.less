@@ -16,8 +16,8 @@
   @label-align: left;
   @label-width: auto; /* `auto` for auto-adjust */
   @border-width: 1px;
-  @border-radius: 3px;
-  @error-width: @input-width / 1.2;
+  @border-radius: 2px;
+  @error-width: @input-width/1.2;
   @css3-anim: true;
   @css3-effects: true; // box-shadow and gradients
 
@@ -27,7 +27,7 @@
 
   /* Validation */
   @error-color: #1F4F73;
-  @error-text: white;
+  @error-text: lighten(@error-color, 70%);
   @icon-size: 16px;
   @valid-icon: "../img/valid.png";
   @invalid-icon: "../img/invalid.png";
@@ -37,12 +37,15 @@
   @text-text: darken(@text-bg, 60%);
   @invalid: #FFFBD4;
   @valid: #EDFCD9;
-  @invalid-text: darken(@invalid, 70%);
+  @default-border: @border-width solid #bbb;
+  @valid-border: @border-width solid darken(@valid, 50%);
+  @invalid-border: @border-width solid darken(@invalid, 50%);
   @valid-text: darken(@valid, 70%);
+  @invalid-text: darken(@invalid, 70%);
 
   /* Buttons */
   @button: #E6E8E8;
-  @button-focus: #D1DEED;
+  @button-focus: #DAE5ED;
   @button-text: darken(@button, 60%);
   @button-focus-text: darken(@button-focus, 60%);
 
@@ -51,19 +54,25 @@
   @select-sub-bg: #fafafa;
   @select-sub-text: darken(@select-sub-bg, 60%);
   @select-sub-selected: @error-color;
-  @select-sub-selected-text: lighten(@select-sub-selected, 70%);
+  @select-sub-selected-text: white;
   @select-focus: @button-focus;
-  @select-title-text: darken(@select-title, 60%);
-  @select-title-focus-text: darken(@select-focus, 60%);
+  @select-title-text: @button-text;
+  @select-title-focus-text: @button-focus-text;
+  @select-arrow: darken(@select-title, 40%);
+  @select-focus-arrow: darken(@select-focus, 40%);
   @select-scroll: true;
   @select-scroll-size: 7; /* 7 items in scroll view */
 
   /* Radio & Checkbox */
   @radiocheck-bg: #fff;
+  @radiocheck-text: #444;
+  @radiocheck-bg-border: @border-width solid #bbb;
   @radiocheck-sprite: "../img/radiocheck.png";
   @radiocheck-icon-width: 17px;
   @radiocheck-icon-height: 17px;
   @radiocheck-focus-bg: hsl(hue(@error-color), 40%, 92%);
+  @radiocheck-focus-border: @border-width solid darken(@radiocheck-focus-bg, 20%);
+  @radiocheck-focus-text: @radiocheck-text;
 
 /*--------------------------------------------------------
   Extra:
