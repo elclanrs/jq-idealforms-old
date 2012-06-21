@@ -229,7 +229,7 @@ Only digits.
 Must be at least 3 characters long, and must only contain letters.
 
 ####`username`
-Must be at between 4 and 32 characters long and start with a letter. You may use letters, numbers, underscores, and one dot (.)
+Must be between 4 and 32 characters long and start with a letter. You may use letters, numbers, underscores, and one dot (.)
 
 ####`pass`
 Must be at least 6 characters long, and contain at least one number, one uppercase and one lowercase letter.
