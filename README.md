@@ -256,9 +256,7 @@ Must be a valid date. You can use any format with 4 digit year and any delimiter
 'myinput': {
   filters: 'date',
   data: {
-    date: {
-      format: 'dd-mm-yyyy'
-    }
+    date: 'dd-mm-yyyy'
   }
 }
 ```
