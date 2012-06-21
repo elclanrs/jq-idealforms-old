@@ -288,7 +288,9 @@ Must be a valid date. This filter effectively validates a date, so stuff like `1
 ```
 
 ####`exclude`
-Prevent validation if the value matches any value in the given array. Use this filter to exclude the default (first) option of a `select` input. The `exclude` filter is also useful to validate usernames from a databse; just pull a list of the ones that are already taken and pass in an array.
+* Prevent validation if the value matches any value in the given array.
+* Use this filter to exclude the default (first) option of a `select` input.
+* Useful to validate usernames from a database; just pull a list of the usernames that are already taken and pass in an array.
 ```javascript
 'myinput': {
   filters: 'exclude',
