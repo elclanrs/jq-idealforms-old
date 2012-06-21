@@ -429,7 +429,7 @@ $('#my-form').idealforms({
       filters: 'min'
       data: {
         min: 1
-      }
+      },
       errors: {
         min: 'Check only <strong>1</strong> option.'
       }
