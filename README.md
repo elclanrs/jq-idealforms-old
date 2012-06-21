@@ -406,8 +406,8 @@ $('#my-form').idealforms({
     'comments': {
       filters: 'min max',
       data: {
-          min: 50
-          max: 200
+        min: 50
+        max: 200
       }
     },
     'colors': {
