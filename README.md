@@ -250,7 +250,7 @@ Must be a valid US zip code.
 Must be a valid URL.
 
 ####`date`
-Must be a valid date. You can use any format with 4 digit year and any delimiter character. The default format is `mm/dd/yyyy`.
+Must be a valid date. This filter effectively validates a date, so stuff like `13-13-2012` would be invalid. You can use any format with 4 digit year and any delimiter character. The default format is `mm/dd/yyyy`.
 
 ```javascript
 'myinput': {
