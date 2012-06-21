@@ -64,13 +64,13 @@ var Filters = {
     regex: function (input, value) {
       var
 
-      data = input.userOptions.data
+      userFormat = input.userOptions.data
         ? input.userOptions.data.date
-        : { format: 'mm/dd/yyyy' }, // default format
+        : 'mm/dd/yyyy', // default format
 
-      delimiter = /[^mdy]/.exec(data.format)[0],
-      userFormat = data.format.split(delimiter),
-      userDate = value.split(delimiter),
+      delimiter = /[^mdy]/.exec(userFormat)[0],
+      theFormat = userFormat.split(delimiter),
+      theDate = value.split(delimiter),
 
       isDate = function (date, format) {
         var m, d, y
@@ -85,8 +85,8 @@ var Filters = {
           d > 0 && d <= (new Date(y, m, 0)).getDate()
         )
       }
-      this.error = 'Must be a valid date. <em>(e.g. '+ data.format +')</em>'
-      return isDate(userDate, userFormat)
+      this.error = 'Must be a valid date. <em>(e.g. '+ userFormat +')</em>'
+      return isDate(theDate, theFormat)
     }
   },
   exclude: {
