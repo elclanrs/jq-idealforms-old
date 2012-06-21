@@ -250,7 +250,7 @@ Must be a valid US zip code.
 Must be a valid URL.
 
 ####`date`
-Must be a valid date. This filter effectively validates a date, so stuff like `13-13-2012` would be invalid. You can use any format with 4 digit year and any delimiter character. The default format is `mm/dd/yyyy`.
+Must be a valid date. This filter effectively validates a date, so stuff like `13-13-2012` or `30/80/2000` would be invalid. You can use any format with 4 digit year and any delimiter character. The default format is `mm/dd/yyyy`.
 
 ```javascript
 'myinput': {
@@ -288,7 +288,7 @@ Must be a valid date. This filter effectively validates a date, so stuff like `1
 ```
 
 ####`exclude`
-Prevent validation if the value matches any value in the given array.
+Prevent validation if the value matches any value in the given array. Use this filter to exclude the default (first) option of a `select` input.
 ```javascript
 'myinput': {
   filters: 'exclude',
