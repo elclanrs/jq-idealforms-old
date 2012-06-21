@@ -153,7 +153,7 @@ customFilters: {
      */
     regex: function(input, value) {
       // Declare error within `regex`
-      // to have access to `value` and `input`      
+      // to have access to `value` and `input`
       this.error = 'My custom ' + value;
     }
   }
@@ -201,7 +201,7 @@ customFlags: {
    * @param event The event that was triggered on the input (focus, blur, change, keyup)
    */
   custom: function(input, event){
-    if (event === 'keyup') console.log(input.val()) 
+    if (event === 'keyup') console.log(input.val())
   }
 }
 ```
@@ -256,7 +256,7 @@ Must be a valid date. You can use any format with 4 digit year and any delimiter
 'myinput': {
   filters: 'date',
   data: {
-    date: 'dd-mm-yyyy' // or `yyyy~dd~mm` or `mm*yyyy*dd` ...
+    date: 'dd-mm-yyyy' // or `yyyy~dd~mm` or `mm*yyyy*dd`
   }
 }
 ```
@@ -413,7 +413,7 @@ $('#my-form').idealforms({
         exclude: ['Choose a color']
       },
       errors: {
-        exclude: 'Choose a color from the list.' 
+        exclude: 'Choose a color from the list.'
       }
     },
     'langs[]': {
