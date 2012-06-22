@@ -59,7 +59,7 @@ var Filters = {
       var $input = input.input,
           max = input.userOptions.data.max
       if ($input.is(':checkbox, :radio')) {
-        this.error = 'Check <strong>' + max + '</strong> maximum.'
+        this.error = 'Check no more than <strong>' + max + '</strong>.'
         return $input.filter(':checked').length <= max
       }
       this.error = '<strong>' + max + '</strong> characters max.'
