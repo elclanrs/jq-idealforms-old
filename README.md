@@ -7,10 +7,10 @@
 * * *
 # Updates:
 
+* New `getInvalid` method to retrieve all invalid fields.
 * Update `date` filter with custom formats.
 * Added public methods, `reset`, `fresh`, `focusFirst`, `focusFirstInvalid`, `isValid`, `isValidField`.
 * New `flags` option. Hide errors and/or icons from a particular input. Create your own custom flags and run whatever code you want when an input tries to validate.
-* New `equalto` filter.
 
 * * *
 
