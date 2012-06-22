@@ -81,7 +81,7 @@ var Filters = {
         }
         return (
           m > 0 && m < 13 &&
-          y > 0 && y.length === 4 && y < 32768 &&
+          y.length === 4 &&
           d > 0 && d <= (new Date(y, m, 0)).getDate()
         )
       }
