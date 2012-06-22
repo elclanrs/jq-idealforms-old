@@ -317,11 +317,13 @@ $.fn.idealforms = function (ops) {
   * @namespace Public methods
   */
   PublicMethods = {
+    getInvalid: function () {
+      return $form.find('.ideal-field').filter(function () {
+          return $(this).data('isValid') === false
+        })
+    },
     isValid: function () {
-      var $invalid = $form.find('.ideal-field').filter(function(){
-        return $(this).data('isValid') === false
-      })
-      return !$invalid.length
+      return !$form.getInvalid().length
     },
     isValidField: function (name) {
       var $input = 
@@ -336,8 +338,7 @@ $.fn.idealforms = function (ops) {
     },
     focusFirstInvalid: function () {
       $form
-        .find('.ideal-field')
-        .filter(function(){ return $(this).data('isValid') === false })
+        .getInvalid()
         .first()
         .find('input:first')
         .focus()

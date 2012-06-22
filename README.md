@@ -358,6 +358,15 @@ if ($myIdealForm.isValidField('colors[]')) { // name="colors[]"
 }
 ```
 
+####`getInvalid`
+Get all invalid fields. Returns a jQuery object.
+
+**chainable**: yes (but it doesn't return the form, just the invalid fields)
+
+```javascript
+var numInvalid = $myIdealForm.getInvalid().length // How many invalid fields
+```
+
 ####`focusFirst`
 **chainable**: yes
 ```javascript
