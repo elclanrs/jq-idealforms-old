@@ -7,7 +7,7 @@
 * * *
 # Updates:
 
-* **HOT** New custom `file` input type. Supports multiple file upload and works in IE.
+* **HOT** New custom `file` input type. Supports multiple file on HTML5 browsers.
 * New `getInvalid` method to retrieve all invalid fields.
 * Update `date` filter with custom formats.
 * Added public methods, `reset`, `fresh`, `focusFirst`, `focusFirstInvalid`, `isValid`, `isValidField`.
