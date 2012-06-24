@@ -7,10 +7,10 @@
 * * *
 # Updates:
 
+* Added `extension` filter that works with the very new custom `file` input.
 * **HOT** New custom `file` input type. Supports multiple file on HTML5 browsers.
 * New `getInvalid` method to retrieve all invalid fields.
 * Update `date` filter with custom formats.
-* Added public methods, `reset`, `fresh`, `focusFirst`, `focusFirstInvalid`, `isValid`, `isValidField`.
 
 * * *
 
@@ -316,8 +316,19 @@ The value must match a value of another input.
     equalto: '#myid'
   }
 }
-
 ```
+
+####`extension`
+This filter is designed for `file` inputs. It supports multifile in HTML5 browsers.
+```javascript
+'myinput': {
+  filters: 'extension',
+  data: {
+    extension: ['jpg', 'png'] // Always array even if just one
+  }
+}
+```
+
 Built-in flags
 --------------
 * `noerror`: hide the error from the input
