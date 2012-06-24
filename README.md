@@ -54,7 +54,7 @@ For **Ideal Forms** to work its magic create your markup using the following tem
   <div><label>Comments:</label><textarea name="comments"></textarea></div>
 
   <!-- File -->
-  <div><label>File Upload:</label><input type="file" name="file"/></div>
+  <div><label>File Upload:</label><input type="file" multiple name="file"/></div>
 
   <!-- Select -->
   <div>
