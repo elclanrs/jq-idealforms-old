@@ -42,7 +42,7 @@ $.fn.idealforms = function (ops) {
    */
   UserInputs = $(
     '[name="'+ Utils.getKeys(o.inputs).join('"], [name="') +'"],' + // by name attribute
-    '.' + Utils.getKeys(Filters).join(', .') // by class
+    'input.' + Utils.getKeys(Filters).join(', .') + ', input.required'// by class
   ),
 
 /*--------------------------------------------------------------------------*/
@@ -207,6 +207,7 @@ $.fn.idealforms = function (ops) {
       var
 
       isRadiocheck = input.is(':checkbox, :radio'),
+      isFile = input.is(':file'),
       $input = (function(){
         if (isRadiocheck)
           return UserInputs.filter('[name="' + input.attr('name') + '"]')
@@ -383,7 +384,7 @@ $.fn.idealforms = function (ops) {
     keydown: function (e) {
       // Prevent submit when pressing enter
       if (e.which === 13) e.preventDefault()
-    }
+    },
     submit: function (e) {
       if (!$form.isValid()) {
         e.preventDefault()

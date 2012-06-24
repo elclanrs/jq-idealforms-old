@@ -85,7 +85,6 @@ var Filters = {
           if (/d/.test(format[i])) d = date[i]
           if (/y/.test(format[i])) y = date[i]
         }
-        console.log(y)
         return (
           m > 0 && m < 13 &&
           y && y.length === 4 &&

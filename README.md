@@ -7,7 +7,7 @@
 * * *
 # Updates:
 
-* **HOT** New custom `file` input type.
+* **HOT** New custom `file` input type. Supports multiple file upload and works in IE.
 * New `getInvalid` method to retrieve all invalid fields.
 * Update `date` filter with custom formats.
 * Added public methods, `reset`, `fresh`, `focusFirst`, `focusFirstInvalid`, `isValid`, `isValidField`.
@@ -30,7 +30,7 @@
 ### Features:
 * Fully responsive (AKA adaptive, adapts to the container, no css media queries needed).
 * Keyboard support.
-* Every input type can be customized including `select`, `radio` and `checkbox`.
+* Every input type can be customized including `select`, `radio`, `checkbox` and `file`.
 * "On the spot" validation.
 * Support HTML5 `placeholder` attribute for every browser.
 
@@ -52,6 +52,9 @@ For **Ideal Forms** to work its magic create your markup using the following tem
   <div><label>Username:</label><input type="text" name="username"/></div>
   <div><label>Date:</label><input type="text" name="date" placeholder="mm/dd/yy"/></div>
   <div><label>Comments:</label><textarea name="comments"></textarea></div>
+
+  <!-- File -->
+  <div><label>File Upload:</label><input type="file" name="file"/></div>
 
   <!-- Select -->
   <div>

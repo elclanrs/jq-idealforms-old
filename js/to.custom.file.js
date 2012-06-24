@@ -24,18 +24,35 @@ $.fn.toCustomFile = function () {
 
     $file.on({
       change: function () {
-        var filename = $file.val().split('\\').pop()
+        var filename = (function() {
+          // Detect if browser supports HTML5 "file multiple"
+          var multipleSupport = typeof $('input')[0].multiple !== 'undefined',
+              files = [],
+              fileArr
+          if (multipleSupport) {
+            fileArr = $file[0].files
+            for (var i = 0, len = fileArr.length; i < len; i++)
+              files.push(fileArr[i].name)
+            return files.join(', ')
+          } else {
+            return $file.val().split('\\').pop()
+          }
+        }())
         $input.val(filename)
         $input.attr('title', filename)
       },
       focus: function () {
-        $input.trigger('focus');
+        $input.trigger('focus')
       }
     })
 
-    $input.keydown(function (e) {
-      if (e.which === 13) $file.trigger('click')
-    })
+    $input
+      .on({
+        keyup: function () { $file.trigger('change') },
+        focus: function () { $file.trigger('change') },
+        blur: function () { $file.trigger('blur') },
+        keydown: function (e) { if (e.which === 13) $file.trigger('click') }
+      })
 
     // Append to DOM
     $wrap.append($button, $input).insertAfter($file)
