@@ -127,7 +127,7 @@ var Filters = {
         else valid = false
       }
       this.error =
-        'Please select a file with a valid extension.' +
+        'Please select a file with a valid extension. ' +
         '<em>(e.g. "'+ extensions.join('", "') +'")</em>'
       return valid
     }
