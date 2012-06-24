@@ -5,7 +5,6 @@
 -------------------------------------------------------- */
 
   .ideal-radiocheck {
-    .no-user-select;
     position: relative;
     min-width: @input-width;
     max-width: @ideal-field-width;
@@ -30,14 +29,15 @@
   }
   .ideal-check,
   .ideal-radio {
-    .vertical-align() when (@radiocheck-icon-height >= @font-size) { vertical-align: text-bottom; }
-    .vertical-align() when (@radiocheck-icon-height < @font-size) { vertical-align: text-top; }
+    .no-user-select;
     display: inline-block;
     position: relative;
     left: -@radiocheck-icon-width/2;
     background: url("@{radiocheck-sprite}") left top no-repeat;
     width: @radiocheck-icon-width;
     height: @radiocheck-icon-height;
+    .vertical-align() when (@radiocheck-icon-height >= @font-size) { vertical-align: text-bottom; }
+    .vertical-align() when (@radiocheck-icon-height < @font-size) { vertical-align: text-top; }
     .vertical-align()
   }
   .ideal-radio {
