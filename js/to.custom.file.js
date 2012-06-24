@@ -24,20 +24,19 @@ $.fn.toCustomFile = function () {
 
     $file.on({
       change: function () {
-        var filename = (function() {
-          // Detect if browser supports HTML5 "file multiple"
-          var multipleSupport = typeof $('input')[0].multiple !== 'undefined',
-              files = [],
-              fileArr
-          if (multipleSupport) {
-            fileArr = $file[0].files
-            for (var i = 0, len = fileArr.length; i < len; i++)
-              files.push(fileArr[i].name)
-            return files.join(', ')
-          } else {
-            return $file.val().split('\\').pop()
-          }
-        }())
+        // Detect if browser supports HTML5 "file multiple"
+        var multipleSupport = typeof $('input')[0].multiple !== 'undefined',
+            files = [],
+            fileArr,
+            filename
+        if (multipleSupport) {
+          fileArr = $file[0].files
+          for (var i = 0, len = fileArr.length; i < len; i++)
+            files.push(fileArr[i].name)
+          filename = files.join(', ')
+        } else {
+          filename = $file.val().split('\\').pop()
+        }
         $input.val(filename)
         $input.attr('title', filename)
       },
