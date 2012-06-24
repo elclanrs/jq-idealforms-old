@@ -80,6 +80,9 @@
         .drop-arrow;
         border-color: transparent transparent @select-focus-arrow transparent;
         margin-top: -(@size + @size/1.5);
+        // Disable in IE cuz glitches
+        border-color: @select-focus-arrow transparent transparent transparent~'\9';
+        margin-top: -(@size - @size/1.5);
       }
     }
     &.valid .title {
