@@ -273,10 +273,11 @@ $.fn.idealforms = function (ops) {
       if (!test.isValid) {
         $invalid.show()
         $field.addClass('invalid').data('isValid', false)
-        // hide error on blur
-        if (evt !== 'blur') $error.html(test.error).show()
+        // error
+        $form.find('.error').hide()
+        if (evt !== 'blur') // hide on blur
+          $error.html(test.error).show()
       }
-
       doFlags()
     },
 
