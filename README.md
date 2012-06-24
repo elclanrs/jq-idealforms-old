@@ -1,6 +1,7 @@
 **[DEMO](http://elclanrs.github.com/jq-idealforms/)**
 
 **Support:** IE8+, Webkit, Firefox, Opera, iOS 5+.
+**jQuery 1.7+**
 
 **License:** [GPL](http://www.gnu.org/licenses/gpl.html)
 
