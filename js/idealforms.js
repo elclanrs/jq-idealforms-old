@@ -34,7 +34,8 @@ $.fn.idealforms = function (ops) {
     text: $form.find('input:not(:checkbox, :radio), textarea'),
     select: $form.find('select'),
     radiocheck: $form.find('input:radio, input:checkbox'),
-    buttons: $form.find(':button')
+    buttons: $form.find(':button'),
+    file: $form.find(':file')
   },
   /**
    * All inputs specified by the user
@@ -121,6 +122,7 @@ $.fn.idealforms = function (ops) {
         FormInputs.buttons.addClass('ideal-button')
         FormInputs.select.toCustomSelect()
         FormInputs.radiocheck.toCustomRadioCheck()
+        FormInputs.file.toCustomFile()
       }
 
       // Placeholder support
@@ -299,12 +301,12 @@ $.fn.idealforms = function (ops) {
           ? $form.addClass('stack')
           : $form.removeClass('stack')
       }
-      
+
       if ($form.is('.stack')) {
-        $emptyLabel.hide() 
+        $emptyLabel.hide()
         $customSelect.trigger('list')
       } else {
-        $emptyLabel.show() 
+        $emptyLabel.show()
         $customSelect.trigger('menu')
       }
 
@@ -326,8 +328,8 @@ $.fn.idealforms = function (ops) {
       return !$form.getInvalid().length
     },
     isValidField: function (name) {
-      var $input = 
-        $('[name="'+ name +'"]').length 
+      var $input =
+        $('[name="'+ name +'"]').length
           ? $('[name="'+ name +'"]')
           : $('#' + name)
       return $input.parents('.ideal-field').data('isValid') === false
@@ -373,17 +375,23 @@ $.fn.idealforms = function (ops) {
   UserInputs
     .on('keyup change focus blur', function (e) {
       Actions.analyze($(this), e.type)
-    }) 
+    })
 
   $form.fresh()
 
-  $form.submit(function (e) {
-    if (!$form.isValid()) {
-      e.preventDefault()
-      o.onFail()
-      $form.focusFirstInvalid()
+  $form.on({
+    keydown: function (e) {
+      // Prevent submit when pressing enter
+      if (e.which === 13) e.preventDefault()
     }
-    else o.onSuccess(e)
+    submit: function (e) {
+      if (!$form.isValid()) {
+        e.preventDefault()
+        o.onFail()
+        $form.focusFirstInvalid()
+      }
+      else o.onSuccess(e)
+    }
   })
 
   // Responsive

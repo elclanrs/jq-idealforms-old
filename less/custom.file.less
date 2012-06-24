@@ -1,0 +1,29 @@
+/* --------------------------------------------------------
+
+  Custom file input:
+
+-------------------------------------------------------- */
+
+  .ideal-file-wrap {
+    width: @input-width;
+    overflow: hidden;
+  }
+  input.ideal-file-filename {
+    padding-right: 5em !important; // Aprox
+    height: @font-size * 2.2; // Aprox
+  }
+  button.ideal-file-upload {
+    .ideal-button;
+    position: absolute;
+    right: 0;
+    margin: 0;
+    height: @font-size * 2.2; // Aprox
+  }
+
+/* --------------------------------------------------------
+  Responsive:
+-------------------------------------------------------- */
+
+.ideal-form.stack .ideal-file-wrap {
+  width: 100%;
+}

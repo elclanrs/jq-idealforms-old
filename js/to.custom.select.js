@@ -169,7 +169,7 @@ $.fn.toCustomSelect = function () {
                   return re.test($(this).text())
                 }).first().index()
 
-            Actions.change(!~curIdx ? selIdx : curIdx)
+            Actions.change(!~curIdx ? selIdx : 5)
             Actions.scrollToItem()
             Actions.focusHack()
           }

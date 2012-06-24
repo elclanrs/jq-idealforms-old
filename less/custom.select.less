@@ -6,6 +6,7 @@
 
   @select-item-height: floor(@font-size * 1.7);
   @select-max-height: @select-item-height * @select-scroll-size; /* `auto` for no scrollbar */
+  @select-arrow-size: @arrow-size / 1.7;
 
   /* --------------------------------------------------------
     Mixins:
@@ -17,7 +18,7 @@
   }
   .select-scroll() when not (@select-scroll){}
   .drop-arrow {
-    @size: @arrow-size / 1.7;
+    @size: @select-arrow-size;
     content: "";
     position: absolute;
     right: @size*1.7;
@@ -75,6 +76,7 @@
     &.open .title {
       border-radius: @border-radius @border-radius 0 0;
       &:after {
+        @size: @select-arrow-size;
         .drop-arrow;
         border-color: transparent transparent @select-focus-arrow transparent;
         margin-top: -(@size + @size/1.5);
