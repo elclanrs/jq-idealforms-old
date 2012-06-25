@@ -47,7 +47,9 @@ Load the latest [jQuery library](http://jquery.com), the `js/min/jquery.idealfor
 ## Index
 
 [Markup](#markup)
+
 [Invoke the plugin](#invoke-the-plugin)
+
 [Options](#options)
 
 * [inputs](#inputs)
@@ -60,7 +62,9 @@ Load the latest [jQuery library](http://jquery.com), the `js/min/jquery.idealfor
 * [responsiveAt](#responsiveat)
 
 [Built-in filters](#built-in-filters)
+
 [Built-in flags](#built-in-flags)
+
 [Methods](#methods)
 
 * [isValid](#isvalid)
@@ -73,6 +77,7 @@ Load the latest [jQuery library](http://jquery.com), the `js/min/jquery.idealfor
 * [reset](#reset)
 
 [Example](#example)
+
 [Theming](#theming)
 
 Markup
