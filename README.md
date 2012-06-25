@@ -1,4 +1,4 @@
-**[DEMO](http://elclanrs.github.com/jq-idealforms/)**
+#[DEMO](http://elclanrs.github.com/jq-idealforms/)
 
 **Support:** IE8+, Webkit, Firefox, Opera, iOS 5+.
 
