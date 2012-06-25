@@ -14,16 +14,12 @@
 * **HOT** New custom `file` input type. Supports multiple file on HTML5 browsers.
 * New `getInvalid` method to retrieve all invalid fields.
 
-* * *
-
 # Help:
 
 ```javascript
 "I need feedback for mobile devices. Please report any bugs you might find in iOS or Android."
 ```
 * **[Android - text inputs not validating](http://stackoverflow.com/questions/10822758/android-text-inputs-not-validating-with-custom-validation-plugin)**
-
-* * *
 
 # What's Ideal Forms:
 
@@ -37,8 +33,6 @@
 * Support HTML5 `placeholder` attribute for every browser.
 
 Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
-
-* * *
 
 # How to use it:
 
