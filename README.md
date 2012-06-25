@@ -369,15 +369,9 @@ Ideal Forms provides an easy way to add new fields. `markup` has two options:
 * `type`: Possible types are `text`, `password`, `email`, `number` ,`search`, `url` ,`tel`, `file`, `select`, `radio` and `checkbox`.
 * `list`: Array of items for inputs such as `select`, `radio` and `checkbox`.
 
-#####`filters`
-For more info check documentation on **[input's options](#inputs)**.
-#####`data`
-For more info check documentation on **[input's options](#inputs)**.
-#####`errors`
-For more info check documentation on **[input's options](#inputs)**.
-#####`flags`
-For more info check documentation on **[input's options](#inputs)**.
+#####`filters`, `data`, `errors`, `flags`
 
+For more info check documentation on **[input's options](#inputs)**.
 
 ```javascript
 var newFields = [
