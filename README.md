@@ -38,9 +38,38 @@
 
 Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
+
+
 # How to use it:
 
 Load the latest [jQuery library](http://jquery.com), the `js/min/jquery.idealforms.min.js` plugin and the `css/jquery.idealforms.css` stylesheet into your project.
+
+## Index
+
+[Markup](#markup)
+[Invoke the plugin](#invoke-the-plugin)
+[Options](#options)
+* `[inputs](#inputs)`
+* `[customFilters](#customfilters)`
+* `[customInputs](#custominputs)`
+* `[customFlags](#customflags)`
+* `[globalFlags](#globalflags)`
+* `[onSuccess](#onsuccess)`
+* `[onFail](#onfail)`
+* `[responsiveAt](#responsiveat)`
+[Built-in filters](#built-in-filters)
+[Built-in flags](#built-in-flags)
+[Methods](#methods)
+* `[isValid](#isvalid)`
+* `[addFields](#addfields)`
+* `[isValidField](#isvalidfield)`
+* `[getInvalid](#getinvalid)`
+* `[focusFirst](#focusfirst)`
+* `[focusFirstInvalid](#focusfirstinvalid)`
+* `[fresh](#fresh)`
+* `[reset](#reset)`
+[Example](#example)
+[Theming](#theming)
 
 Markup
 ------
@@ -164,31 +193,6 @@ customFilters: {
 }
 ```
 
-####`onSuccess`
-```javascript
-onSuccess: function(e){
-  // Form validates
-}
-```
-
-####`onFail`
-```javascript
-onFail: function(){
-  // Form does NOT validate
-}
-```
-
-####`responsiveAt`
-By default, Ideal Forms will make the form "adaptive". It will adapt to the container allowing it to work with any responsive grid system.
-You can change this behavior by assigning a number value to the `responsiveAt` option.
-```javascript
-// Make responsive only at a certain window size.
-// Default is `"auto"` to adapt to the container
-// Set to `false` to disable responsiveness
-// To always show the responsive layout use a large number ie `3000`
-responsiveAt: 480
-```
-
 ####`customInputs`
 Disables custom inputs and uses system default. (select, radio, checkbox, button, file)
 ```javascript
@@ -214,6 +218,31 @@ customFlags: {
 List the flags that you want to apply to all inputs.
 ```javascript
 globalFlags: 'noerror noicons'
+```
+
+####`onSuccess`
+```javascript
+onSuccess: function(e){
+  // Form validates
+}
+```
+
+####`onFail`
+```javascript
+onFail: function(){
+  // Form does NOT validate
+}
+```
+
+####`responsiveAt`
+By default, Ideal Forms will make the form "adaptive". It will adapt to the container allowing it to work with any responsive grid system.
+You can change this behavior by assigning a number value to the `responsiveAt` option.
+```javascript
+// Make responsive only at a certain window size.
+// Default is `"auto"` to adapt to the container
+// Set to `false` to disable responsiveness
+// To always show the responsive layout use a large number ie `3000`
+responsiveAt: 480
 ```
 
 Built-in filters
