@@ -363,7 +363,9 @@ The label text. (required)
 #####`addAfter`
 Insert the new field after an existing field. Takes a string. Ideal Forms will look for `name` first and then `id`. If ommited the new fields will be added after the last field.
 #####`markup` (required)
-Ideal Forms provides an easy way to add new fields. `markup` has to options, **type** and **list**. Possible types are `text`, `password`, `email`, `number` ,`search`, `url` ,`tel`, `file`, `select`, `radio` and `checkbox`. `list` is an array of items for inputs such as `select`, `radio` and `checkbox`.
+Ideal Forms provides an easy way to add new fields. `markup` has two options:
+* `type`: Possible types are `text`, `password`, `email`, `number` ,`search`, `url` ,`tel`, `file`, `select`, `radio` and `checkbox`.
+* `list`: Array of items for inputs such as `select`, `radio` and `checkbox`.
 #####`filters`
 #####`data`
 #####`errors`
