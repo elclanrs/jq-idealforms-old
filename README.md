@@ -9,10 +9,10 @@
 * * *
 # Updates:
 
-* Added `extension` filter that works with the very new custom `file` input.
+* **HOT** New `addFields` method to add fields **dynamically**
+* Added `extension` filter that works with the new custom `file` input.
 * **HOT** New custom `file` input type. Supports multiple file on HTML5 browsers.
 * New `getInvalid` method to retrieve all invalid fields.
-* Update `date` filter with custom formats.
 
 * * *
 
@@ -358,6 +358,41 @@ Check if the form is valid.
 if ($myIdealForm.isValid()) {
   // do something...
 }
+```
+
+####`addFields`
+Add fields to the form dynamically. It takes an array of objects. Each field has the following options:
+
+* name: the value used as `name` attribute. (required)
+* title: the `label` text. (required)
+* addAfter: insert the new field after an element. Takes a string. Ideal Forms will look for `name` first and then `id`.
+* filters
+* data
+* errors
+* flags
+* markup: the HTML code for the new inputs you want to add. Follow Ideal Forms markup standards. Type only the actual markup of the inputs without the wrapper and label. (required)
+
+**chainable**: yes
+```javascript
+var newFields = [
+  {
+    name: 'zip',
+    title: 'Zip Code'
+    addAfter: 'email',
+    filters: 'required zip',
+    // You also need to specify the name in the markup
+    markup: '<input type="text" name="zip"/>'
+  },
+  {
+    name: 'animals[]',
+    title: 'Animals'
+    markup:
+      '<label><input type="checkbox" value="Alligator" name="animals[]">Alligator</label>'+
+      '<label><input type="checkbox" value="Elephant" name="animals[]">Elephant</label>'+
+      '<label><input type="checkbox" value="Mouse" name="animals[]">Mouse</label>'
+  }
+]
+$myIdealForm.addFields()
 ```
 
 ####`isValidField`

@@ -41,5 +41,25 @@ var Utils = {
   },
   isRegex: function (obj) {
     return obj instanceof RegExp
+  },
+  getByNameOrId: function (str) {
+    return (
+      $('[name="'+ str +'"]').length
+        ? $('[name="'+ str +'"]')
+        : $('#' + str)
+    )
+  },
+  /**
+   * Determine type of an input
+   */
+  getInputType: function ($input) {
+    var type = $input.attr('type') || $input[0].tagName.toLowerCase()
+    return (
+      /(text|password|email|number|search|url|tel)/.test(type) && 'text' ||
+      /file/.test(type) && 'file' ||
+      /select/.test(type) && 'select' ||
+      /(radio|checkbox)/.test(type) && 'radiocheck' ||
+      /(button|submit|reset)/.test(type) && 'button'
+    )
   }
 }

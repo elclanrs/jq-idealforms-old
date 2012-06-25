@@ -2,6 +2,9 @@
  * @namespace All default filters used for validation
  */
 var Filters = {
+  required: {
+    error: 'This field is required'
+  },
   number: {
     regex: /\d+/,
     error: 'Must be a number.'
