@@ -39,6 +39,7 @@ $.fn.idealforms = function (ops) {
       file: $form.find('[type="file"]')
     }
   },
+
   /**
    * All inputs specified by the user
    */
