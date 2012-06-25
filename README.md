@@ -413,12 +413,16 @@ var numInvalid = $('#my-form').getInvalid().length // How many invalid fields
 ```
 
 ####`focusFirst`
+Focus the very first field.
+
 **chainable**: yes
 ```javascript
 $('#my-form').focusFirst()
 ```
 
 ####`focusFirstInvalid`
+Focus the first invalid field.
+
 **chainable**: yes
 ```javascript
 $('#my-form').focusFirstInvalid()
