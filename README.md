@@ -401,16 +401,14 @@ var newFields = [
     name: 'animals[]',
     title: 'Animals',
     addAfter: 'email',
-    markup: {
-      type: 'radio',
-      list: ['Dog', 'Elephant', 'Crocodile', 'Spider']
-    }
+    type: 'radio',
+    list: ['Dog', 'Elephant', 'Crocodile', 'Spider']
   },
   {
     name: 'zip',
     title: 'Zip Code',
     filters: 'required zip',
-    markup: { type: 'text' }
+    type: 'text'
   },
   {
     name: 'instruments',
@@ -419,15 +417,13 @@ var newFields = [
     filters: 'exclude',
     data: { exclude: ['Select an instrument'] },
     errors: { exclude: 'Please select an instrument' },
-    markup: {
-      type: 'select',
-      list: [
-        'Select an instrument',
-        'Piano',
-        'Violin',
-        'Guitar'
-      ]
-    }
+    type: 'select',
+    list: [
+      'Select an instrument',
+      'Piano',
+      'Violin',
+      'Guitar'
+    ]
   }
 ]
 $('#my-form').addFields(newFields)
