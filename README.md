@@ -343,7 +343,7 @@ Built-in flags
 Methods
 -------
 
-####`isValid`
+* ####`isValid`
 Check if the form is valid.
 
 **chainable**: no
@@ -353,7 +353,7 @@ if ($('#my-form').isValid()) {
 }
 ```
 
-####`addFields`
+* ####`addFields`
 Add fields to the form dynamically. It takes an array of objects. Each field has the following options:
 
 * `name`: the value used as name attribute. (required)
