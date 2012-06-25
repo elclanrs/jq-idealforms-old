@@ -349,7 +349,7 @@ $.fn.idealforms = function (ops) {
       $customSelect = $form.find('.ideal-select')
 
       if (o.responsiveAt === 'auto') {
-        $form.width() < maxWidth
+        $form.outerWidth() < maxWidth
           ? $form.addClass('stack')
           : $form.removeClass('stack')
       } else {
@@ -420,7 +420,7 @@ $.fn.idealforms = function (ops) {
         $input = $field.find('input, select, textarea, :button')
 
         // Add user options
-        o.inputs[name] = userOptions
+        if (userOptions.filters) o.inputs[name] = userOptions
 
         Actions.doMarkup($input)
         $field.insertAfter(addAfter)
