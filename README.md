@@ -49,6 +49,7 @@ Load the latest [jQuery library](http://jquery.com), the `js/min/jquery.idealfor
 [Markup](#markup)
 [Invoke the plugin](#invoke-the-plugin)
 [Options](#options)
+
 * [inputs](#inputs)
 * [customFilters](#customfilters)
 * [customInputs](#custominputs)
@@ -57,9 +58,11 @@ Load the latest [jQuery library](http://jquery.com), the `js/min/jquery.idealfor
 * [onSuccess](#onsuccess)
 * [onFail](#onfail)
 * [responsiveAt](#responsiveat)
+
 [Built-in filters](#built-in-filters)
 [Built-in flags](#built-in-flags)
 [Methods](#methods)
+
 * [isValid](#isvalid)
 * [addFields](#addfields)
 * [isValidField](#isvalidfield)
@@ -68,6 +71,7 @@ Load the latest [jQuery library](http://jquery.com), the `js/min/jquery.idealfor
 * [focusFirstInvalid](#focusfirstinvalid)
 * [fresh](#fresh)
 * [reset](#reset)
+
 [Example](#example)
 [Theming](#theming)
 
