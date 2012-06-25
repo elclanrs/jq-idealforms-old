@@ -366,6 +366,7 @@ Insert the new field after an existing field. Takes a string. Ideal Forms will l
 Ideal Forms provides an easy way to add new fields. `markup` has two options:
 * `type`: Possible types are `text`, `password`, `email`, `number` ,`search`, `url` ,`tel`, `file`, `select`, `radio` and `checkbox`.
 * `list`: Array of items for inputs such as `select`, `radio` and `checkbox`.
+
 #####`filters`
 #####`data`
 #####`errors`
