@@ -359,7 +359,8 @@ Add fields to the form dynamically. It takes an array of objects. Each field has
 * `name`: the value used as name attribute. (required)
 * `title`: the label text. (required)
 * `addAfter`: insert the new field after an existing field. Takes a string. Ideal Forms will look for `name` first and then `id`. If ommited the new fields will be added after the last field.
-* `markup`: the HTML code for the new inputs you want to add. Follow Ideal Forms markup standards. Type only the actual markup of the inputs without the wrapper and label. (required)
+* `markup` (required)
+Ideal Forms provides an easy way to add new fields. `markup` has to options, **type** and **list**. Possible types are `text`, `password`, `email`, `number` ,`search`, `url` ,`tel`, `file`, `select`, `radio` and `checkbox`. `list` is an array of items for inputs such as `select`, `radio` and `checkbox`.
 * `filters`
 * `data`
 * `errors`
@@ -371,20 +372,35 @@ For more info check documentation on **[input's options](#inputs)**.
 ```javascript
 var newFields = [
   {
-    name: 'zip',
-    title: 'Zip Code'
-    addAfter: 'langs[]',
-    filters: 'required zip',
-    // You also need to specify the name in the markup
-    markup: '<input type="text" name="zip"/>'
+    name: 'animals[]',
+    title: 'Animals',
+    addAfter: 'email',
+    markup: {
+      type: 'radio',
+      list: ['Dog', 'Elephant', 'Crocodile', 'Spider']
+    }
   },
   {
-    name: 'animals[]',
-    title: 'Animals'
-    markup:
-      '<label><input type="checkbox" value="Alligator" name="animals[]">Alligator</label>'+
-      '<label><input type="checkbox" value="Elephant" name="animals[]">Elephant</label>'+
-      '<label><input type="checkbox" value="Mouse" name="animals[]">Mouse</label>'
+    name: 'zip',
+    title: 'Zip Code',
+    filters: 'required zip',
+    markup: { type: 'text' }
+  },
+  {
+    name: 'instruments',
+    title: 'Instruments',
+    addAfter: 'langs[]',
+    filters: 'exclude',
+    data: { exclude: ['Select an instrument'] },
+    markup: {
+      type: 'select',
+      list: [
+        'Select an instrument',
+        'Piano',
+        'Violin',
+        'Guitar'
+      ]
+    }
   }
 ]
 $('#my-form').addFields(newFields)
