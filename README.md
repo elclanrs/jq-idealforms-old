@@ -2,7 +2,7 @@
 
 * **Support:** IE8+, Webkit, Firefox, Opera, iOS 5+.
 * **jQuery 1.7+**
-* **License:** [GPL](http://www.gnu.org/licenses/gpl.html)
+* **License:** [GPL](http://www.gnu.org/licenses/gpl.html) or [MIT](http://en.wikipedia.org/wiki/MIT_License)
 
 * * *
 # Updates:
