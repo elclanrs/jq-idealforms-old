@@ -38,7 +38,7 @@
 
 Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
-
+* * *
 
 # How to use it:
 
