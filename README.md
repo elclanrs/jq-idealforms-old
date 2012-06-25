@@ -356,17 +356,15 @@ if ($('#my-form').isValid()) {
 ####`addFields`
 Add fields to the form dynamically. It takes an array of objects. Each field has the following options:
 
-* `name`: the value used as name attribute. (required)
-* `title`: the label text. (required)
-* `addAfter`: insert the new field after an existing field. Takes a string. Ideal Forms will look for `name` first and then `id`. If ommited the new fields will be added after the last field.
-
-* `markup` (required)
-
+#####`name`: the value used as name attribute. (required)
+#####`title`: the label text. (required)
+#####`addAfter`: insert the new field after an existing field. Takes a string. Ideal Forms will look for `name` first and then `id`. If ommited the new fields will be added after the last field.
+#####`markup` (required)
 Ideal Forms provides an easy way to add new fields. `markup` has to options, **type** and **list**. Possible types are `text`, `password`, `email`, `number` ,`search`, `url` ,`tel`, `file`, `select`, `radio` and `checkbox`. `list` is an array of items for inputs such as `select`, `radio` and `checkbox`.
-* `filters`
-* `data`
-* `errors`
-* `flags`
+#####`filters`
+#####`data`
+#####`errors`
+#####`flags`
 
 For more info check documentation on **[input's options](#inputs)**.
 
