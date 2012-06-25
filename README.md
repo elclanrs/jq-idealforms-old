@@ -342,20 +342,13 @@ Built-in flags
 
 Methods
 -------
-Assign the form to a variable first:
-
-```javascript
-var $myIdealForm = $('#my-form').idealforms({ options });
-```
-
-Then use any of these methods wherever and whenever you want.
 
 ####`isValid`
 Check if the form is valid.
 
 **chainable**: no
 ```javascript
-if ($myIdealForm.isValid()) {
+if ($('#my-form').isValid()) {
   // do something...
 }
 ```
@@ -394,7 +387,7 @@ var newFields = [
       '<label><input type="checkbox" value="Mouse" name="animals[]">Mouse</label>'
   }
 ]
-$myIdealForm.addFields(newFields)
+$('#my-form').addFields(newFields)
 ```
 
 ####`isValidField`
@@ -402,10 +395,10 @@ Check if a particular input is valid. The function takes a string. Ideal Forms w
 
 **chainable**: no
 ```javascript
-if ($myIdealForm.isValidField('username')) { // name="username" OR #username
+if ($('#my-form').isValidField('username')) { // name="username" OR #username
   // do something...
 }
-if ($myIdealForm.isValidField('colors[]')) { // name="colors[]"
+if ($('#my-form').isValidField('colors[]')) { // name="colors[]"
   // do something...
 }
 ```
@@ -416,19 +409,19 @@ Get all invalid fields. Returns a jQuery object.
 **chainable**: yes (but it doesn't return the form, just the invalid fields)
 
 ```javascript
-var numInvalid = $myIdealForm.getInvalid().length // How many invalid fields
+var numInvalid = $('#my-form').getInvalid().length // How many invalid fields
 ```
 
 ####`focusFirst`
 **chainable**: yes
 ```javascript
-$myIdealForm.focusFirst()
+$('#my-form').focusFirst()
 ```
 
 ####`focusFirstInvalid`
 **chainable**: yes
 ```javascript
-$myIdealForm.focusFirstInvalid()
+$('#my-form').focusFirstInvalid()
 ```
 
 ####`fresh`
@@ -436,7 +429,7 @@ Load the form as if it was never focused. This removes `valid` and `invalid` cla
 
 **chainable**: yes
 ```javascript
-$myIdealForm.reset().fresh() // Usually combined with `reset()`
+$('#my-form').reset().fresh() // Usually combined with `reset()`
 ```
 
 ####`reset`
@@ -444,7 +437,7 @@ Reset all fields to zero including checkboxes, radios, and selects.
 
 **chainable**: yes
 ```javascript
-$myIdealForm.reset()
+$('#my-form').reset()
 ```
 
 Example
