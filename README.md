@@ -392,7 +392,7 @@ var newFields = [
       '<label><input type="checkbox" value="Mouse" name="animals[]">Mouse</label>'
   }
 ]
-$myIdealForm.addFields()
+$myIdealForm.addFields(newFields)
 ```
 
 ####`isValidField`
