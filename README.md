@@ -363,8 +363,8 @@ if ($myIdealForm.isValid()) {
 ####`addFields`
 Add fields to the form dynamically. It takes an array of objects. Each field has the following options:
 
-* `name`: the value used as `name` attribute. (required)
-* `title`: the `label` text. (required)
+* `name`: the value used as name attribute. (required)
+* `title`: the label text. (required)
 * `addAfter`: insert the new field after an element. Takes a string. Ideal Forms will look for `name` first and then `id`.
 * `filters`
 * `data`
