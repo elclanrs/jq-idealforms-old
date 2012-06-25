@@ -378,7 +378,7 @@ var newFields = [
   {
     name: 'zip',
     title: 'Zip Code'
-    addAfter: 'email',
+    addAfter: 'langs[]',
     filters: 'required zip',
     // You also need to specify the name in the markup
     markup: '<input type="text" name="zip"/>'
