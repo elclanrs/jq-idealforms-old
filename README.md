@@ -381,10 +381,10 @@ Add fields to the form dynamically. It takes an array of objects. Each field has
 
 **chainable**: yes
 
-#####`name`
-The value used as name attribute. (required)
-#####`title`
-The label text. (required)
+#####`name` (required)
+The value used as name attribute.
+#####`title` (required)
+The label text.
 #####`addAfter`
 Insert the new field after an existing field. Takes a string. Ideal Forms will look for `name` first and then `id`. If ommited the new fields will be added after the last field.
 #####`markup` (required)
