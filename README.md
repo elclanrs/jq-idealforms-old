@@ -9,7 +9,7 @@
 * * *
 # Updates:
 
-* **HOT** New `addFields` method to add fields **dynamically**
+* **HOT** New `addFields` method to add fields **dynamically**.
 * Added `extension` filter that works with the new custom `file` input.
 * **HOT** New custom `file` input type. Supports multiple file on HTML5 browsers.
 * New `getInvalid` method to retrieve all invalid fields.
@@ -118,7 +118,7 @@ Add all the inputs you want to validate here. Use the name attribute of the inpu
 Each input can be customized with **filters**, **data**, **errors** and **flags**.
 
 * `filters`: A space separated string of filters.
-* `data`: Filters that take values can be specified in here. Check documentation on **Built-in filters** for more info.
+* `data`: Filters that take values can be specified in here. Check documentation on **[Built-in filters][]** for more info.
 * `errors`: Use the filter name as the key value and add your custom error. You can use inline HTML tags within the error string.
 * `flags`: Flags are simply functions that run when an input tries to validate. See documentation on **Built-it flags** and **customFlags**.
 
