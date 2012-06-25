@@ -396,6 +396,7 @@ var newFields = [
     addAfter: 'langs[]',
     filters: 'exclude',
     data: { exclude: ['Select an instrument'] },
+    errors: { exclude: 'Please select an instrument' }
     markup: {
       type: 'select',
       list: [
