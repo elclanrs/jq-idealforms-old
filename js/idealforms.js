@@ -376,6 +376,10 @@ $.fn.idealforms = function (ops) {
   */
   PublicMethods = {
 
+    /**
+     * Add fields to the form dynamically
+     * @param fields Array of objects
+     */
     addFields: function (fields) {
 
       // Reverse array to insert in DOM
@@ -403,7 +407,11 @@ $.fn.idealforms = function (ops) {
 
         // Markup
         title = ops.title,
-        markup = ops.markup,
+        markup = Utils.makeInput(
+          name,
+          ops.markup.type,
+          ops.markup.list || ''
+        ),
         $field = $(
           '<div>'+
             '<label>'+ title +':</label>'+ markup +

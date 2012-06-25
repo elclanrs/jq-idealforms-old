@@ -51,6 +51,7 @@ var Utils = {
   },
   /**
    * Determine type of an input
+   * @param $input jQuery $input object
    */
   getInputType: function ($input) {
     var type = $input.attr('type') || $input[0].tagName.toLowerCase()
@@ -61,5 +62,44 @@ var Utils = {
       /(radio|checkbox)/.test(type) && 'radiocheck' ||
       /(button|submit|reset)/.test(type) && 'button'
     )
+  },
+  /**
+   * Generates an input
+   * @param name `name` attribute of the input
+   * @param type `type` or `tagName` of the input
+   */
+  makeInput: function (name, type, list) {
+    var markup,
+        items = []
+
+    // Text & file
+    if (/(text|password|email|number|search|url|tel|file)/.test(type))
+      markup = '<input type="'+ type +'" id="'+ name +'" name="'+ name +'"/>'
+
+    // Select
+    if (/select/.test(type)) {
+      items = []
+      for (var i = 0, len = list.length; i < len; i++)
+        items.push('<option value="'+ list[i] +'">'+ list[i] +'</option>')
+      markup =
+        '<select id="'+ name +'" name="'+ name +'">'+
+          items.join('') +
+        '</select>'
+    }
+
+    // Radiocheck
+    if (/(radio|checkbox)/.test(type)) {
+      items = []
+      for (var i = 0, len = list.length; i < len; i++)
+        items.push(
+          '<label>'+
+            '<input type="'+ type +'" name="'+ name +'" value="'+ list[i] +'" />'+
+            list[i] +
+          '</label>'
+        )
+      markup = items.join('')
+    }
+
+    return markup
   }
 }
