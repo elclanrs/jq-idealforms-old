@@ -141,6 +141,9 @@ $.fn.idealforms = function (ops) {
     adjust: function () {
       var formInputs = FormInputs()
 
+      // Autocomplete causes some problems...
+      formInputs.inputs.attr('autocomplete', 'off')
+
       // Adjust labels
       formInputs.labels
         .addClass('ideal-label')
@@ -170,8 +173,6 @@ $.fn.idealforms = function (ops) {
       $form.css('visibility', 'visible').addClass('ideal-form')
       // Add novalidate tag if HTML5.
       $form.attr('novalidate', 'novalidate')
-      // Autocomplete causes some problems...
-      formInputs.inputs.attr('autocomplete', 'off')
       Actions.adjust()
       formInputs.inputs.each(function(){ Actions.doMarkup($(this)) })
     },
