@@ -358,7 +358,7 @@ Add fields to the form dynamically. It takes an array of objects. Each field has
 
 * `name`: the value used as name attribute. (required)
 * `title`: the label text. (required)
-* `addAfter`: insert the new field an existing field. Takes a string. Ideal Forms will look for `name` first and then `id`.
+* `addAfter`: insert the new field after an existing field. Takes a string. Ideal Forms will look for `name` first and then `id`.
 * `markup`: the HTML code for the new inputs you want to add. Follow Ideal Forms markup standards. Type only the actual markup of the inputs without the wrapper and label. (required)
 * `filters`
 * `data`
