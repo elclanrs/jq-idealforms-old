@@ -356,6 +356,8 @@ if ($('#my-form').isValid()) {
 ####`addFields`
 Add fields to the form dynamically. It takes an array of objects. Each field has the following options:
 
+**chainable**: yes
+
 #####`name`
 The value used as name attribute. (required)
 #####`title`
@@ -374,7 +376,6 @@ For more info check documentation on **[input's options](#inputs)** for the foll
 #####`errors`
 #####`flags`
 
-**chainable**: yes
 ```javascript
 var newFields = [
   {
