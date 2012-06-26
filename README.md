@@ -21,7 +21,7 @@
 
 # What's Ideal Forms:
 
-**Ideal Forms** is a small framework to build awesome responsive forms with validation. It's built on top of jQuery and LESS.
+**Ideal Forms** is the ultimate framework for building and validating responsive HTML5 forms.
 
 ### Features:
 * Fully responsive (AKA adaptive, adapts to the container, no css media queries needed).
