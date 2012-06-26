@@ -349,7 +349,7 @@ $.fn.idealforms = function (ops) {
       $customSelect = $form.find('.ideal-select')
 
       if (o.responsiveAt === 'auto') {
-        $form.outerWidth() < maxWidth
+        $form.width() < maxWidth
           ? $form.addClass('stack')
           : $form.removeClass('stack')
       } else {
