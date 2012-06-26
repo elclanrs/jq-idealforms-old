@@ -377,7 +377,7 @@ if ($('#my-form').isValid()) {
 ```
 
 ####`addFields`
-Add fields to the form dynamically. It takes an array of objects. Ideal Forms auto-generates the inputs fields based on the `type`. Each field has the following options:
+Add fields to the form dynamically. It takes an array of objects. Ideal Forms auto-generates the inputs fields based on the `type`.
 
 **chainable**: yes
 
