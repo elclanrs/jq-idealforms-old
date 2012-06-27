@@ -90,11 +90,11 @@ var Utils = {
     // Radiocheck
     if (/(radio|checkbox)/.test(type)) {
       items = []
-      for (var i = 0, len = list.length; i < len; i++)
+      for (var j = 0, le = list.length; j < le; j++)
         items.push(
           '<label>'+
-            '<input type="'+ type +'" name="'+ name +'" value="'+ list[i] +'" />'+
-            list[i] +
+            '<input type="'+ type +'" name="'+ name +'" value="'+ list[j] +'" />'+
+            list[j] +
           '</label>'
         )
       markup = items.join('')
