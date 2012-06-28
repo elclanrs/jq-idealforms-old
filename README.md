@@ -1,10 +1,21 @@
 # Ideal Forms
 
-**[DEMO](http://elclanrs.github.com/jq-idealforms/)**
-
+* **[DEMO](http://elclanrs.github.com/jq-idealforms/)**
 * **Support:** IE8+, Webkit, Firefox, Opera, iOS 5+.
 * **jQuery 1.7+**
 * **License:** [GPL](http://www.gnu.org/licenses/gpl.html) or [MIT](http://en.wikipedia.org/wiki/MIT_License)
+
+**Ideal Forms** is the ultimate framework for building and validating responsive HTML5 forms.
+
+### Features:
+* Fully responsive (AKA adaptive, adapts to the container, no css media queries needed).
+* Keyboard support.
+* Every input type can be customized including `select`, `radio`, `checkbox` and `file`.
+* "On the spot" validation.
+* Localization
+* Support HTML5 `placeholder` attribute for every browser.
+
+Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
 * * *
 # Updates:
@@ -22,20 +33,6 @@
 "I need feedback for mobile devices. Please report any bugs you might find in iOS or Android."
 ```
 * **[Android - text inputs not validating](http://stackoverflow.com/questions/10822758/android-text-inputs-not-validating-with-custom-validation-plugin)**
-
-# What's Ideal Forms:
-
-**Ideal Forms** is the ultimate framework for building and validating responsive HTML5 forms.
-
-### Features:
-* Fully responsive (AKA adaptive, adapts to the container, no css media queries needed).
-* Keyboard support.
-* Every input type can be customized including `select`, `radio`, `checkbox` and `file`.
-* "On the spot" validation.
-* Localization
-* Support HTML5 `placeholder` attribute for every browser.
-
-Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
 # How to use it:
 
