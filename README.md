@@ -381,7 +381,7 @@ if ($myform.isValid()) {
 ```
 
 ####`addFields`
-Add fields to the form dynamically. It takes an array of objects. Ideal Forms auto-generates the inputs fields based on the `type`.
+Add fields to the form dynamically. It takes an array of objects. Ideal Forms auto-generates the markup for inputs fields based on the `type` specified.
 
 **chainable**: yes
 
