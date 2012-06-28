@@ -36,7 +36,7 @@ Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
 Load the latest [jQuery library](http://jquery.com), the `js/min/jquery.idealforms.min.js` plugin and the `css/jquery.idealforms.css` stylesheet into your project.
 
-To localize Ideal Forms, just load the language file from the i18n folder after loading the plugin.
+To localize Ideal Forms in your language, load the correspondening file from the i18n folder after loading the plugin.
 
 ## Index
 
