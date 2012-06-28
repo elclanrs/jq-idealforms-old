@@ -28,7 +28,8 @@ $.idealforms.errors = {
 }
 
 /**
- * @namespace All default filters
+ * Get all default filters
+ * @returns object
  */
 var getFilters = function () {
   return {

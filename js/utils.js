@@ -69,9 +69,8 @@ var Utils = {
    * @param type `type` or `tagName` of the input
    */
   makeInput: function (name, type, list) {
-    var markup,
-        items = [],
-        i, len
+
+    var markup, items = [], i, len
 
     // Text & file
     if (/(text|password|email|number|search|url|tel|file)/.test(type))
