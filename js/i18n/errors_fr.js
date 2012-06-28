@@ -7,7 +7,7 @@ $.extend($.idealforms.errors, {
   number: 'Veuillez fournir un numéro valide.',
   digits: 'Veuillez fournir seulement des chiffres.',
   name: 'Veuillez fournir au moins 3 caractères et seulment des lettres.',
-  username: 'Veuillez fournir entre 4 et 32 caractères, commencer par une lettre. Vous pouvez utiliser des lettres, des numéros, des tirets et un point.',
+  username: 'Veuillez fournir entre 4 et 32 caractères et commencer par une lettre. Vous pouvez utiliser des lettres, des numéros, des tirets et un point.',
   pass: 'Veuillez fournir au moins 6 caractères, un numéro, une lettre majuscule et une minuscule.',
   strongpass: 'Veuillez fournir au moins 8 caractères, une lettre majuscule, une minuscule et une numero ou caractère special.',
   email: 'Veuillez fournir une adresse électronique valide. <em>(e.g. user@gmail.com)</em>',
