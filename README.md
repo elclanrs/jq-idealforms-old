@@ -127,9 +127,9 @@ Alternatively, for very simple forms, you can do it "the easy way" and just add 
 
 Invoke the plugin
 -----------------
-Call **Ideal Forms** on each form separately.
+Call **Ideal Forms** on each form separately. Assign each form to a variable to be able to use its public methods.
 ```javascript
-$('#my-form').idealforms({ options });
+var $myform = $('#my-form').idealforms({ options });
 ```
 
 Options
@@ -371,7 +371,7 @@ Check if the form is valid.
 
 **chainable**: no
 ```javascript
-if ($('#my-form').isValid()) {
+if ($myform.isValid()) {
   // do something...
 }
 ```
@@ -426,7 +426,7 @@ var newFields = [
     ]
   }
 ]
-$('#my-form').addFields(newFields)
+$myform.addFields(newFields)
 ```
 
 ####`isValidField`
@@ -434,10 +434,10 @@ Check if a particular field is valid. The function takes a string. Ideal Forms w
 
 **chainable**: no
 ```javascript
-if ($('#my-form').isValidField('username')) { // name="username" OR #username
+if ($myform.isValidField('username')) { // name="username" OR #username
   // do something...
 }
-if ($('#my-form').isValidField('colors[]')) { // name="colors[]"
+if ($myform.isValidField('colors[]')) { // name="colors[]"
   // do something...
 }
 ```
@@ -448,7 +448,7 @@ Get all invalid fields. Returns a jQuery object.
 **chainable**: yes (but it doesn't return the form, just the invalid fields)
 
 ```javascript
-var numInvalid = $('#my-form').getInvalid().length // How many invalid fields
+var numInvalid = $myform.getInvalid().length // How many invalid fields
 ```
 
 ####`focusFirst`
@@ -456,7 +456,7 @@ Focus the very first field.
 
 **chainable**: yes
 ```javascript
-$('#my-form').focusFirst()
+$myform.focusFirst()
 ```
 
 ####`focusFirstInvalid`
@@ -464,7 +464,7 @@ Focus the first invalid field.
 
 **chainable**: yes
 ```javascript
-$('#my-form').focusFirstInvalid()
+$myform.focusFirstInvalid()
 ```
 
 ####`fresh`
@@ -472,7 +472,7 @@ Load the form as if it was never focused. This removes `valid` and `invalid` cla
 
 **chainable**: yes
 ```javascript
-$('#my-form').reset().fresh() // Usually combined with `reset()`
+$myform.reset().fresh() // Usually combined with `reset()`
 ```
 
 ####`reset`
@@ -480,7 +480,7 @@ Reset all fields to zero including checkboxes, radios, and selects.
 
 **chainable**: yes
 ```javascript
-$('#my-form').reset()
+$myform.reset()
 ```
 
 Example
@@ -488,7 +488,7 @@ Example
 With the markup provided above you'd call the plugin like this:
 
 ```javascript
-$('#my-form').idealforms({
+$myform.idealforms({
 
   inputs: {
     'username': {

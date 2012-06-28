@@ -1,6 +1,7 @@
 /**
  * @namespace jq-idealforms jQuery plugin
  */
+
 $.fn.idealforms = function (ops) {
 
   var
@@ -17,11 +18,14 @@ $.fn.idealforms = function (ops) {
     onFail: function () {
       alert('The form does not validate! Check again...')
     },
+    locale: 'en',
     responsiveAt: 'auto',
     customInputs: true
   }, ops),
 
   $form = this, // The form
+
+  Filters = getFilters(), // Get filters with localized errors
 
   /**
    * @namespace All form inputs of the given form
