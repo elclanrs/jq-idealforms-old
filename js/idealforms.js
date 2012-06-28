@@ -40,7 +40,7 @@ $.fn.idealforms = function (ops) {
       select: $form.find('select'),
       radiocheck: $form.find('input[type="radio"], input[type="checkbox"]'),
       buttons: $form.find(':button'),
-      file: $form.find('[type="file"]')
+      file: $form.find('input[type="file"]')
     }
   },
 
@@ -213,7 +213,7 @@ $.fn.idealforms = function (ops) {
           userFilters = userFilters.split(/\s/)
           for (var i = 0, len = userFilters.length; i < len; i++) {
             var uf = userFilters[i],
-                theFilter = Filters[uf] || ''
+                theFilter = Filters[uf] || {}
             if (
               theFilter && (
                 Utils.isFunction(theFilter.regex) && !theFilter.regex(input, value) ||
@@ -247,8 +247,7 @@ $.fn.idealforms = function (ops) {
 
       var
 
-      isRadiocheck = input.is('[type="checkbox"], [type="radio"]'),
-      isFile = input.is('[type="file"]'),
+      isRadiocheck = input.is('[type="checkbox"], [type="radio"]')
 
       $input = (function(){
         var userInputs = getUserInputs()
