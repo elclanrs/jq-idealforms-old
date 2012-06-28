@@ -13,7 +13,9 @@
 * **HOT** New custom `file` input type. Supports multiple file on HTML5 browsers.
 
 # Help:
-
+```javascript
+"Help translating Ideal Forms into other languages."
+```
 ```javascript
 "I need feedback for mobile devices. Please report any bugs you might find in iOS or Android."
 ```
