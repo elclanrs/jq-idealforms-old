@@ -247,7 +247,7 @@ $.fn.idealforms = function (ops) {
 
       var
 
-      isRadiocheck = input.is('[type="checkbox"], [type="radio"]')
+      isRadiocheck = input.is('[type="checkbox"], [type="radio"]'),
 
       $input = (function(){
         var userInputs = getUserInputs()
