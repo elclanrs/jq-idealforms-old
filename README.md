@@ -63,7 +63,6 @@ To localize Ideal Forms in your language, load the correspondening file from the
     * [focusFirstInvalid](#focusfirstinvalid)
     * [fresh](#fresh)
     * [reset](#reset)
-* [Localization](#localization)
 * [Example](#example)
 * [Theming](#theming)
 
