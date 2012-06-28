@@ -7,7 +7,7 @@
 * * *
 # Updates:
 
-* Localization. Use Ideal Forms in any language.
+* Localization. Translate Ideal Forms into any language.
 * **HOT** New `addFields` method to add fields **dynamically**.
 * Added `extension` filter that works with the new custom `file` input.
 * **HOT** New custom `file` input type. Supports multiple file on HTML5 browsers.
