@@ -22,6 +22,6 @@ $.extend($.idealforms.errors, {
   exclude: '"{0}" n\'est pas disponible.',
   excludeOption: '{0}',
   equalto: 'Veuillez fournir encore la même valeur que <strong>"{0}"</strong>',
-  extension: 'Veuillez fournir des fichiers avec une extension valide.' + '<em>(e.g. "{0}")</em>'
+  extension: 'Veuillez fournir des fichiers avec une extension valide. <em>(e.g. "{0}")</em>'
 
 })

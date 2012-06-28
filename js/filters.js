@@ -23,7 +23,7 @@ $.idealforms.errors = {
   exclude: '"{0}" is not available.',
   excludeOption: '{0}',
   equalto: 'Must be the same value as <strong>"{0}"</strong>',
-  extension: 'File(s) must have a valid extension. ' + '<em>(e.g. "{0}")</em>'
+  extension: 'File(s) must have a valid extension. <em>(e.g. "{0}")</em>'
 
 }
 
