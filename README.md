@@ -13,7 +13,7 @@
 * Every input type can be customized including `select`, `radio`, `checkbox` and `file`.
 * "On the spot" validation.
 * Localization
-* Enable HTML5 `placeholder` for every browser.
+* HTML5 `placeholder` for every browser.
 
 Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
