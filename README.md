@@ -28,6 +28,7 @@
 * Keyboard support.
 * Every input type can be customized including `select`, `radio`, `checkbox` and `file`.
 * "On the spot" validation.
+* Localization
 * Support HTML5 `placeholder` attribute for every browser.
 
 Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
