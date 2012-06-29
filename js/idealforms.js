@@ -18,7 +18,6 @@ $.fn.idealforms = function (ops) {
     onFail: function () {
       alert('The form does not validate! Check again...')
     },
-    locale: 'en',
     responsiveAt: 'auto',
     customInputs: true
   }, ops),
