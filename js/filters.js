@@ -177,10 +177,8 @@ var getFilters = function () {
             extensions = input.userOptions.data.extension,
             re = new RegExp('\\.'+ extensions.join('|') +'$', 'i'),
             valid = false
-        for (var i = 0, len = files.length; i < len; i++) {
-          if (re.test(files[i].name)) valid = true
-          else valid = false
-        }
+        for (var i = 0, len = files.length; i < len; i++)
+          valid = re.test(files[i].name) ? true : false
         this.error = $.idealforms.errors.extension.replace('{0}', extensions.join('", "'))
         return valid
       }
