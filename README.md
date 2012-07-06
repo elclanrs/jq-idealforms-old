@@ -20,10 +20,10 @@ Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 * * *
 # Updates:
 
+* Added headings and separators. Check out demo.
 * Localization. Translate Ideal Forms into any language.
 * **HOT** New `addFields` method to add fields **dynamically**.
 * Added `extension` filter that works with the new custom `file` input.
-* **HOT** New custom `file` input type. Supports multiple file on HTML5 browsers.
 
 # Help:
 ```javascript
@@ -77,6 +77,9 @@ If you're working with dynamic fields check documentation on **[addFields](#addf
 ```html
 <form id="my-form">
 
+  <!-- Heading -->
+  <div><h1>My Heading</h1></div>
+
   <!-- Text -->
   <div><label>Username:</label><input type="text" name="username"/></div>
   <div><label>Date:</label><input type="text" name="date" placeholder="mm/dd/yy"/></div>
@@ -111,6 +114,9 @@ If you're working with dynamic fields check documentation on **[addFields](#addf
     <label><input type="radio" name="options" value="Two"/>Two</label>
     <label><input type="radio" name="options" value="Three"/>Three</label>
   </div>
+
+  <!-- Separator -->
+  <div><hr/></div>
 
   <!-- Buttons -->
   <!-- Empty label to align with all the other inputs -->
