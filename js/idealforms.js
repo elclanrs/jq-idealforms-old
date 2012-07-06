@@ -39,7 +39,9 @@ $.fn.idealforms = function (ops) {
       select: $form.find('select'),
       radiocheck: $form.find('input[type="radio"], input[type="checkbox"]'),
       buttons: $form.find(':button'),
-      file: $form.find('input[type="file"]')
+      file: $form.find('input[type="file"]'),
+      headings: $form.find('h1, h2, h3, h4, h5'),
+      separators: $form.find('hr')
     }
   },
 
@@ -73,11 +75,11 @@ $.fn.idealforms = function (ops) {
      * Generate markup for any given input
      * @memberOf Actions
      */
-    doMarkup: function ($input) {
+    doMarkup: function ($el) {
 
       var
 
-      type = Utils.getInputType($input),
+      type = Utils.getIdealType($el),
 
       // Append errors and icons
       addValidationEls = function () {
@@ -94,46 +96,57 @@ $.fn.idealforms = function (ops) {
             else $this.siblings('input, select, textarea').focus()
           }
         })
-        $input.parents('.ideal-field')
+        $el.parents('.ideal-field')
           .append($valid.add($invalid).hide())
           .after($error.hide())
       },
 
       // Input Types
-      inputTypes = {
-        'default': function () {
-          $input.wrapAll('<span class="ideal-field"/>')
+      idealTypes = {
+        'default': $.noop,
+        defaultInput: function () {
+          $el.wrapAll('<span class="ideal-field"/>')
           addValidationEls()
         },
         button: function () {
-          if (o.customInputs) $input.addClass('ideal-button')
+          if (o.customInputs) $el.addClass('ideal-button')
         },
         file: function () {
-          inputTypes['default']()
-          if (o.customInputs) $input.toCustomFile()
+          idealTypes.defaultInput()
+          if (o.customInputs) $el.toCustomFile()
         },
         select: function () {
-          inputTypes['default']()
-          if (o.customInputs) $input.toCustomSelect()
+          idealTypes.defaultInput()
+          if (o.customInputs) $el.toCustomSelect()
         },
-        text: function () { inputTypes['default']() },
+        text: function () {
+          idealTypes.defaultInput()
+        },
         radiocheck: function () {
-          var isWrapped = $input.parents('.ideal-field').length,
-              $all = $input.parent().siblings('label:not(:first)').andSelf()
-          if (o.customInputs) $input.toCustomRadioCheck()
+          var isWrapped = $el.parents('.ideal-field').length,
+              $all = $el.parent().siblings('label:not(:first)').andSelf()
+          if (o.customInputs) $el.toCustomRadioCheck()
           if (!isWrapped) {
             $all.wrapAll('<span class="ideal-field ideal-radiocheck"/>')
             addValidationEls()
           } else {
             return false
           }
+        },
+        description: function () {
+          $el.closest('div').addClass('ideal-heading')
+        },
+        separator: function () {
+          $el.closest('div').addClass('ideal-separator')
         }
       }
 
       // Wrapper
-      $input.closest('div').addClass('ideal-wrap')
+      $el.closest('div').addClass('ideal-wrap')
 
-      inputTypes[type]()
+      idealTypes[type]
+        ? idealTypes[type]()
+        : idealTypes['default']()
 
     },
 
@@ -177,7 +190,12 @@ $.fn.idealforms = function (ops) {
       // Add novalidate tag if HTML5.
       $form.attr('novalidate', 'novalidate')
       Actions.adjust()
-      formInputs.inputs.each(function(){ Actions.doMarkup($(this)) })
+      formInputs.inputs
+        .add(formInputs.headings)
+        .add(formInputs.separators)
+        .each(function(){
+          Actions.doMarkup($(this))
+        })
     },
 
     /** Validates an input

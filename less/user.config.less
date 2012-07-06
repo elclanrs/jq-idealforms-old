@@ -10,7 +10,8 @@
 /*------------------------------------------------------ */
 
   @font-size: 15px;
-  @font-family: inherit;
+  @font-family: sans-serif;
+  @font-family-alt: sans-serif;
   @small-font-size: 85%;
   @input-width: @font-size * 15;
   @label-align: left;
@@ -18,6 +19,7 @@
   @border-width: 1px;
   @border-radius: 3px;
   @error-width: @input-width/1.2;
+  @heading-padding: 0.6em 0;
   @css3-anim: true;
   @css3-effects: true; // box-shadow and gradients
 
@@ -31,6 +33,18 @@
   @icon-size: 16px;
   @valid-icon: "../img/valid.png";
   @invalid-icon: "../img/invalid.png";
+
+  /* Separator */
+  @sep-border-color: fade(@error-color, 50%);
+  @sep-border-width: 0 0 1px 0;
+  @sep-border-style: dashed;
+
+  /* Headings */
+  @heading-text: @error-color;
+  @heading-bg: transparent;
+  @heading-border-color: @sep-border-color;
+  @heading-border-width: @sep-border-width;
+  @heading-border-style: @sep-border-style;
 
   /* Text inputs */
   @text-bg: white;

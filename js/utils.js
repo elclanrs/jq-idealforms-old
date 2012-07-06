@@ -50,17 +50,19 @@ var Utils = {
     )
   },
   /**
-   * Determine type of an input
+   * Determine type of any Ideal Forms element
    * @param $input jQuery $input object
    */
-  getInputType: function ($input) {
-    var type = $input.attr('type') || $input[0].tagName.toLowerCase()
+  getIdealType: function ($el) {
+    var type = $el.attr('type') || $el[0].tagName.toLowerCase()
     return (
       /(text|password|email|number|search|url|tel)/.test(type) && 'text' ||
       /file/.test(type) && 'file' ||
       /select/.test(type) && 'select' ||
       /(radio|checkbox)/.test(type) && 'radiocheck' ||
-      /(button|submit|reset)/.test(type) && 'button'
+      /(button|submit|reset)/.test(type) && 'button' ||
+      /h\d/.test(type) && 'description' ||
+      /hr/.test(type) && 'separator'
     )
   },
   /**

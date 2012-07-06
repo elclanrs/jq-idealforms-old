@@ -56,6 +56,10 @@
     padding-right: 1.5em;
     text-align: @label-align;
   }
+
+  /* -------------------------------------------------------
+    Inputs:
+  -------------------------------------------------------- */
   input[type="text"],
   input[type="password"],
   input[type="email"],
@@ -87,6 +91,10 @@
   input[type="checkbox"] {
     margin-right: .5em;
   }
+
+  /* -------------------------------------------------------
+    Buttons:
+  -------------------------------------------------------- */
   button,
   input[type="reset"],
   input[type="submit"] {
@@ -101,6 +109,43 @@
   input[type="submit"] {
     font-size: @small-font-size;
   }
+
+/* -------------------------------------------------------
+    Headings:
+  -------------------------------------------------------- */
+  .ideal-heading {
+    width: 100%;
+    background: @heading-bg;
+    border-color: @heading-border-color;
+    border-style: @heading-border-style;
+    border-width: @heading-border-width;
+    color: @heading-text;
+    margin: 2em 0 1.2em 0;
+    font-family: @font-family-alt;
+    h1, h2, h3, h4, h5, h6 {
+      display: block;
+      padding: @heading-padding;
+      margin: 0;
+      font-size: 130%;
+    }
+    &:first-child { margin-top: 0; }
+  }
+
+/* -------------------------------------------------------
+    Separators:
+  -------------------------------------------------------- */
+  hr { border: 0; }
+  .ideal-separator {
+    width: 100%;
+    margin: 2em 0 1.2em 0;
+    border-color: @sep-border-color;
+    border-style: @sep-border-style;
+    border-width: @sep-border-width;
+  }
+
+  /* -------------------------------------------------------
+    Descriptions:
+  -------------------------------------------------------- */
   p {
     margin: 0;
     padding: 0;
