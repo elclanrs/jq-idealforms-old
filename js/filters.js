@@ -159,11 +159,11 @@ var getFilters = function () {
       regex: function (input, value) {
         var $equals = $(input.userOptions.data.equalto),
             $input = input.input,
-            name = $equals.attr('name') || $equals.attr('id')
+            name = $equals.attr('name') || $equals.attr('id'),
             isValid =
               $equals
                 .parents('.ideal-field')
-                .filter(function(){ return $(this).data('isValid') === false })
+                .filter(function(){ return $(this).data('isValid') === true })
                 .length
         if (!isValid) return false
         this.error = $.idealforms.errors.equalto.replace('{0}', name)
