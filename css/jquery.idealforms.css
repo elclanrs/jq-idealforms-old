@@ -26,11 +26,11 @@ textarea{overflow:auto;vertical-align:top;}
 .ideal-form input[type="radio"],.ideal-form input[type="checkbox"]{margin-right:.5em;}
 .ideal-form button,.ideal-form input[type="reset"],.ideal-form input[type="submit"]{font-family:sans-serif;height:33px;line-height:33px;padding:0 .8em;padding:0 1.2em;margin-right:1em;margin-bottom:1em;}
 .ideal-form button,.ideal-form select,.ideal-form input[type="reset"],.ideal-form input[type="submit"]{font-size:85%;}
-.ideal-form .ideal-heading{width:100%;background:transparent;border-color:rgba(31, 79, 115, 0.5);border-style:dashed;border-width:0 0 1px 0;color:#1f4f73;margin:2em 0 1.2em 0;font-family:sans-serif;}.ideal-form .ideal-heading h1,.ideal-form .ideal-heading h2,.ideal-form .ideal-heading h3,.ideal-form .ideal-heading h4,.ideal-form .ideal-heading h5,.ideal-form .ideal-heading h6{display:block;padding:0.6em 0;margin:0;font-size:130%;}
+.ideal-form .ideal-heading{background:transparent;border-color:rgba(31, 79, 115, 0.5);border-style:dashed;border-width:0 0 1px 0;color:#1f4f73;margin:2em 0 1.2em 0;font-family:sans-serif;}.ideal-form .ideal-heading h1,.ideal-form .ideal-heading h2,.ideal-form .ideal-heading h3,.ideal-form .ideal-heading h4,.ideal-form .ideal-heading h5,.ideal-form .ideal-heading h6{display:block;padding:0.6em 0;margin:0;font-size:130%;}
 .ideal-form .ideal-heading p{margin:0;padding:0 0 1em 0;}
 .ideal-form .ideal-heading:first-child{margin-top:0;}
 .ideal-form hr{border:0;}
-.ideal-form .ideal-separator{width:100%;margin:2em 0 1.2em 0;border-color:rgba(31, 79, 115, 0.5);border-style:dashed;border-width:0 0 1px 0;}
+.ideal-form .ideal-separator{margin:2em 0 1.2em 0;border-color:rgba(31, 79, 115, 0.5);border-style:dashed;border-width:0 0 1px 0;}
 .ideal-form .icon{position:absolute;top:50%;margin-top:-8px;right:-24px;height:16px;width:16px;}
 .ideal-form textarea~.valid-icon,.ideal-form textarea~.invalid-icon,.ideal-form .ideal-select~.valid-icon,.ideal-form .ideal-select~.invalid-icon,.ideal-form .ideal-radiocheck .valid-icon,.ideal-form .ideal-radiocheck .invalid-icon{top:7.5px;margin-top:0;}
 .ideal-form .valid-icon{background:url("../img/valid.png") no-repeat;}

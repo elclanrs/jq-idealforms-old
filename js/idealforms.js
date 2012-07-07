@@ -140,7 +140,7 @@ $.fn.idealforms = function (ops) {
             $all.wrapAll('<span class="ideal-field ideal-heading"/>')
         },
         separator: function () {
-          $el.closest('div').addClass('ideal-separator')
+          $el.wrapAll('<div class="ideal-field ideal-separator"/>')
         }
       }
 
@@ -167,6 +167,11 @@ $.fn.idealforms = function (ops) {
       formInputs.labels
         .addClass('ideal-label')
         .width(Utils.getMaxWidth(formInputs.labels))
+
+      // Adjust headings and separators
+      formInputs.headings
+        .add(formInputs.separators)
+        .width($form.width())
 
       // Placeholder support
       if (!('placeholder' in $('<input/>')[0])) {
