@@ -54,7 +54,13 @@ $.fn.toCustomFile = function () {
         keyup: function () { $file.trigger('change') },
         focus: function () { $file.trigger('change') },
         blur: function () { $file.trigger('blur') },
-        keydown: function (e) { if (e.which === 13) $file.trigger('click') }
+        keydown: function (e) {
+          // Enter
+          if (e.which === 13) $file.trigger('click')
+          // Backspace & Del
+          if (e.which === 8 || e.which === 46)
+            $file.val('')
+        }
       })
 
     // Append to DOM
