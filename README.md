@@ -20,7 +20,7 @@ Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 * * *
 # Updates:
 
-* Added headings and separators. Check out demo.
+* Added separators and headings with descriptions. Check out demo.
 * Localization. Translate Ideal Forms into any language.
 * **HOT** New `addFields` method to add fields **dynamically**.
 * Added `extension` filter that works with the new custom `file` input.
@@ -78,7 +78,10 @@ If you're working with dynamic fields check documentation on **[addFields](#addf
 <form id="my-form">
 
   <!-- Heading -->
-  <div><h1>My Heading</h1></div>
+  <div>
+    <h1>My Heading</h1>
+    <p>Description here</p>
+  </div>
 
   <!-- Text -->
   <div><label>Username:</label><input type="text" name="username"/></div>
