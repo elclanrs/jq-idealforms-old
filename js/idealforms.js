@@ -137,10 +137,10 @@ $.fn.idealforms = function (ops) {
           var isWrapped = $el.parents('.ideal-field').length,
               $all = $el.siblings().andSelf()
           if (!isWrapped)
-            $all.wrapAll('<span class="ideal-field ideal-heading"/>')
+            $all.wrapAll('<span class="ideal-heading"/>')
         },
         separator: function () {
-          $el.wrapAll('<div class="ideal-field ideal-separator"/>')
+          $el.wrapAll('<div class="ideal-separator"/>')
         }
       }
 
@@ -172,6 +172,7 @@ $.fn.idealforms = function (ops) {
       formInputs.headings
         .add(formInputs.separators)
         .width($form.width())
+        .first().parent().addClass('ideal-heading-first')
 
       // Placeholder support
       if (!('placeholder' in $('<input/>')[0])) {

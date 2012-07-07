@@ -114,6 +114,7 @@
     Headings & descriptions:
   -------------------------------------------------------- */
   .ideal-heading {
+    display: block;
     background: @heading-bg;
     border-color: @heading-border-color;
     border-style: @heading-border-style;
@@ -131,8 +132,8 @@
       margin: 0;
       padding: 0 0 1em 0;
     }
-    &:first-child { margin-top: 0; }
   }
+  .ideal-heading-first { margin-top: 0; }
 
 /* -------------------------------------------------------
     Separators:
@@ -236,6 +237,8 @@
   ------------------------------------------------------ */
   &.stack {
     .ideal-field,
+    .ideal-heading,
+    .ideal-separator,
     .error {
     @icon: @icon-size + (@icon-padding * 2);
     @total: (@input-width + @icon);
