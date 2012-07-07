@@ -42,9 +42,6 @@
     .no-user-select;
   }
   .ideal-select {
-    .auto-width() when (@select-auto-width) { width: @input-width; }
-    .auto-width() when not (@select-auto-width) {}
-    .auto-width();
     .item,
     .title {
       .ui-input;
@@ -57,6 +54,9 @@
   -------------------------------------------------------- */
   .ideal-select.menu,
   .ideal-select.list {
+    .auto-width() when (@select-auto-width) { width: @input-width; }
+    .auto-width() when not (@select-auto-width) {}
+    .auto-width();
     font-size: @small-font-size;
     .title {
       .ui-color(@select-title, @select-title-text);
@@ -135,6 +135,7 @@
     List mode:
   -------------------------------------------------------- */
   .ideal-select.list {
+    width: auto;
     .title:after,
     &.focus .title:after,
     &:hover .title:after {
