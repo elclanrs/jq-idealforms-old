@@ -40,7 +40,7 @@ $.fn.idealforms = function (ops) {
       radiocheck: $form.find('input[type="radio"], input[type="checkbox"]'),
       buttons: $form.find(':button'),
       file: $form.find('input[type="file"]'),
-      headings: $form.find('h1, h2, h3, h4, h5'),
+      headings: $form.find('h1, h2, h3, h4, h5, p'),
       separators: $form.find('hr')
     }
   },
@@ -134,7 +134,10 @@ $.fn.idealforms = function (ops) {
           }
         },
         description: function () {
-          $el.closest('div').addClass('ideal-heading')
+          var isWrapped = $el.parents('.ideal-field').length,
+              $all = $el.siblings().andSelf()
+          if (!isWrapped)
+            $all.wrapAll('<span class="ideal-field ideal-heading"/>')
         },
         separator: function () {
           $el.closest('div').addClass('ideal-separator')
@@ -189,13 +192,13 @@ $.fn.idealforms = function (ops) {
       $form.css('visibility', 'visible').addClass('ideal-form')
       // Add novalidate tag if HTML5.
       $form.attr('novalidate', 'novalidate')
-      Actions.adjust()
       formInputs.inputs
         .add(formInputs.headings)
         .add(formInputs.separators)
         .each(function(){
           Actions.doMarkup($(this))
         })
+      Actions.adjust()
     },
 
     /** Validates an input
