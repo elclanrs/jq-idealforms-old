@@ -42,7 +42,9 @@
     .no-user-select;
   }
   .ideal-select {
-    width: @input-width;
+    .auto-width() when (@select-auto-width) { width: @input-width; }
+    .auto-width() when not (@select-auto-width) {}
+    .auto-width();
     .item,
     .title {
       .ui-input;
@@ -108,13 +110,15 @@
       border: @border-width solid darken(@select-sub-bg, 30%);
       border-top: 0;
       border-radius: 0 0 @border-radius @border-radius;
-      /* Last item fix round border */
       .item {
         @size: floor(@select-item-height);
         height: @size;
+        text-overflow: ellipsis;
+        overflow: hidden;
         line-height: @size;
         .box-shadow(none);
       }
+      /* Last item fix round border */
       .item:last-child {
         border-radius: 0 0 @border-radius @border-radius;
       }

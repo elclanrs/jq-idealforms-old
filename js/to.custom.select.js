@@ -51,6 +51,7 @@ $.fn.toCustomSelect = function () {
           left: '-9999px'
         })
         Select.select.insertAfter($select)
+        Select.select.css('min-width', Utils.getMaxWidth(Select.items))
         Select.sub.hide()
         Select.items.eq(Select.options.filter(':selected').index()).addClass('selected')
       }()),

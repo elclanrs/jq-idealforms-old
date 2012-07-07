@@ -96,7 +96,7 @@ var getFilters = function () {
           this.error = $.idealforms.errors.minOption.replace('{0}', min)
           return i.filter(':checked').length >= min
         }
-        this.error = $.idealforms.errors.minOption.replace('{0}', min)
+        this.error = $.idealforms.errors.min.replace('{0}', min)
         return value.length >= min
       }
     },
