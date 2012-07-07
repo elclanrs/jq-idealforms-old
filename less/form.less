@@ -8,7 +8,7 @@
 /*------------------------------------------------------ */
 
   /* jQuery data */
-  @ideal-field-width: @input-width + @error-width + @icon-size + (@icon-padding * 2) + @arrow-size;
+  @ideal-field-width: @input-width + @error-width + @icon-size + (@icon-padding*2) + @arrow-size + (@heading-padding*2);
   .ideal-field-width {
     width: @ideal-field-width;
   }
@@ -23,6 +23,7 @@
   font-size: @font-size;
   font-family: @font-family;
   line-height: 1.5;
+  background: @form-bg;
   * {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -45,6 +46,9 @@
     position: relative;
     margin: .5em 0;
   }
+  .ideal-wrap:first-child {
+    margin-top: 0;
+  }
   .ideal-label,
   .ideal-field {
     float: left;
@@ -53,7 +57,7 @@
   .ideal-label {
     top: .4em; /* Aprox. align */
     max-width: @label-width;
-    padding-right: 1.5em;
+    margin: 0 1.5em 0 @heading-padding-left;
     text-align: @label-align;
   }
 
@@ -115,25 +119,35 @@
   -------------------------------------------------------- */
   .ideal-heading {
     display: block;
-    background: @heading-bg;
+    position: relative;
+    .heading-gradient() when (@css3-effects) { .gradient(@heading-bg, @form-bg) }
+    .heading-gradient() when not (@css3-effects) { .gradient(black, @heading-bg); }
+    .heading-gradient();
+    .box-shadow(inset lighten(@heading-bg, 30%) 0 1px 0);
     border-color: @heading-border-color;
     border-style: @heading-border-style;
     border-width: @heading-border-width;
     color: @heading-text;
     margin: 2em 0 1.2em 0;
+    padding: @heading-padding 0;
+    border-radius: @border-radius;
     font-family: @font-family-alt;
     h1, h2, h3, h4, h5, h6 {
       display: block;
-      padding: @heading-padding;
       margin: 0;
+      padding: 0 0 .5em 0;
       font-size: 130%;
     }
     p {
       margin: 0;
-      padding: 0 0 1em 0;
+      padding: 0;
+    }
+    h1, h2, h3, h4, h5, h6, p {
+      padding-left: @heading-padding-left;
+      padding-right: @heading-padding;
     }
   }
-  .ideal-heading-first { margin-top: 0; }
+  .ideal-heading.first-child { margin-top: 0; }
 
 /* -------------------------------------------------------
     Separators:
@@ -240,10 +254,10 @@
     .ideal-heading,
     .ideal-separator,
     .error {
-    @icon: @icon-size + (@icon-padding * 2);
-    @total: (@input-width + @icon);
-    @percent: (@icon / @total) * 100;
-      width: 100% - @percent;
+      @icon: @icon-size + (@icon-padding * 2);
+      @total: (@input-width + @icon);
+      @percent: (@icon / @total) * 100;
+      width: 100% - @percent !important;
     }
     .ideal-wrap,
     input[type="text"],

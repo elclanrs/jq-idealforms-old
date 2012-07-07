@@ -169,10 +169,9 @@ $.fn.idealforms = function (ops) {
         .width(Utils.getMaxWidth(formInputs.labels))
 
       // Adjust headings and separators
-      formInputs.headings
-        .add(formInputs.separators)
+      $form.find('.ideal-heading, .ideal-separator')
         .width($form.width())
-        .first().parent().addClass('ideal-heading-first')
+        .first().addClass('first-child')
 
       // Placeholder support
       if (!('placeholder' in $('<input/>')[0])) {
@@ -394,6 +393,8 @@ $.fn.idealforms = function (ops) {
         $emptyLabel.show()
         $customSelect.trigger('menu')
       }
+
+      Actions.adjust()
 
     }
   },

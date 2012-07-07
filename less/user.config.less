@@ -18,14 +18,17 @@
   @label-width: auto; /* `auto` for auto-adjust */
   @border-width: 1px;
   @border-radius: 3px;
-  @error-width: @input-width/1.2;
-  @heading-padding: 0.6em 0;
+  @heading-padding: @font-size * 1.5;
+  @heading-padding-left: 0; // Set to `0` to align left without background color
   @css3-anim: true;
   @css3-effects: true; // box-shadow and gradients
 
 /*--------------------------------------------------------
   Theme:
 ------------------------------------------------------- */
+
+  /* Form */
+  @form-bg: white;
 
   /* Validation */
   @error-color: #1F4F73;
@@ -35,15 +38,15 @@
   @invalid-icon: "../img/invalid.png";
 
   /* Separator */
-  @sep-border-color: fade(@error-color, 50%);
-  @sep-border-width: 0 0 1px 0;
-  @sep-border-style: dashed;
+  @sep-border-color: fade(@error-color, 30%);
+  @sep-border-width: 0 0 @border-width 0;
+  @sep-border-style: solid;
 
   /* Headings */
   @heading-text: @error-color;
-  @heading-bg: transparent;
+  @heading-bg: @form-bg;
   @heading-border-color: @sep-border-color;
-  @heading-border-width: @sep-border-width;
+  @heading-border-width: 1px 0 1px 0;
   @heading-border-style: @sep-border-style;
 
   /* Text inputs */
@@ -93,7 +96,8 @@
   Edit these variables wisely...
 ------------------------------------------------------- */
 
-  @icon-padding: @icon-size/2;
-  @arrow-size: (@font-size/1.4);
+  @icon-padding: floor(@icon-size/2);
+  @error-width: floor(@input-width/1.2);
+  @arrow-size: floor(@font-size/1.4);
   @select-valid-border: none;
   @select-invalid-border: none;
