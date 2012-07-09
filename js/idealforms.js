@@ -420,12 +420,6 @@ $.fn.idealforms = function (ops) {
 
         var
 
-        addAfterOrBefore = (
-          ops.addAfter && $( Utils.getByNameOrId(ops.addAfter) ).parents('.ideal-wrap') ||
-          ops.addBefore && $( Utils.getByNameOrId(ops.addBefore) ).parents('.ideal-wrap') ||
-          $form.find('.ideal-wrap').last() // Insert after or before last field
-        ),
-
         name = ops.name,
 
         // User options
@@ -453,9 +447,17 @@ $.fn.idealforms = function (ops) {
         Actions.doMarkup($input)
 
         // Insert in DOM
-        if (ops.addAfter) $field.insertAfter(addAfterOrBefore)
-        else if (ops.addBefore) $field.insertBefore(addAfterOrBefore)
-        else $field.insertAfter(addAfterOrBefore)
+        if (ops.addAfter) {
+          $field.insertAfter(
+            Utils.getByNameOrId(ops.addAfter).parents('.ideal-wrap')
+          )
+        } else if (ops.addBefore) {
+          $field.insertBefore(
+            Utils.getByNameOrId(ops.addBefore).parents('.ideal-wrap')
+          )
+        } else {
+          $field.insertAfter($form.find('.ideal-wrap').last())
+        }
       }
 
       // Run through each input
