@@ -429,7 +429,7 @@ var newFields = [
   {
     name: 'instruments',
     title: 'Instruments',
-    addAfter: 'langs[]',
+    addBefore: 'langs[]',
     filters: 'exclude',
     data: { exclude: ['Select an instrument'] },
     errors: { exclude: 'Please select an instrument' },
