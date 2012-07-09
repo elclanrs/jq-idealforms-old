@@ -20,10 +20,10 @@ Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 * * *
 # Updates:
 
+* New method `removeFields` and new option `addBefore` in addition to `addAfter`.
 * Added separators and headings with descriptions. Check out demo.
 * Localization. Translate Ideal Forms into any language.
 * **HOT** New `addFields` method to add fields **dynamically**.
-* Added `extension` filter that works with the new custom `file` input.
 
 # Help:
 ```javascript
@@ -58,6 +58,7 @@ To localize Ideal Forms in your language, load the corresponding file from `js/i
 * [Methods](#methods)
     * [isValid](#isvalid)
     * [addFields](#addfields)
+    * [removeFields](#removefields)
     * [isValidField](#isvalidfield)
     * [getInvalid](#getinvalid)
     * [focusFirst](#focusfirst)
@@ -440,6 +441,20 @@ var newFields = [
   }
 ]
 $myform.addFields(newFields)
+```
+
+####`removeFields`
+Remove fields from the form dynamically. It takes an array of names or id's. Ideal Forms will look for the `name` attribute first and then `id`.
+
+**chainable:** yes
+
+```javascript
+var fields = [
+  'username',
+  'password',
+  'email'
+]
+$myform.removeFields(fields)
 ```
 
 ####`isValidField`

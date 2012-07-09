@@ -417,12 +417,13 @@ $.fn.idealforms = function (ops) {
       fields = fields.reverse()
 
       var add = function (ops) {
+
         var
 
-        addAfter = (
-          ops.addAfter
-            ? $( Utils.getByNameOrId(ops.addAfter) ).parents('.ideal-wrap')
-            : $form.find('.ideal-wrap').last() // Insert after last field
+        addAfterOrBefore = (
+          ops.addAfter && $( Utils.getByNameOrId(ops.addAfter) ).parents('.ideal-wrap') ||
+          ops.addBefore && $( Utils.getByNameOrId(ops.addBefore) ).parents('.ideal-wrap') ||
+          $form.find('.ideal-wrap').last() // Insert after or before last field
         ),
 
         name = ops.name,
@@ -450,7 +451,8 @@ $.fn.idealforms = function (ops) {
         if (userOptions.filters) o.inputs[name] = userOptions
 
         Actions.doMarkup($input)
-        $field.insertAfter(addAfter)
+        if (ops.addAfter) $field.insertAfter(addAfterOrBefore)
+        if (ops.addBefore) $field.insertBefore(addAfterOrBefore)
       }
 
       // Run through each input
@@ -460,6 +462,18 @@ $.fn.idealforms = function (ops) {
       // Reload form
       $form.reload()
 
+      return $form
+    },
+
+    /**
+     * Remove fields dynamically
+     * @param fields Array of objects
+     */
+    removeFields: function (fields) {
+      var f = []
+      for (var i = 0, l = fields.length; i < l; i++)
+        f.push( Utils.getByNameOrId(fields[i]).get(0) )
+      $(f).parents('.ideal-wrap').remove()
       return $form
     },
 
