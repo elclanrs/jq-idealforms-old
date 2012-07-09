@@ -451,8 +451,11 @@ $.fn.idealforms = function (ops) {
         if (userOptions.filters) o.inputs[name] = userOptions
 
         Actions.doMarkup($input)
+
+        // Insert in DOM
         if (ops.addAfter) $field.insertAfter(addAfterOrBefore)
-        if (ops.addBefore) $field.insertBefore(addAfterOrBefore)
+        else if (ops.addBefore) $field.insertBefore(addAfterOrBefore)
+        else $field.insertAfter(addAfterOrBefore)
       }
 
       // Run through each input
