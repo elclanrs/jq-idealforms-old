@@ -20,7 +20,7 @@ Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 * * *
 # Updates:
 
-* New method `removeFields` and new option `addBefore` in addition to `addAfter`.
+* New method `removeFields` and new option `addBefore` in addition to `addAfter` for the `addFields` method.
 * Added separators and headings with descriptions. Check out demo.
 * Localization. Translate Ideal Forms into any language.
 * **HOT** New `addFields` method to add fields **dynamically**.
