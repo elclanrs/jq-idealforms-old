@@ -4,7 +4,7 @@
 
 * **[DEMO](http://elclanrs.github.com/jq-idealforms/)**
 * **Support:** IE8+, Webkit, Firefox, Opera, iOS 5+.
-* **jQuery 1.7+**
+* **jQuery 1.7+, jQuery UI 1.8+**
 * **License:** [GPL](http://www.gnu.org/licenses/gpl.html) or [MIT](http://en.wikipedia.org/wiki/MIT_License)
 
 ### Features:
@@ -37,7 +37,7 @@ Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
 # How to use it:
 
-Load the latest [jQuery library](http://jquery.com), the `js/min/jquery.idealforms.min.js` plugin and the `css/jquery.idealforms.css` stylesheet into your project.
+Load the latest [jQuery library](http://jquery.com), the `js/min/jquery.idealforms.min.js` plugin and the `css/jquery.idealforms.css` stylesheet into your project. Load the latest jQuery UI if you want support for datepicker.
 
 To localize Ideal Forms in your language, load the corresponding file from `js/i18n` after loading the plugin.
 
