@@ -11,6 +11,7 @@
 * Fully responsive (AKA adaptive, adapts to the container, no css media queries needed).
 * Keyboard support.
 * Every input type can be customized including `select`, `radio`, `checkbox` and `file`.
+* Custom datepicker using jQuery UI (with fallback)
 * "On the spot" validation.
 * Localization
 * HTML5 `placeholder` for every browser.
@@ -20,10 +21,10 @@ Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 * * *
 # Updates:
 
+* New custom datepicker (requires jQuery UI)
 * New method `removeFields` and new option `addBefore` in addition to `addAfter` for the `addFields` method.
 * Added separators and headings with descriptions. Check out demo.
 * Localization. Translate Ideal Forms into any language.
-* **HOT** New `addFields` method to add fields **dynamically**.
 
 # Help:
 ```javascript
