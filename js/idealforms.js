@@ -479,9 +479,10 @@ $.fn.idealforms = function (ops) {
         title = ops.title,
         type = ops.type,
         list = ops.list || '',
+        placeholder = ops.placeholder || '',
         $field = $(
           '<div>'+
-            '<label>'+ title +':</label>'+ Utils.makeInput(name, type, list) +
+            '<label>'+ title +':</label>'+ Utils.makeInput(name, type, list, placeholder) +
           '</div>'
         ),
         $input = $field.find('input, select, textarea, :button')

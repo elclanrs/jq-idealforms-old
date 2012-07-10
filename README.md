@@ -408,6 +408,7 @@ Insert the new field after an existing field.
 `text`, `password`, `email`, `number` ,`search`, `url` ,`tel`, `file`, `select`, `radio` and `checkbox`.
 #####`list`
 Array of items for inputs such as `select`, `radio` and `checkbox`.
+#####`placeholder`
 #####`filters`, `data`, `errors`, `flags`
 
 For more info check documentation on **[input's options](#inputs)**.
@@ -576,11 +577,11 @@ Theming
 
 ### User config:
 
-All user options are located in `less/user.config.less`. You can safely edit all values from the "user config". The "extra" options must be edited wisely since most of the variables here are relative to other variables defined elsewhere.
+All user options are located in `less/themes/theme/theme.less`. You can safely edit all values from the "user config". The "extra" options must be edited wisely since most of the variables here are relative to other variables defined elsewhere.
 
 The names of the user config variables are pretty self-explanatory. If you screw up you can always go back.
 
-When you finish editing the user config don't forget to compile `less/jquery.idealforms.less` into `css`.
+When you finish editing the user config don't forget to load your theme in `less/jquery.idealforms.less` and compile into `css`.
 
 ####`@font-size`
 The overall font size. Usually adjusting this option should be enough in most cases. Keep in mind that the bigger the font, the bigger the icons need to be. Ideal Forms will try to align everything as close as possible, but it's recommended that the icons are aprox. the same size as the font-size.

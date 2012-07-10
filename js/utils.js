@@ -71,13 +71,18 @@ var Utils = {
    * @param name `name` attribute of the input
    * @param type `type` or `tagName` of the input
    */
-  makeInput: function (name, type, list) {
+  makeInput: function (name, type, list, placeholder) {
 
     var markup, items = [], i, len
 
     // Text & file
     if (/(text|password|email|number|search|url|tel|file)/.test(type))
-      markup = '<input type="'+ type +'" id="'+ name +'" name="'+ name +'"/>'
+      markup = '<input '+
+        'type="'+ type +'" '+
+        'id="'+ name +'" '+
+        'name="'+ name +'" ' +
+        (placeholder && 'placeholder="'+ placeholder +'"') +
+        '/>'
 
     // Select
     if (/select/.test(type)) {
