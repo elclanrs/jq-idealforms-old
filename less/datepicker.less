@@ -1,0 +1,110 @@
+/* --------------------------------------------------------
+
+  Date picker:
+
+-------------------------------------------------------- */
+
+.ui-icon {
+  display: block;
+  text-indent: -99999px;
+  overflow: hidden;
+  background-repeat:
+  no-repeat;
+  .no-user-select;
+}
+
+.ui-datepicker,
+.ui-datepicker * {
+  .reset;
+}
+
+.ui-datepicker {
+  .box-sizing;
+  position: relative;
+  z-index: 2;
+  margin-top: -@border-width;
+  padding: .75em;
+  border: @datepicker-border;
+  min-width: 14em;
+  background: @datepicker-bg;
+  border-radius: 0 0 @border-radius @border-radius;
+  font-size: @small-font-size;
+  .box-shadow(0 @border-width @border-width rgba(0,0,0,.2));
+
+/* --------------------------------------------------------
+  Header:
+-------------------------------------------------------- */
+  .ui-datepicker-header {
+    position: relative;
+    margin-bottom: .75em;
+  }
+
+  .ui-datepicker-prev,
+  .ui-datepicker-next  {
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+  }
+  .ui-datepicker-next { right: 0; }
+  .ui-datepicker-next-hover { }
+  .ui-datepicker-prev { left: 0; }
+  .ui-datepicker-prev-hover { }
+
+  .ui-datepicker-title {
+    text-align: center;
+    color: @datepicker-monthyear-text;
+  }
+
+/* --------------------------------------------------------
+  Calendar:
+-------------------------------------------------------- */
+  table {
+    width: 100%;
+  }
+  th {
+    font-weight: bold;
+    border: 0;
+    padding-bottom: .1em;
+    color: @datepicker-weekday-text;
+  }
+  tr {
+    text-align: right;
+    a {
+      display: block;
+      margin: .1em;
+      padding: .1em .2em;
+      border-radius: @border-radius;
+    }
+    a.ui-state-default {
+      color: @datepicker-day-text;
+    }
+    a.ui-state-highlight {
+
+    }
+    a.ui-state-hover,
+    a.ui-state-active {
+      color: @datepicker-day-selected-text;
+      font-weight: bold;
+    }
+  }
+
+/* --------------------------------------------------------
+  Icons:
+-------------------------------------------------------- */
+  .ui-icon-circle-triangle-w,
+  .ui-icon-circle-triangle-e {
+    background: url("@{datepicker-sprite}") no-repeat;
+    width: @datepicker-icon-size;
+    height: @datepicker-icon-size;
+  }
+  .ui-icon-circle-triangle-e {
+    background-position: right;
+  }
+}
+
+/* --------------------------------------------------------
+  Input:
+-------------------------------------------------------- */
+input.hasDatepicker.open {
+  border-radius: @border-radius @border-radius 0 0;
+}

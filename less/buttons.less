@@ -1,0 +1,18 @@
+/* --------------------------------------------------------
+
+  Custom buttons:
+
+-------------------------------------------------------- */
+
+  .ideal-button {
+    .no-user-select;
+    .ui-color(@button, @button-text);
+    font-size: @small-font-size;
+    &:hover,
+    &:focus {
+      .ui-focus(@button-focus, @button-focus-text);
+    }
+    &:active {
+      .ui-active(@button-focus);
+    }
+  }
