@@ -139,7 +139,7 @@ var getFilters = function () {
             d > 0 && d <= (new Date(y, m, 0)).getDate()
           )
         }
-        this.error =  $.idealforms.errors.date.replace('{0}', userFormat)
+        this.error = $.idealforms.errors.date.replace('{0}', userFormat)
         return isDate(theDate, theFormat)
       }
     },

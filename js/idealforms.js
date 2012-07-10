@@ -40,7 +40,7 @@ $.fn.idealforms = function (ops) {
       radiocheck: $form.find('input[type="radio"], input[type="checkbox"]'),
       buttons: $form.find(':button'),
       file: $form.find('input[type="file"]'),
-      headings: $form.find('h1, h2, h3, h4, h5, p'),
+      headings: $form.find('h1, h2, h3, h4, h5, h6, p'),
       separators: $form.find('hr')
     }
   },
@@ -158,10 +158,16 @@ $.fn.idealforms = function (ops) {
      * @memberOf Actions
      */
     adjust: function () {
-      var formInputs = getFormInputs()
+      var formInputs = getFormInputs(),
+          userInputs = getUserInputs()
 
       // Autocomplete causes some problems...
       formInputs.inputs.attr('autocomplete', 'off')
+
+      // Add filter classes to inputs
+      // specified by name in the plugin
+      $('[name="'+ Utils.getKeys(o.inputs).join('"], [name="') +'"]')
+        .each(function(){ this.className = o.inputs[this.name].filters })
 
       // Adjust labels
       formInputs.labels
@@ -172,6 +178,25 @@ $.fn.idealforms = function (ops) {
       $form.find('.ideal-heading, .ideal-separator')
         .width($form.width())
         .first().addClass('first-child')
+
+      // Datepicker
+      if (jQuery.ui) {
+        $form.find('input.date').each(function(){
+          var format =
+            o.inputs[this.name].data
+              ? o.inputs[this.name].data.date.replace('yyyy', 'yy')
+              : 'mm/dd/yy'
+          $(this).datepicker({
+            dateFormat: format,
+            beforeShow: function (i) { $(i).addClass('open') },
+            onClose: function () { $(this).removeClass('open') }
+          })
+        })
+        .on('focus keyup', function(){
+          $(this).datepicker('widget').width($(this).outerWidth())
+        })
+        .parent().siblings('.error').addClass('hidden')
+      }
 
       // Placeholder support
       if (!('placeholder' in $('<input/>')[0])) {
@@ -195,8 +220,15 @@ $.fn.idealforms = function (ops) {
     init: function () {
       var formInputs = getFormInputs()
       $form.css('visibility', 'visible').addClass('ideal-form')
+
       // Add novalidate tag if HTML5.
       $form.attr('novalidate', 'novalidate')
+
+      // Alway show datepicker below the input
+      if (jQuery.ui)
+        $.datepicker._checkOffset = function(a, b, c) { return b; }
+
+      // Do markup
       formInputs.inputs
         .add(formInputs.headings)
         .add(formInputs.separators)
@@ -374,7 +406,8 @@ $.fn.idealforms = function (ops) {
       $emptyLabel = formInputs.labels.filter(function () {
         return $(this).html() === '&nbsp;'
       }),
-      $customSelect = $form.find('.ideal-select')
+      $customSelect = $form.find('.ideal-select'),
+      $datePicker = $form.find('input.hasDatepicker')
 
       if (o.responsiveAt === 'auto') {
         $form.width() < maxWidth
@@ -394,7 +427,12 @@ $.fn.idealforms = function (ops) {
         $customSelect.trigger('menu')
       }
 
-      Actions.adjust()
+      // Adjust headings and separators
+      $form.find('.ideal-heading, .ideal-separator')
+        .width($form.width())
+
+      // Hide datePicker
+      if ($datePicker.length) $datePicker.datepicker('hide')
 
     }
   },
@@ -419,6 +457,12 @@ $.fn.idealforms = function (ops) {
       var add = function (ops) {
 
         var
+
+        addAfterOrBefore = (
+          ops.addAfter && $( Utils.getByNameOrId(ops.addAfter) ).parents('.ideal-wrap') ||
+          ops.addBefore && $( Utils.getByNameOrId(ops.addBefore) ).parents('.ideal-wrap') ||
+          $form.find('.ideal-wrap').last() // Insert after or before last field
+        ),
 
         name = ops.name,
 
@@ -447,17 +491,9 @@ $.fn.idealforms = function (ops) {
         Actions.doMarkup($input)
 
         // Insert in DOM
-        if (ops.addAfter) {
-          $field.insertAfter(
-            Utils.getByNameOrId(ops.addAfter).parents('.ideal-wrap')
-          )
-        } else if (ops.addBefore) {
-          $field.insertBefore(
-            Utils.getByNameOrId(ops.addBefore).parents('.ideal-wrap')
-          )
-        } else {
-          $field.insertAfter($form.find('.ideal-wrap').last())
-        }
+        if (ops.addAfter) $field.insertAfter(addAfterOrBefore)
+        else if (ops.addBefore) $field.insertBefore(addAfterOrBefore)
+        else $field.insertAfter(addAfterOrBefore)
       }
 
       // Run through each input

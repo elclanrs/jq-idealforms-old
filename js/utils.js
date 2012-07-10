@@ -43,11 +43,12 @@ var Utils = {
     return obj instanceof RegExp
   },
   getByNameOrId: function (str) {
-    return (
-      $('[name="'+ str +'"]').length
-        ? $('[name="'+ str +'"]')
-        : $('#' + str)
-    )
+    if ($('[name="'+ str +'"]').length)
+      return $('[name="'+ str +'"]')
+    else if ($('[name="'+ str +'"]').length)
+      return $('#' + str)
+    else
+      $.error('The field "'+ str + '" doesn\'t exist.')
   },
   /**
    * Determine type of any Ideal Forms element
