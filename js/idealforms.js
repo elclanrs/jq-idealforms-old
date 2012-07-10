@@ -182,10 +182,11 @@ $.fn.idealforms = function (ops) {
       // Datepicker
       if (jQuery.ui) {
         $form.find('input.date').each(function(){
-          var format =
-            o.inputs[this.name].data
-              ? o.inputs[this.name].data.date.replace('yyyy', 'yy')
-              : 'mm/dd/yy'
+          var
+          userInput = o.inputs[this.name],
+          data = userInput.data && userInput.data.date,
+          format = data ? data.replace('yyyy', 'yy') : 'mm/dd/yy'
+
           $(this).datepicker({
             dateFormat: format,
             beforeShow: function (i) { $(i).addClass('open') },
