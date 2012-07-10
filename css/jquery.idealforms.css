@@ -11,13 +11,13 @@ input[type="search"]::-webkit-search-decoration,input[type="search"]::-webkit-se
 button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
 textarea{overflow:auto;vertical-align:top;}
 .box-sizing{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
-.reset{margin:0;padding:0;border:0;outline:0;line-height:1.5;text-decoration:none;font-size:100%;list-style:none;}
+.reset{margin:0;padding:0;border:0;outline:0;text-decoration:none;font-size:100%;list-style:none;}
 .no-user-select{-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 .ie-refresh{content:".";line-height:0;text-indent:-9999px;}
 .ui-input{font-family:sans-serif;height:33px;line-height:33px;padding:0 .8em;}
 .responsiveWidth{width:87.54863813229572% !important;}
 .ideal-field-width{width:469px;}
-.ideal-form{font-size:15px;font-family:sans-serif;line-height:1.5;background:#ffffff;}.ideal-form *{border-radius:0 \9 !important;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;border:0;outline:0;line-height:1.5;text-decoration:none;font-size:100%;list-style:none;}
+.ideal-form{font-size:15px;font-family:sans-serif;line-height:1.5;background:#ffffff;}.ideal-form *{border-radius:0 \9 !important;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;border:0;outline:0;text-decoration:none;font-size:100%;list-style:none;}
 .ideal-form:before,.ideal-form:after{content:"";display:table;}
 .ideal-form:after{clear:both;}
 .ideal-form .ideal-wrap{float:left;clear:both;position:relative;margin:.5em 0;}
@@ -83,7 +83,7 @@ button.ideal-file-upload{-webkit-touch-callout:none;-webkit-user-select:none;-mo
 button.ideal-file-upload:active{background:#dae5ed;filter:0;-moz-box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.2),inset 0 4px 2px rgba(0, 0, 0, 0.08);-webkit-box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.2),inset 0 4px 2px rgba(0, 0, 0, 0.08);box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.2),inset 0 4px 2px rgba(0, 0, 0, 0.08);}
 .ideal-form.stack .ideal-file-wrap{width:100%;}
 .ui-icon{display:block;text-indent:-99999px;overflow:hidden;background-repeat:no-repeat;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
-.ui-datepicker,.ui-datepicker *{margin:0;padding:0;border:0;outline:0;line-height:1.5;text-decoration:none;font-size:100%;list-style:none;}
+.ui-datepicker,.ui-datepicker *{margin:0;padding:0;border:0;outline:0;text-decoration:none;font-size:100%;list-style:none;}
 .ui-datepicker{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;position:relative;z-index:2;margin-top:-1px;padding:.75em;border:1px solid #aaaaaa;min-width:14em;background:#ffffff;border-radius:0 0 3px 3px;font-size:85%;-moz-box-shadow:0 1px 1px rgba(0, 0, 0, 0.2),transparent 0 0 0;-webkit-box-shadow:0 1px 1px rgba(0, 0, 0, 0.2),transparent 0 0 0;box-shadow:0 1px 1px rgba(0, 0, 0, 0.2),transparent 0 0 0;}.ui-datepicker .ui-datepicker-header{position:relative;margin-bottom:.75em;}
 .ui-datepicker .ui-datepicker-prev,.ui-datepicker .ui-datepicker-next{position:absolute;top:0;cursor:pointer;}
 .ui-datepicker .ui-datepicker-next{right:0;}
