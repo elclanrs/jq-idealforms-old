@@ -190,11 +190,19 @@ $.fn.idealforms = function (ops) {
           $(this).datepicker({
             dateFormat: format,
             beforeShow: function (i) { $(i).addClass('open') },
+            onChangeMonthYear: function () {
+              // Hack to fix IE9 not resizing
+              var w = $(this).outerWidth() // cache first!
+              setTimeout(function(){
+                $(this).datepicker('widget').width(w)
+              }, 1)
+            },
             onClose: function () { $(this).removeClass('open') }
           })
         })
         .on('focus keyup', function(){
-          $(this).datepicker('widget').width($(this).outerWidth())
+          var t = $(this), w = t.outerWidth()
+          t.datepicker('widget').width(w)
         })
         .parent().siblings('.error').addClass('hidden')
       }
