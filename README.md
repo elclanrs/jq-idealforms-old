@@ -16,6 +16,9 @@
 * Localization
 * HTML5 `placeholder` for every browser.
 
+#### Videos
+* [Adding and removing fields dynamically](http://www.youtube.com/watch?v=z-wPmywl4Tc&feature=youtu.be)
+
 Check out the **[demo](http://elclanrs.github.com/jq-idealforms/)**!
 
 * * *
