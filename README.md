@@ -16,7 +16,7 @@
 * Localization
 * HTML5 `placeholder` for every browser.
 
-### Videos
+### Videos:
 * [Adding and removing fields dynamically](http://www.youtube.com/watch?v=z-wPmywl4Tc&feature=youtu.be)
 
 * * *
