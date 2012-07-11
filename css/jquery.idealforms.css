@@ -84,7 +84,7 @@ button.ideal-file-upload:active{background:#dae5ed;filter:0;-moz-box-shadow:inse
 .ideal-form.stack .ideal-file-wrap{width:100%;}
 .ui-icon{display:block;text-indent:-99999px;overflow:hidden;background-repeat:no-repeat;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 .ui-datepicker,.ui-datepicker *{margin:0;padding:0;border:0;outline:0;text-decoration:none;font-size:100%;list-style:none;}
-.ui-datepicker{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;position:relative;z-index:2;margin-top:-1px;padding:.75em;border:1px solid #aaaaaa;min-width:14em;background:#ffffff;border-radius:0 0 3px 3px;font-size:85%;-moz-box-shadow:0 1px 1px rgba(0, 0, 0, 0.2),transparent 0 0 0;-webkit-box-shadow:0 1px 1px rgba(0, 0, 0, 0.2),transparent 0 0 0;box-shadow:0 1px 1px rgba(0, 0, 0, 0.2),transparent 0 0 0;}.ui-datepicker .ui-datepicker-header{position:relative;margin-bottom:.75em;}
+.ui-datepicker{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;display:none;position:relative;z-index:2;margin-top:-1px;padding:.75em;border:1px solid #aaaaaa;min-width:14em;background:#ffffff;border-radius:0 0 3px 3px;font-size:85%;-moz-box-shadow:0 1px 1px rgba(0, 0, 0, 0.2),transparent 0 0 0;-webkit-box-shadow:0 1px 1px rgba(0, 0, 0, 0.2),transparent 0 0 0;box-shadow:0 1px 1px rgba(0, 0, 0, 0.2),transparent 0 0 0;}.ui-datepicker .ui-datepicker-header{position:relative;margin-bottom:.75em;}
 .ui-datepicker .ui-datepicker-prev,.ui-datepicker .ui-datepicker-next{position:absolute;top:0;cursor:pointer;}
 .ui-datepicker .ui-datepicker-next{right:0;}
 .ui-datepicker .ui-datepicker-prev{left:0;}
