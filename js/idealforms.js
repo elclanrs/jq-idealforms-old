@@ -89,6 +89,22 @@ $.fn.idealforms = function (ops) {
    * @memberOf $.fn.idealforms
    */
   Actions = {
+
+    getCurrentTab: function ($input) {
+      var $tabContent = $input.parents('.ideal-tabs-content'),
+          tabName = $tabContent.data('ideal-tabs-content-name'),
+          $fields = $(
+            $tabContent
+              .find('.ideal-field')
+              .parents('.ideal-wrap')
+              .get().reverse() // correct order
+            )
+      return {
+        content: $tabContent,
+        name: tabName,
+        fields: $fields
+      }
+    },
     /**
      * Generate markup for any given
      * Ideal Forms element type
@@ -354,9 +370,7 @@ $.fn.idealforms = function (ops) {
         return userInputs.filter(input)
       }()),
 
-      currentTab =
-        $input.parents('.ideal-tabs-content')
-        .data('ideal-tabs-content-name'),
+      currentTabName = Actions.getCurrentTab($input).name,
 
       userOptions = (
         o.inputs[input.attr('name')] || // by name attribute
@@ -429,8 +443,8 @@ $.fn.idealforms = function (ops) {
       // Update tabs counter
       if ($idealTabs.length)
         $idealTabs.updateCounter(
-          currentTab,
-          $form.getInvalid(currentTab).length
+          currentTabName,
+          $form.getInvalid(currentTabName).length
         )
 
       doFlags()
@@ -445,21 +459,6 @@ $.fn.idealforms = function (ops) {
         .on('keyup change focus blur', function (e) {
           Actions.analyze($(this), e.type)
         })
-        // Go to next/prev tab on tab blur
-        if ($idealTabs.length) {
-          getFormInputs().inputs
-            .keydown(function (e) {
-              var $this = $(this),
-                  tab = e.which === 9,
-                  shiftTab = e.which === 9 && e.shiftKey,
-                  isLast = $this.parents('.ideal-wrap').is(':last-child'),
-                  isFirst = $this.parents('.ideal-wrap').is(':first-child')
-              if (tab || shiftTab) {
-                if (isFirst) $form.prevTab()
-                if (isLast) $form.nextTab()
-              }
-            })
-        }
     },
 
     /** Deals with responsiveness aka adaptation
@@ -638,19 +637,16 @@ $.fn.idealforms = function (ops) {
     },
 
     nextTab: function () {
-      $form.focusFirst()
       $idealTabs.nextTab()
       return $form
     },
 
     prevTab: function () {
       $idealTabs.prevTab()
-      $form.focusFirst()
       return $form
     },
 
     firstTab: function () {
-      $form.focusFirst()
       $idealTabs.firstTab()
       return $form
     },
