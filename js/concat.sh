@@ -8,6 +8,6 @@ radiocheck.js \
 file.js \
 filters.js \
 flags.js \
-idealforms.js \
+jquery.idealforms.js \
 end.js \
 | uglifyjs -o min/jquery.idealforms.min.js
