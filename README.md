@@ -435,7 +435,7 @@ The value used as name attribute.
 #####`title` (required)
 The label text.
 #####`addBefore`
-Insert the new field before an existing field. Takes a string. Ideal Forms will look for `name` first and then `id`. If ommited the new fields will be added before the last field.
+Insert the new field before an existing field. Takes a string. Ideal Forms will look for `name` first and then `id`.
 #####`addAfter`
 Insert the new field after an existing field.
 #####`type` (required)
