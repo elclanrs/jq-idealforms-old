@@ -322,6 +322,8 @@ Must be a valid URL.
 ####`date`
 Must be a valid date. This filter effectively validates a date, so stuff like `13-13-2012` or `30/80/2000` would be invalid. You can use any format with 4 digit year and any delimiter character. The default format is `mm/dd/yyyy`.
 
+If you're loading jQuery UI, Ideal Forms will detect it and use the datepicker plugin to choose dates. It will also apply the custom format that you specify without having to configure the datepicker. It's seamless.
+
 ```javascript
 'myinput': {
   filters: 'date',
