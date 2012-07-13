@@ -652,6 +652,23 @@ All user options are located in `less/themes/theme/theme.less`. You can safely e
 
 The names of the user config variables are pretty self-explanatory. If you screw up you can always go back.
 
+### Custom UI elements:
+Here's a list of all the Ideal Forms UI elements that can be customized:
+* Tabs
+* Labels
+* Headings
+* Separators
+* Icons
+* Errors
+* Text inputs
+* Buttons
+* Select dropdowns
+* Radios
+* Checkboxes
+* Datepicker
+
+Really, ANYTHING.
+
 When you finish editing the user config don't forget to load your theme in `less/jquery.idealforms.less` and compile into `css`.
 
 ####`@font-size`
