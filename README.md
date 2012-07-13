@@ -443,6 +443,7 @@ Insert the new field after an existing field.
 #####`list`
 Array of items for inputs such as `select`, `radio` and `checkbox`.
 #####`placeholder`
+The placholder for text inputs. Use `exclude` for select menus.
 #####`filters`, `data`, `errors`, `flags`
 
 For more info check documentation on **[input's options](#inputs)**.
