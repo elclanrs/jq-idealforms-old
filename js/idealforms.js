@@ -455,9 +455,8 @@ $.fn.idealforms = function (ops) {
                   isLast = $this.parents('.ideal-wrap').is(':last-child'),
                   isFirst = $this.parents('.ideal-wrap').is(':first-child')
               if (tab || shiftTab) {
-                if (isLast || isFirst) $form.focusFirst()
-                if (isFirst) $idealTabs.prevTab()
-                if (isLast) $idealTabs.nextTab()
+                if (isFirst) $form.prevTab()
+                if (isLast) $form.nextTab()
               }
             })
         }
@@ -637,16 +636,19 @@ $.fn.idealforms = function (ops) {
     },
 
     nextTab: function () {
+      $form.focusFirst()
       $idealTabs.nextTab()
       return $form
     },
 
     prevTab: function () {
       $idealTabs.prevTab()
+      $form.focusFirst()
       return $form
     },
 
     firstTab: function () {
+      $form.focusFirst()
       $idealTabs.firstTab()
       return $form
     },
