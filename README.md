@@ -45,7 +45,7 @@ Replace your document's opening `<html>` tag with the following conditional comm
 ```html
 <!--[if IE 8]> <html class="ie8" lang="en"> <![endif]-->
 <!--[if IE 9]> <html class="ie9" lang="en"> <![endif]-->
-<!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en"> <!--<![endif]-->
 ```
 
 To localize Ideal Forms in your language, load the corresponding file from `js/i18n` after loading the plugin.
