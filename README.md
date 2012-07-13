@@ -172,7 +172,7 @@ Alternatively, for very simple forms, you can do it "the easy way" and just add 
 
 Invoke the plugin
 -----------------
-Call **Ideal Forms** on each form separately. Assign each form to a variable to be able to use its public methods.
+Call **Ideal Forms** on each form separately. Assign each form to a variable to have access to the public methods.
 ```javascript
 var $myform = $('#my-form').idealforms({ options });
 ```
