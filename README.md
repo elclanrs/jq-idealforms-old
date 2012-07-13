@@ -456,20 +456,20 @@ var newFields = [
   {
     name: 'animals[]',
     title: 'Animals',
-    addAfter: 'email',
     type: 'radio',
-    list: ['Dog', 'Elephant', 'Crocodile', 'Spider']
+    list: ['Dog', 'Elephant', 'Crocodile', 'Spider'],
+    addAfter: 'email'
   },
   {
     name: 'zip',
     title: 'Zip Code',
     filters: 'required zip',
-    type: 'text'
+    type: 'text',
+    addBefore: 'password'
   },
   {
     name: 'instruments',
     title: 'Instruments',
-    addBefore: 'langs[]',
     filters: 'exclude',
     data: { exclude: ['Select an instrument'] },
     errors: { exclude: 'Please select an instrument' },
@@ -479,7 +479,8 @@ var newFields = [
       'Piano',
       'Violin',
       'Guitar'
-    ]
+    ],
+    appendToTab: 'My Section'
   }
 ]
 $myform.addFields(newFields)
