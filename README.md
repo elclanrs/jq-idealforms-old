@@ -646,12 +646,6 @@ Theming
 
 **Ideal Forms** relays on a carefully crafted [LESS](http://lesscss.org/) stylesheet. Everything is customizable, from the simplest text input, to the select menus, radios, and checkboxes.
 
-### User config:
-
-All user options are located in `less/themes/theme/theme.less`. You can safely edit all values from the "user config". The "extra" options must be edited wisely since most of the variables here are relative to other variables defined elsewhere.
-
-The names of the user config variables are pretty self-explanatory. If you screw up you can always go back.
-
 ### Custom UI elements:
 Here's a list of all the Ideal Forms UI elements that can be customized:
 * Tabs
@@ -669,6 +663,11 @@ Here's a list of all the Ideal Forms UI elements that can be customized:
 
 Really, ANYTHING.
 
+### User config:
+
+All user options are located in `less/themes/theme/theme.less`. You can safely edit all values from the "user config". The "extra" options must be edited wisely since most of the variables here are relative to other variables defined elsewhere.
+
+The names of the user config variables are pretty self-explanatory. If you screw up you can always go back.
 When you finish editing the user config don't forget to load your theme in `less/jquery.idealforms.less` and compile into `css`.
 
 ####`@font-size`
