@@ -623,7 +623,9 @@ $.fn.idealforms = function (ops) {
 
     focusFirstInvalid: function () {
       var $first = $form.getInvalid().first(),
-          tabName = $first.parents('.ideal-tabs-content').attr('name')
+          tabName =
+            $first.parents('.ideal-tabs-content')
+              .data('ideal-tabs-content-name')
       if ($idealTabs.length)
         $idealTabs.switchTab({ name: tabName })
       $first.find('input:first').focus()
