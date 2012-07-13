@@ -1,6 +1,5 @@
 /**
  * @namespace jq-idealforms jQuery plugin
- * @returns $form
  */
 
 $.fn.idealforms = function (ops) {
@@ -25,7 +24,7 @@ $.fn.idealforms = function (ops) {
 
   $form = this, // The form
 
-  /** Generate tabs from sections
+  /** Generate tabs from fieldsets
    * @returns tabs plugin object with methods
    */
   $idealTabs = (function () {
@@ -527,7 +526,7 @@ $.fn.idealforms = function (ops) {
         addAfterOrBefore = (
           ops.addAfter && $( Utils.getByNameOrId(ops.addAfter) ).parents('.ideal-wrap') ||
           ops.addBefore && $( Utils.getByNameOrId(ops.addBefore) ).parents('.ideal-wrap') ||
-          $form.find('.ideal-wrap').last() // Insert after last field
+          $form.find('.ideal-wrap').last() // Insert after or before last field
         ),
 
         name = ops.name,

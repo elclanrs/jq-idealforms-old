@@ -118,9 +118,10 @@ var getFilters = function () {
       regex: function (input, value) {
         var
 
-        userFormat = input.userOptions.data
-          ? input.userOptions.data.date
-          : 'mm/dd/yyyy', // default format
+        userFormat =
+          input.userOptions.data && input.userOptions.data.date
+            ? input.userOptions.data.date
+            : 'mm/dd/yyyy', // default format
 
         delimiter = /[^mdy]/.exec(userFormat)[0],
         theFormat = userFormat.split(delimiter),

@@ -22,7 +22,7 @@ $.fn.tabs = function (ops) {
           html =
             '<li class="ideal-tabs-tab">'+
               name +
-              '<i class="ideal-tabs-tab-counter"></i>'+
+              '<i class="ideal-tabs-tab-counter ideal-tabs-tab-counter-zero">0</i>'+
             '</li>'
       tabs.push(html)
     })
@@ -103,7 +103,7 @@ $.fn.tabs = function (ops) {
       var idx = Actions.getTabIdxByName(name),
           $counter = $tabs.eq(idx).find('.ideal-tabs-tab-counter')
       $counter.removeClass('ideal-tabs-tab-counter-zero')
-      if (Number(text) === 0)
+      if (!text)
         $counter.addClass('ideal-tabs-tab-counter-zero')
       $counter
         .attr('title', 'Invalid fields')
