@@ -1,6 +1,5 @@
 /**
- * A custom <input type="file"> jQuery plugin
- * @example `$(':file').toCustomFile()`
+ * Custom tabs for Ideal Forms
  */
 $.fn.tabs = function (ops) {
 
