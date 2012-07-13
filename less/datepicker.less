@@ -4,20 +4,10 @@
 
 -------------------------------------------------------- */
 
-.ui-icon {
-  display: block;
-  text-indent: -99999px;
-  overflow: hidden;
-  background-repeat:
-  no-repeat;
-  .no-user-select;
-}
-
 .ui-datepicker,
 .ui-datepicker * {
   .reset;
 }
-
 .ui-datepicker {
   .box-sizing;
   display: none;
@@ -35,6 +25,7 @@
 /* --------------------------------------------------------
   Header:
 -------------------------------------------------------- */
+
   .ui-datepicker-header {
     position: relative;
     margin-bottom: .75em;
@@ -59,6 +50,7 @@
 /* --------------------------------------------------------
   Calendar:
 -------------------------------------------------------- */
+
   table {
     width: 100%;
   }
@@ -92,6 +84,15 @@
 /* --------------------------------------------------------
   Icons:
 -------------------------------------------------------- */
+
+  .ui-icon {
+    display: block;
+    text-indent: -99999px;
+    overflow: hidden;
+    background-repeat:
+    no-repeat;
+    .no-user-select;
+  }
   .ui-icon-circle-triangle-w,
   .ui-icon-circle-triangle-e {
     background: url("@{datepicker-sprite}") no-repeat;
@@ -106,6 +107,7 @@
 /* --------------------------------------------------------
   Input:
 -------------------------------------------------------- */
+
 input.hasDatepicker.open {
   border-radius: @border-radius @border-radius 0 0;
 }

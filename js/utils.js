@@ -16,6 +16,14 @@ var Utils = {
     })
     return maxWidth
   },
+  getMaxHeight: function ($elms) {
+    var maxHeight = 0
+    $elms.each(function () {
+      if ($(this).outerHeight() > maxHeight)
+        maxHeight = $(this).outerHeight()
+    })
+    return maxHeight
+  },
   /**
    * Hacky way of getting LESS variables
    * @memberOf Utils
@@ -26,7 +34,7 @@ var Utils = {
   getLessVar: function (name, prop) {
     var value = $('<p class="' + name + '"></p>').hide().appendTo('body').css(prop)
     $('.' + name).remove()
-    return /^\d+/.test(value) ? parseInt(value, 10) : value
+    return (/^\d+/.test(value) ? parseInt(value, 10) : value)
   },
   /**
    * Like ES5 Object.keys

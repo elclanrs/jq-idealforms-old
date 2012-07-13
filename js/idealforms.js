@@ -24,6 +24,24 @@ $.fn.idealforms = function (ops) {
 
   $form = this, // The form
 
+  /** Generate tabs from fieldsets
+   * @returns tabs plugin object with methods
+   */
+  $idealTabs = (function () {
+    var $t = false,
+        $tabs = $form.find('section')
+    if ($tabs.length) {
+      $form.prepend('<div class="ideal-wrap ideal-tabs"/>')
+      $t = $tabs.tabs({
+        tabContainer: '.ideal-tabs'
+      })
+      $form
+        .find('.ideal-tabs-wrap')
+        .addClass('ideal-full-width')
+    }
+    return $t
+  }()),
+
   Filters = getFilters(), // Get filters with localized errors
 
   /**
@@ -72,7 +90,8 @@ $.fn.idealforms = function (ops) {
    */
   Actions = {
     /**
-     * Generate markup for any given input
+     * Generate markup for any given
+     * Ideal Forms element type
      * @memberOf Actions
      */
     doMarkup: function ($el) {
@@ -101,7 +120,7 @@ $.fn.idealforms = function (ops) {
           .after($error.hide())
       },
 
-      // Input Types
+      // Ideal Types
       idealTypes = {
         'default': $.noop,
         defaultInput: function () {
@@ -137,10 +156,10 @@ $.fn.idealforms = function (ops) {
           var isWrapped = $el.parents('.ideal-field').length,
               $all = $el.siblings().andSelf()
           if (!isWrapped)
-            $all.wrapAll('<span class="ideal-heading"/>')
+            $all.wrapAll('<span class="ideal-heading ideal-full-width"/>')
         },
         separator: function () {
-          $el.wrapAll('<div class="ideal-separator"/>')
+          $el.wrapAll('<div class="ideal-separator ideal-full-width"/>')
         }
       }
 
@@ -169,15 +188,28 @@ $.fn.idealforms = function (ops) {
       $('[name="'+ Utils.getKeys(o.inputs).join('"], [name="') +'"]')
         .each(function(){ this.className = o.inputs[this.name].filters })
 
+      // Full width elements
+      $form.find('.ideal-full-width')
+        .width($form.width())
+
+      // Adjust tabs height
+      /*$idealTabs.height(Utils.getMaxHeight($idealTabs))*/
+
       // Adjust labels
       formInputs.labels
         .addClass('ideal-label')
         .width(Utils.getMaxWidth(formInputs.labels))
 
-      // Adjust headings and separators
-      $form.find('.ideal-heading, .ideal-separator')
-        .width($form.width())
-        .first().addClass('first-child')
+      // Adjust headings, separators
+      if ($idealTabs.length) {
+        $idealTabs.each(function(){
+          $(this).find('.ideal-heading:first')
+            .addClass('first-child')
+        })
+      } else {
+        $form.find('.ideal-heading:first')
+          .addClass('first-child')
+      }
 
       // Datepicker
       if (jQuery.ui) {
@@ -235,7 +267,7 @@ $.fn.idealforms = function (ops) {
 
       // Alway show datepicker below the input
       if (jQuery.ui)
-        $.datepicker._checkOffset = function(a, b, c) { return b; }
+        $.datepicker._checkOffset = function(a, b, c) { return b }
 
       // Do markup
       formInputs.inputs
@@ -322,6 +354,10 @@ $.fn.idealforms = function (ops) {
         return userInputs.filter(input)
       }()),
 
+      currentTab =
+        $input.parents('.ideal-tabs-content')
+        .data('ideal-tabs-content-name'),
+
       userOptions = (
         o.inputs[input.attr('name')] || // by name attribute
         { filters: input.attr('class') } // by class
@@ -350,7 +386,8 @@ $.fn.idealforms = function (ops) {
       test = Actions.validate({
         input: $input,
         userOptions: userOptions
-      }, value),
+      },
+      value),
 
       // Flags
       flags = (function(){
@@ -378,6 +415,7 @@ $.fn.idealforms = function (ops) {
         $field.addClass('valid').data('isValid', true)
         $valid.show()
       }
+
       // Does NOT validate
       if (!test.isValid) {
         $invalid.show()
@@ -387,6 +425,13 @@ $.fn.idealforms = function (ops) {
         if (evt !== 'blur') // hide on blur
           $error.html(test.error).show()
       }
+
+      // Update tabs counter
+      if ($idealTabs.length)
+        $idealTabs.updateCounter(
+          currentTab,
+          $form.getInvalid(currentTab).length
+        )
 
       doFlags()
     },
@@ -400,6 +445,22 @@ $.fn.idealforms = function (ops) {
         .on('keyup change focus blur', function (e) {
           Actions.analyze($(this), e.type)
         })
+        // Go to next/prev tab on tab blur
+        if ($idealTabs.length) {
+          getFormInputs().inputs
+            .keydown(function (e) {
+              var $this = $(this),
+                  tab = e.which === 9,
+                  shiftTab = e.which === 9 && e.shiftKey,
+                  isLast = $this.parents('.ideal-wrap').is(':last-child'),
+                  isFirst = $this.parents('.ideal-wrap').is(':first-child')
+              if (tab || shiftTab) {
+                if (isLast || isFirst) $form.focusFirst()
+                if (isFirst) $idealTabs.prevTab()
+                if (isLast) $idealTabs.nextTab()
+              }
+            })
+        }
     },
 
     /** Deals with responsiveness aka adaptation
@@ -437,7 +498,7 @@ $.fn.idealforms = function (ops) {
       }
 
       // Adjust headings and separators
-      $form.find('.ideal-heading, .ideal-separator')
+      $form.find('.ideal-full-width')
         .width($form.width())
 
       // Hide datePicker
@@ -528,7 +589,16 @@ $.fn.idealforms = function (ops) {
       return $form
     },
 
-    getInvalid: function () {
+    getInvalid: function (tabName) {
+      if (tabName && $idealTabs.length) {
+        return $idealTabs
+          .filter(function () {
+            return $(this).data('ideal-tabs-content-name') === tabName
+          })
+          .find('.ideal-field').filter(function () {
+            return $(this).data('isValid') === false
+          })
+      }
       return $form.find('.ideal-field').filter(function () {
           return $(this).data('isValid') === false
         })
@@ -544,31 +614,62 @@ $.fn.idealforms = function (ops) {
     },
 
     focusFirst: function () {
-      $form.find('input:first').focus();
+      if ($idealTabs.length)
+        $idealTabs.filter(':visible')
+          .find('input:first').focus()
+      else
+        $form.find('input:first').focus()
       return $form
     },
 
     focusFirstInvalid: function () {
-      $form
-        .getInvalid()
-        .first()
-        .find('input:first')
-        .focus()
+      var $first = $form.getInvalid().first(),
+          tabName = $first.parents('.ideal-tabs-content').attr('name')
+      if ($idealTabs.length)
+        $idealTabs.switchTab({ name: tabName })
+      $first.find('input:first').focus()
+      return $form
+    },
+
+    switchTab: function (name, idx) {
+      $idealTabs.switchTab({ name: name, idx: idx })
+      return $form
+    },
+
+    nextTab: function () {
+      $idealTabs.nextTab()
+      return $form
+    },
+
+    prevTab: function () {
+      $idealTabs.prevTab()
+      return $form
+    },
+
+    firstTab: function () {
+      $idealTabs.firstTab()
+      return $form
+    },
+
+    lastTab: function () {
+      $idealTabs.lastTab()
       return $form
     },
 
     fresh: function () {
-      getUserInputs()
+      var userInputs = getUserInputs()
+      userInputs
         .blur()
         .parents('.ideal-field')
         .removeClass('valid invalid')
+      if ($idealTabs.length)
+        $idealTabs.firstTab()
       return $form
     },
 
     reload: function () {
       Actions.adjust()
       Actions.attachEvents()
-      $form.fresh()
     },
 
     reset: function () {
@@ -581,6 +682,11 @@ $.fn.idealforms = function (ops) {
       // Reset all
       formInputs.inputs.change().blur()
       $form.focusFirst()
+      return $form
+    },
+
+    submitData: function () {
+      $form.submit()
       return $form
     }
   }

@@ -19,32 +19,55 @@
   @border-width: 1px;
   @border-radius: 3px;
   @heading-padding: @font-size;
-  @heading-padding-left: 0; // Set to `0` to align left without background color
+  @heading-padding-nobg: 0; // Set to `0` to align left without background color
   @css3-anim: true;
   @css3-effects: true; // box-shadow and gradients
 
 /*--------------------------------------------------------
-  Theme:
+  Easy Theme:
+------------------------------------------------------- */
+
+  @easy-form: white;
+  @easy-label: #222;
+  @easy-heading: #1f4f73;
+  @easy-ui: #E6E8E8; // UI elements
+  @easy-ui-focus: #DAE5ED;
+  @easy-border: #aaa;
+  @easy-invalid: #FAEBEB;
+  @easy-valid: #EDF7FC;
+  @easy-error: #1F4F73;
+
+/*--------------------------------------------------------
+  Advanced Theme:
 ------------------------------------------------------- */
 
   /* Form */
-  @form-bg: white;
-  @label-text: #222;
+  @form-bg: @easy-form;
+  @label-text: @easy-label;
+
+  /* Tabs */
+  @tabs-bg: @easy-ui;
+  @tab-bg: @tabs-bg;
+  @tab-text: darken(@tab-bg, 60%);
+  @tab-selected-bg: lighten(@tab-bg, 20%);
+  @tab-selected-text: darken(@valid, 50%);
+  @tab-counter: darken(@easy-invalid, 40%);
+  @tab-counter-zero: @tab-selected-text;
 
   /* Validation */
-  @error-color: #1F4F73;
+  @error-color: @easy-error;
   @error-text: lighten(@error-color, 70%);
   @icon-size: 16px;
   @valid-icon: "../less/themes/basic/valid.png";
   @invalid-icon: "../less/themes/basic/invalid.png";
 
   /* Separator */
-  @sep-border-color: hsl(hue(@error-color), 30%, 70%);
+  @sep-border-color: hsl(hue(@easy-heading), 30%, 60%);
   @sep-border-width: 0 0 @border-width 0;
   @sep-border-style: solid;
 
   /* Headings */
-  @heading-text: @error-color;
+  @heading-text: @easy-heading;
   @heading-bg: @form-bg;
   @heading-border-color: @sep-border-color;
   @heading-border-width: 0 0 1px 0;
@@ -54,17 +77,17 @@
   /* Text inputs */
   @text-bg: white;
   @text-text: darken(@text-bg, 60%);
-  @invalid: #FAEBEB;
-  @valid: #EDF7FC;
-  @default-border: @border-width solid #aaa;
-  @valid-border: @border-width solid #529DCC;
-  @invalid-border: @border-width solid #C76767;
+  @invalid: @easy-invalid;
+  @valid: @easy-valid;
+  @default-border: @border-width solid @easy-border;
+  @valid-border: @border-width solid darken(@valid, 40%);
+  @invalid-border: @border-width solid darken(@invalid, 40%);
   @valid-text: darken(@valid, 60%);
   @invalid-text: darken(@invalid, 60%);
 
   /* Buttons */
-  @button: #E6E8E8;
-  @button-focus: #DAE5ED;
+  @button: @easy-ui;
+  @button-focus: @easy-ui-focus;
   @button-text: darken(@button, 60%);
   @button-focus-text: darken(@button-focus, 60%);
 
@@ -85,16 +108,16 @@
   /* Radio & Checkbox */
   @radiocheck-bg: #fff;
   @radiocheck-text: #666;
-  @radiocheck-bg-border: @border-width solid #aaa;
+  @radiocheck-bg-border: @border-width solid @easy-border;
   @radiocheck-sprite: "../less/themes/basic/radiocheck.png";
   @radiocheck-icon-width: 20px;
   @radiocheck-icon-height: 20px;
   @radiocheck-focus-bg: white;
-  @radiocheck-focus-border: @border-width solid #aaa;
+  @radiocheck-focus-border: @border-width solid @easy-border;
   @radiocheck-focus-text: @radiocheck-text;
 
   /* Datepicker */
-  @datepicker-border: @border-width solid #aaa;
+  @datepicker-border: @border-width solid @easy-border;
   @datepicker-bg: white;
   @datepicker-day-text: #999;
   @datepicker-day-selected-text: #1a8fc9;

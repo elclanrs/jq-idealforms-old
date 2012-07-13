@@ -16,12 +16,22 @@
   font-size: 100%;
   list-style: none;
 }
+.clearfix {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
 
 /*-------------------------------------------------------
   CSS3
 ------------------------------------------------------- */
 
-  .gradient(@startColor, @endColor) when (@css3-effects) {
+  .gradient (@startColor, @endColor) when (@css3-effects) {
     background-color: @startColor;
     background-repeat: no-repeat;
     background-image: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
@@ -73,7 +83,6 @@
 /*--------------------------------------------------------
   UI Inputs (select & button)
 ------------------------------------------------------- */
-
   .ui-input {
     font-family: @font-family;
     @size: floor(@font-size * 2.2);

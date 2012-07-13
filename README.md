@@ -40,6 +40,14 @@
 
 Load the latest [jQuery library](http://jquery.com), the `js/min/jquery.idealforms.min.js` plugin and the `css/jquery.idealforms.css` stylesheet into your project. Load the latest jQuery UI if you want support for datepicker.
 
+Replace your document's opening `<html>` tag with the following conditional comments. This will load the appropiate fixes for all supported IE versions:
+
+```html
+<!--[if IE 8]> <html class="ie8" lang="en"> <![endif]-->
+<!--[if IE 9]> <html class="ie9" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+```
+
 To localize Ideal Forms in your language, load the corresponding file from `js/i18n` after loading the plugin.
 
 ## Index
@@ -65,6 +73,11 @@ To localize Ideal Forms in your language, load the corresponding file from `js/i
     * [getInvalid](#getinvalid)
     * [focusFirst](#focusfirst)
     * [focusFirstInvalid](#focusfirstinvalid)
+    * [switchTab](#switchtab)
+    * [nextTab](#nexttab)
+    * [prevTab](#prevtab)
+    * [firstTab](#firsttab)
+    * [lastTab](#slasttab)
     * [fresh](#fresh)
     * [reset](#reset)
 * [Example](#example)
@@ -80,54 +93,68 @@ If you're working with dynamic fields check documentation on **[addFields](#addf
 ```html
 <form id="my-form">
 
-  <!-- Heading -->
-  <div>
-    <h1>My Heading</h1>
-    <p>Description here</p>
-  </div>
+  <!-- TAB -->
+  <section name="First tab">
 
-  <!-- Text -->
-  <div><label>Username:</label><input type="text" name="username"/></div>
-  <div><label>Date:</label><input type="text" name="date" placeholder="mm/dd/yy"/></div>
-  <div><label>Comments:</label><textarea name="comments"></textarea></div>
+    <!-- Heading -->
+    <div>
+      <h1>My Heading</h1>
+      <p>Description here</p>
+    </div>
 
-  <!-- File -->
-  <div><label>File Upload:</label><input type="file" multiple name="file"/></div>
+    <!-- Text -->
+    <div><label>Username:</label><input type="text" name="username"/></div>
+    <div><label>Date:</label><input type="text" name="date" placeholder="mm/dd/yy"/></div>
+    <div><label>Comments:</label><textarea name="comments"></textarea></div>
 
-  <!-- Select -->
-  <div>
-    <label>Colors:</label>
-    <select name="colors">
-        <option value="Choose a color">Choose a color</option>
-        <option value="Red">Red</option>
-        <option value="Blue">Blue</option>
-        <option value="Green">Green</option>
-    </select>
-  </div>
+    <!-- File -->
+    <div><label>File Upload:</label><input type="file" multiple name="file"/></div>
 
-  <!-- Checkbox -->
-  <div>
-    <label>Languages:</label>
-    <label><input type="checkbox" name="langs[]" value="English"/>English</label>
-    <label><input type="checkbox" name="langs[]" value="Chinese"/>Chinese</label>
-    <label><input type="checkbox" name="langs[]" value="Spanish"/>Spanish</label>
-  </div>
+    <!-- Select -->
+    <div>
+      <label>Colors:</label>
+      <select name="colors">
+          <option value="Choose a color">Choose a color</option>
+          <option value="Red">Red</option>
+          <option value="Blue">Blue</option>
+          <option value="Green">Green</option>
+      </select>
+    </div>
 
-  <!-- Radio -->
-  <div>
-    <label>Options:</label>
-    <label><input type="radio" name="options" value="One"/>One</label>
-    <label><input type="radio" name="options" value="Two"/>Two</label>
-    <label><input type="radio" name="options" value="Three"/>Three</label>
-  </div>
+  <section> <!-- END TAB -->
+
+  <!-- TAB -->
+  <section name="Second tab">
+
+    <div>
+      <h1>My Heading</h1>
+      <p>Description here</p>
+    </div>
+
+    <!-- Checkbox -->
+    <div>
+      <label>Languages:</label>
+      <label><input type="checkbox" name="langs[]" value="English"/>English</label>
+      <label><input type="checkbox" name="langs[]" value="Chinese"/>Chinese</label>
+      <label><input type="checkbox" name="langs[]" value="Spanish"/>Spanish</label>
+    </div>
+
+    <!-- Radio -->
+    <div>
+      <label>Options:</label>
+      <label><input type="radio" name="options" value="One"/>One</label>
+      <label><input type="radio" name="options" value="Two"/>Two</label>
+      <label><input type="radio" name="options" value="Three"/>Three</label>
+    </div>
+
+  <section> <!-- END TAB -->
 
   <!-- Separator -->
   <div><hr/></div>
 
   <!-- Buttons -->
-  <!-- Empty label to align with all the other inputs -->
-  <div><label>&nbsp;</label><input type="button" value="Button"/></div>
-  <div><label>&nbsp;</label><button>Button</button></div>
+  <div><input type="sumbit" value="Submit"/></div>
+  <div><button>Reset</button></div>
 
 </form>
 ```
@@ -498,6 +525,46 @@ Focus the first invalid field.
 **chainable**: yes
 ```javascript
 $myform.focusFirstInvalid()
+```
+
+####`switchTab`
+Change tab by name:
+
+**chainable**: yes
+```javascript
+$myform.switchTab({ name: 'My Section' })
+```
+
+####`nextTab`
+Go to next tab.
+
+**chainable**: yes
+```javascript
+$myform.nextTab()
+```
+
+####`prevTab`
+Go to previous tab.
+
+**chainable**: yes
+```javascript
+$myform.prevTab()
+```
+
+####`firstTab`
+Go to first tab.
+
+**chainable**: yes
+```javascript
+$myform.firstTab()
+```
+
+####`lastTab`
+Go to last tab.
+
+**chainable**: yes
+```javascript
+$myform.lastTab()
 ```
 
 ####`fresh`
