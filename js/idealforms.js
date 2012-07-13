@@ -591,7 +591,8 @@ $.fn.idealforms = function (ops) {
       if (tabName && $idealTabs.length) {
         return $idealTabs
           .filter(function () {
-            return $(this).data('ideal-tabs-content-name') === tabName
+            var re = new RegExp(tabName, 'i')
+            return re.test($(this).data('ideal-tabs-content-name'))
           })
           .find('.ideal-field').filter(function () {
             return $(this).data('isValid') === false
