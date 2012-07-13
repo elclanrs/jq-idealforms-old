@@ -22,10 +22,10 @@
 * * *
 # Updates:
 
+* New tabs(steps) with new public methods `switchTab`, `nextTab`, `prevTab`, `firstTab` and `lastTab`.
 * New custom datepicker (requires jQuery UI)
 * New method `removeFields` and new option `addBefore` in addition to `addAfter` for the `addFields` method.
 * Added separators and headings with descriptions. Check out demo.
-* Localization. Translate Ideal Forms into any language.
 
 # Help:
 ```javascript
