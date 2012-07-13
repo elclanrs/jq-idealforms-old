@@ -523,12 +523,6 @@ $.fn.idealforms = function (ops) {
 
         var
 
-        addAfterOrBefore = (
-          ops.addAfter && $( Utils.getByNameOrId(ops.addAfter) ).parents('.ideal-wrap') ||
-          ops.addBefore && $( Utils.getByNameOrId(ops.addBefore) ).parents('.ideal-wrap') ||
-          $form.find('.ideal-wrap').last() // Insert after or before last field
-        ),
-
         name = ops.name,
 
         // User options
@@ -549,7 +543,9 @@ $.fn.idealforms = function (ops) {
             '<label>'+ title +':</label>'+ Utils.makeInput(name, type, list, placeholder) +
           '</div>'
         ),
-        $input = $field.find('input, select, textarea, :button')
+        $input = $field.find('input, select, textarea, :button'),
+
+        $insert // Insert in DOM according to this element
 
         // Add user options
         if (userOptions.filters) o.inputs[name] = userOptions
@@ -557,9 +553,26 @@ $.fn.idealforms = function (ops) {
         Actions.doMarkup($input)
 
         // Insert in DOM
-        if (ops.addAfter) $field.insertAfter(addAfterOrBefore)
-        else if (ops.addBefore) $field.insertBefore(addAfterOrBefore)
-        else $field.insertAfter(addAfterOrBefore)
+        if (ops.addAfter) {
+          $insert = $(Utils.getByNameOrId(ops.addAfter)).parents('.ideal-wrap')
+          $field.insertAfter($insert)
+        }
+        else if (ops.addBefore) {
+          $insert = $(Utils.getByNameOrId(ops.addBefore)).parents('.ideal-wrap')
+          $field.insertBefore($insert)
+        }
+        else if (ops.appendToTab) {
+          $insert =
+            $idealTabs.filter(function(){
+              return $(this).data('ideal-tabs-content-name') === ops.appendToTab
+            })
+            .find('.ideal-wrap:last-child')
+          $field.insertAfter($insert)
+        }
+        else {
+          $insert = $form.find('.ideal-wrap').last()
+          $field.insertAfter($insert)
+        }
       }
 
       // Run through each input
