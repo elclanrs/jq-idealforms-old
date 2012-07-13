@@ -539,7 +539,7 @@ Change tab by name:
 
 **chainable**: yes
 ```javascript
-$myform.switchTab({ name: 'My Section' })
+$myform.switchTab('My Section')
 ```
 
 ####`nextTab`
