@@ -527,7 +527,7 @@ $.fn.idealforms = function (ops) {
         addAfterOrBefore = (
           ops.addAfter && $( Utils.getByNameOrId(ops.addAfter) ).parents('.ideal-wrap') ||
           ops.addBefore && $( Utils.getByNameOrId(ops.addBefore) ).parents('.ideal-wrap') ||
-          $form.find('.ideal-wrap').last() // Insert after or before last field
+          $form.find('.ideal-wrap').last() // Insert after last field
         ),
 
         name = ops.name,
