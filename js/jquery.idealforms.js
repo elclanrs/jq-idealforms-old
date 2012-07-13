@@ -105,6 +105,14 @@ $.fn.idealforms = function (ops) {
         fields: $fields
       }
     },
+
+    getTab: function (tabName) {
+      return $idealTabs.filter(function () {
+          var re = new RegExp(tabName, 'i')
+          return re.test($(this).data('ideal-tabs-content-name'))
+        })
+    },
+
     /**
      * Generate markup for any given
      * Ideal Forms element type
@@ -562,11 +570,7 @@ $.fn.idealforms = function (ops) {
           $field.insertBefore($insert)
         }
         else if (ops.appendToTab) {
-          $insert =
-            $idealTabs.filter(function(){
-              return $(this).data('ideal-tabs-content-name') === ops.appendToTab
-            })
-            .find('.ideal-wrap:last-child')
+          $insert = Actions.getTab(ops.appendToTab).find('.ideal-wrap:last-child')
           $field.insertAfter($insert)
         }
         else {
@@ -599,11 +603,7 @@ $.fn.idealforms = function (ops) {
 
     getInvalid: function (tabName) {
       if (tabName && $idealTabs.length) {
-        return $idealTabs
-          .filter(function () {
-            var re = new RegExp(tabName, 'i')
-            return re.test($(this).data('ideal-tabs-content-name'))
-          })
+        return Actions.getTab(tabName)
           .find('.ideal-field').filter(function () {
             return $(this).data('isValid') === false
           })
