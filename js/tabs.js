@@ -71,8 +71,10 @@ $.fn.tabs = function (ops) {
       if (!$contents.eq(idx).is(':visible'))
         $contents
           .hide().eq(idx)
-          .fadeTo(0, 0)
+          .css('visibility', 'hidden')
           .show()
+          .fadeTo(0, 0)
+          .css('visibility', 'visible')
           .fadeTo('normal', 1)
     },
 
