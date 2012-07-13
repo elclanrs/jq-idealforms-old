@@ -209,9 +209,6 @@ $.fn.idealforms = function (ops) {
       $form.find('.ideal-full-width')
         .width($form.width())
 
-      // Adjust tabs height
-      /*$idealTabs.height(Utils.getMaxHeight($idealTabs))*/
-
       // Adjust labels
       formInputs.labels
         .addClass('ideal-label')
