@@ -494,7 +494,7 @@ $myform.removeFields(fields)
 ```
 
 ####`isValidField`
-Check if a particular field is valid. The function takes a string. Ideal Forms will look for the name attribute first and then for the id. Use array group names for groups of checkboxes and radios.
+Check if a particular field is valid. The function takes a string. Ideal Forms will look for the name attribute first and then for the id. You can use array group names for groups of checkboxes.
 
 **chainable**: no
 ```javascript
