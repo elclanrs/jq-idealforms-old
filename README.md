@@ -48,6 +48,8 @@ Replace your document's opening `<html>` tag with the following conditional comm
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
 ```
 
+Also, for IE you'll need an [HTML5 shim](http://code.google.com/p/html5shim/) unless you're using [Modernizr](http://modernizr.com/) which already has a shim.
+
 To localize Ideal Forms in your language, load the corresponding file from `js/i18n` after loading the plugin.
 
 ## Index

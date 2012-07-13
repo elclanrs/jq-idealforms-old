@@ -1,5 +1,6 @@
 /**
  * @namespace jq-idealforms jQuery plugin
+ * @returns $form
  */
 
 $.fn.idealforms = function (ops) {
@@ -24,7 +25,7 @@ $.fn.idealforms = function (ops) {
 
   $form = this, // The form
 
-  /** Generate tabs from fieldsets
+  /** Generate tabs from sections
    * @returns tabs plugin object with methods
    */
   $idealTabs = (function () {
