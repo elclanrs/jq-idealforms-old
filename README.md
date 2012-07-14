@@ -81,7 +81,7 @@ To localize Ideal Forms in your language, load the corresponding file from `js/i
     * [firstTab](#firsttab)
     * [lastTab](#slasttab)
     * [fresh](#fresh)
-    * [eset](#reset)
+    * [reset](#reset)
 * [Example](#example)
 * [Theming](#theming)
 
