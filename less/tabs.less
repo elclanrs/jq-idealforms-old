@@ -69,7 +69,15 @@
     }
     &:after { .arrow; }
     &:before { .separator; }
-    .transition(padding-right .15s ease-in-out)
+    .transition(padding-right .15s ease-in-out);
+    span {
+      // Fix clickable area due to high z-index
+      // in before and after pseudo elements
+      position: relative;
+      padding-left: 2em;
+      margin-left: -2em;
+      z-index: 2;
+    }
   }
   .ideal-tabs-tab-active {
     color: @tab-selected-text;

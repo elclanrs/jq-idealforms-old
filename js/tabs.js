@@ -21,7 +21,7 @@ $.fn.tabs = function (ops) {
           name = $fs.attr('name'),
           html =
             '<li class="ideal-tabs-tab">'+
-              name +
+              '<span>' + name + '</span>'+
               '<i class="ideal-tabs-tab-counter ideal-tabs-tab-counter-zero">0</i>'+
             '</li>'
       tabs.push(html)
