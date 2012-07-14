@@ -432,7 +432,7 @@ Add fields to the form dynamically. It takes an array of objects. Ideal Forms au
 
 #####`name` (required)
 The value used as name attribute.
-#####`title` (required)
+#####`label` (required)
 The label text.
 #####`addBefore`
 Insert the new field before an existing field. Takes a string. Ideal Forms will look for `name` first and then `id`.
@@ -455,21 +455,21 @@ For more info check documentation on **[input's options](#inputs)**.
 var newFields = [
   {
     name: 'animals[]',
-    title: 'Animals',
+    label: 'Animals',
     type: 'radio',
     list: ['Dog', 'Elephant', 'Crocodile', 'Spider'],
     addAfter: 'email'
   },
   {
     name: 'zip',
-    title: 'Zip Code',
+    label: 'Zip Code',
     filters: 'required zip',
     type: 'text',
     addBefore: 'password'
   },
   {
     name: 'instruments',
-    title: 'Instruments',
+    label: 'Instruments',
     filters: 'exclude',
     data: { exclude: ['Select an instrument'] },
     errors: { exclude: 'Please select an instrument' },
