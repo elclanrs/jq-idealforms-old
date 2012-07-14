@@ -542,13 +542,13 @@ $.fn.idealforms = function (ops) {
         },
 
         // Markup
-        title = ops.title,
+        label = ops.label,
         type = ops.type,
         list = ops.list || '',
         placeholder = ops.placeholder || '',
         $field = $(
           '<div>'+
-            '<label>'+ title +':</label>'+ Utils.makeInput(name, type, list, placeholder) +
+            '<label>'+ label +':</label>'+ Utils.makeInput(name, type, list, placeholder) +
           '</div>'
         ),
         $input = $field.find('input, select, textarea, :button')
