@@ -19,7 +19,7 @@ textarea{overflow:auto;vertical-align:top;}
 .ui-input{font-family:sans-serif;height:33px;line-height:33px;padding:0 .8em;}
 .responsiveWidth{width:87.54863813229572% !important;}
 .ideal-field-width{width:469px;}
-.ideal-form{font-size:15px;font-family:sans-serif;line-height:1.5;background:#ffffff;}.ideal-form *{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;border:0;outline:0;text-decoration:none;font-size:100%;list-style:none;}
+.ideal-form{-webkit-transition:height 1s ease-in-out;-moz-transition:height 1s ease-in-out;-ms-transition:height 1s ease-in-out;-o-transition:height 1s ease-in-out;font-size:15px;font-family:sans-serif;line-height:1.5;background:#ffffff;}.ideal-form *{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;border:0;outline:0;text-decoration:none;font-size:100%;list-style:none;}
 .ideal-form:before,.ideal-form:after{content:"";display:table;}
 .ideal-form:after{clear:both;}
 .ideal-form .ideal-wrap{float:left;clear:both;position:relative;margin:.5em 0;}
@@ -49,7 +49,7 @@ textarea{overflow:auto;vertical-align:top;}
 .ideal-form .error.hidden{visibility:hidden;}
 .ideal-form.stack .ideal-field,.ideal-form.stack .ideal-full-width,.ideal-form.stack .error{width:87.54863813229572% !important;}
 .ideal-form.stack .ideal-wrap,.ideal-form.stack input[type="text"],.ideal-form.stack input[type="password"],.ideal-form.stack input[type="email"],.ideal-form.stack input[type="number"],.ideal-form.stack input[type="search"],.ideal-form.stack input[type="url"],.ideal-form.stack input[type="tel"],.ideal-form.stack textarea,.ideal-form.stack select{width:100% !important;max-width:337.5px;}
-.ideal-form.stack .ideal-label{text-align:left;padding-bottom:.3em;top:0;}
+.ideal-form.stack .ideal-label{text-align:left;padding-bottom:.5em;top:0;}
 .ideal-form.stack .error{position:inherit;float:left;clear:left;right:0;margin-right:0;top:100%;margin-top:.3em;z-index:1;border-radius:3px;}
 .ideal-form.stack .error:after{content:".";line-height:0;text-indent:-9999px;position:absolute;top:0;margin-top:-18px;left:50%;margin-left:-10px;border-style:solid;border-width:10px 10px 10px 10px;border-color:transparent transparent #1f4f73 transparent;}
 .ideal-form.stack .error.hidden{position:absolute;}
