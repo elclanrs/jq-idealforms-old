@@ -6,6 +6,8 @@ $.fn.idealforms = function (ops) {
 
   var
 
+  $form = this, // The form
+
   // Default options
   o = $.extend({
     inputs: {},
@@ -16,13 +18,11 @@ $.fn.idealforms = function (ops) {
       alert('Thank you...')
     },
     onFail: function () {
-      alert('The form does not validate! Check again...')
+      alert($form.getInvalid().length +' invalid fields.')
     },
     responsiveAt: 'auto',
     customInputs: true
   }, ops),
-
-  $form = this, // The form
 
   /** Generate tabs from fieldsets
    * @returns tabs plugin object with methods
