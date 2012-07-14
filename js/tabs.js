@@ -74,6 +74,7 @@ $.fn.tabs = function (ops) {
           .css('visibility', 'hidden')
           .show()
           .fadeTo(0, 0)
+          .delay(150)
           .css('visibility', 'visible')
           .fadeTo('normal', 1)
     },
