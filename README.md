@@ -440,7 +440,6 @@ Insert the new field before an existing field. Takes a string. Ideal Forms will 
 Insert the new field after an existing field.
 #####`appendToTab`
 Insert the new field at the end of a section. Takes a string.
-#####`addAfter`
 #####`type` (required)
 `text`, `password`, `email`, `number` ,`search`, `url` ,`tel`, `file`, `select`, `radio` and `checkbox`.
 #####`list`
