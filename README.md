@@ -434,14 +434,14 @@ Add fields to the form dynamically. It takes an array of objects. Ideal Forms au
 The value used as name attribute.
 #####`label` (required)
 The label text.
+#####`type` (required)
+`text`, `password`, `email`, `number` ,`search`, `url` ,`tel`, `file`, `select`, `radio` and `checkbox`.
 #####`addBefore`
 Insert the new field before an existing field. Takes a string. Ideal Forms will look for `name` first and then `id`.
 #####`addAfter`
 Insert the new field after an existing field.
 #####`appendToTab`
 Insert the new field at the end of a section. Takes a string.
-#####`type` (required)
-`text`, `password`, `email`, `number` ,`search`, `url` ,`tel`, `file`, `select`, `radio` and `checkbox`.
 #####`list`
 Array of items for inputs such as `select`, `radio` and `checkbox`.
 #####`placeholder`
