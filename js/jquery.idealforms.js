@@ -679,16 +679,32 @@ $.fn.idealforms = function (ops) {
       Actions.attachEvents()
     },
 
-    reset: function () {
-      var formInputs = getFormInputs()
-      formInputs.text.val('') // text inputs
-      formInputs.radiocheck.removeAttr('checked') // radio & check
-      // Select and custom select
-      formInputs.select.find('option').first().prop('selected', true)
-      $form.find('.ideal-select').trigger('reset')
-      // Reset all
-      formInputs.inputs.change().blur()
-      $form.focusFirst()
+    reset: function (name) {
+      var formInputs = getFormInputs(),
+          $input, type
+      if (name) {
+        $input = Utils.getByNameOrId(name)
+        type = Utils.getIdealType($input)
+        if (type === 'text' || type === 'file')
+          $input.val('')
+        if (type === 'radiocheck')
+          $input.removeAttr('checked') // radio & check
+        if (type === 'select') {
+          $input.find('option').first().prop('selected', true)
+          $input.next('.ideal-select').trigger('reset')
+        }
+        $input.change().blur().first().focus()
+      }
+      else {
+        formInputs.text.val('') // text inputs
+        formInputs.radiocheck.removeAttr('checked') // radio & check
+        // Select and custom select
+        formInputs.select.find('option').first().prop('selected', true)
+        $form.find('.ideal-select').trigger('reset')
+        // Reset all
+        formInputs.inputs.change().first().blur()
+        $form.focusFirst()
+      }
       return $form
     },
 
