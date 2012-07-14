@@ -81,7 +81,7 @@ To localize Ideal Forms in your language, load the corresponding file from `js/i
     * [firstTab](#firsttab)
     * [lastTab](#slasttab)
     * [fresh](#fresh)
-    * [reset](#reset)
+    * [eset](#reset)
 * [Example](#example)
 * [Theming](#theming)
 
@@ -587,11 +587,12 @@ $myform.reset().fresh() // Usually combined with `reset()`
 ```
 
 ####`reset`
-Reset all fields to zero including checkboxes, radios, and selects.
+Reset all fields to zero including checkboxes, radios, and selects. You can also reset a particular field by passing in the field name or id.
 
 **chainable**: yes
 ```javascript
-$myform.reset()
+$myform.reset() // Reset all
+$myform.reset('password') // Reset password field
 ```
 
 Example
