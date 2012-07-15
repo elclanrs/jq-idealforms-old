@@ -734,12 +734,6 @@ $.fn.idealforms = function (ops) {
     }
   })
 
-  // Responsive
-  if (o.responsiveAt) {
-    $(window).resize(Actions.responsive)
-    Actions.responsive()
-  }
-
   // Merge custom and default filters
   $.extend(true, Filters, o.customFilters)
 
@@ -750,6 +744,12 @@ $.fn.idealforms = function (ops) {
   Actions.init()
   Actions.attachEvents()
   $form.fresh()
+
+  // Responsive
+  if (o.responsiveAt) {
+    $(window).resize(Actions.responsive)
+    Actions.responsive()
+  }
 
   return this
 

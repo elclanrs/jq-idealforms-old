@@ -50,8 +50,8 @@ textarea{overflow:auto;vertical-align:top;}
 .ideal-form.stack .ideal-field,.ideal-form.stack .ideal-full-width,.ideal-form.stack .error{width:87.54863813229572% !important;}
 .ideal-form.stack .ideal-wrap,.ideal-form.stack input[type="text"],.ideal-form.stack input[type="password"],.ideal-form.stack input[type="email"],.ideal-form.stack input[type="number"],.ideal-form.stack input[type="search"],.ideal-form.stack input[type="url"],.ideal-form.stack input[type="tel"],.ideal-form.stack textarea,.ideal-form.stack select{width:100% !important;max-width:337.5px;}
 .ideal-form.stack .ideal-label{text-align:left;padding-bottom:.5em;top:0;}
-.ideal-form.stack .error{position:inherit;float:left;clear:left;right:0;margin-right:0;top:100%;margin-top:.3em;border-radius:3px;}
-.ideal-form.stack .error:after{content:".";line-height:0;text-indent:-9999px;position:absolute;top:0;margin-top:-18px;left:50%;margin-left:-10px;border-style:solid;border-width:10px 10px 10px 10px;border-color:transparent transparent #1f4f73 transparent;}
+.ideal-form.stack .error{position:relative;float:left;clear:left;right:0;margin-right:0;top:100%;margin-top:.3em;border-radius:3px;}
+.ideal-form.stack .error:after{content:".";line-height:0;text-indent:-9999px;position:absolute;top:0;margin-top:-18px;left:50%;z-index:1;margin-left:-10px;border-style:solid;border-width:10px 10px 10px 10px;border-color:transparent transparent #1f4f73 transparent;}
 .ideal-form.stack .error.hidden{position:absolute;}
 .ideal-tabs-content:before,.ideal-tabs-content:after{content:"";display:table;}
 .ideal-tabs-content:after{clear:both;}
