@@ -31,13 +31,10 @@ $.fn.idealforms = function (ops) {
     var $t = false,
         $tabs = $form.find('section')
     if ($tabs.length) {
-      $form.prepend('<div class="ideal-wrap ideal-tabs"/>')
+      $form.prepend('<div class="ideal-wrap ideal-tabs ideal-full-width"/>')
       $t = $tabs.tabs({
         tabContainer: '.ideal-tabs'
       })
-      $form
-        .find('.ideal-tabs-wrap')
-        .addClass('ideal-full-width')
     }
     return $t
   }()),
@@ -179,11 +176,13 @@ $.fn.idealforms = function (ops) {
         description: function () {
           var isWrapped = $el.parents('.ideal-field').length,
               $all = $el.siblings().andSelf()
+          $el.closest('div').addClass('ideal-full-width')
           if (!isWrapped)
-            $all.wrapAll('<span class="ideal-heading ideal-full-width"/>')
+            $all.wrapAll('<span class="ideal-heading"/>')
         },
         separator: function () {
-          $el.wrapAll('<div class="ideal-separator ideal-full-width"/>')
+          $el.closest('div').addClass('ideal-full-width')
+          $el.wrapAll('<div class="ideal-separator"/>')
         }
       }
 
@@ -211,10 +210,6 @@ $.fn.idealforms = function (ops) {
       // specified by name in the plugin
       $('[name="'+ Utils.getKeys(o.inputs).join('"], [name="') +'"]')
         .each(function(){ this.className = o.inputs[this.name].filters })
-
-      // Full width elements
-      $form.find('.ideal-full-width')
-        .width($form.width())
 
       // Adjust labels
       formInputs.labels
@@ -287,8 +282,9 @@ $.fn.idealforms = function (ops) {
       $form.attr('novalidate', 'novalidate')
 
       // Alway show datepicker below the input
-      if (jQuery.ui)
+      if (jQuery.ui) {
         $.datepicker._checkOffset = function(a, b, c) { return b }
+      }
 
       // Do markup
       formInputs.inputs
@@ -499,10 +495,6 @@ $.fn.idealforms = function (ops) {
         $emptyLabel.show()
         $customSelect.trigger('menu')
       }
-
-      // Adjust headings and separators
-      $form.find('.ideal-full-width')
-        .width($form.width())
 
       // Hide datePicker
       if ($datePicker.length) $datePicker.datepicker('hide')
