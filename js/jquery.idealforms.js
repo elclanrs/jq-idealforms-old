@@ -693,7 +693,7 @@ $.fn.idealforms = function (ops) {
           $input.find('option').first().prop('selected', true)
           $input.next('.ideal-select').trigger('reset')
         }
-        $input.change().blur().first().focus()
+        $input.change().blur()
       }
       else {
         formInputs.text.val('') // text inputs
@@ -702,7 +702,7 @@ $.fn.idealforms = function (ops) {
         formInputs.select.find('option').first().prop('selected', true)
         $form.find('.ideal-select').trigger('reset')
         // Reset all
-        formInputs.inputs.change().first().blur()
+        formInputs.inputs.change().blur()
         $form.focusFirst()
       }
       return $form
