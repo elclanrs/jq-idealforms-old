@@ -37,8 +37,8 @@
     position: relative;
     margin: .5em 0;
   }
-  .ideal-full-width { 
-    width: 100%; 
+  .ideal-full-width {
+    width: 100%;
   }
   .ideal-wrap:first-child {
     margin-top: 0;
@@ -155,7 +155,7 @@
   /* -------------------------------------------------------
     Icons:
   -------------------------------------------------------- */
-  .icon {
+  .ideal-icon {
     position: absolute;
     top: 50%;
     margin-top: -@icon-size/2;
@@ -163,19 +163,19 @@
     height: @icon-size;
     width: @icon-size;
   }
-  textarea ~ .valid-icon,
-  textarea ~ .invalid-icon,
-  .ideal-select ~ .valid-icon,
-  .ideal-select ~ .invalid-icon,
-  .ideal-radiocheck .valid-icon,
-  .ideal-radiocheck .invalid-icon  {
+  textarea ~ .ideal-icon-valid,
+  textarea ~ .ideal-icon-invalid,
+  .ideal-select ~ .ideal-icon-valid,
+  .ideal-select ~ .ideal-icon-invalid,
+  .ideal-radiocheck .ideal-icon-valid,
+  .ideal-radiocheck .ideal-icon-invalid  {
     top: @font-size/2; /* Aproximation */
     margin-top: 0;
   }
-  .valid-icon {
+  .ideal-icon-valid {
     background: url("@{valid-icon}") no-repeat;
   }
-  .invalid-icon {
+  .ideal-icon-invalid {
     background: url("@{invalid-icon}") no-repeat;
     cursor: pointer;
   }
@@ -217,7 +217,7 @@
   /* -------------------------------------------------------
     Error:
   -------------------------------------------------------- */
-  .error {
+  .ideal-error {
     position: absolute;
     width: @error-width;
     right: -(@error-width + @icon-size + (@icon-padding * 2));
@@ -234,7 +234,7 @@
     .box-shadow(0px @border-width @border-width rgba(0,0,0,0.3));
     border-radius: 0 @border-radius @border-radius @border-radius;
   }
-  .error:after {
+  .ideal-error:after {
     content: "";
     position: absolute;
     top: 0;
@@ -243,7 +243,7 @@
     border-width: 0 @arrow-size @arrow-size @arrow-size;
     border-color: transparent @error-color transparent transparent;
   }
-  .error.hidden {
+  .ideal-error.hidden {
     visibility: hidden;
   }
   /* ----------------------------------------------------
@@ -254,7 +254,7 @@
     .ideal-full-width,
     .ideal-heading,
     .ideal-separator,
-    .error {
+    .ideal-error {
       .responsiveWidth;
     }
     .ideal-wrap,
@@ -275,7 +275,7 @@
       padding-bottom: .5em;
       top: 0;
     }
-    .error {
+    .ideal-error {
       position: relative;
       float: left;
       clear: left;
@@ -285,7 +285,7 @@
       margin-top: .3em;
       border-radius: @border-radius;
     }
-    .error:after {
+    .ideal-error:after {
       .ie-refresh;
       position: absolute;
       top: 0;
@@ -297,6 +297,6 @@
       border-width: @arrow-size @arrow-size @arrow-size @arrow-size;
       border-color: transparent transparent @error-color transparent;
     }
-    .error.hidden { position: absolute; }
+    .ideal-error.hidden { position: absolute; }
   }
 }

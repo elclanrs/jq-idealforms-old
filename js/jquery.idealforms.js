@@ -125,10 +125,10 @@ $.fn.idealforms = function (ops) {
       addValidationEls = function () {
         // Validation elements
         var
-        $error = $('<span class="error" />'),
-        $valid = $('<i class="icon valid-icon" />'),
+        $error = $('<span class="ideal-error" />'),
+        $valid = $('<i class="ideal-icon ideal-icon-valid" />'),
         $invalid = $('<i/>', {
-          'class': 'icon invalid-icon',
+          'class': 'ideal-icon ideal-icon-invalid',
           click: function () {
             var $this = $(this)
             if ($this.siblings('label').length) // radio & check
@@ -252,7 +252,7 @@ $.fn.idealforms = function (ops) {
           var t = $(this), w = t.outerWidth()
           t.datepicker('widget').width(w)
         })
-        .parent().siblings('.error').addClass('hidden')
+        .parent().siblings('.ideal-error').addClass('hidden')
       }
 
       // Placeholder support
@@ -387,14 +387,14 @@ $.fn.idealforms = function (ops) {
       }()),
 
       $field = input.parents('.ideal-field'),
-      $error = $field.next('.error'),
+      $error = $field.next('.ideal-error'),
       $invalid = (function () {
-        if (isRadiocheck) return input.parent().siblings('.invalid-icon')
-        return input.siblings('.invalid-icon')
+        if (isRadiocheck) return input.parent().siblings('.ideal-icon-invalid')
+        return input.siblings('.ideal-icon-invalid')
       }()),
       $valid = (function () {
-        if (isRadiocheck) return input.parent().siblings('.valid-icon')
-        return input.siblings('.valid-icon')
+        if (isRadiocheck) return input.parent().siblings('.ideal-icon-valid')
+        return input.siblings('.ideal-icon-valid')
       }()),
 
       // Validate
@@ -436,7 +436,7 @@ $.fn.idealforms = function (ops) {
         $invalid.show()
         $field.addClass('invalid').data('isValid', false)
         // error
-        $form.find('.error').hide()
+        $form.find('.ideal-error').hide()
         if (evt !== 'blur') // hide on blur
           $error.html(test.error).show()
       }
