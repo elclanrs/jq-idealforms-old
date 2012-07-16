@@ -87,6 +87,13 @@ $.fn.idealforms = function (ops) {
    */
   Actions = {
 
+    getTab: function (tabName) {
+      return $idealTabs.filter(function () {
+          var re = new RegExp(tabName, 'i')
+          return re.test($(this).data('ideal-tabs-content-name'))
+        })
+    },
+
     getCurrentTab: function ($input) {
       var $tabContent = $input.parents('.ideal-tabs-content'),
           tabName = $tabContent.data('ideal-tabs-content-name'),
@@ -103,13 +110,6 @@ $.fn.idealforms = function (ops) {
       }
     },
 
-    getTab: function (tabName) {
-      return $idealTabs.filter(function () {
-          var re = new RegExp(tabName, 'i')
-          return re.test($(this).data('ideal-tabs-content-name'))
-        })
-    },
-
     /**
      * Generate markup for any given
      * Ideal Forms element type
@@ -121,9 +121,8 @@ $.fn.idealforms = function (ops) {
 
       type = Utils.getIdealType($el),
 
-      // Append errors and icons
+      // Validation elements
       addValidationEls = function () {
-        // Validation elements
         var
         $error = $('<span class="ideal-error" />'),
         $valid = $('<i class="ideal-icon ideal-icon-valid" />'),
@@ -261,7 +260,8 @@ $.fn.idealforms = function (ops) {
           $(this).val($(this).attr('placeholder'))
         }).on({
           focus: function () {
-            if (this.value === $(this).attr('placeholder')) $(this).val('')
+            if (this.value === $(this).attr('placeholder'))
+              $(this).val('')
           },
           blur: function () {
             $(this).val() || $(this).val($(this).attr('placeholder'))
@@ -271,7 +271,7 @@ $.fn.idealforms = function (ops) {
     },
 
     /**
-     * Initializate form
+     * Initialize form
      * @memberOf Actions
      */
     init: function () {
@@ -293,6 +293,7 @@ $.fn.idealforms = function (ops) {
         .each(function(){
           Actions.doMarkup($(this))
         })
+
       Actions.adjust()
     },
 
@@ -389,11 +390,13 @@ $.fn.idealforms = function (ops) {
       $field = input.parents('.ideal-field'),
       $error = $field.next('.ideal-error'),
       $invalid = (function () {
-        if (isRadiocheck) return input.parent().siblings('.ideal-icon-invalid')
+        if (isRadiocheck)
+          return input.parent().siblings('.ideal-icon-invalid')
         return input.siblings('.ideal-icon-invalid')
       }()),
       $valid = (function () {
-        if (isRadiocheck) return input.parent().siblings('.ideal-icon-valid')
+        if (isRadiocheck)
+          return input.parent().siblings('.ideal-icon-valid')
         return input.siblings('.ideal-icon-valid')
       }()),
 
