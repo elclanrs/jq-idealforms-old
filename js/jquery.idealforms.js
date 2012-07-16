@@ -613,9 +613,9 @@ $.fn.idealforms = function (ops) {
     focusFirst: function () {
       if ($idealTabs.length)
         $idealTabs.filter(':visible')
-          .find('input:first').focus()
+          .find('input:first, select, textarea').focus()
       else
-        $form.find('input:first').focus()
+        $form.find('input:first, select, textarea').focus()
       return $form
     },
 
@@ -626,7 +626,7 @@ $.fn.idealforms = function (ops) {
               .data('ideal-tabs-content-name')
       if ($idealTabs.length)
         $idealTabs.switchTab({ name: tabName })
-      $first.find('input:first').focus()
+      $first.find('input:first, select, textarea').focus()
       return $form
     },
 
