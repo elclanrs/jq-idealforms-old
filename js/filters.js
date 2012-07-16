@@ -151,7 +151,7 @@ var getFilters = function () {
         if (i.is('[type="checkbox"], [type="radio"], select'))
           this.error = $.idealforms.errors.excludeOption.replace('{0}', value)
         else
-          $.idealforms.errors.exclude.replace('{0}', value)
+          this.error = $.idealforms.errors.exclude.replace('{0}', value)
         return !~$.inArray(value, input.userOptions.data.exclude)
       }
     },
