@@ -67,12 +67,9 @@ $.fn.tabs = function (ops) {
 
       $tabs.removeClass('ideal-tabs-tab-active')
       $tabs.eq(idx).addClass('ideal-tabs-tab-active')
-
-      if (!$contents.eq(idx).is(':visible')) {
-        $contents
-          .hide().eq(idx)
-          .show()
-      }
+      $contents
+        .hide().eq(idx)
+        .show()
     },
 
     nextTab: function () {

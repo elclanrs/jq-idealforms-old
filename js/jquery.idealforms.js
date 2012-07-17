@@ -388,7 +388,7 @@ $.fn.idealforms = function (ops) {
       }()),
 
       $field = input.parents('.ideal-field'),
-      $error = $field.next('.ideal-error'),
+      $error = $field.siblings('.ideal-error'),
       $invalid = (function () {
         if (isRadiocheck)
           return input.parent().siblings('.ideal-icon-invalid')
@@ -736,6 +736,7 @@ $.fn.idealforms = function (ops) {
   $.extend(true, Flags, o.customFlags)
 
   // Start form
+  $idealTabs.show() // Show all tabs to calculate widths and heights
   Actions.init()
   Actions.attachEvents()
   $form.fresh()
@@ -745,6 +746,8 @@ $.fn.idealforms = function (ops) {
     $(window).resize(Actions.responsive)
     Actions.responsive()
   }
+
+  $form.firstTab() // Done calculating hide tabs and start fresh
 
   return this
 

@@ -24,7 +24,7 @@
   -------------------------------------------------------- */
   font-size: @font-size;
   font-family: @font-family;
-  line-height: 1.5;
+  line-height: @line-height;
   background: @form-bg;
   * {
     .box-sizing;
@@ -241,7 +241,20 @@
     left: -((@arrow-size - 1) * 2); /* `-1` to fix gap */
     border-style: solid;
     border-width: 0 @arrow-size @arrow-size @arrow-size;
-    border-color: transparent @error-color transparent transparent;
+    border-color: transparent;
+    border-right-color: @error-color;
+  }
+  /* Full width */
+  .ideal-full-width .ideal-error {
+    right: 0;
+    margin-right: @arrow-size*2;
+    border-radius: @border-radius 0 @border-radius @border-radius;
+    &:after {
+      left: 100%;
+      margin-left: -1px; /*fix gap*/
+      border-color: transparent;
+      border-left-color: @error-color;
+    }
   }
   .ideal-error.hidden {
     visibility: hidden;
@@ -294,7 +307,7 @@
       z-index: 1;
       margin-left: -@arrow-size;
       border-style: solid;
-      border-width: @arrow-size @arrow-size @arrow-size @arrow-size;
+      border-width: @arrow-size;
       border-color: transparent transparent @error-color transparent;
     }
     .ideal-error.hidden { position: absolute; }
