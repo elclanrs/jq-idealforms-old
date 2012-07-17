@@ -736,7 +736,8 @@ $.fn.idealforms = function (ops) {
   $.extend(true, Flags, o.customFlags)
 
   // Start form
-  $idealTabs.show() // Show all tabs to calculate widths and heights
+  if ($idealTabs.length)
+    $idealTabs.show() // Show all tabs to calculate widths and heights
   Actions.init()
   Actions.attachEvents()
   $form.fresh()
@@ -747,7 +748,8 @@ $.fn.idealforms = function (ops) {
     Actions.responsive()
   }
 
-  $form.firstTab() // Done calculating hide tabs and start fresh
+  if ($idealTabs.length)
+    $form.firstTab() // Done calculating hide tabs and start fresh
 
   return this
 
