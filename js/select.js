@@ -1,39 +1,46 @@
 /**
  * A custom <select> menu jQuery plugin
- * @example `$('select').toCustomSelect()`
+ * @example `$('select').toCustomidealSelect.)`
  */
 $.fn.toCustomSelect = function () {
 
   return this.each(function () {
-    var $select = $(this)
+
+    var
+
+    $select = $(this),
+    $options = $select.find('option')
 
     /**
-     * Markup and elements of custom select
+     * Generate markup and return elements of custom select
      * @memberOf $.fn.toCustomSelect
      * @returns {object} All elements of the new select replacement
      */
-    var Select = (function () {
-      var $options = $select.find('option'),
-          $newSelect = $('<ul class="ideal-select '+ $select.attr('name') +'"/>'),
-          $menu = $('<li><span class="title">' + $options.filter(':selected').text() + '</span></li>'),
-          items = (function () {
-            var items = []
-            $options.each(function () {
-              var $this = $(this)
-              items.push('<li class="item" ideal-value="' + $this.val() + '">' + $this.text() + '</li>')
-            })
-            return items
-          }())
+    var idealSelect = (function () {
+      var
+      $wrap = $('<ul class="ideal-select '+ $select.attr('name') +'"/>'),
+      $menu = $(
+        '<li><span class="ideal-select-title">' +
+          $options.filter(':selected').text() +
+        '</span></li>'
+      ),
+      items = (function () {
+        var items = []
+        $options.each(function () {
+          var $this = $(this)
+          items.push('<li class="ideal-select-item">' + $this.text() + '</li>')
+        })
+        return items
+      }())
 
-      $menu.append('<ul class="sub">' + items.join('') + '</ul>')
-      $newSelect.append($menu)
+      $menu.append('<ul class="ideal-select-sub">' + items.join('') + '</ul>')
+      $wrap.append($menu)
 
       return {
-        options: $options,
-        select: $newSelect,
-        title: $menu.find('.title'),
-        sub: $menu.find('.sub'),
-        items: $menu.find('.sub li')
+        select: $wrap,
+        title: $menu.find('.ideal-select-title'),
+        sub: $menu.find('.ideal-select-sub'),
+        items: $menu.find('.ideal-select-item')
       }
     }())
 
@@ -42,24 +49,37 @@ $.fn.toCustomSelect = function () {
      * @memberOf $.fn.toCustomSelect
      */
     var Actions = {
+
+      getSelectedIdx: function () {
+        return idealSelect.items
+          .filter('.ideal-select-item-selected').index()
+      },
+
       /**
        * @private
        */
       init: (function () {
         $select.css({
-          position: 'absolute',
-          left: '-9999px'
+          //position: 'absolute',
+          //left: '-9999px'
         })
-        Select.select.insertAfter($select)
-        Select.select.css('min-width', Utils.getMaxWidth(Select.items))
-        Select.sub.hide()
-        Select.items.eq(Select.options.filter(':selected').index()).addClass('selected')
+        idealSelect.sub.hide()
+        idealSelect.select.insertAfter($select)
+        idealSelect.select.css(
+          'min-width',
+          Utils.getMaxWidth(idealSelect.items)
+        )
+        idealSelect.items
+          .eq($options.filter(':selected').index())
+          .addClass('ideal-select-item-selected')
       }()),
+
       noWindowScroll: function (e) {
         if (e.which === 40 || e.which === 38 || e.which === 13) {
           e.preventDefault()
         }
       },
+
       // Fix loosing focus when scrolling
       // and selecting item with keyboard
       focusHack: function () {
@@ -67,115 +87,158 @@ $.fn.toCustomSelect = function () {
           $select.trigger('focus')
         }, 1)
       },
+
       focus: function () {
-        Select.select.addClass('focus')
+        idealSelect.select.addClass('ideal-select-focus')
         $(document).on('keydown.noscroll', Actions.noWindowScroll)
       },
+
       blur: function () {
-        Select.select.removeClass('open focus')
+        idealSelect.select
+          .removeClass('ideal-select-open ideal-select-focus')
         $(document).off('.noscroll')
       },
+
       scrollIntoView: function (dir) {
-        var $selected = Select.items.filter('.selected'),
-            itemHeight = $selected.outerHeight(),
-            menuHeight = Select.sub.outerHeight(),
-            isInView = (function () {
-              var elPos = $selected.position().top + itemHeight
-              return dir === 'down'
-                ? elPos <= menuHeight
-                : elPos > 0
-            }())
+        var
+        $selected = idealSelect.items.filter('.ideal-select-item-selected'),
+        itemHeight = idealSelect.items.outerHeight(),
+        menuHeight = idealSelect.sub.outerHeight(),
+
+        isInView = (function () {
+          // relative position to the submenu
+          var elPos = $selected.position().top + itemHeight
+          return dir === 'down'
+            ? elPos <= menuHeight
+            : elPos > 0
+        }())
 
         if (!isInView) {
           itemHeight = (dir === 'down')
-            ? itemHeight
-            : -itemHeight
-          Select.sub.scrollTop(Select.sub.scrollTop() + itemHeight)
+            ? itemHeight // go down
+            : -itemHeight // go up
+
+          idealSelect.sub
+            .scrollTop(idealSelect.sub.scrollTop() + itemHeight)
         }
       },
-      scrollToItem: function () {
-        var idx = Select.items.filter('.selected').index(),
-            height = Select.items.outerHeight(),
-            items = Select.items.length,
-            allHeight = height * items,
-            curHeight = height * (items - idx)
 
-        Select.sub.scrollTop(allHeight - curHeight)
+      scrollToItem: function () {
+        var idx = Actions.getSelectedIdx(),
+            height = idealSelect.items.outerHeight(),
+            nItems = idealSelect.items.length,
+            allHeight = height * nItems,
+            curHeight = height * (nItems - idx)
+
+        idealSelect.sub.scrollTop(allHeight - curHeight)
       },
+
       showMenu: function () {
-        Select.sub.fadeIn('fast')
-        Select.select.addClass('open')
-        Actions.select(Select.options.filter(':selected').index())
+        idealSelect.sub.fadeIn('fast')
+        idealSelect.select.addClass('ideal-select-open')
+        Actions.select(Actions.getSelectedIdx())
         Actions.scrollToItem()
       },
+
       hideMenu: function () {
-        Select.sub.hide()
-        Select.select.removeClass('open')
+        idealSelect.sub.hide()
+        idealSelect.select.removeClass('ideal-select-open')
       },
+
       select: function (idx) {
-        Select.items.removeClass('selected')
-        Select.items.eq(idx).addClass('selected')
+        idealSelect.items
+          .removeClass('ideal-select-item-selected')
+        idealSelect.items
+          .eq(idx).addClass('ideal-select-item-selected')
       },
+
       change: function (idx) {
-        var text = Select.items.eq(idx).text()
+        var text = idealSelect.items.eq(idx).text()
         Actions.select(idx)
-        Select.title.text(text)
-        Select.options.eq(idx).prop('selected', true)
+        idealSelect.title.text(text)
+        $options.eq(idx).prop('selected', true)
         $select.trigger('change')
       },
+
       keydown: function (key) {
-        var idx = Select.items.filter('.selected').index()
+        var
+
+        idx = Actions.getSelectedIdx(),
+        isMenu = idealSelect.select.is('.ideal-select-menu'),
+        isOpen = idealSelect.select.is('.ideal-select-open')
+
         /**
          * @namespace Key pressed
          */
         var keys = {
+
           9: function () { // TAB
-            if (Select.select.is('.menu')) {
+            if (isMenu) {
               Actions.blur()
               Actions.hideMenu()
             }
           },
+
           13: function () { // ENTER
-            if (Select.select.is('.menu')) {
-              Select.select.is('.open')
+            if (isMenu)
+              isOpen
                 ? Actions.hideMenu()
                 : Actions.showMenu()
-            }
             Actions.change(idx)
           },
+
           27: function () { // ESC
-            if (Select.select.is('.menu')) Actions.hideMenu()
+            if (isMenu) Actions.hideMenu()
           },
+
           40: function () { // DOWN
-            if (idx < Select.options.length - 1) {
-              Select.select.is('.open')
+            if (idx < $options.length - 1) {
+              isOpen
                 ? Actions.select(idx + 1)
                 : Actions.change(idx + 1)
             }
             Actions.scrollIntoView('down')
           },
+
           38: function () { // UP
             if (idx > 0) {
-              Select.select.is('.open')
+              isOpen
                 ? Actions.select(idx - 1)
                 : Actions.change(idx - 1)
             }
             Actions.scrollIntoView('up')
           },
-          'default': function () { // Letter
-            var letter = String.fromCharCode(key),
-                selIdx = Select.items.filter('.selected').parent().index(),
-                curIdx = Select.items.filter(function () {
-                  var re = new RegExp('^' + letter, 'i')
-                  return re.test($(this).text())
-                }).first().index()
 
-            Actions.change(!~curIdx ? selIdx : curIdx)
+          'default': function () { // Letter
+            var
+
+            letter = String.fromCharCode(key),
+
+            $matches = idealSelect.items
+              .filter(function () {
+                var re = new RegExp('^' + letter, 'i')
+                return re.test($(this).text())
+              }),
+            newIdx = $matches.first().index()
+
+            if (!~newIdx)
+              return false
+
+            if (isOpen)
+              Actions.select(newIdx)
+            else
+              Actions.change(newIdx)
+
+            idealSelect.select.data('counter-key', key)
+
             Actions.scrollToItem()
             Actions.focusHack()
           }
         }
-        keys[key] ? keys[key]() : keys['default']()
+
+        keys[key]
+          ? keys[key]()
+          : keys['default']()
       }
     }
 
@@ -210,7 +273,7 @@ $.fn.toCustomSelect = function () {
       'hideOutside.menu': function () {
         $select.off('blur.menu')
         $(document).on('mousedown.ideal', function (evt) {
-          if (!$(evt.target).closest(Select.select).length) {
+          if (!$(evt.target).closest(idealSelect.select).length) {
             $(document).off('mousedown.ideal')
             $select.on('blur.menu', events['blur.menu'])
           } else {
@@ -225,51 +288,53 @@ $.fn.toCustomSelect = function () {
 
     // Reset events
     var disableEvents = function () {
-      Select.select.removeClass('menu list')
+      idealSelect.select.removeClass('ideal-select-menu ideal-select-list')
       $select.off('.menu .list')
-      Select.items.off('.menu .list')
-      Select.select.off('.menu .list')
-      Select.title.off('.menu .list')
+      idealSelect.items.off('.menu .list')
+      idealSelect.select.off('.menu .list')
+      idealSelect.title.off('.menu .list')
     }
 
     // Menu mode
-    Select.select.on('menu', function () {
+    idealSelect.select.on('menu', function () {
       disableEvents()
-      Select.select.addClass('menu')
+      idealSelect.select.addClass('ideal-select-menu')
       Actions.hideMenu()
       $select.on({
         'blur.menu': events['blur.menu'],
         'focus.menu': events.focus,
         'keydown.menu': events.keydown
       })
-      Select.select.on('mousedown.menu', events['hideOutside.menu'])
-      Select.items.on('click.menu', events['clickItem.menu'])
-      Select.title.on('click.menu', events['clickTitle.menu'])
+      idealSelect.select.on('mousedown.menu', events['hideOutside.menu'])
+      idealSelect.items.on('click.menu', events['clickItem.menu'])
+      idealSelect.title.on('click.menu', events['clickTitle.menu'])
     })
 
     // List mode
-    Select.select.on('list', function () {
+    idealSelect.select.on('list', function () {
       disableEvents()
-      Select.select.addClass('list')
+      idealSelect.select.addClass('ideal-select-list')
       Actions.showMenu()
       $select.on({
         'blur.list': events['blur.list'],
         'focus.list': events.focus,
         'keydown.list': events.keydown
       })
-      Select.select.on('mousedown.list', events['mousedown.list'])
-      Select.items.on('mousedown.list', events['clickItem.list'])
+      idealSelect.select.on('mousedown.list', events['mousedown.list'])
+      idealSelect.items.on('mousedown.list', events['clickItem.list'])
     })
 
     $select.keydown(function (e) {
-      e.preventDefault() // Use Ideal Select keydown events
+      // Prevent default keydown event
+      // to avoid bugs with Ideal Select events
+      if (e.which !== 9) e.preventDefault()
     })
 
     // Reset
-    Select.select.on('reset', function(){
+    idealSelect.select.on('reset', function(){
       Actions.change(0)
     })
 
-    Select.select.trigger('menu') // Default to "menu mode"
+    idealSelect.select.trigger('menu') // Default to "menu mode"
   })
 }
