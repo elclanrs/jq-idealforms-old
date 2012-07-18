@@ -261,6 +261,10 @@ $.fn.toCustomSelect = function () {
       Select.items.on('mousedown.list', events['clickItem.list'])
     })
 
+    $select.keydown(function (e) {
+      e.preventDefault() // Use Ideal Select keydown events
+    })
+
     // Reset
     Select.select.on('reset', function(){
       Actions.change(0)
