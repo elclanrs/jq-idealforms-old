@@ -60,8 +60,8 @@ $.fn.toCustomSelect = function () {
        */
       init: (function () {
         $select.css({
-          //position: 'absolute',
-          //left: '-9999px'
+          position: 'absolute',
+          left: '-9999px'
         })
         idealSelect.sub.hide()
         idealSelect.select.insertAfter($select)
