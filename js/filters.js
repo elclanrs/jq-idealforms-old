@@ -20,6 +20,7 @@ $.idealforms.errors = {
   max: 'No more than <strong>{0}</strong> characters long.',
   maxOption: 'No more than <strong>{0}</strong> options allowed.',
   date: 'Must be a valid date. <em>(e.g. {0})</em>',
+  dob: 'Must be a valid date of birth.',
   exclude: '"{0}" is not available.',
   excludeOption: '{0}',
   equalto: 'Must be the same value as <strong>"{0}"</strong>',
@@ -141,19 +142,43 @@ var getFilters = function () {
             d > 0 && d <= (new Date(y, m, 0)).getDate()
           )
         }
+
         this.error = $.idealforms.errors.date.replace('{0}', userFormat)
+
         return isDate(theDate, theFormat)
       }
     },
 
     dob: {
       regex: function (input, value) {
-        var isDate = filters.date.regex(input, value),
-            theYear = /\d{4}/.exec(value),
-            minYear = 1900,
-            maxYear = new Date().getFullYear() // This year
-        this.error = 'Must be a valid date of birth.'
-        return theYear >= minYear && theYear <= maxYear
+        var
+
+        userFormat =
+          input.userOptions.data && input.userOptions.data.dob
+            ? input.userOptions.data.dob
+            : 'mm/dd/yyyy', // default format
+
+        // Simulate a date input
+        dateInput = {
+          input: input.input,
+          userOptions: {
+            data: { date: userFormat }
+          }
+        },
+
+        // Use internal date filter to validate the date
+        isDate = filters.date.regex(dateInput, value),
+
+        // DOB
+        theYear = /\d{4}/.exec(value),
+        minYear = 1900,
+        maxYear = new Date().getFullYear() // This year
+
+        this.error = $.idealforms.errors.dob
+
+        return isDate &&
+          theYear >= minYear &&
+          theYear <= maxYear
       }
     },
 
