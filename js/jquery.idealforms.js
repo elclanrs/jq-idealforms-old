@@ -32,7 +32,7 @@ $.fn.idealforms = function (ops) {
         $tabs = $form.find('section')
     if ($tabs.length) {
       $form.prepend('<div class="ideal-wrap ideal-tabs ideal-full-width"/>')
-      $t = $tabs.tabs({
+      $t = $tabs.idealTabs({
         tabContainer: '.ideal-tabs'
       })
     }
@@ -236,7 +236,9 @@ $.fn.idealforms = function (ops) {
 
           $(this).datepicker({
             dateFormat: format,
-            beforeShow: function (i) { $(i).addClass('open') },
+            beforeShow: function (input) {
+              $(input).addClass('open')
+            },
             onChangeMonthYear: function () {
               // Hack to fix IE9 not resizing
               var w = $(this).outerWidth() // cache first!
@@ -244,7 +246,9 @@ $.fn.idealforms = function (ops) {
                 $(this).datepicker('widget').width(w)
               }, 1)
             },
-            onClose: function () { $(this).removeClass('open') }
+            onClose: function () {
+              $(this).removeClass('open')
+            }
           })
         })
         .on('focus keyup', function(){

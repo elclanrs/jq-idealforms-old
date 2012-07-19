@@ -1,7 +1,7 @@
 /**
  * Custom tabs for Ideal Forms
  */
-$.fn.tabs = function (ops) {
+$.fn.idealTabs = function (ops) {
 
   var
 
