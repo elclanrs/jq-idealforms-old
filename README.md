@@ -116,7 +116,7 @@ If you're working with dynamic fields check documentation on **[addFields](#addf
     <div>
       <label>Colors:</label>
       <select name="colors">
-          <option value="Choose a color">Choose a color</option>
+          <option value="default">Choose a color</option>
           <option value="Red">Red</option>
           <option value="Blue">Blue</option>
           <option value="Green">Green</option>
@@ -622,7 +622,7 @@ $myform.idealforms({
     'colors': {
       filters: 'exclude',
       data: {
-        exclude: ['Choose a color']
+        exclude: ['default']
       },
       errors: {
         exclude: 'Choose a color from the list.'
