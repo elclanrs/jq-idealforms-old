@@ -108,6 +108,7 @@ button.ideal-file-upload:active{background:#dae5ed;filter:0;-moz-box-shadow:inse
 .ui-datepicker{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;display:none;position:relative;z-index:2;margin-top:-1px;padding:.75em;border:1px solid #aaaaaa;min-width:14em;background:#ffffff;border-radius:0 0 3px 3px;font-size:85%;-moz-box-shadow:0 1px 1px rgba(0, 0, 0, 0.2),transparent 0 0 0;-webkit-box-shadow:0 1px 1px rgba(0, 0, 0, 0.2),transparent 0 0 0;box-shadow:0 1px 1px rgba(0, 0, 0, 0.2),transparent 0 0 0;}.ui-datepicker .ui-datepicker-header{position:relative;margin-bottom:.75em;}
 .ui-datepicker .ui-datepicker-prev,.ui-datepicker .ui-datepicker-next{position:absolute;top:50%;margin-top:-8px;cursor:pointer;width:16px;height:16px;background:url("../less/themes/basic/datepicker.png") left no-repeat;}.ui-datepicker .ui-datepicker-prev span,.ui-datepicker .ui-datepicker-next span{display:none;}
 .ui-datepicker .ui-datepicker-prev:hover,.ui-datepicker .ui-datepicker-next:hover{border:none;}
+.ui-datepicker .ui-datepicker-prev:active,.ui-datepicker .ui-datepicker-next:active{margin-top:-7px;}
 .ui-datepicker .ui-datepicker-prev{left:0;}
 .ui-datepicker .ui-datepicker-next{right:0;background-position:right;}
 .ui-datepicker .ui-datepicker-title{text-align:center;color:#222222;}
