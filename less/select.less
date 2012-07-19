@@ -149,6 +149,7 @@
 
     &.ideal-select-focus .title:after
     .ideal-select-title:after,
+    .ideal-select-title:before,
     .ideal-select-title:hover {
       .ie-refresh;
       border: 0;
@@ -156,7 +157,7 @@
     &.ideal-select-open .ideal-select-title,
     .ideal-select-title {
       border-radius: @border-radius @border-radius 0 0;
-      &:after {
+      &:after, &:before {
         .ie-refresh;
         border: 0;
       }
