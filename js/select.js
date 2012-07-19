@@ -219,17 +219,38 @@ $.fn.toCustomSelect = function () {
                 var re = new RegExp('^' + letter, 'i')
                 return re.test($(this).text())
               }),
-            newIdx = $matches.first().index()
+            nMatches = $matches.length,
 
-            if (!~newIdx)
+            counter = idealSelect.select.data('counter') + 1 || 0,
+            curKey = idealSelect.select.data('key') || key,
+
+            newIdx = $matches.eq(counter).index()
+
+            if (!nMatches) // No matches
               return false
+
+            // If more matches with same letter
+            if (curKey === key) {
+              if (counter < nMatches) {
+                idealSelect.select.data('counter', counter)
+              }
+              else {
+                idealSelect.select.data('counter', 0)
+                newIdx = $matches.eq(0).index()
+              }
+            }
+            // If new letter
+            else {
+              idealSelect.select.data('counter', 0)
+              newIdx = $matches.eq(0).index()
+            }
 
             if (isOpen)
               Actions.select(newIdx)
             else
               Actions.change(newIdx)
 
-            idealSelect.select.data('counter-key', key)
+            idealSelect.select.data('key', key)
 
             Actions.scrollToItem()
             Actions.focusHack()

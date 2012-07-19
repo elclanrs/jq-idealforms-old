@@ -16,14 +16,6 @@ var Utils = {
     })
     return maxWidth
   },
-  getMaxHeight: function ($elms) {
-    var maxHeight = 0
-    $elms.each(function () {
-      if ($(this).outerHeight() > maxHeight)
-        maxHeight = $(this).outerHeight()
-    })
-    return maxHeight
-  },
   /**
    * Hacky way of getting LESS variables
    * @memberOf Utils
