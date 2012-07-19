@@ -32,7 +32,8 @@ $.idealforms.errors = {
  * @returns object
  */
 var getFilters = function () {
-  return {
+
+  var filters = {
 
     required: {
       error: $.idealforms.errors.required
@@ -145,6 +146,17 @@ var getFilters = function () {
       }
     },
 
+    dob: {
+      regex: function (input, value) {
+        var isDate = filters.date.regex(input, value),
+            theYear = /\d{4}/.exec(value),
+            minYear = 1900,
+            maxYear = new Date().getFullYear() // This year
+        this.error = 'Must be a valid date of birth.'
+        return theYear >= minYear && theYear <= maxYear
+      }
+    },
+
     exclude: {
       regex: function (input, value) {
         var i = input.input
@@ -185,4 +197,7 @@ var getFilters = function () {
       }
     }
   }
+
+  return filters
+
 }

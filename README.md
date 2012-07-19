@@ -22,10 +22,10 @@
 * * *
 # Updates:
 
+* New `dob` Date of Birth filter.
 * New tabs(steps) with new public methods `switchTab`, `nextTab`, `prevTab`, `firstTab` and `lastTab`.
 * New custom datepicker (requires jQuery UI)
 * New method `removeFields` and new option `addBefore` in addition to `addAfter` for the `addFields` method.
-* Added separators and headings with descriptions. Check out demo.
 
 # Help:
 ```javascript
@@ -333,6 +333,17 @@ If you're loading jQuery UI, Ideal Forms will detect it and use the datepicker p
   filters: 'date',
   data: {
     date: 'dd-mm-yyyy' // or `yyyy~dd~mm` or `mm*yyyy*dd`...
+  }
+}
+```
+####`dob`
+Must be a valid date of birth, years between 1900 and the current year. Might need an update next century :)
+
+```javascript
+'myinput': {
+  filters: 'dob',
+  data: {
+    dob: 'yyyy/dd/mm'
   }
 }
 ```

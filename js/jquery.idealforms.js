@@ -251,7 +251,9 @@ $.fn.idealforms = function (ops) {
           var t = $(this), w = t.outerWidth()
           t.datepicker('widget').width(w)
         })
-        .parent().siblings('.ideal-error').addClass('hidden')
+        .parent()
+        .siblings('.ideal-error')
+        .addClass('hidden')
       }
 
       // Placeholder support
