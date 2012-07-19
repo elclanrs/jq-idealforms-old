@@ -63,6 +63,18 @@
       .drop-arrow;
       border-color: @select-arrow transparent transparent transparent;
     }
+    &:before {
+      @size: ((@select-arrow-size*1.7)*2) + @select-arrow-size*2;
+      content: "";
+      position: absolute;
+      right: @size;
+      height: 100%;
+      border-width: 0 @border-width 0 @border-width;
+      border-style: solid;
+      border-color: transparent;
+      border-left-color: darken(@select-title, 30%);
+      border-right-color: lighten(@select-title, 30%);
+    }
   }
   .ideal-select-focus .ideal-select-title,
   .ideal-select-title:hover {
@@ -70,6 +82,10 @@
     &:after {
       .drop-arrow;
       border-color: @select-focus-arrow transparent transparent transparent;
+    }
+    &:before {
+      border-left-color: darken(@select-focus, 30%);
+      border-right-color: lighten(@select-focus, 30%);
     }
   }
   // Menu open
