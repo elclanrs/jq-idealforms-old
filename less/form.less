@@ -115,7 +115,6 @@
     .heading-gradient() when (@css3-effects) { .gradient(@heading-bg, @form-bg) }
     .heading-gradient() when not (@css3-effects) { .gradient(black, @heading-bg); }
     .heading-gradient();
-    .box-shadow(inset lighten(@heading-bg, 30%) 0 @border-width 0);
     border-color: @heading-border-color;
     border-style: @heading-border-style;
     border-width: @heading-border-width;
@@ -231,8 +230,8 @@
     .error-gradient();
     color: @error-text;
     border: @border-width solid @error-border;
-    border-bottom: @border-width solid darken(@error-border, 10%);
-    .box-shadow(0px @border-width @border-width rgba(0,0,0,0.3));
+    border-bottom: @border-width solid @error-border;
+    .box-shadow(0px @border-width @border-width rgba(0,0,0,0.2));
     border-radius: 0 @border-radius @border-radius @border-radius;
   }
   .ideal-error:after,
