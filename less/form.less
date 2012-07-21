@@ -240,7 +240,7 @@
     content: "";
     position: absolute;
     top: 0;
-    left: -((@arrow-size - 1) * 2); /* `-1` to fix gap */
+    left: -@arrow-size*2 + @border-width; /* `-1` to fix gap */
     border-style: solid;
     border-width: 0 @arrow-size @arrow-size @arrow-size;
     border-color: transparent;
@@ -249,6 +249,7 @@
   .ideal-error:before {
     border-right-color: @error-border;
     left: -@arrow-size*2;
+    margin-left: -@border-width;
     top: -@border-width;
   }
   /* Full width */
