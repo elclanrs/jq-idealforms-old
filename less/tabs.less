@@ -42,7 +42,7 @@
   -------------------------------------------------------- */
 
   .ideal-tabs-wrap {
-    overflow: hidden;
+    .clearfix;
     margin-bottom: 2em;
     border-radius: @border-radius;
     .ui-color(@bg, black);
@@ -81,7 +81,14 @@
       z-index: 2;
     }
   }
-  .ideal-tabs-tab-active {
+  .ideal-tabs-tab:hover {
+    background: @tab-focus;
+    &:after {
+      border-left-color: @tab-focus;
+    }
+  }
+  .ideal-tabs-tab-active,
+  .ideal-tabs-tab-active:hover {
     color: @tab-selected-text;
     background: @tab-selected-bg;
     font-weight: bold;
