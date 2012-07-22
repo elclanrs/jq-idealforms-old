@@ -3,6 +3,10 @@
  * @example `$(':file').idealFile()`
  */
 $.fn.idealFile = function () {
+
+  // Browser supports HTML5 multiple file?
+  var multipleSupport = typeof $('input')[0].multiple !== 'undefined'
+
   return this.each(function () {
 
     var
@@ -28,9 +32,7 @@ $.fn.idealFile = function () {
       .attr('tabIndex', -1)
       .on({
         change: function () {
-          // Detect if browser supports HTML5 "file multiple"
-          var multipleSupport = typeof $('input')[0].multiple !== 'undefined',
-              files = [],
+          var files = [],
               fileArr,
               filename
           if (multipleSupport) {
