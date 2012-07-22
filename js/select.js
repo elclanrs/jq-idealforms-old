@@ -2,7 +2,7 @@
  * A custom <select> menu jQuery plugin
  * @example `$('select').toCustomidealSelect.)`
  */
-$.fn.toCustomSelect = function () {
+$.fn.idealSelect = function () {
 
   return this.each(function () {
 

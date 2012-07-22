@@ -2,7 +2,7 @@
  * A custom <input type="file"> jQuery plugin
  * @example `$(':file').toCustomFile()`
  */
-$.fn.toCustomFile = function () {
+$.fn.idealFile = function () {
   return this.each(function () {
 
     var

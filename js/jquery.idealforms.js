@@ -152,11 +152,11 @@ $.fn.idealforms = function (ops) {
         },
         file: function () {
           idealTypes.defaultInput()
-          if (o.customInputs) $el.toCustomFile()
+          if (o.customInputs) $el.idealFile()
         },
         select: function () {
           idealTypes.defaultInput()
-          if (o.customInputs) $el.toCustomSelect()
+          if (o.customInputs) $el.idealSelect()
         },
         text: function () {
           idealTypes.defaultInput()
@@ -164,7 +164,7 @@ $.fn.idealforms = function (ops) {
         radiocheck: function () {
           var isWrapped = $el.parents('.ideal-field').length,
               $all = $el.parent().siblings('label:not(:first)').andSelf()
-          if (o.customInputs) $el.toCustomRadioCheck()
+          if (o.customInputs) $el.idealRadioCheck()
           if (!isWrapped) {
             $all.wrapAll('<span class="ideal-field ideal-radiocheck"/>')
             addValidationEls()
