@@ -1,6 +1,6 @@
 /**
  * A custom <input type="file"> jQuery plugin
- * @example `$(':file').toCustomFile()`
+ * @example `$(':file').idealFile()`
  */
 $.fn.idealFile = function () {
   return this.each(function () {

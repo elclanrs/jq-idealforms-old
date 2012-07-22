@@ -1,6 +1,6 @@
 /**
  * A custom <input type="radio|checkbox"> jQuery plugin
- * @example `$(':radio, :checkbox').toCustomRadioCheck()`
+ * @example `$(':radio, :checkbox').idealRadioCheck()`
  */
 $.fn.idealRadioCheck = function () {
   return this.each(function () {

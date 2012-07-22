@@ -1,6 +1,6 @@
 /**
  * A custom <select> menu jQuery plugin
- * @example `$('select').toCustomidealSelect.)`
+ * @example `$('select').idealSelect()`
  */
 $.fn.idealSelect = function () {
 
