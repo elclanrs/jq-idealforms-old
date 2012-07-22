@@ -67,7 +67,7 @@ textarea{overflow:auto;vertical-align:top;}
 .ideal-tabs .ideal-tabs-tab:after{content:'';position:absolute;z-index:1;right:-30.5px;border-width:19px 19px 19px 12.666666666666666px;border-style:solid;border-color:transparent transparent transparent #e5e5e5;}
 .ideal-tabs .ideal-tabs-tab:before{content:'';position:absolute;z-index:1;right:-30.5px;border-width:19px 19px 19px 12.666666666666666px;border-style:solid;border-color:transparent transparent transparent #e5e5e5;border-left-color:#b2b2b2;right:-31.5px;}
 .ideal-tabs .ideal-tabs-tab span{position:relative;padding-left:2em;margin-left:-2em;display:inline-block;height:100%;z-index:2;}
-.ideal-tabs .ideal-tabs-tab:hover{background:#d5e3ed;}.ideal-tabs .ideal-tabs-tab:hover:after{border-left-color:#d5e3ed;}
+.ideal-tabs .ideal-tabs-tab:hover{background:#d5e3ed;color:#2b4d65;}.ideal-tabs .ideal-tabs-tab:hover:after{border-left-color:#d5e3ed;}
 .ideal-tabs .ideal-tabs-tab-active,.ideal-tabs .ideal-tabs-tab-active:hover{color:#2191c9;background:#ffffff;font-weight:bold;padding-right:3.5em;cursor:default;}.ideal-tabs .ideal-tabs-tab-active:hover,.ideal-tabs .ideal-tabs-tab-active:hover:hover{text-decoration:none;}
 .ideal-tabs .ideal-tabs-tab-active:after,.ideal-tabs .ideal-tabs-tab-active:hover:after{border-left-color:#ffffff;}
 .ideal-tabs .ideal-tabs-tab-counter{display:none;}
