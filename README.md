@@ -339,7 +339,7 @@ Must be a valid date. This filter effectively validates a date, so stuff like `0
   }
 }
 ```
-To use the datepicker you need to load jQuery UI and add the class `datpicker` to your date input. Ideal Forms will apply the custom format that you specify without having to configure the datepicker. It's seamless.
+To use the datepicker you need to load jQuery UI and add the class `datepicker` to your date input. Ideal Forms will apply the custom format that you specify without having to configure the datepicker. It's seamless.
 
 ####`dob`
 Must be a valid date of birth in this century, that is 100 years range from the current year.
