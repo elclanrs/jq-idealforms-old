@@ -209,30 +209,17 @@ inputs: {
 ```
 
 ####`customFilters`
-Adding custom filters is very easy and straightforward.
-
+You can add custom filters when invoking the plugin:
 ```javascript
 customFilters: {
   custom: {
     regex: /regularexpression/,
     error: 'My custom error'
-  },
-  another: {
-     /**
-     * @param {object} input Contains two objects,
-     * the user options of the input as [input.userOptions]
-     * and the jQuery element as [input.input]
-     * @param {string} value The value of the input
-     * @return {bool} Truthy or falsy values too
-     */
-    regex: function(input, value) {
-      // Declare error within `regex`
-      // to have access to `value` and `input`
-      this.error = 'My custom ' + value;
-    }
   }
 }
 ```
+Or you can add them to the global Ideal Forms filters
+
 
 ####`customInputs`
 Disables custom inputs and uses system default. (select, radio, checkbox, button, file)
