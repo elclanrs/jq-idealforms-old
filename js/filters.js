@@ -15,10 +15,11 @@ $.idealforms.errors = {
   phone: 'Must be a valid US phone number. <em>(e.g. 555-123-4567)</em>',
   zip: 'Must be a valid US zip code. <em>(e.g. 33245 or 33245-0003)</em>',
   url: 'Must be a valid URL. <em>(e.g. www.google.com)</em>',
-  min: 'Must be at least <strong>{0}</strong> characters long.',
+  minChar: 'Must be at least <strong>{0}</strong> characters long.',
   minOption: 'Check at least <strong>{0}</strong> options.',
-  max: 'No more than <strong>{0}</strong> characters long.',
+  maxChar: 'No more than <strong>{0}</strong> characters long.',
   maxOption: 'No more than <strong>{0}</strong> options allowed.',
+  range: 'Must be a number between {0} and {1}.',
   date: 'Must be a valid date. <em>(e.g. {0})</em>',
   dob: 'Must be a valid date of birth.',
   exclude: '"{0}" is not available.',
@@ -92,27 +93,40 @@ var getFilters = function () {
 
     min: {
       regex: function (input, value) {
-        var i = input.input,
-            min = input.userOptions.data.min
-        if (i.is('[type="checkbox"], [type="radio"], select')) {
+        var $input = input.input,
+            min = input.userOptions.data.min,
+            isRadioCheck = $input.is('[type="checkbox"], [type="radio"]')
+        if (isRadioCheck) {
           this.error = $.idealforms.errors.minOption.replace('{0}', min)
-          return i.filter(':checked').length >= min
+          return $input.filter(':checked').length >= min
         }
-        this.error = $.idealforms.errors.min.replace('{0}', min)
+        this.error = $.idealforms.errors.minChar.replace('{0}', min)
         return value.length >= min
       }
     },
 
     max: {
       regex: function (input, value) {
-        var i = input.input,
-            max = input.userOptions.data.max
-        if (i.is('[type="checkbox"], [type="radio"], select')) {
+        var $input = input.input,
+            max = input.userOptions.data.max,
+            isRadioCheck = $input.is('[type="checkbox"], [type="radio"]')
+        if (isRadioCheck) {
           this.error = $.idealforms.errors.maxOption.replace('{0}', max)
-          return i.filter(':checked').length <= max
+          return $input.filter(':checked').length <= max
         }
-        this.error = $.idealforms.errors.max.replace('{0}', max)
+        this.error = $.idealforms.errors.maxChar.replace('{0}', max)
         return value.length <= max
+      }
+    },
+
+    range: {
+      regex: function (input, value) {
+        var range = input.userOptions.data.range,
+            val = +value
+        this.error = $.idealforms.errors.range
+          .replace('{0}', range[0])
+          .replace('{1}', range[1])
+        return val >= range[0] && val <= range[1]
       }
     },
 
@@ -172,7 +186,7 @@ var getFilters = function () {
         // DOB
         theYear = /\d{4}/.exec(value),
         minYear = 1900,
-        maxYear = new Date().getFullYear() // This year
+        maxYear = new Date().getFullYear() // Current year
 
         this.error = $.idealforms.errors.dob
 

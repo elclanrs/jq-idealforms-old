@@ -22,10 +22,10 @@
 * * *
 # Updates:
 
+* New `range` filter.
 * New `dob` Date of Birth filter.
 * New tabs(steps) with new public methods `switchTab`, `nextTab`, `prevTab`, `firstTab` and `lastTab`.
 * New custom datepicker (requires jQuery UI)
-* New method `removeFields` and new option `addBefore` in addition to `addAfter` for the `addFields` method.
 
 # Help:
 ```javascript
@@ -298,6 +298,17 @@ Must be a number.
 
 ####`digits`
 Only digits.
+
+####`range`
+Only numbers within a range. Usually combined with `numebr` and `digits`.
+```javascript
+'myinput': {
+  filters: 'number range',
+  data: {
+    range: [1, 100]
+  }
+}
+```
 
 ####`name`
 Must be at least 3 characters long, and must only contain letters.
