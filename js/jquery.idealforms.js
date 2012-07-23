@@ -206,8 +206,8 @@ $.fn.idealforms = function (ops) {
       // Add inputs specified by class
       // to the list of user inputs
       $form.find('.' + Utils.getKeys($.idealforms.filters).join(', .'))
-        .each(function(){ 
-          o.inputs[this.name] = { filters: this.className } 
+        .each(function(){
+          o.inputs[this.name] = { filters: this.className }
         })
 
       // Adjust labels
@@ -228,7 +228,7 @@ $.fn.idealforms = function (ops) {
 
       // Datepicker
       if (jQuery.ui) {
-        $form.find('input.date').each(function(){
+        $form.find('input.datepicker').each(function(){
           var
           userInput = o.inputs[this.name],
           data = userInput.data && userInput.data.date,
@@ -554,7 +554,7 @@ $.fn.idealforms = function (ops) {
         $input = $field.find('input, select, textarea, :button')
 
         // Add user options
-        if (userOptions.filters) 
+        if (userOptions.filters)
           o.inputs[name] = userOptions
 
         Actions.doMarkup($input)

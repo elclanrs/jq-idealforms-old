@@ -106,7 +106,7 @@ If you're working with dynamic fields check documentation on **[addFields](#addf
 
     <!-- Text -->
     <div><label>Username:</label><input type="text" name="username"/></div>
-    <div><label>Date:</label><input type="text" name="date" placeholder="mm/dd/yy"/></div>
+    <div><label>Date:</label><input type="text" name="date" class="datepicker" placeholder="mm/dd/yy"/></div>
     <div><label>Comments:</label><textarea name="comments"></textarea></div>
 
     <!-- File -->
@@ -332,8 +332,10 @@ Must be a valid URL.
 ####`date`
 Must be a valid date. This filter effectively validates a date, so stuff like `02-31-2012` or `30/80/2000` would be invalid. You can use any format with 4 digit year and any delimiter character. The default format is `mm/dd/yyyy`.
 
-If you're loading jQuery UI, Ideal Forms will detect it and use the datepicker plugin to choose dates. It will also apply the custom format that you specify without having to configure the datepicker. It's seamless.
-
+To use the datepicker load jQuery UI and add the class `datepicker` to your date input.
+```html
+<div><label>Date:</label><input type="text" name="date" class="datepicker"/></div>
+```
 ```javascript
 'myinput': {
   filters: 'date',
