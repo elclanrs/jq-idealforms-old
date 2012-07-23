@@ -218,8 +218,14 @@ customFilters: {
   }
 }
 ```
-Or you can add them to the global Ideal Forms filters
-
+Or you can add them to the global Ideal Forms filters (recommended):
+$.extend($.idealforms.filters, {
+  another: function (input, value) {
+    var $input = input.input,
+        userOptions = input.userOptions
+    this.error = 'Something ' + value
+  }
+})
 
 ####`customInputs`
 Disables custom inputs and uses system default. (select, radio, checkbox, button, file)
