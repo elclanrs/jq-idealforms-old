@@ -4,6 +4,9 @@
 
 $.fn.idealforms = function (ops) {
 
+  // Get filters with localized errors
+  $.extend($.idealforms.filters, getFilters())
+
   var
 
   $form = this, // The form
@@ -39,8 +42,6 @@ $.fn.idealforms = function (ops) {
     return $t
   }()),
 
-  Filters = getFilters(), // Get filters with localized errors
-
   /**
    * @namespace All form inputs of the given form
    * @memberOf $.fn.idealforms
@@ -66,7 +67,7 @@ $.fn.idealforms = function (ops) {
   getUserInputs = function () {
     return $(
       '[name="'+ Utils.getKeys(o.inputs).join('"], [name="') +'"],' + // by name attribute
-      '.' + Utils.getKeys(Filters).join(', .') // by class
+      '.' + Utils.getKeys($.idealforms.filters).join(', .') // by class
     )
   },
 
@@ -325,7 +326,7 @@ $.fn.idealforms = function (ops) {
           error = (
             userOptions.errors && userOptions.errors.required
               ? userOptions.errors.required
-              : Filters.required.error
+              : $.idealforms.errors.required
           )
           isValid = false
         }
@@ -335,7 +336,7 @@ $.fn.idealforms = function (ops) {
           userFilters = userFilters.split(/\s/)
           for (var i = 0, len = userFilters.length; i < len; i++) {
             var uf = userFilters[i],
-                theFilter = Filters[uf] || {}
+                theFilter = $.idealforms.filters[uf] || {}
             if (
               theFilter && (
                 Utils.isFunction(theFilter.regex) && !theFilter.regex(input, value) ||
@@ -736,7 +737,7 @@ $.fn.idealforms = function (ops) {
   })
 
   // Merge custom and default filters
-  $.extend(true, Filters, o.customFilters)
+  $.extend(true, $.idealforms.filters, o.customFilters)
 
   // Merge custom and default flags
   $.extend(true, Flags, o.customFlags)
