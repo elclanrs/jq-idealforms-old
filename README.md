@@ -348,7 +348,7 @@ If you're loading jQuery UI, Ideal Forms will detect it and use the datepicker p
 }
 ```
 ####`dob`
-Must be a valid date of birth, years between 1900 and the current year. Might need an update next century :)
+Must be a valid date of birth in this century, that is 100 years range from the current year.
 
 ```javascript
 'myinput': {

@@ -185,8 +185,8 @@ var getFilters = function () {
 
         // DOB
         theYear = /\d{4}/.exec(value),
-        minYear = 1900,
-        maxYear = new Date().getFullYear() // Current year
+        maxYear = new Date().getFullYear(), // Current year
+        minYear = maxYear - 100
 
         this.error = $.idealforms.errors.dob
 
