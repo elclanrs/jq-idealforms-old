@@ -331,11 +331,6 @@ Must be a valid URL.
 
 ####`date`
 Must be a valid date. This filter effectively validates a date, so stuff like `02-31-2012` or `30/80/2000` would be invalid. You can use any format with 4 digit year and any delimiter character. The default format is `mm/dd/yyyy`.
-
-To use the datepicker load jQuery UI and add the class `datepicker` to your date input.
-```html
-<div><label>Date:</label><input type="text" name="date" class="datepicker"/></div>
-```
 ```javascript
 'myinput': {
   filters: 'date',
@@ -344,6 +339,8 @@ To use the datepicker load jQuery UI and add the class `datepicker` to your date
   }
 }
 ```
+To use the datepicker you need to load jQuery UI and add the class `datpicker` to your date input. Ideal Forms will apply the custom format that you specify without having to configure the datepicker. It's seamless.
+
 ####`dob`
 Must be a valid date of birth in this century, that is 100 years range from the current year.
 
