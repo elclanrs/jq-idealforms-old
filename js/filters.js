@@ -96,6 +96,7 @@ var getFilters = function () {
 
     min: {
       regex: function (input, value) {
+        //console.log(input.userOptions + ':' + value)
         var $input = input.input,
             min = input.userOptions.data.min,
             isRadioCheck = $input.is('[type="checkbox"], [type="radio"]')
@@ -201,12 +202,14 @@ var getFilters = function () {
 
     exclude: {
       regex: function (input, value) {
-        var i = input.input
-        if (i.is('[type="checkbox"], [type="radio"], select'))
+        var $input = input.input,
+            exclude = input.userOptions.data.exclude,
+            isOption = $input.is('[type="checkbox"], [type="radio"], select')
+        if (isOption)
           this.error = $.idealforms.errors.excludeOption.replace('{0}', value)
         else
           this.error = $.idealforms.errors.exclude.replace('{0}', value)
-        return !~$.inArray(value, input.userOptions.data.exclude)
+        return !~$.inArray(value, exclude)
       }
     },
 
