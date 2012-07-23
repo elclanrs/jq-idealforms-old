@@ -300,7 +300,7 @@ Must be a number.
 Only digits.
 
 ####`range`
-Only numbers within a range. Usually combined with `number` and `digits`.
+Only numbers within a range. Usually combined with `number` or `digits`.
 ```javascript
 'myinput': {
   filters: 'number range',
