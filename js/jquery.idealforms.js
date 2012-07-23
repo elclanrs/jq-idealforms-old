@@ -65,10 +65,7 @@ $.fn.idealforms = function (ops) {
    * All inputs specified by the user
    */
   getUserInputs = function () {
-    return $(
-      '[name="'+ Utils.getKeys(o.inputs).join('"], [name="') +'"],' + // by name attribute
-      '.' + Utils.getKeys($.idealforms.filters).join(', .') // by class
-    )
+    return $form.find('[name="'+ Utils.getKeys(o.inputs).join('"], [name="') +'"]')
   },
 
 /*--------------------------------------------------------------------------*/
@@ -206,10 +203,12 @@ $.fn.idealforms = function (ops) {
       // Autocomplete causes some problems...
       formInputs.inputs.attr('autocomplete', 'off')
 
-      // Add filter classes to inputs
-      // specified by name in the plugin
-      $('[name="'+ Utils.getKeys(o.inputs).join('"], [name="') +'"]')
-        .each(function(){ this.className = o.inputs[this.name].filters })
+      // Add inputs specified by class
+      // to the list of user inputs
+      $form.find('.' + Utils.getKeys($.idealforms.filters).join(', .'))
+        .each(function(){ 
+          o.inputs[this.name] = { filters: this.className } 
+        })
 
       // Adjust labels
       formInputs.labels
@@ -333,6 +332,7 @@ $.fn.idealforms = function (ops) {
 
         // All other filters
         if (value) {
+          console.log($input)
           userFilters = userFilters.split(/\s/)
           for (var i = 0, len = userFilters.length; i < len; i++) {
             var uf = userFilters[i],
@@ -381,17 +381,15 @@ $.fn.idealforms = function (ops) {
 
       currentTabName = Actions.getCurrentTab($input).name,
 
-      userOptions = (
-        o.inputs[input.attr('name')] || // by name attribute
-        { filters: input.attr('class') } // by class
-      ),
+      userOptions = o.inputs[input.attr('name')],
+
       value = (function () {
-        var iVal = input.val()
-        if (iVal === input.attr('placeholder')) return
+        var val = input.val()
+        if (val === input.attr('placeholder')) return
         // Always send a value when validating
         // [type="checkbox"] and [type="radio"]
         if (isRadiocheck) return userOptions && ' '
-        return iVal
+        return val
       }()),
 
       $field = input.parents('.ideal-field'),
@@ -429,7 +427,7 @@ $.fn.idealforms = function (ops) {
           else break
         }
       }
-
+      console.log(userOptions)
       // Reset
       $field.removeClass('valid invalid').data('isValid', true)
       $error.add($invalid).add($valid).hide()
@@ -556,7 +554,8 @@ $.fn.idealforms = function (ops) {
         $input = $field.find('input, select, textarea, :button')
 
         // Add user options
-        if (userOptions.filters) o.inputs[name] = userOptions
+        if (userOptions.filters) 
+          o.inputs[name] = userOptions
 
         Actions.doMarkup($input)
 
