@@ -1,15 +1,15 @@
 var Flags = {
   noerror: function (i) {
-    i.parent().siblings('.error').hide()
+    i.parent().siblings('.ideal-error').hide()
   },
   noicons: function (i) {
-    i.siblings('.valid-icon, .invalid-icon').hide()
+    i.siblings('.ideal-icon-valid, .ideal-icon-invalid').hide()
   },
   novalidicon: function (i) {
-    i.siblings('.valid-icon').hide()
+    i.siblings('.ideal-icon-valid').hide()
   },
   noinvalidicon: function (i) {
-    i.siblings('.invalid-icon').hide()
+    i.siblings('.ideal-icon-invalid').hide()
   },
   noclass: function (i) {
     i.parents('.ideal-field').removeClass('valid invalid')
