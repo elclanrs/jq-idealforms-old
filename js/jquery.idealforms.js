@@ -332,7 +332,6 @@ $.fn.idealforms = function (ops) {
 
         // All other filters
         if (value) {
-          console.log($input)
           userFilters = userFilters.split(/\s/)
           for (var i = 0, len = userFilters.length; i < len; i++) {
             var uf = userFilters[i],
@@ -427,7 +426,7 @@ $.fn.idealforms = function (ops) {
           else break
         }
       }
-      console.log(userOptions)
+
       // Reset
       $field.removeClass('valid invalid').data('isValid', true)
       $error.add($invalid).add($valid).hide()

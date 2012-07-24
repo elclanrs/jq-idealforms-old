@@ -96,7 +96,6 @@ var getFilters = function () {
 
     min: {
       regex: function (input, value) {
-        //console.log(input.userOptions + ':' + value)
         var $input = input.input,
             min = input.userOptions.data.min,
             isRadioCheck = $input.is('[type="checkbox"], [type="radio"]')
