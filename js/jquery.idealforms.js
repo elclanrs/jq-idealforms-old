@@ -24,7 +24,7 @@ $.fn.idealforms = function (ops) {
       alert($form.getInvalid().length +' invalid fields.')
     },
     responsiveAt: 'auto',
-    customInputs: true
+    disableCustom: ''
   }, ops),
 
   /** Generate tabs from fieldsets
@@ -146,15 +146,18 @@ $.fn.idealforms = function (ops) {
           addValidationEls()
         },
         button: function () {
-          if (o.customInputs) $el.addClass('ideal-button')
+          if (!/button/.test(o.disableCustom))
+            $el.addClass('ideal-button')
         },
         file: function () {
           idealTypes.defaultInput()
-          if (o.customInputs) $el.idealFile()
+          if (!/file/.test(o.disableCustom))
+            $el.idealFile()
         },
         select: function () {
           idealTypes.defaultInput()
-          if (o.customInputs) $el.idealSelect()
+          if (!/select/.test(o.disableCustom))
+            $el.idealSelect()
         },
         text: function () {
           idealTypes.defaultInput()
@@ -162,7 +165,8 @@ $.fn.idealforms = function (ops) {
         radiocheck: function () {
           var isWrapped = $el.parents('.ideal-field').length,
               $all = $el.parent().siblings('label:not(:first)').andSelf()
-          if (o.customInputs) $el.idealRadioCheck()
+          if (!/radiocheck/.test(o.disableCustom))
+            $el.idealRadioCheck()
           if (!isWrapped) {
             $all.wrapAll('<span class="ideal-field ideal-radiocheck"/>')
             addValidationEls()
