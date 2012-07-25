@@ -625,9 +625,12 @@ $.fn.idealforms = function (ops) {
     focusFirst: function () {
       if ($idealTabs.length)
         $idealTabs.filter(':visible')
+          .find('.ideal-field:first')
           .find('input:first, select, textarea').focus()
       else
-        $form.find('input:first, select, textarea').focus()
+        $form
+          .find('.ideal-field:first')
+          .find('input:first, select, textarea').focus()
       return $form
     },
 
