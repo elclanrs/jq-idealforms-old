@@ -59,12 +59,12 @@ To localize Ideal Forms in your language, load the corresponding file from `js/i
 * [Options](#options)
     * [inputs](#inputs)
     * [customFilters](#customfilters)
-    * [customInputs](#custominputs)
     * [customFlags](#customflags)
     * [globalFlags](#globalflags)
     * [onSuccess](#onsuccess)
     * [onFail](#onfail)
     * [responsiveAt](#responsiveat)
+    * [disableCustom](#disableCustom)
 * [Built-in filters](#built-in-filters)
 * [Built-in flags](#built-in-flags)
 * [Methods](#methods)
@@ -229,12 +229,6 @@ $.extend($.idealforms.filters, {
 })
 ```
 
-####`customInputs`
-Disables custom inputs and uses system default. (select, radio, checkbox, button, file)
-```javascript
-customInputs: false
-```
-
 ####`customFlags`
 Add custom flags:
 
@@ -279,6 +273,12 @@ You can change this behavior by assigning a number value to the `responsiveAt` o
 // Set to `false` to disable responsiveness
 // To always show the responsive layout use a large number ie `3000`
 responsiveAt: 480
+```
+
+####`disableCustom`
+Disables custom inputs and uses system default.
+```javascript
+disableCustom: 'file select radiocheck button'
 ```
 
 Built-in filters
