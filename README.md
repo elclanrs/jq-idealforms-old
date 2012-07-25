@@ -64,7 +64,7 @@ To localize Ideal Forms in your language, load the corresponding file from `js/i
     * [onSuccess](#onsuccess)
     * [onFail](#onfail)
     * [responsiveAt](#responsiveat)
-    * [disableCustom](#disableCustom)
+    * [disableCustom](#disablecustom)
 * [Built-in filters](#built-in-filters)
 * [Built-in flags](#built-in-flags)
 * [Methods](#methods)
