@@ -729,7 +729,8 @@ $.fn.idealforms = function (ops) {
   $form.on({
     keydown: function (e) {
       // Prevent submit when pressing enter
-      if (e.which === 13) e.preventDefault()
+      if (e.which === 13 && e.target.nodeName !== 'TEXTAREA')
+        e.preventDefault()
     },
     submit: function (e) {
       if (!$form.isValid()) {
