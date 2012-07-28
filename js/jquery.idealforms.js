@@ -57,7 +57,8 @@ $.fn.idealforms = function (ops) {
       buttons: $form.find(':button'),
       file: $form.find('input[type="file"]'),
       headings: $form.find('h1, h2, h3, h4, h5, h6, p'),
-      separators: $form.find('hr')
+      separators: $form.find('hr'),
+      hidden: $form.find('input:hidden')
     }
   },
 
@@ -184,6 +185,9 @@ $.fn.idealforms = function (ops) {
         separator: function () {
           $el.closest('div').addClass('ideal-full-width')
           $el.wrapAll('<div class="ideal-separator"/>')
+        },
+        hidden: function () {
+          $el.closest('div').addClass('ideal-hidden')
         }
       }
 

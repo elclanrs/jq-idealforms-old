@@ -63,7 +63,8 @@ var Utils = {
       /(radio|checkbox)/.test(type) && 'radiocheck' ||
       /(button|submit|reset)/.test(type) && 'button' ||
       /h\d/.test(type) && 'description' ||
-      /hr/.test(type) && 'separator'
+      /hr/.test(type) && 'separator' ||
+      /hidden/.test(type) && 'hidden'
     )
   },
   /**
@@ -76,7 +77,7 @@ var Utils = {
     var markup, items = [], i, len
 
     // Text & file
-    if (/(text|password|email|number|search|url|tel|file)/.test(type))
+    if (/(text|password|email|number|search|url|tel|file|hidden)/.test(type))
       markup = '<input '+
         'type="'+ type +'" '+
         'id="'+ name +'" '+
