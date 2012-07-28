@@ -549,7 +549,7 @@ $.fn.idealforms = function (ops) {
         },
 
         // Markup
-        label = ops.label,
+        label = ops.label || '',
         type = ops.type,
         list = ops.list || '',
         placeholder = ops.placeholder || '',
