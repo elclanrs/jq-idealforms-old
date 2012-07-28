@@ -688,6 +688,7 @@ $.fn.idealforms = function (ops) {
     reload: function () {
       Actions.adjust()
       Actions.attachEvents()
+      $form.fresh()
     },
 
     reset: function (name) {
