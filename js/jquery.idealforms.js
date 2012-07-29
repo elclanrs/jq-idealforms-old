@@ -27,7 +27,7 @@ $.fn.idealforms = function (ops) {
     disableCustom: ''
   }, ops),
 
-  /** Generate tabs from fieldsets
+  /** Generate tabs from sections
    * @returns tabs plugin object with methods
    */
   $idealTabs = (function () {
@@ -237,11 +237,12 @@ $.fn.idealforms = function (ops) {
 
       // Adjust labels
       formInputs.labels
+        .removeAttr('style')
         .addClass('ideal-label')
         .width(Utils.getMaxWidth(formInputs.labels))
 
       // Adjust headings, separators
-      if ($idealTabs.length) {
+      if ($idealTabs) {
         $idealTabs.each(function(){
           $(this).find('.ideal-heading:first')
             .addClass('first-child')
@@ -312,7 +313,7 @@ $.fn.idealforms = function (ops) {
       // Add novalidate tag if HTML5.
       $form.attr('novalidate', 'novalidate')
 
-      // Alway show datepicker below the input
+      // Always show datepicker below the input
       if (jQuery.ui) {
         $.datepicker._checkOffset = function(a, b, c) { return b }
       }
@@ -473,7 +474,7 @@ $.fn.idealforms = function (ops) {
           $error.html(test.error).show()
       }
 
-      if ($idealTabs.length)
+      if ($idealTabs)
         Actions.updateTabsCounter(currentTabName)
 
       doFlags()
@@ -525,7 +526,8 @@ $.fn.idealforms = function (ops) {
       }
 
       // Hide datePicker
-      if ($datePicker.length) $datePicker.datepicker('hide')
+      if ($datePicker.length)
+        $datePicker.datepicker('hide')
 
     }
   },
@@ -616,6 +618,8 @@ $.fn.idealforms = function (ops) {
       $form.reload()
       // Refresh field validation
       $form.fresh(allNames)
+      // responsiveness
+      Actions.responsive()
 
       return $form
     },
@@ -630,13 +634,14 @@ $.fn.idealforms = function (ops) {
         f.push( Utils.getByNameOrId(fields[i]).get(0) )
       $(f).parents('.ideal-wrap').remove()
       // counter
-      if ($idealTabs.length)
+      if ($idealTabs)
         Actions.updateTabsCounter()
+      $form.reload()
       return $form
     },
 
     getInvalid: function (tabName) {
-      if (tabName && $idealTabs.length) {
+      if (tabName && $idealTabs) {
         return Actions.getTab(tabName)
           .find('.ideal-field').filter(function () {
             return $(this).data('isValid') === false
@@ -657,7 +662,7 @@ $.fn.idealforms = function (ops) {
     },
 
     focusFirst: function () {
-      if ($idealTabs.length)
+      if ($idealTabs)
         $idealTabs.filter(':visible')
           .find('.ideal-field:first')
           .find('input:first, select, textarea').focus()
@@ -673,7 +678,7 @@ $.fn.idealforms = function (ops) {
           tabName =
             $first.parents('.ideal-tabs-content')
               .data('ideal-tabs-content-name')
-      if ($idealTabs.length)
+      if ($idealTabs)
         $idealTabs.switchTab({ name: tabName })
       $first.find('input:first, select, textarea').focus()
       return $form
@@ -713,7 +718,7 @@ $.fn.idealforms = function (ops) {
         .blur()
         .parents('.ideal-field')
         .removeClass('valid invalid')
-      if ($idealTabs.length)
+      if ($idealTabs)
         $idealTabs.firstTab()
       return $form
     },
@@ -786,7 +791,7 @@ $.fn.idealforms = function (ops) {
   $.extend(true, Flags, o.customFlags)
 
   // Start form
-  if ($idealTabs.length)
+  if ($idealTabs)
     $idealTabs.show() // Show all tabs to calculate widths and heights
   Actions.init()
   Actions.attachEvents()
@@ -798,7 +803,7 @@ $.fn.idealforms = function (ops) {
     Actions.responsive()
   }
 
-  if ($idealTabs.length)
+  if ($idealTabs)
     $form.firstTab() // Done calculating hide tabs and start fresh
 
   return this
