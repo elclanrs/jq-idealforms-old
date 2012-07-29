@@ -109,6 +109,23 @@ $.fn.idealforms = function (ops) {
       }
     },
 
+    // Update tabs counter
+    updateTabsCounter: function (tabName) {
+      if (tabName) {
+        $idealTabs.updateCounter(
+          tabName,
+          $form.getInvalid(tabName).length
+        )
+      }
+      else {
+        $idealTabs.each(function () {
+          var name = $(this).data('ideal-tabs-content-name'),
+              invalid = $form.getInvalid(name).length
+          $idealTabs.updateCounter(name, invalid)
+        })
+      }
+    },
+
     /**
      * Generate markup for any given
      * Ideal Forms element type
@@ -456,12 +473,8 @@ $.fn.idealforms = function (ops) {
           $error.html(test.error).show()
       }
 
-      // Update tabs counter
       if ($idealTabs.length)
-        $idealTabs.updateCounter(
-          currentTabName,
-          $form.getInvalid(currentTabName).length
-        )
+        Actions.updateTabsCounter(currentTabName)
 
       doFlags()
     },
@@ -558,7 +571,7 @@ $.fn.idealforms = function (ops) {
         $field = $(
           '<div>'+
             '<label>'+ label +':</label>'+ Utils.makeInput(name, type, list, placeholder) +
-          '</div>'
+         '</div>'
         ),
         $input = $field.find('input, select, textarea, :button')
 
@@ -616,6 +629,9 @@ $.fn.idealforms = function (ops) {
       for (var i = 0, l = fields.length; i < l; i++)
         f.push( Utils.getByNameOrId(fields[i]).get(0) )
       $(f).parents('.ideal-wrap').remove()
+      // counter
+      if ($idealTabs.length)
+        Actions.updateTabsCounter()
       return $form
     },
 
