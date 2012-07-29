@@ -530,17 +530,19 @@ $.fn.idealforms = function (ops) {
      */
     addFields: function (fields) {
 
-      // Reverse array to insert in DOM
-      // in proper order
-      fields = fields.reverse()
+      var
 
-      var add = function (ops) {
+      // Save names of all inputs in array
+      // to use methods that take names ie. fresh()
+      allNames = [],
+
+      // Add an input to the DOM
+      add = function (ops) {
 
         var
 
         name = ops.name,
 
-        // User options
         userOptions = {
           filters: ops.filters || '',
           data: ops.data || {},
@@ -548,11 +550,11 @@ $.fn.idealforms = function (ops) {
           flags: ops.flags || ''
         },
 
-        // Markup
         label = ops.label || '',
         type = ops.type,
-        list = ops.list || '',
+        list = ops.list || [],
         placeholder = ops.placeholder || '',
+
         $field = $(
           '<div>'+
             '<label>'+ label +':</label>'+ Utils.makeInput(name, type, list, placeholder) +
@@ -560,27 +562,37 @@ $.fn.idealforms = function (ops) {
         ),
         $input = $field.find('input, select, textarea, :button')
 
-        // Add user options
+        // Add inputs with filters to the list
+        // of user inputs to validate
         if (userOptions.filters)
           o.inputs[name] = userOptions
 
         Actions.doMarkup($input)
 
         // Insert in DOM
-        if (ops.addAfter)
+        if (ops.addAfter) {
           $field.insertAfter(
             $(Utils.getByNameOrId(ops.addAfter)).parents('.ideal-wrap')
           )
-        else if (ops.addBefore)
+        }
+        else if (ops.addBefore) {
           $field.insertBefore(
-            $(Utils.getByNameOrId(ops.addBefore)).parents('.ideal-wrap')
+            $(Utils.getByNameOrId(ops.addBefore))
+              .parents('.ideal-wrap')
           )
-        else if (ops.appendToTab)
+        }
+        else if (ops.appendToTab) {
           $field.insertAfter(
-            Actions.getTab(ops.appendToTab).find('.ideal-wrap:last-child')
+            Actions.getTab(ops.appendToTab)
+              .find('.ideal-wrap:last-child')
           )
-        else
+        }
+        else {
           $field.insertAfter($form.find('.ideal-wrap').last())
+        }
+
+        // Add current field name to list of names
+        allNames.push(name)
       }
 
       // Run through each input
@@ -589,6 +601,8 @@ $.fn.idealforms = function (ops) {
 
       // Reload form
       $form.reload()
+      // Refresh field validation
+      $form.fresh(allNames)
 
       return $form
     },
@@ -674,8 +688,11 @@ $.fn.idealforms = function (ops) {
       return $form
     },
 
-    fresh: function () {
+    fresh: function (name) {
       var userInputs = getUserInputs()
+      if (name)
+        userInputs = userInputs
+          .filter('[name="'+ name.join('"], [name="') +'"]')
       userInputs
         .blur()
         .parents('.ideal-field')
@@ -688,7 +705,6 @@ $.fn.idealforms = function (ops) {
     reload: function () {
       Actions.adjust()
       Actions.attachEvents()
-      $form.fresh()
     },
 
     reset: function (name) {
