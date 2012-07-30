@@ -727,17 +727,19 @@ $.fn.idealforms = function (ops) {
       var formInputs = getFormInputs(),
           $input, type
       if (name) {
-        $input = Utils.getByNameOrId(name)
-        type = Utils.getIdealType($input)
-        if (type === 'text' || type === 'file')
-          $input.val('')
-        if (type === 'radiocheck')
-          $input.removeAttr('checked') // radio & check
-        if (type === 'select') {
-          $input.find('option').first().prop('selected', true)
-          $input.next('.ideal-select').trigger('reset')
+        for (var i = 0, l = name.length; i < l; i++) {
+          $input = Utils.getByNameOrId(name[i])
+          type = Utils.getIdealType($input)
+          if (type === 'text' || type === 'file')
+            $input.val('')
+          if (type === 'radiocheck')
+            $input.removeAttr('checked') // radio & check
+          if (type === 'select') {
+            $input.find('option').first().prop('selected', true)
+            $input.next('.ideal-select').trigger('reset')
+          }
+          $input.change().blur()
         }
-        $input.change().blur()
       }
       else {
         formInputs.text.val('') // text inputs

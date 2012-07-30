@@ -602,12 +602,12 @@ $myform.reset().fresh() // Usually combined with `reset()`
 ```
 
 ####`reset`
-Reset all fields to zero including checkboxes, radios, and selects. You can also reset a particular field by passing in the field name or id.
+Reset all fields to zero including checkboxes, radios, and selects. You can also reset particular fields by passing in an array of names and/or ids.
 
 **chainable**: yes
 ```javascript
 $myform.reset() // Reset all
-$myform.reset('password') // Reset password field
+$myform.reset(['password', 'email']) // Always array even if just one
 ```
 
 Example
