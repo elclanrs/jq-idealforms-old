@@ -193,11 +193,8 @@ $.fn.idealforms = function (ops) {
           }
         },
         description: function () {
-          var isWrapped = $el.parents('.ideal-field').length,
-              $all = $el.siblings().andSelf()
           $el.closest('div').addClass('ideal-full-width')
-          if (!isWrapped)
-            $all.wrapAll('<span class="ideal-heading"/>')
+          $el.wrapAll('<div class="ideal-heading"/>')
         },
         separator: function () {
           $el.closest('div').addClass('ideal-full-width')
@@ -718,8 +715,6 @@ $.fn.idealforms = function (ops) {
         .blur()
         .parents('.ideal-field')
         .removeClass('valid invalid')
-      if ($idealTabs)
-        $idealTabs.firstTab()
       return $form
     },
 
@@ -753,6 +748,8 @@ $.fn.idealforms = function (ops) {
         // Reset all
         formInputs.inputs.change().blur()
         $form.focusFirst()
+        if ($idealTabs)
+          $idealTabs.firstTab()
       }
       return $form
     },
