@@ -193,8 +193,10 @@ $.fn.idealforms = function (ops) {
           }
         },
         description: function () {
-          $el.closest('div').addClass('ideal-full-width')
-          $el.wrapAll('<div class="ideal-heading"/>')
+          $el.closest('div')
+            .addClass('ideal-full-width')
+            .children()
+            .wrapAll('<span class="ideal-heading"/>')
         },
         separator: function () {
           $el.closest('div').addClass('ideal-full-width')
