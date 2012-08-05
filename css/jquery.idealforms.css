@@ -19,7 +19,7 @@ textarea{overflow:auto;vertical-align:top;}
 .ui-input{font-family:sans-serif;height:33px;line-height:33px;padding:0 .8em;}
 .responsiveWidth{width:87.54863813229572% !important;}
 .ideal-field-width{width:469px;}
-.ideal-form{-webkit-transition:height 1s ease-in-out;-moz-transition:height 1s ease-in-out;-ms-transition:height 1s ease-in-out;-o-transition:height 1s ease-in-out;font-size:15px;font-family:sans-serif;line-height:22.5px;background:#ffffff;}.ideal-form *{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;border:0;outline:0;text-decoration:none;font-size:100%;list-style:none;background:none;-moz-box-shadow:0,transparent 0 0 0;-webkit-box-shadow:0,transparent 0 0 0;box-shadow:0,transparent 0 0 0;}
+.ideal-form{font-size:15px;font-family:sans-serif;line-height:22.5px;background:#ffffff;}.ideal-form *{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;border:0;outline:0;text-decoration:none;font-size:100%;list-style:none;background:none;-moz-box-shadow:0,transparent 0 0 0;-webkit-box-shadow:0,transparent 0 0 0;box-shadow:0,transparent 0 0 0;}
 .ideal-form:before,.ideal-form:after{content:"";display:table;}
 .ideal-form:after{clear:both;}
 .ideal-form .ideal-wrap{float:left;clear:both;position:relative;margin:.5em 0;}
