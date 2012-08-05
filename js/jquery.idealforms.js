@@ -756,12 +756,8 @@ $.fn.idealforms = function (ops) {
           $idealTabs.firstTab()
       }
       return $form
-    },
-
-    submitData: function () {
-      $form.submit()
-      return $form
     }
+
   }
 
 /*--------------------------------------------------------------------------*/
