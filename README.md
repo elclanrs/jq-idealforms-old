@@ -3,7 +3,7 @@
 **Ideal Forms** is the ultimate framework for building and validating responsive HTML5 forms.
 
 * **[DEMO](http://elclanrs.github.com/jq-idealforms/)**
-* **Support:** IE8+, Webkit, Firefox, Opera, iOS 5+.
+* **Support:** IE8+, Webkit, Firefox, Opera, iOS 5+, Android 4.0+.
 * **jQuery 1.7+, jQuery UI 1.8+**
 * **License:** [GPL](http://www.gnu.org/licenses/gpl.html) or [MIT](http://en.wikipedia.org/wiki/MIT_License)
 
