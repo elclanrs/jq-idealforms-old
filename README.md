@@ -31,12 +31,7 @@
 * New custom datepicker (requires jQuery UI)
 
 # Help:
-```javascript
-"Help translating Ideal Forms into other languages."
-```
-```javascript
-"I need feedback for mobile devices. Please report any bugs you might find in iOS or Android."
-```
+* Help localizing Ideal Forms in other languages.
 * **[Android - text inputs not validating](http://stackoverflow.com/questions/10822758/android-text-inputs-not-validating-with-custom-validation-plugin)**
 * **[Chrome 21 and 1px difference very annoying bug](http://stackoverflow.com/questions/11820439/chrome-21-and-1px-difference-very-annoying-bug)**
 
