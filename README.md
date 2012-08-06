@@ -32,7 +32,7 @@
 
 # Help:
 * Help localizing Ideal Forms in other languages.
-* **[Android - text inputs not validating](http://stackoverflow.com/questions/10822758/android-text-inputs-not-validating-with-custom-validation-plugin)**
+* **[Android 2.x, 3.x?- text inputs not validating](http://stackoverflow.com/questions/10822758/android-text-inputs-not-validating-with-custom-validation-plugin)**
 * **[Chrome 21 and 1px difference very annoying bug](http://stackoverflow.com/questions/11820439/chrome-21-and-1px-difference-very-annoying-bug)**
 
 # How to use it:
