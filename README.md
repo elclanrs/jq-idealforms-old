@@ -224,10 +224,12 @@ customFilters: {
 Or you can add them to the global Ideal Forms filters (recommended):
 ```javascript
 $.extend($.idealforms.filters, {
-  another: function (input, value) {
-    var $input = input.input,
-        userOptions = input.userOptions
-    this.error = 'Something ' + value
+  another: {
+    regex: function (input, value) {
+      var $input = input.input,
+          userOptions = input.userOptions
+      this.error = 'Something ' + value
+    }
   }
 })
 ```
