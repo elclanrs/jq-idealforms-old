@@ -31,15 +31,12 @@ $.fn.idealforms = function (ops) {
    * @returns tabs plugin object with methods
    */
   $idealTabs = (function () {
-    var $t = false,
-        $tabs = $form.find('section')
+    var $tabs = $form.find('section')
     if ($tabs.length) {
       $form.prepend('<div class="ideal-wrap ideal-tabs ideal-full-width"/>')
-      $t = $tabs.idealTabs({
-        tabContainer: '.ideal-tabs'
-      })
+      $tabs.idealTabs({ tabContainer: '.ideal-tabs' })
     }
-    return $t
+    return $tabs.length ? $tabs : false
   }()),
 
   /**
@@ -96,12 +93,8 @@ $.fn.idealforms = function (ops) {
     getCurrentTab: function ($input) {
       var $tabContent = $input.parents('.ideal-tabs-content'),
           tabName = $tabContent.data('ideal-tabs-content-name'),
-          $fields = $(
-            $tabContent
-              .find('.ideal-field')
-              .parents('.ideal-wrap')
-              .get().reverse() // correct order
-            )
+          $wraps =  $tabContent.find('.ideal-field').parents('.ideal-wrap'),
+          $fields = $( $tabContent.get().reverse() ) // correct order
       return {
         content: $tabContent,
         name: tabName,
@@ -111,17 +104,16 @@ $.fn.idealforms = function (ops) {
 
     // Update tabs counter
     updateTabsCounter: function (tabName) {
+      var invalid
       if (tabName) {
-        $idealTabs.updateCounter(
-          tabName,
-          $form.getInvalid(tabName).length
-        )
+        invalid = $form.getInvalid(tabName).length
+        $idealTabs.updateCounter(tabName, invalid)
       }
       else {
         $idealTabs.each(function () {
-          var name = $(this).data('ideal-tabs-content-name'),
-              invalid = $form.getInvalid(name).length
-          $idealTabs.updateCounter(name, invalid)
+          tabName = $(this).data('ideal-tabs-content-name')
+          invalid = $form.getInvalid(name).length
+          $idealTabs.updateCounter(tabName, invalid)
         })
       }
     },
@@ -133,49 +125,54 @@ $.fn.idealforms = function (ops) {
      */
     doMarkup: function ($el) {
 
-      var
-
-      type = Utils.getIdealType($el),
-
       // Validation elements
-      addValidationEls = function () {
-        var
-        $error = $('<span class="ideal-error" />'),
-        $valid = $('<i class="ideal-icon ideal-icon-valid" />'),
-        $invalid = $('<i/>', {
-          'class': 'ideal-icon ideal-icon-invalid',
-          click: function () {
-            var $this = $(this)
-            if ($this.siblings('label').length) // radio & check
-              $this.siblings('label:first').find('input').focus()
-            else $this.siblings('input, select, textarea').focus()
-          }
-        })
+      function addValidationEls() {
+        var $error = $('<span class="ideal-error" />'),
+            $valid = $('<i class="ideal-icon ideal-icon-valid" />'),
+            $invalid = $('<i/>', {
+              'class': 'ideal-icon ideal-icon-invalid',
+              click: function () {
+                var $this = $(this),
+                isRadioCheck = $this.siblings('label').length
+                if (isRadioCheck) {
+                  $this.siblings('label:first').find('input').focus()
+                } else {
+                  $this.siblings('input, select, textarea').focus()
+                }
+              }
+            })
         $el.parents('.ideal-field')
-          .append($valid.add($invalid).hide())
-          .after($error.hide())
-      },
+           .append($valid.add($invalid).hide())
+           .after($error.hide())
+      }
+
+      var type = Utils.getIdealType($el)
 
       // Ideal Types
-      idealTypes = {
-        'default': $.noop,
+      var idealTypes = {
+
+        _default: $.noop,
+
         defaultInput: function () {
           $el.wrapAll('<span class="ideal-field"/>')
           addValidationEls()
         },
         button: function () {
-          if (!/button/.test(o.disableCustom))
+          if (!/button/.test(o.disableCustom)) {
             $el.addClass('ideal-button')
+          }
         },
         file: function () {
           idealTypes.defaultInput()
-          if (!/file/.test(o.disableCustom))
+          if (!/file/.test(o.disableCustom)) {
             $el.idealFile()
+          }
         },
         select: function () {
           idealTypes.defaultInput()
-          if (!/select/.test(o.disableCustom))
+          if (!/select/.test(o.disableCustom)) {
             $el.idealSelect()
+          }
         },
         text: function () {
           idealTypes.defaultInput()
@@ -183,8 +180,9 @@ $.fn.idealforms = function (ops) {
         radiocheck: function () {
           var isWrapped = $el.parents('.ideal-field').length,
               $all = $el.parent().siblings('label:not(:first)').andSelf()
-          if (!/radiocheck/.test(o.disableCustom))
+          if (!/radiocheck/.test(o.disableCustom)) {
             $el.idealRadioCheck()
+          }
           if (!isWrapped) {
             $all.wrapAll('<span class="ideal-field ideal-radiocheck"/>')
             addValidationEls()
@@ -194,9 +192,9 @@ $.fn.idealforms = function (ops) {
         },
         description: function () {
           $el.closest('div')
-            .addClass('ideal-full-width')
-            .children()
-            .wrapAll('<span class="ideal-heading"/>')
+          .addClass('ideal-full-width')
+          .children()
+          .wrapAll('<span class="ideal-heading"/>')
         },
         separator: function () {
           $el.closest('div').addClass('ideal-full-width')
@@ -212,7 +210,7 @@ $.fn.idealforms = function (ops) {
 
       idealTypes[type]
         ? idealTypes[type]()
-        : idealTypes['default']()
+        : idealTypes._default()
 
     },
 
@@ -221,6 +219,7 @@ $.fn.idealforms = function (ops) {
      * @memberOf Actions
      */
     adjust: function () {
+
       var formInputs = getFormInputs(),
           userInputs = getUserInputs()
 
@@ -230,37 +229,42 @@ $.fn.idealforms = function (ops) {
       // Add inputs specified by class
       // to the list of user inputs
       $form.find('.' + Utils.getKeys($.idealforms.filters).join(', .'))
-        .each(function(){
-          o.inputs[this.name] = { filters: this.className }
-        })
+           .each(function(){
+             o.inputs[this.name] = { filters: this.className }
+           })
 
       // Adjust labels
       formInputs.labels
-        .removeAttr('style')
-        .addClass('ideal-label')
-        .width(Utils.getMaxWidth(formInputs.labels))
+                .removeAttr('style')
+                .addClass('ideal-label')
+                .width(Utils.getMaxWidth(formInputs.labels))
 
       // Adjust headings, separators
       if ($idealTabs) {
         $idealTabs.each(function(){
           $(this).find('.ideal-heading:first')
-            .addClass('first-child')
+                 .addClass('first-child')
         })
       } else {
         $form.find('.ideal-heading:first')
-          .addClass('first-child')
+             .addClass('first-child')
       }
 
       // Datepicker
       if (jQuery.ui) {
-        $form.find('input.datepicker').each(function(){
-          var
-          userInput = o.inputs[this.name],
-          data = userInput.data && userInput.data.date,
-          format = data ? data.replace('yyyy', 'yy') : 'mm/dd/yy'
+
+        var $datepicker = $form.find('input.datepicker')
+
+        $datepicker.each(function(){
+
+          var userInput = o.inputs[this.name],
+              data = userInput.data && userInput.data.date,
+              format = data ? data.replace('yyyy', 'yy') : 'mm/dd/yy'
 
           $(this).datepicker({
+
             dateFormat: format,
+
             beforeShow: function (input) {
               $(input).addClass('open')
             },
@@ -276,13 +280,16 @@ $.fn.idealforms = function (ops) {
             }
           })
         })
-        .on('focus keyup', function(){
+
+        // Adjust width
+        $datepicker.on('focus keyup', function(){
           var t = $(this), w = t.outerWidth()
           t.datepicker('widget').width(w)
         })
-        .parent()
-        .siblings('.ideal-error')
-        .addClass('hidden')
+
+        $datepicker.parent()
+                   .siblings('.ideal-error')
+                   .addClass('hidden')
       }
 
       // Placeholder support
@@ -307,10 +314,10 @@ $.fn.idealforms = function (ops) {
      */
     init: function () {
       var formInputs = getFormInputs()
-      $form.css('visibility', 'visible').addClass('ideal-form')
 
-      // Add novalidate tag if HTML5.
-      $form.attr('novalidate', 'novalidate')
+      $form.css('visibility', 'visible')
+           .addClass('ideal-form')
+           .attr('novalidate', 'novalidate') // disable HTML5 validation
 
       // Always show datepicker below the input
       if (jQuery.ui) {
@@ -319,11 +326,11 @@ $.fn.idealforms = function (ops) {
 
       // Do markup
       formInputs.inputs
-        .add(formInputs.headings)
-        .add(formInputs.separators)
-        .each(function(){
-          Actions.doMarkup($(this))
-        })
+                .add(formInputs.headings)
+                .add(formInputs.separators)
+                .each(function(){
+                  Actions.doMarkup($(this))
+                })
 
       Actions.adjust()
     },
@@ -525,259 +532,259 @@ $.fn.idealforms = function (ops) {
       }
 
       // Hide datePicker
-      if ($datePicker.length)
+      if ($datePicker.length) {
         $datePicker.datepicker('hide')
-
+      }
     }
-  },
+  }
 
-/*-------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------
+
+  Public Methods:
+
+-------------------------------------------------------------------------*/
 
   /**
-  * @namespace Public methods
+  * Add fields to the form dynamically
+  * @param fields Array of objects
   */
-  PublicMethods = {
+  $form.addFields = function (fields) {
 
-    /**
-     * Add fields to the form dynamically
-     * @param fields Array of objects
-     */
-    addFields: function (fields) {
+    var
+
+    // Save names of all inputs in array
+    // to use methods that take names ie. fresh()
+    allNames = [],
+
+    // Add an input to the DOM
+    add = function (ops) {
 
       var
 
-      // Save names of all inputs in array
-      // to use methods that take names ie. fresh()
-      allNames = [],
+      name = ops.name,
 
-      // Add an input to the DOM
-      add = function (ops) {
+      userOptions = {
+        filters: ops.filters || '',
+        data: ops.data || {},
+        errors: ops.errors || {},
+        flags: ops.flags || ''
+      },
 
-        var
+      label = ops.label || '',
+      type = ops.type,
+      list = ops.list || [],
+      placeholder = ops.placeholder || '',
 
-        name = ops.name,
+      $field = $(
+        '<div>'+
+          '<label>'+ label +':</label>'+ Utils.makeInput(name, type, list, placeholder) +
+          '</div>'
+      ),
+      $input = $field.find('input, select, textarea, :button')
 
-        userOptions = {
-          filters: ops.filters || '',
-          data: ops.data || {},
-          errors: ops.errors || {},
-          flags: ops.flags || ''
-        },
+      // Add inputs with filters to the list
+      // of user inputs to validate
+      if (userOptions.filters)
+        o.inputs[name] = userOptions
 
-        label = ops.label || '',
-        type = ops.type,
-        list = ops.list || [],
-        placeholder = ops.placeholder || '',
+      Actions.doMarkup($input)
 
-        $field = $(
-          '<div>'+
-            '<label>'+ label +':</label>'+ Utils.makeInput(name, type, list, placeholder) +
-         '</div>'
-        ),
-        $input = $field.find('input, select, textarea, :button')
-
-        // Add inputs with filters to the list
-        // of user inputs to validate
-        if (userOptions.filters)
-          o.inputs[name] = userOptions
-
-        Actions.doMarkup($input)
-
-        // Insert in DOM
-        if (ops.addAfter) {
-          $field.insertAfter(
-            $(Utils.getByNameOrId(ops.addAfter)).parents('.ideal-wrap')
-          )
-        }
-        else if (ops.addBefore) {
-          $field.insertBefore(
-            $(Utils.getByNameOrId(ops.addBefore))
-              .parents('.ideal-wrap')
-          )
-        }
-        else if (ops.appendToTab) {
-          $field.insertAfter(
-            Actions.getTab(ops.appendToTab)
-              .find('.ideal-wrap:last-child')
-          )
-        }
-        else {
-          $field.insertAfter($form.find('.ideal-wrap').last())
-        }
-
-        // Add current field name to list of names
-        allNames.push(name)
+      // Insert in DOM
+      if (ops.addAfter) {
+        $field.insertAfter(
+          $(Utils.getByNameOrId(ops.addAfter)).parents('.ideal-wrap')
+        )
       }
-
-      // Run through each input
-      for (var i = 0, len = fields.length; i < len; i++)
-        add(fields[i])
-
-      // Reload form
-      $form.reload()
-      // Refresh field validation
-      $form.fresh(allNames)
-      // responsiveness
-      Actions.responsive()
-
-      return $form
-    },
-
-    /**
-     * Remove fields dynamically
-     * @param fields Array of objects
-     */
-    removeFields: function (fields) {
-      var f = []
-      for (var i = 0, l = fields.length; i < l; i++)
-        f.push( Utils.getByNameOrId(fields[i]).get(0) )
-      $(f).parents('.ideal-wrap').remove()
-      // counter
-      if ($idealTabs)
-        Actions.updateTabsCounter()
-      $form.reload()
-      return $form
-    },
-
-    getInvalid: function (tabName) {
-      if (tabName && $idealTabs) {
-        return Actions.getTab(tabName)
-          .find('.ideal-field').filter(function () {
-            return $(this).data('isValid') === false
-          })
+      else if (ops.addBefore) {
+        $field.insertBefore(
+          $(Utils.getByNameOrId(ops.addBefore))
+          .parents('.ideal-wrap')
+        )
       }
-      return $form.find('.ideal-field').filter(function () {
-          return $(this).data('isValid') === false
-        })
-    },
-
-    isValid: function () {
-      return !$form.getInvalid().length
-    },
-
-    isValidField: function (str) {
-      var $input = Utils.getByNameOrId(str)
-      return $input.parents('.ideal-field').data('isValid') === true
-    },
-
-    focusFirst: function () {
-      if ($idealTabs)
-        $idealTabs.filter(':visible')
-          .find('.ideal-field:first')
-          .find('input:first, select, textarea').focus()
-      else
-        $form
-          .find('.ideal-field:first')
-          .find('input:first, select, textarea').focus()
-      return $form
-    },
-
-    focusFirstInvalid: function () {
-      var $first = $form.getInvalid().first(),
-          tabName =
-            $first.parents('.ideal-tabs-content')
-              .data('ideal-tabs-content-name')
-      if ($idealTabs)
-        $idealTabs.switchTab({ name: tabName })
-      $first.find('input:first, select, textarea').focus()
-      return $form
-    },
-
-    switchTab: function (name, idx) {
-      $idealTabs.switchTab({ name: name, idx: idx })
-      return $form
-    },
-
-    nextTab: function () {
-      $idealTabs.nextTab()
-      return $form
-    },
-
-    prevTab: function () {
-      $idealTabs.prevTab()
-      return $form
-    },
-
-    firstTab: function () {
-      $idealTabs.firstTab()
-      return $form
-    },
-
-    lastTab: function () {
-      $idealTabs.lastTab()
-      return $form
-    },
-
-    fresh: function (name) {
-      var userInputs = getUserInputs()
-      if (name)
-        userInputs = userInputs
-          .filter('[name="'+ name.join('"], [name="') +'"]')
-      userInputs
-        .blur()
-        .parents('.ideal-field')
-        .removeClass('valid invalid')
-      return $form
-    },
-
-    reload: function () {
-      Actions.adjust()
-      Actions.attachEvents()
-    },
-
-    reset: function (name) {
-      var formInputs = getFormInputs(),
-          $input, type
-      if (name) {
-        for (var i = 0, l = name.length; i < l; i++) {
-          $input = Utils.getByNameOrId(name[i])
-          type = Utils.getIdealType($input)
-          if (type === 'text' || type === 'file')
-            $input.val('')
-          if (type === 'radiocheck')
-            $input.removeAttr('checked') // radio & check
-          if (type === 'select') {
-            $input.find('option').first().prop('selected', true)
-            $input.next('.ideal-select').trigger('reset')
-          }
-          $input.change().blur()
-        }
+      else if (ops.appendToTab) {
+        $field.insertAfter(
+          Actions.getTab(ops.appendToTab)
+          .find('.ideal-wrap:last-child')
+        )
       }
       else {
-        formInputs.text.val('') // text inputs
-        formInputs.radiocheck.removeAttr('checked') // radio & check
-        // Select and custom select
-        formInputs.select.find('option').first().prop('selected', true)
-        $form.find('.ideal-select').trigger('reset')
-        // Reset all
-        formInputs.inputs.change().blur()
-        $form.focusFirst()
-        if ($idealTabs)
-          $idealTabs.firstTab()
+        $field.insertAfter($form.find('.ideal-wrap').last())
       }
-      return $form
+
+      // Add current field name to list of names
+      allNames.push(name)
     }
 
+    // Run through each input
+    for (var i = 0, len = fields.length; i < len; i++)
+      add(fields[i])
+
+    // Reload form
+    $form.reload()
+    // Refresh field validation
+    $form.fresh(allNames)
+    // responsiveness
+    Actions.responsive()
+
+    return $form
+  }
+
+  /**
+  * Remove fields dynamically
+  * @param fields Array of objects
+  */
+  $form.removeFields = function (fields) {
+    var f = []
+    for (var i = 0, l = fields.length; i < l; i++) {
+      f.push( Utils.getByNameOrId(fields[i]).get(0) )
+    }
+    $(f).parents('.ideal-wrap').remove()
+    // counter
+    if ($idealTabs) {
+      Actions.updateTabsCounter()
+    }
+    $form.reload()
+    return $form
+  }
+
+  $form.getInvalid = function (tabName) {
+    if (tabName && $idealTabs) {
+      return Actions.getTab(tabName)
+      .find('.ideal-field').filter(function () {
+        return $(this).data('isValid') === false
+      })
+    }
+    return $form.find('.ideal-field').filter(function () {
+      return $(this).data('isValid') === false
+    })
+  }
+
+  $form.isValid = function () {
+    return !$form.getInvalid().length
+  }
+
+  $form.isValidField = function (str) {
+    var $input = Utils.getByNameOrId(str)
+    return $input.parents('.ideal-field').data('isValid') === true
+  }
+
+  $form.focusFirst = function () {
+    if ($idealTabs) {
+      $idealTabs.filter(':visible')
+                .find('.ideal-field:first')
+                .find('input:first, select, textarea').focus()
+    } else {
+      $form.find('.ideal-field:first')
+           .find('input:first, select, textarea').focus()
+    }
+    return $form
+  }
+
+  $form.focusFirstInvalid = function () {
+    var $first = $form.getInvalid().first(),
+        tabName = $first.parents('.ideal-tabs-content')
+                        .data('ideal-tabs-content-name')
+    if ($idealTabs) {
+      $idealTabs.switchTab({ name: tabName })
+    }
+    $first.find('input:first, select, textarea').focus()
+    return $form
+  }
+
+  $form.switchTab = function (name, idx) {
+    $idealTabs.switchTab({ name: name, idx: idx })
+    return $form
+  }
+
+  $form.nextTab = function () {
+    $idealTabs.nextTab()
+    return $form
+  }
+
+  $form.prevTab = function () {
+    $idealTabs.prevTab()
+    return $form
+  }
+
+  $form.firstTab = function () {
+    $idealTabs.firstTab()
+    return $form
+  }
+
+  $form.lastTab = function () {
+    $idealTabs.lastTab()
+    return $form
+  }
+
+  $form.fresh = function (name) {
+    var userInputs = getUserInputs()
+    if (name) {
+      userInputs = userInputs.filter('[name="'+
+                   name.join('"], [name="') +'"]')
+    }
+    userInputs.blur()
+              .parents('.ideal-field')
+              .removeClass('valid invalid')
+    return $form
+  }
+
+  $form.reload = function () {
+    Actions.adjust()
+    Actions.attachEvents()
+  }
+
+  $form.reset = function (name) {
+    var formInputs = getFormInputs(),
+    $input, type
+    if (name) {
+      for (var i=0, l=name.length; i<l; i++) {
+        $input = Utils.getByNameOrId(name[i])
+        type = Utils.getIdealType($input)
+        if (type === 'text' || type === 'file') {
+          $input.val('')
+        }
+        if (type === 'radiocheck') {
+          $input.removeAttr('checked') // radio & check
+        }
+        if (type === 'select') {
+          $input.find('option').first().prop('selected', true)
+          $input.next('.ideal-select').trigger('reset')
+        }
+        $input.change().blur()
+      }
+    } else {
+      formInputs.text.val('') // text inputs
+      formInputs.radiocheck.removeAttr('checked') // radio & check
+      // Select and custom select
+      formInputs.select.find('option').first().prop('selected', true)
+      $form.find('.ideal-select').trigger('reset')
+      // Reset all
+      formInputs.inputs.change().blur()
+      $form.focusFirst()
+      if ($idealTabs)
+        $idealTabs.firstTab()
+    }
+    return $form
   }
 
 /*--------------------------------------------------------------------------*/
 
-  // attach public methods
-  for (var m in PublicMethods) $form[m] = PublicMethods[m]
-
   $form.on({
     keydown: function (e) {
       // Prevent submit when pressing enter
-      if (e.which === 13 && e.target.nodeName !== 'TEXTAREA')
+      // but exclude textareas
+      if (e.which === 13 && e.target.nodeName !== 'TEXTAREA') {
         e.preventDefault()
+      }
     },
     submit: function (e) {
       if (!$form.isValid()) {
         e.preventDefault()
         o.onFail()
         $form.focusFirstInvalid()
+      } else {
+        o.onSuccess(e)
       }
-      else o.onSuccess(e)
     }
   })
 
@@ -788,8 +795,9 @@ $.fn.idealforms = function (ops) {
   $.extend(true, Flags, o.customFlags)
 
   // Start form
-  if ($idealTabs)
+  if ($idealTabs) {
     $idealTabs.show() // Show all tabs to calculate widths and heights
+  }
   Actions.init()
   Actions.attachEvents()
   $form.fresh()
@@ -800,8 +808,9 @@ $.fn.idealforms = function (ops) {
     Actions.responsive()
   }
 
-  if ($idealTabs)
+  if ($idealTabs) {
     $form.firstTab() // Done calculating hide tabs and start fresh
+  }
 
   return this
 
