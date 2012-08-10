@@ -272,7 +272,7 @@ $.fn.idealforms = function (ops) {
               // Hack to fix IE9 not resizing
               var w = $(this).outerWidth() // cache first!
               setTimeout(function(){
-                $(this).datepicker('widget').width(w)
+                $(this).datepicker('widget').css('width', w)
               }, 1)
             },
             onClose: function () {
@@ -284,7 +284,7 @@ $.fn.idealforms = function (ops) {
         // Adjust width
         $datepicker.on('focus keyup', function(){
           var t = $(this), w = t.outerWidth()
-          t.datepicker('widget').width(w)
+          t.datepicker('widget').css('width', w)
         })
 
         $datepicker.parent()
