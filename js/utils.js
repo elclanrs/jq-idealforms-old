@@ -11,7 +11,7 @@ var Utils = {
   getMaxWidth: function ($elms) {
     var maxWidth = 0
     $elms.each(function() {
-      var width = $(this).width()
+      var width = $(this).outerWidth()
       if (width > maxWidth) {
         maxWidth = width
       }
