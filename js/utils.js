@@ -10,9 +10,11 @@ var Utils = {
    */
   getMaxWidth: function ($elms) {
     var maxWidth = 0
-    $elms.each(function () {
-      if ($(this).outerWidth() > maxWidth)
-        maxWidth = $(this).outerWidth()
+    $elms.each(function() {
+      var width = $(this).width()
+      if (width > maxWidth) {
+        maxWidth = width
+      }
     })
     return maxWidth
   },
