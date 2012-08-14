@@ -226,13 +226,6 @@ $.fn.idealforms = function (ops) {
       // Autocomplete causes some problems...
       formInputs.inputs.attr('autocomplete', 'off')
 
-      // Add inputs specified by class
-      // to the list of user inputs
-      $form.find('.' + Utils.getKeys($.idealforms.filters).join(', .'))
-           .each(function(){
-             o.inputs[this.name] = { filters: this.className }
-           })
-
       // Adjust labels
       formInputs.labels
                 .removeAttr('style')
@@ -331,6 +324,13 @@ $.fn.idealforms = function (ops) {
                 .each(function(){
                   Actions.doMarkup($(this))
                 })
+
+      // Add inputs specified by class
+      // to the list of user inputs
+      $form.find('.' + Utils.getKeys($.idealforms.filters).join(', .'))
+           .each(function(){
+             o.inputs[this.name] = { filters: this.className }
+           })
 
       Actions.adjust()
     },
