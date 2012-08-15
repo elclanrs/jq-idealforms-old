@@ -2,12 +2,12 @@
   Helpers
 ------------------------------------------------------- */
 
-.box-sizing {
+.box-sizing() {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-.reset {
+.reset() {
   margin: 0;
   padding: 0;
   border: 0;
@@ -18,7 +18,7 @@
   background: none;
   .box-shadow(0);
 }
-.clearfix {
+.clearfix() {
   &:before,
   &:after {
     content: "";
@@ -68,7 +68,7 @@
     -ms-transition: none;
     -o-transition: none;
   }
-  .no-user-select {
+  .no-user-select() {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -76,7 +76,7 @@
     user-select: none;
   }
   /* IE8 hack :after pseudo force refresh */
-  .ie-refresh {
+  .ie-refresh() {
     content: ".";
     line-height: 0;
     text-indent: -9999px;
@@ -85,7 +85,7 @@
 /*--------------------------------------------------------
   UI Inputs (select & button)
 ------------------------------------------------------- */
-  .ui-input {
+  .ui-input() {
     font-family: @font-family;
     @size: floor(@font-size * 2.2);
     height: @size;
@@ -122,7 +122,7 @@
   Responsive width
 ------------------------------------------------------- */
 
-  .responsiveWidth {
+  .responsiveWidth() {
     @icon: @icon-size + (@icon-padding * 2);
     @total: (@input-width + @icon);
     @percent: (@icon / @total) * 100;
