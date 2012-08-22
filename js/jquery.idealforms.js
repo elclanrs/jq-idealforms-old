@@ -627,7 +627,7 @@ $.fn.idealforms = function (ops) {
     // Reload form
     $form.reload()
     // Refresh field validation
-    $form.fresh(allNames)
+    $form.freshFields(allNames)
     // responsiveness
     Actions.responsive()
 
@@ -721,15 +721,20 @@ $.fn.idealforms = function (ops) {
     return $form
   }
 
-  $form.fresh = function (name) {
-    var userInputs = getUserInputs()
-    if (name) {
-      userInputs = userInputs.filter('[name="'+
-                   name.join('"], [name="') +'"]')
-    }
-    userInputs.blur()
-              .parents('.ideal-field')
-              .removeClass('valid invalid')
+  $form.fresh = function () {
+    getUserInputs()
+      .blur()
+      .parents('.ideal-field')
+      .removeClass('valid invalid')
+    return $form
+  }
+
+  $form.freshFields = function (fields) {
+    getUserInputs()
+      .filter('[name="'+ fields.join('"], [name="') +'"]')
+      .blur()
+      .parents('.ideal-field')
+      .removeClass('valid invalid')
     return $form
   }
 
@@ -740,37 +745,43 @@ $.fn.idealforms = function (ops) {
     return $form
   }
 
-  $form.reset = function (name) {
-    var formInputs = getFormInputs(),
-    $input, type
-    if (name) {
-      for (var i=0, l=name.length; i<l; i++) {
-        $input = Utils.getByNameOrId(name[i])
-        type = Utils.getIdealType($input)
-        if (type === 'text' || type === 'file') {
-          $input.val('')
-        }
-        if (type === 'radiocheck') {
-          $input.removeAttr('checked') // radio & check
-        }
-        if (type === 'select') {
-          $input.find('option').first().prop('selected', true)
-          $input.next('.ideal-select').trigger('reset')
-        }
-        $input.change().blur()
-      }
-    } else {
-      formInputs.text.val('') // text inputs
-      formInputs.radiocheck.removeAttr('checked') // radio & check
-      // Select and custom select
-      formInputs.select.find('option').first().prop('selected', true)
-      $form.find('.ideal-select').trigger('reset')
-      // Reset all
-      formInputs.inputs.change().blur()
-      $form.focusFirst()
-      if ($idealTabs)
-        $idealTabs.firstTab()
+  $form.reset = function () {
+    var formInputs = getFormInputs()
+    formInputs.text.val('') // text inputs
+    formInputs.radiocheck.removeAttr('checked') // radio & check
+    // Select and custom select
+    formInputs.select.find('option').first().prop('selected', true)
+    $form.find('.ideal-select').trigger('reset')
+    // Reset all
+    formInputs.inputs.change().blur()
+    $form.focusFirst()
+    if ($idealTabs) {
+      $idealTabs.firstTab()
     }
+    $form.fresh()
+    return $form
+  }
+
+  $form.resetFields = function (fields) {
+    var formInputs = getFormInputs(),
+        $input, type,
+        i, len = fields.length
+    for (i = 0; i < len; i++) {
+      $input = Utils.getByNameOrId(fields[i])
+      type = Utils.getIdealType($input)
+      if (type === 'text' || type === 'file') {
+        $input.val('')
+      }
+      if (type === 'radiocheck') {
+        $input.removeAttr('checked') // radio & check
+      }
+      if (type === 'select') {
+        $input.find('option').first().prop('selected', true)
+        $input.next('.ideal-select').trigger('reset')
+      }
+      $input.change().blur()
+    }
+    $form.freshFields(fields)
     return $form
   }
 
@@ -786,7 +797,7 @@ $.fn.idealforms = function (ops) {
     var curOps = formRef.options.inputs[name]
     $.extend(true, curOps, options)
     $form.reload()
-    $form.fresh()
+    $form.freshFields([name])
     return $form
   }
 
