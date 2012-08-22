@@ -74,6 +74,7 @@ To localize Ideal Forms in your language, load the corresponding file from `js/i
     * [isValid](#isvalid)
     * [isValidField](#isvalidfield)
     * [getInvalid](#getinvalid)
+    * [getInvalidInTab](#getinvalidintab)
     * [addFields](#addfields)
     * [removeFields](#removefields)
     * [focusFirst](#focusfirst)
