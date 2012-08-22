@@ -447,7 +447,7 @@ var myOps = {
 $myform.setOptions(myOps)
 ```
 
-Every form is registered in the `$.idealforms.forms` namespace after initialization beginning at `$0`. This means that you can change a particular option of any form manually:
+Every form is registered in the `$.idealforms.forms` namespace after initialization beginning at `$0`. This means that you can modify (not override) a particular option of any form manually:
 
 ```javascript
 var $myform = $('#myform').idealforms({
