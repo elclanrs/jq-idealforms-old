@@ -244,7 +244,7 @@ responsiveAt: 480
 ```
 
 ####`disableCustom`
-Disables custom inputs and uses system default.
+Disables custom inputs and uses system default so you can use other replacement plugins.
 ```javascript
 disableCustom: 'file select radiocheck button'
 ```
