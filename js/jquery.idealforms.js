@@ -775,7 +775,7 @@ $.fn.idealforms = function (ops) {
   $form.setOptions = function (options) {
     var curOps = $.idealforms.forms[formId].options
     $.extend(true, curOps, options)
-    $form.fresh()
+    $form.reload()
     return $form
   }
 
