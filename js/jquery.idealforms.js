@@ -735,6 +735,7 @@ $.fn.idealforms = function (ops) {
   $form.reload = function () {
     Actions.adjust()
     Actions.attachEvents()
+    Actions.responsive()
     return $form
   }
 
@@ -800,12 +801,6 @@ $.fn.idealforms = function (ops) {
       }
     }
   })
-
-  // Merge custom and default filters
-  $.extend(true, $.idealforms.filters, o.customFilters)
-
-  // Merge custom and default flags
-  $.extend(true, Flags, o.customFlags)
 
   // Start form
   if ($idealTabs) {

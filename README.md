@@ -57,15 +57,17 @@ To localize Ideal Forms in your language, load the corresponding file from `js/i
 * [Invoke the plugin](#invoke-the-plugin)
 * [Options](#options)
     * [inputs](#inputs)
-    * [customFilters](#customfilters)
-    * [customFlags](#customflags)
     * [globalFlags](#globalflags)
     * [onSuccess](#onsuccess)
     * [onFail](#onfail)
     * [responsiveAt](#responsiveat)
     * [disableCustom](#disablecustom)
-* [Built-in filters](#built-in-filters)
-* [Built-in flags](#built-in-flags)
+* [Filters](#filters)
+    * [Built-in filters](#built-in-filters)
+    * [Adding custom filters](#adding-custom-filters)
+* [Flags](#built-in-flags) 
+    * [Built-in flags](#built-in-flags)
+    * [Adding custom flags](#adding-custom-flags)
 * [Methods](#methods)
     * [setOptions](#setoptions)
     * [isValid](#isvalid)
@@ -208,29 +210,6 @@ inputs: {
 }
 ```
 
-####`customFilters`
-You can add custom filters when invoking the plugin:
-```javascript
-customFilters: {
-  custom: {
-    regex: /regularexpression/,
-    error: 'My custom error'
-  }
-}
-```
-Or you can add them to the global Ideal Forms filters (recommended):
-```javascript
-$.extend($.idealforms.filters, {
-  another: {
-    regex: function (input, value) {
-      var $input = input.input,
-          userOptions = input.userOptions
-      this.error = 'Something ' + value
-    }
-  }
-})
-```
-
 ####`customFlags`
 Add custom flags:
 
@@ -283,8 +262,10 @@ Disables custom inputs and uses system default.
 disableCustom: 'file select radiocheck button'
 ```
 
-Built-in filters
+Filters
 ----------------
+
+### Built-in filters
 You may use any of these filters in any order.
 
 ####`required`
@@ -419,8 +400,26 @@ This filter is designed for `file` inputs. It supports multifile in HTML5 browse
 }
 ```
 
-Built-in flags
+### Adding custom filters
+```javascript
+$.extend($.idealforms.filters, {
+  custom: {
+    regex: /regularexpression/,
+    error: 'My custom error'
+  },
+  another: {
+    regex: function (input, value) {
+      var $input = input.input,
+          userOptions = input.userOptions
+      this.error = 'Something ' + value
+    }
+  }
+})
+```
+
+Flags
 --------------
+### Built-in flags
 * `noerror`: hide the error from the input
 * `noicons`: hide the icons
 * `novalidicon`
@@ -428,6 +427,20 @@ Built-in flags
 * `noclass`: no valid/invalid class
 * `novalidclass`
 * `noinvalidclass`
+
+### Adding custom flags:
+
+```javascript
+$.extend($.idealforms.flags, {
+  /*
+   * @param input jQuery input object
+   * @param event The event that was triggered on the input (focus, blur, change, keyup)
+   */
+  custom: function(input, event){
+    if (event === 'keyup') console.log(input.val())
+  }
+})
+```
 
 Methods
 -------

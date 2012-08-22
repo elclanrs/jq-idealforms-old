@@ -20,5 +20,6 @@
   $.idealforms.forms = {}
   $.idealforms.filters = {}
   $.idealforms.errors = {}
+  $.idealforms.flags = {}
 
 /*--------------------------------------------------------------------------*/
