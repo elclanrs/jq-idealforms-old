@@ -674,7 +674,7 @@ $myform.fresh()
 
 **chainable:** yes
 ```javascript
-$myform.fresh()
+$myform.freshFields(['username', 'password'])
 ```
 
 ####`reload`
