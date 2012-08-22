@@ -82,8 +82,9 @@ To localize Ideal Forms in your language, load the corresponding file from `js/i
     * [prevTab](#prevtab)
     * [firstTab](#firsttab)
     * [lastTab](#slasttab)
-    * [fresh](#fresh)
     * [reset](#reset)
+    * [fresh](#fresh)
+    * [reload](#reload)
 * [Example](#example)
 * [Theming](#theming)
 
@@ -626,22 +627,31 @@ Go to last tab.
 $myform.lastTab()
 ```
 
-####`fresh`
-Load the form as if it was never focused. This removes `valid` and `invalid` classes until first focus.
-
-**chainable**: yes
-```javascript
-$myform.reset().fresh() // Usually combined with `reset()`
-```
-
 ####`reset`
 Reset all fields to zero including checkboxes, radios, and selects. You can also reset particular fields by passing in an array of names and/or ids.
 
 **chainable**: yes
 ```javascript
-$myform.reset() // Reset all
+$myform.reset().fresh() // Reset all, usually combined with `fresh()`
 $myform.reset(['password', 'email']) // Always array even if just one
 ```
+
+####`fresh`
+Load the form as if it was never focused. This removes `valid` and `invalid` classes until first focus.
+
+**chainable**: yes
+```javascript
+$myform.fresh()
+```
+
+####`reload`
+Re-attach events and re-adjust the form. Use this method when modifying the html or the options of the form.
+
+**chainable**: yes
+```javascript
+$myform.reload().fresh() // Usually combined with `fresh()`
+```
+
 
 Example
 -------
