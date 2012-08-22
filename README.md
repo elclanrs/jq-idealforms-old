@@ -72,10 +72,10 @@ To localize Ideal Forms in your language, load the corresponding file from `js/i
     * [setOptions](#setoptions)
     * [setFieldOptions](#setfieldoptions)
     * [isValid](#isvalid)
-    * [addFields](#addfields)
-    * [removeFields](#removefields)
     * [isValidField](#isvalidfield)
     * [getInvalid](#getinvalid)
+    * [addFields](#addfields)
+    * [removeFields](#removefields)
     * [focusFirst](#focusfirst)
     * [focusFirstInvalid](#focusfirstinvalid)
     * [switchTab](#switchtab)
@@ -489,6 +489,29 @@ if ($myform.isValid()) {
 }
 ```
 
+####`isValidField`
+Check if a particular field is valid. The function takes a string. Ideal Forms will look for the name attribute first and then for the id. You can use array group names for groups of checkboxes.
+
+**chainable:** no
+```javascript
+if ($myform.isValidField('username')) { // name="username" OR #username
+  // do something...
+}
+if ($myform.isValidField('colors[]')) { // name="colors[]"
+  // do something...
+}
+```
+
+####`getInvalid`
+Get all invalid fields. Returns a jQuery object. You can also filter by tab name to get all invalid fields within a tab.
+
+**chainable:** yes (but it doesn't return the form, just the invalid fields)
+
+```javascript
+var numInvalid = $myform.getInvalid().length // How many invalid fields
+var numInvalidTab = $myform.getInvalid('My Section').length
+```
+
 ####`addFields`
 Add fields to the form dynamically. It takes an array of objects. Ideal Forms auto-generates the markup for inputs fields based on the `type` specified.
 
@@ -561,29 +584,6 @@ var fields = [
   'email'
 ]
 $myform.removeFields(fields)
-```
-
-####`isValidField`
-Check if a particular field is valid. The function takes a string. Ideal Forms will look for the name attribute first and then for the id. You can use array group names for groups of checkboxes.
-
-**chainable:** no
-```javascript
-if ($myform.isValidField('username')) { // name="username" OR #username
-  // do something...
-}
-if ($myform.isValidField('colors[]')) { // name="colors[]"
-  // do something...
-}
-```
-
-####`getInvalid`
-Get all invalid fields. Returns a jQuery object. You can also filter by tab name to get all invalid fields within a tab.
-
-**chainable:** yes (but it doesn't return the form, just the invalid fields)
-
-```javascript
-var numInvalid = $myform.getInvalid().length // How many invalid fields
-var numInvalidTab = $myform.getInvalid('My Section').length
 ```
 
 ####`focusFirst`
