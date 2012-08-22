@@ -441,7 +441,7 @@ Set the options of the form after being initialized. The new options are merged 
 ```javascript
 var myOps = {
   inputs: {
-    'username': { filters: 'username' }
+    'username': { filters: 'username' } // override previously set filters
   }
 }
 $myform.setOptions(myOps)
