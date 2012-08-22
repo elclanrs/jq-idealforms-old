@@ -25,7 +25,7 @@
 * * *
 # Updates:
 
-* Now you can modify the options of any form after initialization with new method `setOptions`.
+* Now you can modify the options of any form after initialization with new methods `setOptions` and `setFieldOptions`.
 * New `range` filter.
 * New `dob` Date of Birth filter.
 * New tabs(steps) with new public methods `switchTab`, `nextTab`, `prevTab`, `firstTab` and `lastTab`.
@@ -70,6 +70,7 @@ To localize Ideal Forms in your language, load the corresponding file from `js/i
     * [Adding custom flags](#adding-custom-flags)
 * [Methods](#methods)
     * [setOptions](#setoptions)
+    * [setFieldOptions](#setfieldoptions)
     * [isValid](#isvalid)
     * [addFields](#addfields)
     * [removeFields](#removefields)
@@ -438,7 +439,7 @@ Methods
 
 Set the options of the form after being initialized. The new options are merged with the previous ones so you can change only a particular option for example to override the validation filters of a field.
 
-**chainable**: yes
+**chainable:** yes
 
 ```javascript
 var myOps = {
@@ -464,10 +465,21 @@ $myform.reload().fresh();
 
 **Note:** The `disableCustom` option cannot be modified after initialization.
 
+####`setFieldOptions`
+
+**chainable:** yes
+
+Set the options of a particular field. This is a shortcut method; the same thing can be achieved with `setOptions`.
+
+```javascript
+$myform.setFieldOptions('username', { filters: 'username' })
+
+```
+
 ####`isValid`
 Check if the form is valid.
 
-**chainable**: no
+**chainable:** no
 ```javascript
 if ($myform.isValid()) {
   // do something...
@@ -477,7 +489,7 @@ if ($myform.isValid()) {
 ####`addFields`
 Add fields to the form dynamically. It takes an array of objects. Ideal Forms auto-generates the markup for inputs fields based on the `type` specified.
 
-**chainable**: yes
+**chainable:** yes
 
 #####`name` (required)
 The value used as name attribute.
@@ -551,7 +563,7 @@ $myform.removeFields(fields)
 ####`isValidField`
 Check if a particular field is valid. The function takes a string. Ideal Forms will look for the name attribute first and then for the id. You can use array group names for groups of checkboxes.
 
-**chainable**: no
+**chainable:** no
 ```javascript
 if ($myform.isValidField('username')) { // name="username" OR #username
   // do something...
@@ -564,7 +576,7 @@ if ($myform.isValidField('colors[]')) { // name="colors[]"
 ####`getInvalid`
 Get all invalid fields. Returns a jQuery object. You can also filter by tab name to get all invalid fields within a tab.
 
-**chainable**: yes (but it doesn't return the form, just the invalid fields)
+**chainable:** yes (but it doesn't return the form, just the invalid fields)
 
 ```javascript
 var numInvalid = $myform.getInvalid().length // How many invalid fields
@@ -574,7 +586,7 @@ var numInvalidTab = $myform.getInvalid('My Section').length
 ####`focusFirst`
 Focus the very first field.
 
-**chainable**: yes
+**chainable:** yes
 ```javascript
 $myform.focusFirst()
 ```
@@ -582,7 +594,7 @@ $myform.focusFirst()
 ####`focusFirstInvalid`
 Focus the first invalid field.
 
-**chainable**: yes
+**chainable:** yes
 ```javascript
 $myform.focusFirstInvalid()
 ```
@@ -590,7 +602,7 @@ $myform.focusFirstInvalid()
 ####`switchTab`
 Change tab by name.
 
-**chainable**: yes
+**chainable:** yes
 ```javascript
 $myform.switchTab('My Section')
 ```
@@ -598,7 +610,7 @@ $myform.switchTab('My Section')
 ####`nextTab`
 Go to next tab.
 
-**chainable**: yes
+**chainable:** yes
 ```javascript
 $myform.nextTab()
 ```
@@ -606,7 +618,7 @@ $myform.nextTab()
 ####`prevTab`
 Go to previous tab.
 
-**chainable**: yes
+**chainable:** yes
 ```javascript
 $myform.prevTab()
 ```
@@ -614,7 +626,7 @@ $myform.prevTab()
 ####`firstTab`
 Go to first tab.
 
-**chainable**: yes
+**chainable:** yes
 ```javascript
 $myform.firstTab()
 ```
@@ -622,7 +634,7 @@ $myform.firstTab()
 ####`lastTab`
 Go to last tab.
 
-**chainable**: yes
+**chainable:** yes
 ```javascript
 $myform.lastTab()
 ```
@@ -630,7 +642,7 @@ $myform.lastTab()
 ####`reset`
 Reset all fields to zero including checkboxes, radios, and selects. You can also reset particular fields by passing in an array of names and/or ids.
 
-**chainable**: yes
+**chainable:** yes
 ```javascript
 $myform.reset().fresh() // Reset all, usually combined with `fresh()`
 $myform.reset(['password', 'email']) // Always array even if just one
@@ -639,7 +651,7 @@ $myform.reset(['password', 'email']) // Always array even if just one
 ####`fresh`
 Load the form as if it was never focused. This removes `valid` and `invalid` classes until first focus.
 
-**chainable**: yes
+**chainable:** yes
 ```javascript
 $myform.fresh()
 ```
@@ -647,7 +659,7 @@ $myform.fresh()
 ####`reload`
 Re-attach events and re-adjust the form. Use this method when modifying the html or the options of the form.
 
-**chainable**: yes
+**chainable:** yes
 ```javascript
 $myform.reload().fresh() // Usually combined with `fresh()`
 ```

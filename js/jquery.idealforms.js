@@ -8,14 +8,15 @@ $.fn.idealforms = function (ops) {
 
   // Unique ID to identify this form
   // in global $.idealforms namespace
+  var formRef; // reference to this form in Ideal Forms namespace
   var formId = '$'+ Utils.getObjSize($.idealforms.forms)
+  formRef = $.idealforms.forms[formId] = {}
 
   // Get filters with localized errors
   $.extend($.idealforms.filters, getFilters())
 
   // Options
-  $.idealforms.forms[formId] = {}
-  $.idealforms.forms[formId].options = {
+  formRef.options = {
     inputs: {},
     customFilters: {},
     customFlags: {},
@@ -29,7 +30,7 @@ $.fn.idealforms = function (ops) {
     responsiveAt: 'auto',
     disableCustom: ''
   }
-  var o = $.extend($.idealforms.forms[formId].options, ops)
+  var o = $.extend(formRef.options, ops)
 
   /** Generate tabs from sections
    * @returns tabs plugin object with methods
@@ -774,7 +775,15 @@ $.fn.idealforms = function (ops) {
   }
 
   $form.setOptions = function (options) {
-    var curOps = $.idealforms.forms[formId].options
+    var curOps = formRef.options
+    $.extend(true, curOps, options)
+    $form.reload()
+    $form.fresh()
+    return $form
+  }
+
+  $form.setFieldOptions = function (name, options) {
+    var curOps = formRef.options.inputs[name]
     $.extend(true, curOps, options)
     $form.reload()
     $form.fresh()
