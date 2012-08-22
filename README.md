@@ -660,7 +660,7 @@ $myform.fresh()
 ```
 
 ####`reload`
-Re-attach events and re-adjust the form. Use this method when modifying the html or the options of the form.
+Re-attach events and re-adjust the form. Use this method when modifying the html or when manually editing the options of the form.
 
 **chainable:** yes
 ```javascript
