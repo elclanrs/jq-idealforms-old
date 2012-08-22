@@ -4,15 +4,18 @@
 
 $.fn.idealforms = function (ops) {
 
+  var $form = this
+
+  // Unique ID to identify this form
+  // in global $.idealforms namespace
+  var formId = '$'+ Utils.getObjSize($.idealforms.forms)
+
   // Get filters with localized errors
   $.extend($.idealforms.filters, getFilters())
 
-  var
-
-  $form = this, // The form
-
-  // Default options
-  o = $.extend({
+  // Options
+  $.idealforms.forms[formId] = {}
+  $.idealforms.forms[formId].options = {
     inputs: {},
     customFilters: {},
     customFlags: {},
@@ -25,26 +28,27 @@ $.fn.idealforms = function (ops) {
     },
     responsiveAt: 'auto',
     disableCustom: ''
-  }, ops),
+  }
+  var o = $.extend($.idealforms.forms[formId].options, ops)
 
   /** Generate tabs from sections
    * @returns tabs plugin object with methods
    */
-  $idealTabs = (function () {
+  var $idealTabs = (function () {
     var $tabs = $form.find('section')
     if ($tabs.length) {
       $form.prepend('<div class="ideal-wrap ideal-tabs ideal-full-width"/>')
       $tabs.idealTabs({ tabContainer: '.ideal-tabs' })
     }
     return $tabs.length ? $tabs : false
-  }()),
+  }())
 
   /**
    * @namespace All form inputs of the given form
    * @memberOf $.fn.idealforms
    * @returns {object}
    */
-  getFormInputs = function () {
+  var getFormInputs = function () {
     return {
       inputs: $form.find('input, select, textarea, :button'),
       labels: $form.find('div > label:first-child'),
@@ -57,23 +61,23 @@ $.fn.idealforms = function (ops) {
       separators: $form.find('hr'),
       hidden: $form.find('input:hidden')
     }
-  },
+  }
 
   /**
    * All inputs specified by the user
    */
-  getUserInputs = function () {
+  var getUserInputs = function () {
     return $form.find('[name="'+ Utils.getKeys(o.inputs).join('"], [name="') +'"]')
-  },
+  }
 
 /*--------------------------------------------------------------------------*/
 
   /**
   * @namespace Contains LESS data
   */
-  LessVars = {
+  var LessVars = {
     fieldWidth: Utils.getLessVar('ideal-field-width', 'width')
-  },
+  }
 
 /*--------------------------------------------------------------------------*/
 
@@ -81,7 +85,7 @@ $.fn.idealforms = function (ops) {
    * @namespace Methods of the form
    * @memberOf $.fn.idealforms
    */
-  Actions = {
+  var Actions = {
 
     getTab: function (tabName) {
       return $idealTabs.filter(function () {
@@ -731,6 +735,7 @@ $.fn.idealforms = function (ops) {
   $form.reload = function () {
     Actions.adjust()
     Actions.attachEvents()
+    return $form
   }
 
   $form.reset = function (name) {
@@ -764,6 +769,13 @@ $.fn.idealforms = function (ops) {
       if ($idealTabs)
         $idealTabs.firstTab()
     }
+    return $form
+  }
+
+  $form.setOptions = function (options) {
+    var curOps = $.idealforms.forms[formId].options
+    $.extend(true, curOps, options)
+    $form.fresh()
     return $form
   }
 

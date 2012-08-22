@@ -35,8 +35,22 @@ var Utils = {
    */
   getKeys: function (obj) {
     var keys = []
-    for(var key in obj) keys.push(key)
+    for(var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        keys.push(key)
+      }
+    }
     return keys
+  },
+  // Get lenght of an object
+  getObjSize: function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        size++;
+      }
+    }
+    return size;
   },
   isFunction: function (obj) {
     return typeof obj === 'function'

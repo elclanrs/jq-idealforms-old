@@ -431,6 +431,37 @@ Built-in flags
 Methods
 -------
 
+####`setOptions`
+
+Set the options of the form after being initialized. The new options are merged with the previous ones so you can change only a particular option for example to override the validation filters of a field.
+
+**chainable**: yes
+
+```javascript
+var myOps = {
+  inputs: {
+    'username': { filters: 'username' }
+  }
+}
+$myform.setOptions(myOps)
+```
+
+Every form is registered in the `$.idealforms.forms` namespace after initialization beginning at `$0`. This means that you can change a particular option of any form manually:
+
+```javascript
+var $myform = $('#myform').idealforms({
+  inputs: {
+    'username': { filters: 'required username' }
+  }
+})
+
+// remove required filter from username
+$.idealforms.forms.$0.options.inputs['username'].filters.replace('required', '')
+
+// refresh the form to update changes
+$myform.fresh();
+```
+
 ####`isValid`
 Check if the form is valid.
 

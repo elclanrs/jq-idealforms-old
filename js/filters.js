@@ -33,9 +33,6 @@ $.idealforms.errors = {
  * Get all default filters
  * @returns object
  */
-
-$.idealforms.filters = {} // Init global filters
-
 var getFilters = function () {
 
   var filters = {
