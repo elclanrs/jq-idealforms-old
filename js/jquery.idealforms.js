@@ -111,7 +111,7 @@ $.fn.idealforms = function (ops) {
     updateTabsCounter: function (tabName) {
       var invalid
       if (tabName) {
-        invalid = $form.getInvalid(tabName).length
+        invalid = $form.getInvalidInTab(tabName).length
         $idealTabs.updateCounter(tabName, invalid)
       }
       else {
