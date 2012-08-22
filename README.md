@@ -25,10 +25,10 @@
 * * *
 # Updates:
 
+* Now you can modify the options of any form after initialization with new method `setOptions`.
 * New `range` filter.
 * New `dob` Date of Birth filter.
 * New tabs(steps) with new public methods `switchTab`, `nextTab`, `prevTab`, `firstTab` and `lastTab`.
-* New custom datepicker (requires jQuery UI)
 
 # Help:
 * Help localizing Ideal Forms in other languages.
@@ -67,6 +67,7 @@ To localize Ideal Forms in your language, load the corresponding file from `js/i
 * [Built-in filters](#built-in-filters)
 * [Built-in flags](#built-in-flags)
 * [Methods](#methods)
+    * [setOptions](#setoptions)
     * [isValid](#isvalid)
     * [addFields](#addfields)
     * [removeFields](#removefields)
@@ -455,8 +456,10 @@ var $myform = $('#myform').idealforms({
   }
 })
 
-// remove required filter from username
-$.idealforms.forms.$0.options.inputs['username'].filters.replace('required', '')
+// remove required filter from usernames input in form $0
+var usernameFilters = $.idealforms.forms.$0.options.inputs['username'].filters
+usernameFilters.replace('required', '') // remove required filter
+               .replace('/^\s/', '') // trim leading whitespace
 
 // refresh the form to update changes
 $myform.fresh();
