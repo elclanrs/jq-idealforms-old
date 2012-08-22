@@ -458,8 +458,9 @@ var $myform = $('#myform').idealforms({
 
 // remove required filter from username input in form $0
 var usernameFilters = $.idealforms.forms.$0.options.inputs['username'].filters
-usernameFilters.replace('required', '') // remove required filter
-               .replace('/^\s/', '') // trim leading whitespace
+usernameFilters = usernameFilters
+                    .replace('required', '') // remove required filter
+                    .replace('/^\s/', '') // trim leading whitespace
 
 // refresh the form to update changes
 $myform.fresh();
