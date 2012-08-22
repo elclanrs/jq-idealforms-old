@@ -65,7 +65,7 @@ To localize Ideal Forms in your language, load the corresponding file from `js/i
 * [Filters](#filters)
     * [Built-in filters](#built-in-filters)
     * [Adding custom filters](#adding-custom-filters)
-* [Flags](#built-in-flags) 
+* [Flags](#built-in-flags)
     * [Built-in flags](#built-in-flags)
     * [Adding custom flags](#adding-custom-flags)
 * [Methods](#methods)
@@ -265,7 +265,7 @@ disableCustom: 'file select radiocheck button'
 Filters
 ----------------
 
-## Built-in filters
+### Built-in filters:
 You may use any of these filters in any order.
 
 ####`required`
@@ -400,7 +400,7 @@ This filter is designed for `file` inputs. It supports multifile in HTML5 browse
 }
 ```
 
-## Adding custom filters:
+### Adding custom filters:
 ```javascript
 $.extend($.idealforms.filters, {
   custom: {
@@ -419,7 +419,7 @@ $.extend($.idealforms.filters, {
 
 Flags
 --------------
-## Built-in flags:
+### Built-in flags:
 * `noerror`: hide the error from the input
 * `noicons`: hide the icons
 * `novalidicon`
@@ -428,7 +428,7 @@ Flags
 * `novalidclass`
 * `noinvalidclass`
 
-## Adding custom flags:
+### Adding custom flags:
 
 ```javascript
 $.extend($.idealforms.flags, {
