@@ -461,6 +461,8 @@ usernameFilters = usernameFilters
 $myform.reload().fresh();
 ```
 
+**Note:** The `disableCustom` option cannot be modified after initialization.
+
 ####`isValid`
 Check if the form is valid.
 
