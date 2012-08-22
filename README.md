@@ -457,7 +457,7 @@ usernameFilters = usernameFilters
                     .replace('/^\s/', '') // trim leading whitespace
 
 // refresh the form to update changes
-$myform.reload();
+$myform.reload().fresh();
 ```
 
 ####`isValid`
