@@ -450,12 +450,6 @@ $myform.setOptions(myOps)
 Every form is registered in the `$.idealforms.forms` namespace after initialization beginning at `$0`. This means that you can modify (not override) a particular option of any form manually:
 
 ```javascript
-var $myform = $('#myform').idealforms({
-  inputs: {
-    'username': { filters: 'required username' }
-  }
-})
-
 // remove required filter from username input in form $0
 var usernameFilters = $.idealforms.forms.$0.options.inputs['username'].filters
 usernameFilters = usernameFilters
