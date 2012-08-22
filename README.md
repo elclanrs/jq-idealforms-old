@@ -437,12 +437,15 @@ Methods
 
 ####`setOptions`
 
-Set the options of the form after being initialized. The new options are merged with the previous ones so you can change only a particular option for example to override the validation filters of a field.
+Set the options of the form after being initialized. The new options are merged with the previous ones allowing to override any option.
 
 **chainable:** yes
 
 ```javascript
 var myOps = {
+  onFail: function() { // override onFail option
+    alert('It failed!')
+  },
   inputs: {
     'username': { filters: 'username' } // override previously set filters
   }
