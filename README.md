@@ -404,6 +404,9 @@ $.extend($.idealforms.filters, {
 
 Flags
 --------------
+
+Flags are custom functions that you can run on an input whenever a validation event is triggered.
+
 ### Built-in flags:
 * `noerror`: hide the error from the input
 * `noicons`: hide the icons
