@@ -652,16 +652,17 @@ $.fn.idealforms = function (ops) {
     return $form
   }
 
-  $form.getInvalid = function (tabName) {
-    if (tabName && $idealTabs) {
-      return Actions.getTab(tabName)
-      .find('.ideal-field').filter(function () {
-        return $(this).data('isValid') === false
-      })
-    }
+  $form.getInvalid = function () {
     return $form.find('.ideal-field').filter(function () {
       return $(this).data('isValid') === false
     })
+  }
+
+  $form.getInvalidInTab = function (tabname) {
+    return Actions.getTab(tabname)
+      .find('.ideal-field').filter(function () {
+        return $(this).data('isValid') === false
+      })
   }
 
   $form.isValid = function () {

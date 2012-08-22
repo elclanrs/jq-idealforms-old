@@ -505,13 +505,22 @@ if ($myform.isValidField('colors[]')) { // name="colors[]"
 ```
 
 ####`getInvalid`
-Get all invalid fields. Returns a jQuery object. You can also filter by tab name to get all invalid fields within a tab.
+Get all invalid fields. Returns a jQuery object.
 
 **chainable:** yes (but it doesn't return the form, just the invalid fields)
 
 ```javascript
 var numInvalid = $myform.getInvalid().length // How many invalid fields
-var numInvalidTab = $myform.getInvalid('My Section').length
+```
+
+####`getInvalidInTab`
+Get all invalid fields within a tab.
+
+**chainable:** yes (but it doesn't return the form, just the invalid fields)
+
+```javascript
+var numInvalidTab = $myform.getInvalidInTab('My Section').length
+
 ```
 
 ####`addFields`
