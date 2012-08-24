@@ -265,14 +265,12 @@ Filters
     <td>The field is required. This filter ONLY works with text inputs (text, password, textarea). For `select` use `exclude` to exclude the default option. For `radio` and `checkbox` use `min: 1` which will require at least one option to be checked.
 </td>
   <td>
-    <code>
-    'myinput': {
+    <pre>'myinput': {
       filters: 'number range',
       data: {
         range: [1, 100]
       }
-    }
-    </code>
+    }</pre>
   </td>
   </tr>
 </table>
