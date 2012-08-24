@@ -72,7 +72,7 @@ var getFilters = function () {
     },
 
     email: {
-      regex: /[^@]+@[^@]/,
+      regex: /[^@]+@[^@\.]+\.[A-Za-z\.]{2}/,
       error: $.idealforms.errors.email
     },
 
