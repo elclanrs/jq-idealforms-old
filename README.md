@@ -20,7 +20,8 @@
 * [Adding and removing fields dynamically](http://www.youtube.com/watch?v=z-wPmywl4Tc&feature=youtu.be)
 
 ### FAQ:
-* [Using Google reCAPTCHA with Ideal Forms](https://github.com/elclanrs/jq-idealforms/issues/30)
+* [Integrating Google reCAPTCHA](https://github.com/elclanrs/jq-idealforms/issues/30)
+* [Playing nice with Twitter Bootstrap](https://github.com/elclanrs/jq-idealforms/issues/32#issuecomment-7747413)
 
 * * *
 # Updates:
