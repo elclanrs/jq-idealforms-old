@@ -91,7 +91,7 @@ Setup:
 var $myform = $('#my-form').idealforms({ options });
 ```
 
-Markup
+Markup:
 ------
 
 For **Ideal Forms** to work its magic create your markup using the following template as a reference, nothing fancy, just the usual form tags wrapped in a `<div>`. Drop the form into a container of any size and Ideal Forms will do the rest.
@@ -178,7 +178,7 @@ Alternatively, for very simple forms, you can do it "the easy way" and just add 
 </form>
 ```
 
-Options
+Options:
 -------
 
 ####`inputs`
@@ -244,8 +244,8 @@ Disables custom inputs and uses system default so you can use other replacement 
 disableCustom: 'file select radiocheck button'
 ```
 
-Filters
-----------------
+Filters:
+--------
 
 ### Built-in filters:
 You may use any of these filters in any order.
@@ -399,7 +399,7 @@ $.extend($.idealforms.filters, {
 })
 ```
 
-Flags
+Flags:
 --------------
 
 Flags are custom functions that you can run on an input whenever a validation event is triggered.
@@ -427,7 +427,7 @@ $.extend($.idealforms.flags, {
 })
 ```
 
-Methods
+Methods:
 -------
 
 ####`setOptions`
@@ -688,7 +688,7 @@ $myform.reload().fresh() // Usually combined with `fresh()`
 ```
 
 
-Example
+Example:
 -------
 With the markup provided above you'd call the plugin like this:
 
@@ -743,7 +743,7 @@ $myform.idealforms({
 });
 ```
 
-Theming
+Theming:
 -------
 
 **Ideal Forms** relays on a carefully crafted [LESS](http://lesscss.org/) stylesheet. Everything is customizable, from the simplest text input, to the select menus, radios, and checkboxes.
