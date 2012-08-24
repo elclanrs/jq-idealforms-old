@@ -264,7 +264,16 @@ Filters
     <td>required</td>
     <td>The field is required. This filter ONLY works with text inputs (text, password, textarea). For `select` use `exclude` to exclude the default option. For `radio` and `checkbox` use `min: 1` which will require at least one option to be checked.
 </td>
-  <td></td>
+  <td>
+    ```javascript
+    'myinput': {
+      filters: 'number range',
+      data: {
+        range: [1, 100]
+      }
+    }
+    ```
+  </td>
   </tr>
 </table>
 
@@ -282,14 +291,6 @@ Only digits.
 
 ####`range`
 Only numbers within a range. Usually combined with `number` or `digits`.
-```javascript
-'myinput': {
-  filters: 'number range',
-  data: {
-    range: [1, 100]
-  }
-}
-```
 
 ####`name`
 Must be at least 3 characters long, and must only contain letters.
