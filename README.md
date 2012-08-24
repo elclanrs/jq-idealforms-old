@@ -256,7 +256,25 @@ disableCustom: 'file select radiocheck button'
 Filters
 ----------------
 
+### Built-in filters:
 [List of filters](https://github.com/elclanrs/jq-idealforms/wiki/Filters)
+
+### Adding custom filters:
+```javascript
+$.extend($.idealforms.filters, {
+  custom: {
+    regex: /regularexpression/,
+    error: 'My custom error'
+  },
+  another: {
+    regex: function (input, value) {
+      var $input = input.input,
+          userOptions = input.userOptions
+      this.error = 'Something ' + value
+    }
+  }
+})
+```
 
 Flags
 --------------
