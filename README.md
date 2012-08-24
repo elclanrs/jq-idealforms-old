@@ -54,22 +54,25 @@ To localize Ideal Forms in your language, load the corresponding file from `js/i
 
 ## Index
 
-### [Markup](#markup)
-### [Invoke the plugin](#invoke-the-plugin)
-### [Options](#options)
+#### [Markup](#markup)
+#### [Invoke the plugin](#invoke-the-plugin)
+#### [Options](#options)
 * [inputs](#inputs)
 * [globalFlags](#globalflags)
 * [onSuccess](#onsuccess)
 * [onFail](#onfail)
 * [responsiveAt](#responsiveat)
 * [disableCustom](#disablecustom)
-### [Filters](#filters)
+
+#### [Filters](#filters)
 * [Built-in filters](#built-in-filters)
 * [Adding custom filters](#adding-custom-filters)
-### [Flags](#built-in-flags)
+
+#### [Flags](#built-in-flags)
 * [Built-in flags](#built-in-flags)
 * [Adding custom flags](#adding-custom-flags)
-### [Methods](#methods)
+
+#### [Methods](#methods)
 * [setOptions](#setoptions)
 * [setFieldOptions](#setfieldoptions)
 * [isValid](#isvalid)
@@ -90,8 +93,9 @@ To localize Ideal Forms in your language, load the corresponding file from `js/i
 * [fresh](#fresh)
 * [freshFields](#freshfields)
 * [reload](#reload)
-### [Example](#example)
-### [Theming](#theming)
+
+#### [Example](#example)
+#### [Theming](#theming)
 
 Markup
 ------
