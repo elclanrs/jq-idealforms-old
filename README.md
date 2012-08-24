@@ -256,25 +256,6 @@ disableCustom: 'file select radiocheck button'
 Filters
 ----------------
 
-<table>
-  <tr>
-    <th>Filter</th><th>Description</th><th>Sample</th>
-  </tr>
-  <tr>
-    <td>required</td>
-    <td>The field is required. This filter ONLY works with text inputs (text, password, textarea). For `select` use `exclude` to exclude the default option. For `radio` and `checkbox` use `min: 1` which will require at least one option to be checked.
-</td>
-  <td>
-    <div class="highlight"><pre>'myinput': {
-  filters: 'number range',
-  data: {
-    range: [1, 100]
-  }
-}</pre></div>
-  </td>
-  </tr>
-</table>
-
 ### Built-in filters:
 You may use any of these filters in any order.
 
@@ -289,6 +270,14 @@ Only digits.
 
 ####`range`
 Only numbers within a range. Usually combined with `number` or `digits`.
+```javascript
+'myinput': {
+  filters: 'number range',
+  data: {
+    range: [1, 100]
+  }
+}
+```
 
 ####`name`
 Must be at least 3 characters long, and must only contain letters.
