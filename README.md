@@ -71,10 +71,10 @@ Index:
 Setup:
 -----
 
-* Load [jQuery library](http://jquery.com)
+* Load [jQuery library](http://jquery.com) 1.7+
 * Load `js/min/jquery.idealforms.min.js` plugin
 * Load `css/jquery.idealforms.css` stylesheet 
-* Load the [jQuery UI](http://jqueryui.com/) for datepicker support.
+* Load the [jQuery UI](http://jqueryui.com/) for datepicker support
 * Replace your document's opening `<html>` tag with the following conditional comments. This will load the appropiate fixes for all supported IE versions:
 
 ```html
