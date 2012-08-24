@@ -31,7 +31,6 @@ Index:
 
 * [Setup](#setup)
 * [Markup](#markup)
-* [Invoke the plugin](#invoke-the-plugin)
 * [Options](#options)
     * [inputs](#inputs)
     * [globalFlags](#globalflags)
@@ -177,13 +176,6 @@ Alternatively, for very simple forms, you can do it "the easy way" and just add 
   <div><label>Password:</label><input type="text" name="password" class="required password"/></div>
   <div><label>E-Mail:</label><input type="text" name="email" class="required email"/></div>
 </form>
-```
-
-Invoke the plugin
------------------
-Call **Ideal Forms** on each form separately. Assign each form to a variable to have access to the [public methods](#methods).
-```javascript
-var $myform = $('#my-form').idealforms({ options });
 ```
 
 Options
