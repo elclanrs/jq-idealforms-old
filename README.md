@@ -591,7 +591,7 @@ $myform.removeFields(fields)
 ```
 
 ####`focusFirst`
-Focus the very first field. If there are tabs it will focus the very first filed within the current tab.
+Focus the very first field. If there are tabs it will focus the very first field within the current tab.
 
 **chainable:** yes
 ```javascript
