@@ -57,12 +57,6 @@ To localize Ideal Forms in your language, load the corresponding file from `js/i
 * [Markup](#markup)
 * [Invoke the plugin](#invoke-the-plugin)
 * [Options](#options)
-    * [inputs](#inputs)
-    * [globalFlags](#globalflags)
-    * [onSuccess](#onsuccess)
-    * [onFail](#onfail)
-    * [responsiveAt](#responsiveat)
-    * [disableCustom](#disablecustom)
 * [Filters](#filters)
     * [Built-in filters](#built-in-filters)
     * [Adding custom filters](#adding-custom-filters)
@@ -189,75 +183,13 @@ var $myform = $('#my-form').idealforms({ options });
 
 Options
 -------
-
-####`inputs`
-Add all the inputs you want to validate here. Use the name attribute of the input as key. To be consistent always put the key in quotes. Array group names can be used too, ie. `name[]`.
-
-Each input can be customized with **filters**, **data**, **errors** and **flags**.
-
-* `filters`: A space separated string of filters.
-* `data`: Filters that take values can be specified in here. Check documentation on **[Built-in filters](#built-in-filters)** for more info.
-* `errors`: Use the filter name as the key value and add your custom error. You can use inline HTML tags within the error string.
-* `flags`: Flags are simply functions that run when an input tries to validate. See documentation on **[Flags](#flags)**.
-
-```javascript
-inputs: {
-  // The name attribute of the input in quotes
-  'myinput': {
-    filters: 'required min',
-    data: {
-      min: 10
-    },
-    errors: {
-      min: 'At least 10 characters'
-    },
-    flags: 'noclass noinvalidicon'
-  }
-}
-```
-
-####`globalFlags`
-List the flags that you want to apply to all inputs.
-```javascript
-globalFlags: 'noerror noicons'
-```
-
-####`onSuccess`
-```javascript
-onSuccess: function(e){
-  // Form validates
-}
-```
-
-####`onFail`
-```javascript
-onFail: function(){
-  // Form does NOT validate
-}
-```
-
-####`responsiveAt`
-By default, Ideal Forms will make the form "adaptive". It will adapt to the container allowing it to work with any responsive grid system.
-You can change this behavior by assigning a number value to the `responsiveAt` option.
-```javascript
-// Make responsive only at a certain window size.
-// Default is `"auto"` to adapt to the container
-// Set to `false` to disable responsiveness
-// To always show the responsive layout use a large number ie `3000`
-responsiveAt: 480
-```
-
-####`disableCustom`
-Disables custom inputs and uses system default so you can use other replacement plugins.
-```javascript
-disableCustom: 'file select radiocheck button'
-```
+[Options wiki](https://github.com/elclanrs/jq-idealforms/wiki/Options)
 
 Filters
 ----------------
 
 ### Built-in filters:
-[List of filters](https://github.com/elclanrs/jq-idealforms/wiki/Filters)
+[Filters wiki](https://github.com/elclanrs/jq-idealforms/wiki/Filters)
 
 ### Adding custom filters:
 ```javascript
