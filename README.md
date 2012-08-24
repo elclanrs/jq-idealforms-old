@@ -57,6 +57,12 @@ To localize Ideal Forms in your language, load the corresponding file from `js/i
 * [Markup](#markup)
 * [Invoke the plugin](#invoke-the-plugin)
 * [Options](#options)
+    * [inputs](#inputs)
+    * [globalFlags](#globalflags)
+    * [onSuccess](#onsuccess)
+    * [onFail](#onfail)
+    * [responsiveAt](#responsiveat)
+    * [disableCustom](#disablecustom)
 * [Filters](#filters)
     * [Built-in filters](#built-in-filters)
     * [Adding custom filters](#adding-custom-filters)
@@ -183,13 +189,207 @@ var $myform = $('#my-form').idealforms({ options });
 
 Options
 -------
-[Options wiki](https://github.com/elclanrs/jq-idealforms/wiki/Options)
+
+####`inputs`
+Add all the inputs you want to validate here. Use the name attribute of the input as key. To be consistent always put the key in quotes. Array group names can be used too, ie. `name[]`.
+
+Each input can be customized with **filters**, **data**, **errors** and **flags**.
+
+* `filters`: A space separated string of filters.
+* `data`: Filters that take values can be specified in here. Check documentation on **[Built-in filters](#built-in-filters)** for more info.
+* `errors`: Use the filter name as the key value and add your custom error. You can use inline HTML tags within the error string.
+* `flags`: Flags are simply functions that run when an input tries to validate. See documentation on **[Flags](#flags)**.
+
+```javascript
+inputs: {
+  // The name attribute of the input in quotes
+  'myinput': {
+    filters: 'required min',
+    data: {
+      min: 10
+    },
+    errors: {
+      min: 'At least 10 characters'
+    },
+    flags: 'noclass noinvalidicon'
+  }
+}
+```
+
+####`globalFlags`
+List the flags that you want to apply to all inputs.
+```javascript
+globalFlags: 'noerror noicons'
+```
+
+####`onSuccess`
+```javascript
+onSuccess: function(e){
+  // Form validates
+}
+```
+
+####`onFail`
+```javascript
+onFail: function(){
+  // Form does NOT validate
+}
+```
+
+####`responsiveAt`
+By default, Ideal Forms will make the form "adaptive". It will adapt to the container allowing it to work with any responsive grid system.
+You can change this behavior by assigning a number value to the `responsiveAt` option.
+```javascript
+// Make responsive only at a certain window size.
+// Default is `"auto"` to adapt to the container
+// Set to `false` to disable responsiveness
+// To always show the responsive layout use a large number ie `3000`
+responsiveAt: 480
+```
+
+####`disableCustom`
+Disables custom inputs and uses system default so you can use other replacement plugins.
+```javascript
+disableCustom: 'file select radiocheck button'
+```
 
 Filters
 ----------------
 
 ### Built-in filters:
-[Filters wiki](https://github.com/elclanrs/jq-idealforms/wiki/Filters)
+You may use any of these filters in any order.
+
+####`required`
+The field is required. This filter ONLY works with text inputs (text, password, textarea). For `select` use `exclude` to exclude the default option. For `radio` and `checkbox` use `min: 1` which will require at least one option to be checked.
+
+####`number`
+Must be a number.
+
+####`digits`
+Only digits.
+
+####`range`
+Only numbers within a range. Usually combined with `number` or `digits`.
+```javascript
+'myinput': {
+  filters: 'number range',
+  data: {
+    range: [1, 100]
+  }
+}
+```
+
+####`name`
+Must be at least 3 characters long, and must only contain letters.
+
+####`username`
+Must be between 4 and 32 characters long and start with a letter. You may use letters, numbers, underscores, and one dot (.)
+
+####`pass`
+Must be at least 6 characters long, and contain at least one number, one uppercase and one lowercase letter.
+
+####`strongpass`
+Must be at least 8 characters long and contain at least one uppercase and one lowercase letter and one number or special character.
+
+####`email`
+Must be a valid e-mail address.
+
+####`phone`
+Must be a valid US phone number.
+
+####`zip`
+Must be a valid US zip code.
+
+####`url`
+Must be a valid URL.
+
+####`date`
+Must be a valid date. This filter effectively validates a date, so stuff like `02-31-2012` or `30/80/2000` would be invalid. You can use any format with 4 digit year and any delimiter character. The default format is `mm/dd/yyyy`.
+```javascript
+'myinput': {
+  filters: 'date',
+  data: {
+    date: 'dd-mm-yyyy' // or `yyyy~dd~mm` or `mm*yyyy*dd`...
+  }
+}
+```
+To use the datepicker you need to load jQuery UI and add the class `datepicker` to your date input. Ideal Forms will apply the custom format that you specify without having to configure the datepicker. It's seamless.
+
+####`dob`
+Must be a valid date of birth in this century, that is 100 years range from the current year.
+
+```javascript
+'myinput': {
+  filters: 'dob',
+  data: {
+    dob: 'yyyy/dd/mm'
+  }
+}
+```
+
+####`min`
+* Must be at least `x` characters minimum.
+* Must have at least `x` checkboxes checked.
+
+```javascript
+'myinput': {
+  filters: 'min',
+  data: {
+    min: 10
+  }
+}
+```
+
+####`max`
+* `x` characters maximum.
+* No more than `x` checkboxes checked.
+
+```javascript
+'myinput': {
+  filters: 'max',
+  data: {
+    max: 10
+  }
+}
+```
+
+####`exclude`
+* Prevent validation if the value matches any value in the given array.
+* Use this filter to exclude the default (usually first) option of a `select` input.
+
+```javascript
+'myinput': {
+  filters: 'exclude',
+  data: {
+    // Always an array even if just one value
+    // Values are case-sensitive
+    exclude: ['one', 'two', 'three']
+  }
+}
+```
+
+####`equalto`
+The value must match a value of another input.
+```javascript
+'myinput': {
+  filters: 'equalto',
+  data: {
+    // You can use any valid jQuery selector
+    equalto: '#myid'
+  }
+}
+```
+
+####`extension`
+This filter is designed for `file` inputs. It supports multifile in HTML5 browsers.
+```javascript
+'myinput': {
+  filters: 'extension',
+  data: {
+    extension: ['jpg', 'png'] // Always array even if just one
+  }
+}
+```
 
 ### Adding custom filters:
 ```javascript
