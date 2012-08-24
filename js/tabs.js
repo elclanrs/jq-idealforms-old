@@ -6,9 +6,7 @@ $.fn.idealTabs = function (ops) {
   var
 
   // Options
-  o = $.extend({
-    tabContainer: ''
-  }, ops),
+  o = $.extend({ tabContainer: '' }, ops),
 
   // Elements
   $contents = this,
@@ -17,8 +15,7 @@ $.fn.idealTabs = function (ops) {
   $tabs = (function () {
     var tabs = []
     $contents.each(function () {
-      var $fs = $(this),
-          name = $fs.attr('name'),
+      var name = $(this).attr('name'),
           html =
             '<li class="ideal-tabs-tab">'+
               '<span>' + name + '</span>'+
@@ -56,10 +53,7 @@ $.fn.idealTabs = function (ops) {
     switchTab: function (ops) {
       var
 
-      def = $.extend({
-        name: '',
-        idx: null
-      }, ops),
+      def = $.extend({ name: '', idx: null }, ops),
 
       idx = def.idx !== null
         ? def.idx
