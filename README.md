@@ -77,17 +77,13 @@ Setup:
 * Load `css/jquery.idealforms.css` stylesheet 
 * Load the [jQuery UI](http://jqueryui.com/) for datepicker support.
 * Replace your document's opening `<html>` tag with the following conditional comments. This will load the appropiate fixes for all supported IE versions:
-```html
-<!--[if IE 8]> <html class="ie8" lang="en"> <![endif]-->
-<!--[if IE 9]> <html class="ie9" lang="en"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
-```
+    <!--[if IE 8]> <html class="ie8" lang="en"> <![endif]-->
+    <!--[if IE 9]> <html class="ie9" lang="en"> <![endif]-->
+    <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
 * Load an [HTML5 shim](http://code.google.com/p/html5shim/) for IE8 unless you're using [Modernizr](http://modernizr.com/) which already has a shim.
 * To localize Ideal Forms in your language, load the corresponding file from `js/i18n` after loading the plugin.
 * Finally, call Ideal Forms on each form separately. Assign each form to a variable to have access to the public methods.
-```javascript
-var $myform = $('#my-form').idealforms({ options });
-```
+    var $myform = $('#my-form').idealforms({ options });
 
 Markup
 ------
