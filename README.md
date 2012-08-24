@@ -266,11 +266,11 @@ Filters
 </td>
   <td>
     <pre>'myinput': {
-      filters: 'number range',
-      data: {
-        range: [1, 100]
-      }
-    }</pre>
+  filters: 'number range',
+  data: {
+    range: [1, 100]
+  }
+}</pre>
   </td>
   </tr>
 </table>
