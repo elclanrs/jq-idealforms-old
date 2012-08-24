@@ -1,5 +1,3 @@
-# Ideal Forms
-
 **Ideal Forms** is the ultimate framework for building and validating responsive HTML5 forms.
 
 * **[DEMO](http://elclanrs.github.com/jq-idealforms/)**
@@ -23,20 +21,20 @@
 * [Integrating Google reCAPTCHA](https://github.com/elclanrs/jq-idealforms/issues/30)
 * [Playing nice with Twitter Bootstrap](https://github.com/elclanrs/jq-idealforms/issues/32#issuecomment-7747413)
 
-* * *
-# Updates:
+### Updates:
 
 * Now you can modify the options of any form after initialization with new methods `setOptions` and `setFieldOptions`.
 * New `range` filter.
 * New `dob` Date of Birth filter.
 * New tabs(steps) with new public methods `switchTab`, `nextTab`, `prevTab`, `firstTab` and `lastTab`.
 
-# Help:
+### Help:
 * Help localizing Ideal Forms in other languages.
 * **[Android 2.x, 3.x?- text inputs not validating](http://stackoverflow.com/questions/10822758/android-text-inputs-not-validating-with-custom-validation-plugin)**
 * **[Chrome 21 and 1px difference very annoying bug](http://stackoverflow.com/questions/11820439/chrome-21-and-1px-difference-very-annoying-bug)**
 
-## Index
+Index:
+-----
 
 * [Setup](#setup)
 * [Markup](#markup)
