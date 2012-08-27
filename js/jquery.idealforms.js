@@ -8,9 +8,10 @@ $.fn.idealforms = function (ops) {
 
   // Unique ID to identify this form
   // in global $.idealforms namespace
-  var formRef; // reference to this form in Ideal Forms namespace
   var formId = '$'+ Utils.getObjSize($.idealforms.forms)
-  formRef = $.idealforms.forms[formId] = {}
+
+  // reference to this form in Ideal Forms namespace
+  var formRef = $.idealforms.forms[formId] = {}
 
   // Get filters with localized errors
   $.extend($.idealforms.filters, getFilters())
