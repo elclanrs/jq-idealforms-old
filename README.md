@@ -73,7 +73,7 @@ Setup:
 
 * Load [jQuery library](http://jquery.com)
 * Load `js/min/jquery.idealforms.min.js` plugin
-* Load `css/jquery.idealforms.css` stylesheet 
+* Load `css/jquery.idealforms.css` stylesheet
 * Load [jQuery UI](http://jqueryui.com/) for datepicker support
 * Replace your document's opening `<html>` tag with the following conditional comments. This will load the appropiate fixes for all supported IE versions:
 
@@ -161,7 +161,7 @@ If you're working with dynamic fields check documentation on **[addFields](#addf
   <div><hr/></div>
 
   <!-- Buttons -->
-  <div><input type="sumbit" value="Submit"/></div>
+  <div><input type="submit" value="Submit"/></div>
   <div><button>Reset</button></div>
 
 </form>
