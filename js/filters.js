@@ -87,7 +87,7 @@ var getFilters = function () {
     },
 
     url: {
-      regex: /^(?:(ftp|http|https):\/\/)?(?:[\w\-]+\.)+[a-z]{3,6}$/i,
+      regex: /^(?:(ftp|http|https):\/\/)?(?:[\w\-]+\.)+[a-z]{2,6}([\:\/?#].*)?$/i,
       error: $.idealforms.errors.url
     },
 
