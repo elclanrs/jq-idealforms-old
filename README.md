@@ -53,6 +53,7 @@ Index:
     * [getInvalidInTab](#getinvalidintab)
     * [addFields](#addfields)
     * [removeFields](#removefields)
+    * [toggleFields](#togglefields)
     * [focusFirst](#focusfirst)
     * [focusFirstInvalid](#focusfirstinvalid)
     * [switchTab](#switchtab)
@@ -588,6 +589,17 @@ var fields = [
   'email'
 ]
 $myform.removeFields(fields)
+```
+
+####`toggleFields`
+Hide or show fields. When the fields are hidden they will be excluded from the validation process.
+
+```javascript
+var fields = [
+  'username',
+  'password',
+]
+$myform.toggleFields(fields)
 ```
 
 ####`focusFirst`
