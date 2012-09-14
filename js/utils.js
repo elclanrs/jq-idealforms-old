@@ -66,6 +66,13 @@ var Utils = {
       ? $el
       : $.error('The field "'+ str + '" doesn\'t exist.')
   },
+  getFieldsFromArray: function (fields) {
+    var f = []
+    for (var i = 0, l = fields.length; i < l; i++) {
+      f.push( Utils.getByNameOrId(fields[i]).get(0) )
+    }
+    return $(f)
+  },
   /**
    * Determine type of any Ideal Forms element
    * @param $input jQuery $input object

@@ -640,11 +640,8 @@ $.fn.idealforms = function (ops) {
   * @param fields Array of objects
   */
   $form.removeFields = function (fields) {
-    var f = []
-    for (var i = 0, l = fields.length; i < l; i++) {
-      f.push( Utils.getByNameOrId(fields[i]).get(0) )
-    }
-    $(f).parents('.ideal-wrap').remove()
+    var $fields = Utils.getFieldsFromArray(fields)
+    $fields.parents('.ideal-wrap').remove()
     // counter
     if ($idealTabs) {
       Actions.updateTabsCounter()
@@ -800,6 +797,23 @@ $.fn.idealforms = function (ops) {
     $.extend(true, curOps, options)
     $form.reload()
     $form.freshFields([name])
+    return $form
+  }
+
+  $form.toggleFields = function (fields) {
+    var $fields = Utils.getFieldsFromArray(fields)
+    $fields.each(function() {
+      var $this = $(this)
+      var name = $this.attr('name') || $this.attr('id')
+      var filters = formRef.options.inputs[name].filters
+      if ($this.is(':hidden')) {
+        $form.setFieldOptions(name, { filters: $this.data('ideal-filters') })
+      } else {
+        $this.data('ideal-filters', filters)
+        $form.setFieldOptions(name, { filters: '' })
+      }
+      $this.parents('.ideal-wrap').toggle()
+    })
     return $form
   }
 
