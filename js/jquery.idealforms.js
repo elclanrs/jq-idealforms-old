@@ -804,9 +804,9 @@ $.fn.idealforms = function (ops) {
     var $fields = Utils.getFieldsFromArray(fields)
     $fields.each(function() {
       var $this = $(this)
-      var name = $this.attr('name') || $this.attr('id')
-      var filters = formRef.options.inputs[name].filters
-      if ($this.is(':hidden')) {
+      var inputRef = formRef.options.inputs[$this.attr('name') || $this.attr('id')]
+      var filters = inputRef && inputRef.filters
+      if ($this.is(':hidden') && filters) {
         $form.setFieldOptions(name, { filters: $this.data('ideal-filters') })
       } else {
         $this.data('ideal-filters', filters)
@@ -814,6 +814,7 @@ $.fn.idealforms = function (ops) {
       }
       $this.parents('.ideal-wrap').toggle()
     })
+    Actions.adjust()
     return $form
   }
 
