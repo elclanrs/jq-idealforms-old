@@ -234,9 +234,9 @@ $.fn.idealforms = function (ops) {
 
       // Adjust labels
       formInputs.labels
-                .removeAttr('style')
-                .addClass('ideal-label')
-                .width(Utils.getMaxWidth(formInputs.labels))
+        .removeAttr('style')
+        .addClass('ideal-label')
+        .width(Utils.getMaxWidth(formInputs.labels))
 
       // Adjust headings, separators
       if ($idealTabs) {
@@ -325,11 +325,11 @@ $.fn.idealforms = function (ops) {
 
       // Do markup
       formInputs.inputs
-                .add(formInputs.headings)
-                .add(formInputs.separators)
-                .each(function(){
-                  Actions.doMarkup($(this))
-                })
+        .add(formInputs.headings)
+        .add(formInputs.separators)
+        .each(function(){
+          Actions.doMarkup($(this))
+        })
 
       // Add inputs specified by class
       // to the list of user inputs
@@ -807,15 +807,12 @@ $.fn.idealforms = function (ops) {
       var name = $this.attr('name') || $this.attr('id')
       var inputRef = formRef.options.inputs[name]
       var filters = inputRef && inputRef.filters
-      if ($this.is(':hidden')) {
-        $form.setFieldOptions(name, { filters: $this.data('ideal-filters') })
-      } else {
-        $this.data('ideal-filters', filters)
-        $form.setFieldOptions(name, { filters: '' })
-      }
-      $this.parents('.ideal-wrap').toggle()
+      var dataFilters = $this.data('ideal-filters') || ''
+      $this.data('ideal-filters', filters)
+      $this.parents('.ideal-wrap').toggle(0, function(){
+        $form.setFieldOptions(name, { filters: dataFilters })
+      })
     })
-    Actions.adjust()
     return $form
   }
 
