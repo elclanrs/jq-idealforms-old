@@ -804,7 +804,9 @@ $.fn.idealforms = function (ops) {
     var $fields = Utils.getFieldsFromArray(fields)
     $fields.each(function() {
       var $this = $(this)
-      var inputRef = formRef.options.inputs[$this.attr('name') || $this.attr('id')]
+      var name = $this.attr('name') || $this.attr('id')
+      var inputRef = formRef.options.inputs[name]
+      console.log(inputRef)
       var filters = inputRef && inputRef.filters
       if ($this.is(':hidden') && filters) {
         $form.setFieldOptions(name, { filters: $this.data('ideal-filters') })
