@@ -360,32 +360,26 @@ $.fn.idealforms = function (ops) {
 
         // Required
         if (!value && /required/.test(userFilters)) {
-          error = (
-            userOptions.errors && userOptions.errors.required
-              ? userOptions.errors.required
-              : $.idealforms.errors.required
-          )
+          error = userOptions.errors && userOptions.errors.required
+            ? userOptions.errors.required
+            : $.idealforms.errors.required
           isValid = false
         }
 
         // All other filters
         if (value) {
           userFilters = userFilters.split(/\s/)
-          for (var i = 0, len = userFilters.length; i < len; i++) {
-            var uf = userFilters[i],
-                theFilter = $.idealforms.filters[uf] || {}
-            if (
-              theFilter && (
-                Utils.isFunction(theFilter.regex) && !theFilter.regex(input, value) ||
-                Utils.isRegex(theFilter.regex) && !theFilter.regex.test(value)
-              )
-            ) {
-              isValid = false
-              error = (
-                userOptions.errors && userOptions.errors[uf] ||
-                theFilter.error
-              )
-              break
+          for (var i = 0, l = userFilters.length; i < l; i++) {
+            var uf = userFilters[i]
+            var theFilter = $.idealforms.filters[uf]
+            if (theFilter && uf !== 'required') {
+              isValid = Utils.isFunction(theFilter.regex) && theFilter.regex(input, value) ||
+                        Utils.isRegex(theFilter.regex) && theFilter.regex.test(value)
+              if (!isValid) {
+                error = userOptions.errors && userOptions.errors[uf] ||
+                        theFilter.error
+                break
+              }
             }
           }
         }
