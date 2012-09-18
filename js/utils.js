@@ -88,7 +88,7 @@ var Utils = {
   getIdealType: function ($el) {
     var type = $el.attr('type') || $el[0].tagName.toLowerCase()
     return (
-      /(text|password|email|number|search|url|tel)/.test(type) && 'text' ||
+      /(text|password|email|number|search|url|tel|textarea)/.test(type) && 'text' ||
       /file/.test(type) && 'file' ||
       /select/.test(type) && 'select' ||
       /(radio|checkbox)/.test(type) && 'radiocheck' ||
@@ -120,13 +120,18 @@ var Utils = {
     }
 
     // Text & file
-    if (/(text|password|email|number|search|url|tel|file|hidden)/.test(type))
+    if (/^(text|password|email|number|search|url|tel|file|hidden)$/.test(type))
       markup = '<input '+
         'type="'+ type +'" '+
         'id="'+ name +'" '+
         'name="'+ name +'" ' +
         (placeholder && 'placeholder="'+ placeholder +'"') +
         '/>'
+
+    // Textarea
+    if (/textarea/.test(type)) {
+      markup = '<textarea id="'+ name +'" name="'+ name +'"></textarea>'
+    }
 
     // Select
     if (/select/.test(type)) {
