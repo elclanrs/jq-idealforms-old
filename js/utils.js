@@ -76,10 +76,10 @@ var Utils = {
     }
     return $(f)
   },
-  strToArr: function (obj) {
-    return Utils.isString(obj)
-      ? [obj]
-      : obj
+  convertToArray: function (obj) {
+    return Object.prototype.toString.call(obj) === '[object Array]'
+      ? obj
+      : [obj]
   },
   /**
    * Determine type of any Ideal Forms element

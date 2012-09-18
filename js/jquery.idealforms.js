@@ -550,7 +550,7 @@ $.fn.idealforms = function (ops) {
   */
   $form.addFields = function (fields) {
 
-    fields = Utils.strToArr(fields)
+    fields = Utils.convertToArray(fields)
 
     var
     // Save names of all inputs in array
@@ -635,7 +635,7 @@ $.fn.idealforms = function (ops) {
   * @param fields Array of objects
   */
   $form.removeFields = function (fields) {
-    fields = Utils.strToArr(fields)
+    fields = Utils.convertToArray(fields)
     var $fields = Utils.getFieldsFromArray(fields)
     $fields.parents('.ideal-wrap').remove()
     // counter
@@ -729,7 +729,7 @@ $.fn.idealforms = function (ops) {
   }
 
   $form.freshFields = function (fields) {
-    fields = Utils.strToArr(fields)
+    fields = Utils.convertToArray(fields)
     for (var i = 0, l = fields.length; i < l; i++) {
       var $input = Utils.getByNameOrId(fields[i])
       $input.blur()
@@ -764,7 +764,7 @@ $.fn.idealforms = function (ops) {
   }
 
   $form.resetFields = function (fields) {
-    fields = Utils.strToArr(fields)
+    fields = Utils.convertToArray(fields)
     var formInputs = getFormInputs(),
         $input, type,
         i, len = fields.length
@@ -804,7 +804,7 @@ $.fn.idealforms = function (ops) {
   }
 
   $form.toggleFields = function (fields) {
-    fields = Utils.strToArr(fields)
+    fields = Utils.convertToArray(fields)
     var $fields = Utils.getFieldsFromArray(fields)
     $fields.each(function() {
       var $this = $(this)
