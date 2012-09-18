@@ -58,6 +58,9 @@ var Utils = {
   isRegex: function (obj) {
     return obj instanceof RegExp
   },
+  isString: function (obj) {
+    return typeof obj === 'string'
+  },
   getByNameOrId: function (str) {
     var $el = $('[name="'+ str +'"]').length
       ? $('[name="'+ str +'"]') // by name
@@ -72,6 +75,11 @@ var Utils = {
       f.push( Utils.getByNameOrId(fields[i]).get(0) )
     }
     return $(f)
+  },
+  strToArr: function (obj) {
+    return Utils.isString(obj)
+      ? [obj]
+      : obj
   },
   /**
    * Determine type of any Ideal Forms element

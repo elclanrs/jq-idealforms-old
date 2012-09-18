@@ -550,8 +550,9 @@ $.fn.idealforms = function (ops) {
   */
   $form.addFields = function (fields) {
 
-    var
+    fields = Utils.strToArr(fields)
 
+    var
     // Save names of all inputs in array
     // to use methods that take names ie. fresh()
     allNames = [],
@@ -634,6 +635,7 @@ $.fn.idealforms = function (ops) {
   * @param fields Array of objects
   */
   $form.removeFields = function (fields) {
+    fields = Utils.strToArr(fields)
     var $fields = Utils.getFieldsFromArray(fields)
     $fields.parents('.ideal-wrap').remove()
     // counter
@@ -669,11 +671,11 @@ $.fn.idealforms = function (ops) {
   $form.focusFirst = function () {
     if ($idealTabs) {
       $idealTabs.filter(':visible')
-                .find('.ideal-field:first')
-                .find('input:first, select, textarea').focus()
+        .find('.ideal-field:first')
+        .find('input:first, select, textarea').focus()
     } else {
       $form.find('.ideal-field:first')
-           .find('input:first, select, textarea').focus()
+        .find('input:first, select, textarea').focus()
     }
     return $form
   }
@@ -681,7 +683,7 @@ $.fn.idealforms = function (ops) {
   $form.focusFirstInvalid = function () {
     var $first = $form.getInvalid().first(),
         tabName = $first.parents('.ideal-tabs-content')
-                        .data('ideal-tabs-content-name')
+          .data('ideal-tabs-content-name')
     if ($idealTabs) {
       $idealTabs.switchTab({ name: tabName })
     }
@@ -689,8 +691,12 @@ $.fn.idealforms = function (ops) {
     return $form
   }
 
-  $form.switchTab = function (name, idx) {
-    $idealTabs.switchTab({ name: name, idx: idx })
+  $form.switchTab = function (nameOrIdx) {
+    var isString = Utils.isString(nameOrIdx)
+    $idealTabs.switchTab({
+      name: isString && nameOrIdx,
+      idx: !isString ? nameOrIdx : null
+    })
     return $form
   }
 
@@ -723,11 +729,13 @@ $.fn.idealforms = function (ops) {
   }
 
   $form.freshFields = function (fields) {
-    getUserInputs()
-      .filter('[name="'+ fields.join('"], [name="') +'"]')
-      .blur()
-      .parents('.ideal-field')
-      .removeClass('valid invalid')
+    fields = Utils.strToArr(fields)
+    for (var i = 0, l = fields.length; i < l; i++) {
+      var $input = Utils.getByNameOrId(fields[i])
+      $input.blur()
+        .parents('.ideal-field')
+        .removeClass('valid invalid')
+    }
     return $form
   }
 
@@ -756,6 +764,7 @@ $.fn.idealforms = function (ops) {
   }
 
   $form.resetFields = function (fields) {
+    fields = Utils.strToArr(fields)
     var formInputs = getFormInputs(),
         $input, type,
         i, len = fields.length
@@ -795,6 +804,7 @@ $.fn.idealforms = function (ops) {
   }
 
   $form.toggleFields = function (fields) {
+    fields = Utils.strToArr(fields)
     var $fields = Utils.getFieldsFromArray(fields)
     $fields.each(function() {
       var $this = $(this)
