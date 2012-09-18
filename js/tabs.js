@@ -15,12 +15,12 @@ $.fn.idealTabs = function (ops) {
   $tabs = (function () {
     var tabs = []
     $contents.each(function () {
-      var name = $(this).attr('name'),
-          html =
-            '<li class="ideal-tabs-tab">'+
-              '<span>' + name + '</span>'+
-              '<i class="ideal-tabs-tab-counter ideal-tabs-tab-counter-zero">0</i>'+
-            '</li>'
+      var name = $(this).attr('name')
+      var html =
+        '<li class="ideal-tabs-tab">'+
+          '<span>' + name + '</span>'+
+          '<i class="ideal-tabs-tab-counter ideal-tabs-tab-counter-zero">0</i>'+
+        '</li>'
       tabs.push(html)
     })
     return $(tabs.join(''))
@@ -33,13 +33,11 @@ $.fn.idealTabs = function (ops) {
         .index()
     },
     getTabIdxByName: function (name) {
-      var
-      re = new RegExp(name, 'i'),
-      $tab = $tabs.filter(function () {
+      var re = new RegExp(name, 'i')
+      var $tab = $tabs.filter(function () {
         return re.test($(this).text())
-      }),
-      idx = $tab.index()
-      return idx
+      })
+      return $tab.index()
     }
   },
 
@@ -50,52 +48,44 @@ $.fn.idealTabs = function (ops) {
     /**
      * Switch tab
      */
-    switchTab: function (ops) {
-      var
+    switchTab: function (nameOrIdx) {
 
-      def = $.extend({ name: '', idx: null }, ops),
-
-      idx = def.idx !== null
-        ? def.idx
-        : Actions.getTabIdxByName(def.name)
+      var idx = Utils.isString(nameOrIdx)
+        ? Actions.getTabIdxByName(nameOrIdx)
+        : nameOrIdx
 
       $tabs.removeClass('ideal-tabs-tab-active')
       $tabs.eq(idx).addClass('ideal-tabs-tab-active')
-      $contents
-        .hide().eq(idx)
-        .show()
+      $contents.hide().eq(idx).show()
     },
 
     nextTab: function () {
       var idx = Actions.getCurIdx() + 1
-      if (idx > $tabs.length - 1)
-        Methods.firstTab()
-      else
-        Methods.switchTab({ idx: idx })
+      idx > $tabs.length - 1
+        ? Methods.firstTab()
+        : Methods.switchTab(idx)
     },
 
     prevTab: function () {
-      var idx = Actions.getCurIdx() - 1
-      Methods.switchTab({ idx: idx })
+      Methods.switchTab(Actions.getCurIdx() - 1)
     },
 
     firstTab: function () {
-      Methods.switchTab({ idx: 0 })
+      Methods.switchTab(0)
     },
 
     lastTab: function () {
-      Methods.switchTab({ idx: $tabs.length - 1 })
+      Methods.switchTab($tabs.length - 1)
     },
 
     updateCounter: function (name, text) {
       var idx = Actions.getTabIdxByName(name),
           $counter = $tabs.eq(idx).find('.ideal-tabs-tab-counter')
       $counter.removeClass('ideal-tabs-tab-counter-zero')
-      if (!text)
+      if (!text) {
         $counter.addClass('ideal-tabs-tab-counter-zero')
-      $counter
-        .attr('title', 'Invalid fields')
-        .html(text)
+      }
+      $counter.html(text)
     }
   }
 
@@ -104,31 +94,24 @@ $.fn.idealTabs = function (ops) {
     $contents[m] = Methods[m]
 
   // Init
-  $tabs
-    .first()
+  $tabs.first()
     .addClass('ideal-tabs-tab-active')
     .end()
     .click(function () {
       var name = $(this).text()
-      $contents.switchTab({ name: name })
+      $contents.switchTab(name)
     })
 
   // Insert in DOM & Events
+  $wrapper.append($tabs).appendTo($container)
 
-  $wrapper
-    .append($tabs)
-    .appendTo($container)
-
-  $contents
-    .addClass('ideal-tabs-content')
-    .each(function () {
-      var $this = $(this),
-          name = $(this).attr('name')
-      $this
-        .data('ideal-tabs-content-name', name)
-        .removeAttr('name')
-    })
-    .hide().first().show() // Start fresh
+  $contents.addClass('ideal-tabs-content')
+  $contents.each(function () {
+    var $this = $(this), name = $(this).attr('name')
+    $this.data('ideal-tabs-content-name', name)
+      .removeAttr('name')
+  })
+  $contents.hide().first().show() // Start fresh
 
   return $contents
 

@@ -89,23 +89,16 @@ $.fn.idealforms = function (ops) {
    */
   var Actions = {
 
+    getCurrentTabName: function ($input) {
+      return $input.parents('.ideal-tabs-content')
+        .data('ideal-tabs-content-name')
+    },
+
     getTab: function (tabName) {
       return $idealTabs.filter(function () {
           var re = new RegExp(tabName, 'i')
           return re.test($(this).data('ideal-tabs-content-name'))
         })
-    },
-
-    getCurrentTab: function ($input) {
-      var $tabContent = $input.parents('.ideal-tabs-content'),
-          tabName = $tabContent.data('ideal-tabs-content-name'),
-          $wraps =  $tabContent.find('.ideal-field').parents('.ideal-wrap'),
-          $fields = $( $tabContent.get().reverse() ) // correct order
-      return {
-        content: $tabContent,
-        name: tabName,
-        fields: $fields
-      }
     },
 
     // Update tabs counter
@@ -410,8 +403,6 @@ $.fn.idealforms = function (ops) {
         return userInputs.filter(input)
       }()),
 
-      currentTabName = Actions.getCurrentTab($input).name,
-
       userOptions = o.inputs[input.attr('name')],
 
       value = (function () {
@@ -480,8 +471,9 @@ $.fn.idealforms = function (ops) {
           $error.html(test.error).show()
       }
 
-      if ($idealTabs)
-        Actions.updateTabsCounter(currentTabName)
+      if ($idealTabs) {
+        Actions.updateTabsCounter(Actions.getCurrentTabName($input))
+      }
 
       doFlags()
     },
@@ -681,22 +673,18 @@ $.fn.idealforms = function (ops) {
   }
 
   $form.focusFirstInvalid = function () {
-    var $first = $form.getInvalid().first(),
-        tabName = $first.parents('.ideal-tabs-content')
-          .data('ideal-tabs-content-name')
+    var $first = $form.getInvalid().first()
+    var tabName = $first.parents('.ideal-tabs-content')
+      .data('ideal-tabs-content-name')
     if ($idealTabs) {
-      $idealTabs.switchTab({ name: tabName })
+      $idealTabs.switchTab(tabName)
     }
     $first.find('input:first, select, textarea').focus()
     return $form
   }
 
   $form.switchTab = function (nameOrIdx) {
-    var isString = Utils.isString(nameOrIdx)
-    $idealTabs.switchTab({
-      name: isString && nameOrIdx,
-      idx: !isString ? nameOrIdx : null
-    })
+    $idealTabs.switchTab(nameOrIdx)
     return $form
   }
 
