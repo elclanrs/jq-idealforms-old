@@ -552,8 +552,6 @@ $.fn.idealforms = function (ops) {
 
     fields = Utils.convertToArray(fields)
 
-    console.log(fields)
-
     var
     // Save names of all inputs in array
     // to use methods that take names ie. fresh()
