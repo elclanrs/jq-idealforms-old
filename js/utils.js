@@ -105,7 +105,19 @@ var Utils = {
    */
   makeInput: function (name, type, list, placeholder) {
 
-    var markup, items = [], i, len
+    var markup, items = [], item, value, i, len
+
+    function splitValue(str) {
+      var item, value, arr
+      if (/:/.test(str)) {
+        arr = str.split(':')
+        item = arr[0]
+        value = arr[1]
+      } else {
+        item = value = str
+      }
+      return { item: item, value: value }
+    }
 
     // Text & file
     if (/(text|password|email|number|search|url|tel|file|hidden)/.test(type))
@@ -119,8 +131,11 @@ var Utils = {
     // Select
     if (/select/.test(type)) {
       items = []
-      for (i = 0, len = list.length; i < len; i++)
-        items.push('<option value="'+ list[i] +'">'+ list[i] +'</option>')
+      for (i = 0, len = list.length; i < len; i++) {
+        item = splitValue(list[i]).item
+        value = splitValue(list[i]).value
+        items.push('<option value="'+ value +'">'+ item +'</option>')
+      }
       markup =
         '<select id="'+ name +'" name="'+ name +'">'+
           items.join('') +
@@ -130,13 +145,16 @@ var Utils = {
     // Radiocheck
     if (/(radio|checkbox)/.test(type)) {
       items = []
-      for (i = 0, len = list.length; i < len; i++)
+      for (i = 0, len = list.length; i < len; i++) {
+        item = splitValue(list[i]).item
+        value = splitValue(list[i]).value
         items.push(
           '<label>'+
-            '<input type="'+ type +'" name="'+ name +'" value="'+ list[i] +'" />'+
-            list[i] +
+            '<input type="'+ type +'" name="'+ name +'" value="'+ value +'" />'+
+            item +
           '</label>'
         )
+      }
       markup = items.join('')
     }
 

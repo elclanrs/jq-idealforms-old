@@ -185,7 +185,7 @@ $.fn.idealforms = function (ops) {
         },
         radiocheck: function () {
           var isWrapped = $el.parents('.ideal-field').length,
-              $all = $el.parent().siblings('label:not(:first)').andSelf()
+              $all = $el.parent().siblings('label:not(:first-child)').andSelf()
           if (!/radiocheck/.test(o.disableCustom)) {
             $el.idealRadioCheck()
           }
@@ -552,6 +552,8 @@ $.fn.idealforms = function (ops) {
 
     fields = Utils.convertToArray(fields)
 
+    console.log(fields)
+
     var
     // Save names of all inputs in array
     // to use methods that take names ie. fresh()
@@ -579,7 +581,7 @@ $.fn.idealforms = function (ops) {
       $field = $(
         '<div>'+
           '<label>'+ label +':</label>'+ Utils.makeInput(name, type, list, placeholder) +
-          '</div>'
+        '</div>'
       ),
       $input = $field.find('input, select, textarea, :button')
 
