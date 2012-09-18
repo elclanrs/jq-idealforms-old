@@ -518,7 +518,7 @@ var numInvalidTab = $myform.getInvalidInTab('My Section').length
 ```
 
 ####`addFields`
-Add fields to the form dynamically. It takes an array of objects. Ideal Forms auto-generates the markup for inputs fields based on the `type` specified.
+Add fields to the form dynamically. It takes an array of objects or a single object. Ideal Forms auto-generates the markup for inputs fields based on the `type` specified.
 
 **chainable:** yes
 
@@ -578,28 +578,21 @@ $myform.addFields(newFields)
 ```
 
 ####`removeFields`
-Remove fields from the form dynamically. It takes an array of names or id's. Ideal Forms will look for the `name` attribute first and then `id`.
+Remove fields from the form dynamically. Ideal Forms will look for the `name` attribute first and then `id`.
 
 **chainable:** yes
 
 ```javascript
-var fields = [
-  'username',
-  'password',
-  'email'
-]
-$myform.removeFields(fields)
+$myform.removeFields('username')
+$myform.removeFields(['username', 'password', 'email'])
 ```
 
 ####`toggleFields`
 Hide or show fields. When the fields are hidden they will be excluded from the validation process.
 
 ```javascript
-var fields = [
-  'username',
-  'password',
-]
-$myform.toggleFields(fields)
+$myform.toggleFields('username')
+$myform.toggleFields(['username', 'password', 'email'])
 ```
 
 ####`focusFirst`
@@ -619,11 +612,12 @@ $myform.focusFirstInvalid()
 ```
 
 ####`switchTab`
-Change tab by name.
+Change tab by name or index.
 
 **chainable:** yes
 ```javascript
-$myform.switchTab('My Section')
+$myform.switchTab('My Section') // case insensitive
+$myform.switchTab(2) // zero based index
 ```
 
 ####`nextTab`
@@ -667,11 +661,12 @@ $myform.reset() // Reset all
 ```
 
 ####`resetFields`
-Reset particular fields. Accepts an array even if just one value.
+Reset particular fields.
 
 **chainable:** yes
 ```javascript
-$myform.resetFields(['username', 'password'])
+$myform.resetFields('username')
+$myform.resetFields(['username', 'password', 'email'])
 ```
 
 ####`fresh`
@@ -684,11 +679,12 @@ $myform.fresh()
 
 ####`freshFields`
 
-"Freshen" particular fields. Accepts an array even if just one value.
+"Freshen" particular fields.
 
 **chainable:** yes
 ```javascript
-$myform.freshFields(['username', 'password'])
+$myform.freshFields('username')
+$myform.freshFields(['username', 'password', 'email'])
 ```
 
 ####`reload`
