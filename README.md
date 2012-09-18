@@ -566,10 +566,10 @@ var newFields = [
     errors: { exclude: 'Please select an instrument' },
     type: 'select',
     list: [
-      'Select an instrument',
-      'Piano:PIA',
-      'Violin:VIO',
-      'Guitar:GUI'
+      'Select an instrument:default',
+      'Piano:pia',
+      'Violin:vio',
+      'Guitar:gui'
     ],
     appendToTab: 'My Section'
   }
