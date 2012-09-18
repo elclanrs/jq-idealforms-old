@@ -527,7 +527,7 @@ The value used as name attribute.
 #####`label` (required)
 The label text.
 #####`type` (required)
-`text`, `password`, `email`, `number`, `url` ,`tel`, `file`, `select`, `radio` and `checkbox`.
+`text`, `password`, `email`, `number`, `url` ,`tel`, `file`, `select`, `radio`, `checkbox` and `textarea`.
 #####`addBefore`
 Insert the new field before an existing field. Takes a string. Ideal Forms will look for `name` first and then `id`.
 #####`addAfter`
