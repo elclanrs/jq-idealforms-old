@@ -182,7 +182,7 @@ Alternatively, for very simple forms, you can do it "the easy way" and just add 
 Options:
 -------
 
-####`inputs`
+###inputs
 Add all the inputs you want to validate here. Use the name attribute of the input as key. To be consistent always put the key in quotes. Array group names can be used too, ie. `name[]`.
 
 Each input can be customized with **filters**, **data**, **errors** and **flags**.
@@ -208,27 +208,27 @@ inputs: {
 }
 ```
 
-####`globalFlags`
+###globalFlags
 List the flags that you want to apply to all inputs.
 ```javascript
 globalFlags: 'noerror noicons'
 ```
 
-####`onSuccess`
+###onSuccess
 ```javascript
 onSuccess: function(e){
   // Form validates
 }
 ```
 
-####`onFail`
+###onFail
 ```javascript
 onFail: function(){
   // Form does NOT validate
 }
 ```
 
-####`responsiveAt`
+###responsiveAt
 By default, Ideal Forms will make the form "adaptive". It will adapt to the container allowing it to work with any responsive grid system.
 You can change this behavior by assigning a number value to the `responsiveAt` option.
 ```javascript
@@ -239,7 +239,7 @@ You can change this behavior by assigning a number value to the `responsiveAt` o
 responsiveAt: 480
 ```
 
-####`disableCustom`
+###disableCustom
 Disables custom inputs and uses system default so you can use other replacement plugins.
 ```javascript
 disableCustom: 'file select radiocheck button'
@@ -251,16 +251,16 @@ Filters:
 ### Built-in filters:
 You may use any of these filters in any order.
 
-####`required`
+###required
 The field is required. This filter ONLY works with text inputs (text, password, textarea). For `select` use `exclude` to exclude the default option. For `radio` and `checkbox` use `min: 1` which will require at least one option to be checked.
 
-####`number`
+###number
 Must be a number.
 
-####`digits`
+###digits
 Only digits.
 
-####`range`
+###range
 Only numbers within a range. Usually combined with `number` or `digits`.
 ```javascript
 'myinput': {
@@ -271,31 +271,31 @@ Only numbers within a range. Usually combined with `number` or `digits`.
 }
 ```
 
-####`name`
+###name
 Must be at least 3 characters long, and must only contain letters.
 
-####`username`
+###username
 Must be between 4 and 32 characters long and start with a letter. You may use letters, numbers, underscores, and one dot (.)
 
-####`pass`
+###pass
 Must be at least 6 characters long, and contain at least one number, one uppercase and one lowercase letter.
 
-####`strongpass`
+###strongpass
 Must be at least 8 characters long and contain at least one uppercase and one lowercase letter and one number or special character.
 
-####`email`
+###email
 Must be a valid e-mail address.
 
-####`phone`
+###phone
 Must be a valid US phone number.
 
-####`zip`
+###zip
 Must be a valid US zip code.
 
-####`url`
+###url
 Must be a valid URL.
 
-####`date`
+###date
 Must be a valid date. This filter effectively validates a date, so stuff like `02-31-2012` or `30/80/2000` would be invalid. You can use any format with 4 digit year and any delimiter character. The default format is `mm/dd/yyyy`.
 ```javascript
 'myinput': {
@@ -307,7 +307,7 @@ Must be a valid date. This filter effectively validates a date, so stuff like `0
 ```
 To use the datepicker you need to load jQuery UI and add the class `datepicker` to your date input. Ideal Forms will apply the custom format that you specify without having to configure the datepicker. It's seamless.
 
-####`dob`
+###dob
 Must be a valid date of birth in this century, that is 100 years range from the current year.
 
 ```javascript
@@ -319,7 +319,7 @@ Must be a valid date of birth in this century, that is 100 years range from the 
 }
 ```
 
-####`min`
+###min
 * Must be at least `x` characters minimum.
 * Must have at least `x` checkboxes checked.
 
@@ -332,7 +332,7 @@ Must be a valid date of birth in this century, that is 100 years range from the 
 }
 ```
 
-####`max`
+###max
 * `x` characters maximum.
 * No more than `x` checkboxes checked.
 
@@ -345,7 +345,7 @@ Must be a valid date of birth in this century, that is 100 years range from the 
 }
 ```
 
-####`exclude`
+###exclude
 * Prevent validation if the value matches any value in the given array.
 * Use this filter to exclude the default (usually first) option of a `select` input.
 
@@ -360,7 +360,7 @@ Must be a valid date of birth in this century, that is 100 years range from the 
 }
 ```
 
-####`equalto`
+###equalto
 The value must match a value of another input.
 ```javascript
 'myinput': {
@@ -372,7 +372,7 @@ The value must match a value of another input.
 }
 ```
 
-####`extension`
+###extension
 This filter is designed for `file` inputs. It supports multifile in HTML5 browsers.
 ```javascript
 'myinput': {
@@ -431,7 +431,7 @@ $.extend($.idealforms.flags, {
 Methods:
 -------
 
-####`setOptions`
+###setOptions
 
 Set the options of the form after being initialized. The new options are merged with the previous ones allowing to override any option.
 
@@ -464,7 +464,7 @@ $myform.reload().fresh();
 
 **Note:** The `disableCustom` option cannot be modified after initialization.
 
-####`setFieldOptions`
+###setFieldOptions
 
 **chainable:** yes
 
@@ -475,7 +475,7 @@ $myform.setFieldOptions('username', { filters: 'username' })
 
 ```
 
-####`isValid`
+###isValid
 Check if the form is valid.
 
 **chainable:** no
@@ -485,7 +485,7 @@ if ($myform.isValid()) {
 }
 ```
 
-####`isValidField`
+###isValidField
 Check if a particular field is valid. The function takes a string. Ideal Forms will look for the name attribute first and then for the id. You can use array group names for groups of checkboxes.
 
 **chainable:** no
@@ -498,7 +498,7 @@ if ($myform.isValidField('colors[]')) { // name="colors[]"
 }
 ```
 
-####`getInvalid`
+###getInvalid
 Get all invalid fields. Returns a jQuery object.
 
 **chainable:** yes (but it doesn't return the form, just the invalid fields)
@@ -507,7 +507,7 @@ Get all invalid fields. Returns a jQuery object.
 var numInvalid = $myform.getInvalid().length // How many invalid fields
 ```
 
-####`getInvalidInTab`
+###getInvalidInTab
 Get all invalid fields within a tab.
 
 **chainable:** yes (but it doesn't return the form, just the invalid fields)
@@ -517,28 +517,28 @@ var numInvalidTab = $myform.getInvalidInTab('My Section').length
 
 ```
 
-####`addFields`
+###addFields
 Add fields to the form dynamically. It takes an array of objects or a single object. Ideal Forms auto-generates the markup for inputs fields based on the `type` specified.
 
 **chainable:** yes
 
-#####`name` (required)
+####name (required)
 The value used as name attribute.
-#####`label` (required)
+####label (required)
 The label text.
-#####`type` (required)
+####type (required)
 `text`, `password`, `email`, `number`, `url` ,`tel`, `file`, `select`, `radio`, `checkbox` and `textarea`.
-#####`addBefore`
+####addBefore
 Insert the new field before an existing field. Takes a string. Ideal Forms will look for `name` first and then `id`.
-#####`addAfter`
+####addAfter
 Insert the new field after an existing field.
-#####`appendToTab`
+####appendToTab
 Insert the new field at the end of a section. Takes a string.
-#####`list`
+####list
 Array of items for inputs such as `select`, `radio` and `checkbox`. You can also specify an item's value in this format `item:value`.
-#####`placeholder`
+####placeholder
 The placeholder for text inputs. Use `exclude` for select menus.
-#####`filters`, `data`, `errors`, `flags`
+####filters`, `data`, `errors`, `flags
 
 For more info check documentation on **[input's options](#inputs)**.
 
@@ -577,7 +577,7 @@ var newFields = [
 $myform.addFields(newFields)
 ```
 
-####`removeFields`
+###removeFields
 Remove fields from the form dynamically. Ideal Forms will look for the `name` attribute first and then `id`.
 
 **chainable:** yes
@@ -587,7 +587,7 @@ $myform.removeFields('username')
 $myform.removeFields(['username', 'password', 'email'])
 ```
 
-####`toggleFields`
+###toggleFields
 Hide or show fields. When the fields are hidden they will be excluded from the validation process.
 
 ```javascript
@@ -595,7 +595,7 @@ $myform.toggleFields('username')
 $myform.toggleFields(['username', 'password', 'email'])
 ```
 
-####`focusFirst`
+###focusFirst
 Focus the very first field. If there are tabs it will focus the very first field within the current tab.
 
 **chainable:** yes
@@ -603,7 +603,7 @@ Focus the very first field. If there are tabs it will focus the very first field
 $myform.focusFirst()
 ```
 
-####`focusFirstInvalid`
+###focusFirstInvalid
 Focus the first invalid field.
 
 **chainable:** yes
@@ -611,7 +611,7 @@ Focus the first invalid field.
 $myform.focusFirstInvalid()
 ```
 
-####`switchTab`
+###switchTab
 Change tab by name or index.
 
 **chainable:** yes
@@ -620,7 +620,7 @@ $myform.switchTab('My Section') // case insensitive
 $myform.switchTab(2) // zero based index
 ```
 
-####`nextTab`
+###nextTab
 Go to next tab.
 
 **chainable:** yes
@@ -628,7 +628,7 @@ Go to next tab.
 $myform.nextTab()
 ```
 
-####`prevTab`
+###prevTab
 Go to previous tab.
 
 **chainable:** yes
@@ -636,7 +636,7 @@ Go to previous tab.
 $myform.prevTab()
 ```
 
-####`firstTab`
+###firstTab
 Go to first tab.
 
 **chainable:** yes
@@ -644,7 +644,7 @@ Go to first tab.
 $myform.firstTab()
 ```
 
-####`lastTab`
+###lastTab
 Go to last tab.
 
 **chainable:** yes
@@ -652,7 +652,7 @@ Go to last tab.
 $myform.lastTab()
 ```
 
-####`reset`
+###reset
 Reset all fields to zero including checkboxes, radios, and selects.
 
 **chainable:** yes
@@ -660,7 +660,7 @@ Reset all fields to zero including checkboxes, radios, and selects.
 $myform.reset() // Reset all
 ```
 
-####`resetFields`
+###resetFields
 Reset particular fields.
 
 **chainable:** yes
@@ -669,7 +669,7 @@ $myform.resetFields('username')
 $myform.resetFields(['username', 'password', 'email'])
 ```
 
-####`fresh`
+###fresh
 Load the form as if it was never focused. This removes `valid` and `invalid` classes until first focus.
 
 **chainable:** yes
@@ -677,7 +677,7 @@ Load the form as if it was never focused. This removes `valid` and `invalid` cla
 $myform.fresh()
 ```
 
-####`freshFields`
+###freshFields
 
 "Freshen" particular fields.
 
@@ -687,7 +687,7 @@ $myform.freshFields('username')
 $myform.freshFields(['username', 'password', 'email'])
 ```
 
-####`reload`
+###reload
 Re-attach events and re-adjust the form. Use this method when modifying the html or when manually editing the options of the form.
 
 **chainable:** yes
@@ -780,35 +780,35 @@ All user options are located in `less/themes/theme/theme.less`. You can safely e
 The names of the user config variables are pretty self-explanatory. If you screw up you can always go back.
 When you finish editing the user config don't forget to load your theme in `less/jquery.idealforms.less` and compile into `css`.
 
-####`@font-size`
+###@font-size
 The overall font size. Usually adjusting this option should be enough in most cases. Keep in mind that the bigger the font, the bigger the icons need to be. Ideal Forms will try to align everything as close as possible, but it's recommended that the icons are aprox. the same size as the font-size.
 
-####`@small-font-size`
+###@small-font-size
 Ideal Forms uses a smaller font-size for `button`, `select`, `radio`, `checkbox` and `file`. This makes UI elements stand out more and feel more integrated. Change to `100%` to use the default font-size.
 
-####`@input-width`
+###@input-width
 Adjust this option if the form doesn't quite fit your container. It's recommended to use this format `@font-size * number`.
 All inputs will have the width set here but you can change the width of any particular input by targeting its id. This won't affect the responsive layout.
 ```css
 #comments { width: 200px; }
 ```
 
-####`@label-align`
+###@label-align
 Align labels to either `left` or `right`.
 
-####`@label-width`
+###@label-width
 Most of the time `auto` will work just fine but if you have really long label names then it's a good idea to tweak this value.
 
-####`@border-width`
+###@border-width
 Width of every border property. Usually there's no need to change the default value of `1px` unless you want a "thick" border look, suitable for some occasions. `box-shadow` properties depend on this option.
 
-####`@border-radius`
+###@border-radius
 Radius for round corners.
 
-####`@css3-anim`
+###@css3-anim
 `true` or `false` to enable or disable css3 animations (transitions).
 
-####`@css3-effects`
+###@css3-effects
 `true` or `false` to enable or disable css3 box-shadow and gradients.
 
 **Enjoy :)**
