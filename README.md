@@ -438,7 +438,7 @@ var myOps = {
     alert('It failed!')
   },
   inputs: {
-    'username': { filters: 'username' } // override previously set filters
+    'number': { filters: 'number' } // add new input to validate
   }
 }
 $myform.setOptions(myOps)
