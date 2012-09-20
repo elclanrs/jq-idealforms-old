@@ -467,7 +467,6 @@ Set the options of a particular field. This is a shortcut method; the same thing
 
 ```javascript
 $myform.setFieldOptions('username', { filters: 'username' })
-
 ```
 
 ### isValid
