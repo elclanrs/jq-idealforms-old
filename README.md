@@ -527,7 +527,7 @@ Insert the new field after an existing field.
 * **appendToTab**:
 Insert the new field at the end of a section. Takes a string.
 * **list**:
-Array of items for inputs such as `select`, `radio` and `checkbox`. You can also specify an item's value in this format `item:value`.
+Array of items for inputs such as `select`, `radio` and `checkbox`. Use this format `item:value` to spcify the value attribute.
 * **placeholder**:
 The placeholder for text inputs. Use `exclude` for select menus.
 * **filters, data, errors, flags**
