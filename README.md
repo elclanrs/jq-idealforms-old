@@ -41,7 +41,7 @@ Index:
     * [responsiveAt](#responsiveat)
     * [disableCustom](#disablecustom)
 * [Filters](#filters)
-* [Flags](#built-in-flags)
+* [Flags](#flags)
 * [Adding custom filters and flags](#adding-custom-filters-and-flags)
 * [Methods](#methods)
     * [setOptions](#setoptions)
