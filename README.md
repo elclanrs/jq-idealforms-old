@@ -245,10 +245,9 @@ Disables custom inputs and uses system default so you can use other replacement 
 disableCustom: 'file select radiocheck button'
 ```
 
-Filters:
---------
+# Filters
 
-### Built-in filters:
+## Built-in filters:
 You may use any of these filters in any order.
 
 ###required
@@ -383,7 +382,7 @@ This filter is designed for `file` inputs. It supports multifile in HTML5 browse
 }
 ```
 
-### Adding custom filters:
+## Adding custom filters:
 ```javascript
 $.extend($.idealforms.filters, {
   custom: {
@@ -400,8 +399,7 @@ $.extend($.idealforms.filters, {
 })
 ```
 
-Flags:
---------------
+# Flags:
 
 Flags are custom functions that you can run on an input whenever a validation event is triggered.
 
