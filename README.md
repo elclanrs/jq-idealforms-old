@@ -39,11 +39,9 @@ Index:
     * [responsiveAt](#responsiveat)
     * [disableCustom](#disablecustom)
 * [Filters](#filters)
-    * [Built-in filters](#built-in-filters)
-    * [Adding custom filters](#adding-custom-filters)
+* [Adding custom filters](#adding-custom-filters)
 * [Flags](#built-in-flags)
-    * [Built-in flags](#built-in-flags)
-    * [Adding custom flags](#adding-custom-flags)
+* [Adding custom flags](#adding-custom-flags)
 * [Methods](#methods)
     * [setOptions](#setoptions)
     * [setFieldOptions](#setfieldoptions)
@@ -179,8 +177,7 @@ Alternatively, for very simple forms, you can do it "the easy way" and just add 
 </form>
 ```
 
-Options:
--------
+## Options:
 
 ###inputs
 Add all the inputs you want to validate here. Use the name attribute of the input as key. To be consistent always put the key in quotes. Array group names can be used too, ie. `name[]`.
@@ -245,10 +242,7 @@ Disables custom inputs and uses system default so you can use other replacement 
 disableCustom: 'file select radiocheck button'
 ```
 
-# Filters
-
-## Built-in filters:
-You may use any of these filters in any order.
+## Filters
 
 ###required
 The field is required. This filter ONLY works with text inputs (text, password, textarea). For `select` use `exclude` to exclude the default option. For `radio` and `checkbox` use `min: 1` which will require at least one option to be checked.
@@ -399,18 +393,17 @@ $.extend($.idealforms.filters, {
 })
 ```
 
-# Flags:
+## Flags:
 
 Flags are custom functions that you can run on an input whenever a validation event is triggered.
 
-### Built-in flags:
-* `noerror`: hide the error from the input
-* `noicons`: hide the icons
-* `novalidicon`
-* `noinvalidicon`
-* `noclass`: no valid/invalid class
-* `novalidclass`
-* `noinvalidclass`
+* noerror: hide the error from the input
+* noicons: hide the icons
+* novalidicon
+* noinvalidicon
+* noclass: no valid/invalid class
+* novalidclass
+* noinvalidclass
 
 ### Adding custom flags:
 
