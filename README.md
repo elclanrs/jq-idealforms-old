@@ -1,4 +1,4 @@
-![Ideal Forms logo](http://example.com/images/logo.png)
+![Ideal Forms logo](http://i.imgur.com/SdOk2.jpg)
 
 **Ideal Forms** is the ultimate framework for building and validating responsive HTML5 forms.
 
