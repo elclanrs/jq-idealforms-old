@@ -513,23 +513,23 @@ Add fields to the form dynamically. It takes an array of objects or a single obj
 
 **chainable:** yes
 
-* name (required)
+* **name** (required):
 The value used as name attribute.
-* label (required)
+* **label** (required):
 The label text.
-* type (required)
+* **type (required)**:
 `text`, `password`, `email`, `number`, `url` ,`tel`, `file`, `select`, `radio`, `checkbox` and `textarea`.
-* addBefore
+* **addBefore**:
 Insert the new field before an existing field. Takes a string. Ideal Forms will look for `name` first and then `id`.
-* addAfter
+* **addAfter**:
 Insert the new field after an existing field.
-* appendToTab
+* **appendToTab**:
 Insert the new field at the end of a section. Takes a string.
-* list
+* **list**:
 Array of items for inputs such as `select`, `radio` and `checkbox`. You can also specify an item's value in this format `item:value`.
-* placeholder
+* **placeholder**:
 The placeholder for text inputs. Use `exclude` for select menus.
-* filters, data, errors, flags
+* **filters, data, errors, flags**
 
 For more info check documentation on **[input's options](#inputs)**.
 
