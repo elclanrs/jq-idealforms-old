@@ -1,3 +1,5 @@
+![Ideal Forms logo](http://example.com/images/logo.png)
+
 **Ideal Forms** is the ultimate framework for building and validating responsive HTML5 forms.
 
 * **[DEMO](http://elclanrs.github.com/jq-idealforms/)**
