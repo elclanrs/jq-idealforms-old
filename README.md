@@ -552,7 +552,7 @@ var newFields = [
     name: 'instruments',
     label: 'Instruments',
     filters: 'exclude',
-    data: { exclude: ['Select an instrument'] },
+    data: { exclude: ['default'] },
     errors: { exclude: 'Please select an instrument' },
     type: 'select',
     list: [
