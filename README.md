@@ -692,7 +692,6 @@ With the markup provided above you'd call the plugin like this:
 
 ```javascript
 var $myform = $('#myform').idealforms({
-
   inputs: {
     'username': {
       filters: 'required username exclude',
