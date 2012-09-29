@@ -182,12 +182,10 @@ Alternatively, for very simple forms, you can do it "the easy way" and just add 
 ### inputs
 Add all the inputs you want to validate here. Use the name attribute of the input as key. To be consistent always put the key in quotes. Array group names can be used too, ie. `name[]`.
 
-Each input can be customized with **filters**, **data**, **errors** and **flags**.
-
-* filters: A space separated string of filters.
-* data: Filters that take values can be specified in here. Check documentation on **[Built-in filters](#built-in-filters)** for more info.
-* errors: Use the filter name as the key value and add your custom error. You can use inline HTML tags within the error string.
-* flags: Flags are simply functions that run when an input tries to validate. See documentation on **[Flags](#flags)**.
+* **filters:** A space separated string of filters.
+* **data:** Filters that take values can be specified in here. Check documentation on **[Filters](#filters)** for more info.
+* **errors:** Use the filter name as the key value and add your custom error. You can use inline HTML tags within the error string.
+* **flags:** Flags are simply functions that run when an input tries to validate. See documentation on **[Flags](#flags)**.
 
 ```javascript
 inputs: {
@@ -242,7 +240,7 @@ Disables custom inputs and uses system default so you can use other replacement 
 disableCustom: 'file select radiocheck button'
 ```
 
-## Filters
+## Filters:
 
 ### required
 The field is required. This filter ONLY works with text inputs (text, password, textarea). For `select` use `exclude` to exclude the default option. For `radio` and `checkbox` use `min: 1` which will require at least one option to be checked.
