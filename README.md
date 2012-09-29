@@ -535,7 +535,7 @@ For more info check documentation on **[input's options](#inputs)**.
 ```javascript
 var newFields = [
   {
-    name: 'animals[]',
+    name: 'animals',
     label: 'Animals',
     type: 'radio',
     list: ['Dog', 'Elephant', 'Crocodile', 'Spider'],
@@ -691,7 +691,7 @@ Example:
 With the markup provided above you'd call the plugin like this:
 
 ```javascript
-$myform.idealforms({
+var $myform = $('#myform').idealforms({
 
   inputs: {
     'username': {
