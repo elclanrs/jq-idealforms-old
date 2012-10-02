@@ -16,7 +16,7 @@
 * Localization
 * HTML5 `placeholder` for every browser.
 
-### Latest commits
+### Updates:
 **10/02/12**  
 * use `data-ideal` instead of class
 * cleanup and optimize radiocheck.js
