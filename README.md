@@ -18,7 +18,7 @@
 
 ### Latest commits
 **10/02/12**  
-* use data-ideal instead of class
+* use `data-ideal` instead of class
 * cleanup and optimize radiocheck.js
 * fix datepicker undefined error
 
@@ -174,12 +174,12 @@ If you're working with dynamic fields check documentation on **[addFields](#addf
 
 The `name` attribute will be used in the plugin's options to add filters to each input. This provides a lot of flexibility and the possibility to create custom errors, and tweak the filter's values.
 
-Alternatively, for very simple forms, you can do it "the easy way" and just add the filters as classes.
+Alternatively, for very simple forms, you can do it "the easy way" and just add the filters to the `data-ideal` attribute.
 ```html
 <form id="my-form">
-  <div><label>Username:</label><input type="text" name="username" class="required username"/></div>
-  <div><label>Password:</label><input type="text" name="password" class="required password"/></div>
-  <div><label>E-Mail:</label><input type="text" name="email" class="required email"/></div>
+  <div><label>Username:</label><input type="text" name="username" data-ideal="required username"/></div>
+  <div><label>Password:</label><input type="text" name="password" data-ideal="required password"/></div>
+  <div><label>E-Mail:</label><input type="text" name="email" data-ideal="required email"/></div>
 </form>
 ```
 
