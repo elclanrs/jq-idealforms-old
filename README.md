@@ -21,6 +21,7 @@
 * use `data-ideal` instead of class
 * cleanup and optimize radiocheck.js
 * fix datepicker undefined error
+* fix duplicated tabs with multiple forms
 
 ###  Videos:
 * [Adding and removing fields dynamically](http://www.youtube.com/watch?v=z-wPmywl4Tc&feature=youtu.be)
