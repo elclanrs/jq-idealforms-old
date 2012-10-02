@@ -4,9 +4,7 @@
 
 /*------------------------------------------------------ */
 
-.ideal-tabs-content {
-  .clearfix;
-}
+.ideal-tabs-content { .clearfix; }
 
 .ideal-tabs {
 
@@ -22,7 +20,7 @@
   /* Arrow */
   @width: ceil(@height/2);
   @diff: ceil(@width - @width/1.5);
-  .arrow {
+  .arrow() {
     content: '';
     position: absolute;
     z-index: 1;
@@ -31,7 +29,7 @@
     border-style: solid;
     border-color: transparent transparent transparent @tab-bg;
   }
-  .separator {
+  .separator() {
     .arrow;
     border-left-color: @border;
     right: -@height + @diff - @border-width;

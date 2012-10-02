@@ -128,13 +128,10 @@ $.fn.idealforms = function (ops) {
         var $invalid = $('<i/>', {
           'class': 'ideal-icon ideal-icon-invalid',
           click: function () {
-            var $this = $(this),
-            isRadioCheck = $this.siblings('label').length
-            if (isRadioCheck) {
-              $this.siblings('label:first').find('input').focus()
-            } else {
-              $this.siblings('input, select, textarea').focus()
-            }
+            var $this = $(this)
+            $this.siblings('label').length // is radiocheck?
+              ? $this.siblings('label:first').find('input').focus()
+              : $this.siblings('input, select, textarea').focus()
           }
         })
         $el.parents('.ideal-field')
@@ -472,10 +469,9 @@ $.fn.idealforms = function (ops) {
      * @memberOf Actions
      */
     attachEvents: function () {
-      getUserInputs()
-        .on('keyup change focus blur', function (e) {
-          Actions.analyze($(this), e.type)
-        })
+      getUserInputs().on('keyup change focus blur', function (e) {
+        Actions.analyze($(this), e.type)
+      })
     },
 
     /** Deals with responsiveness aka adaptation
@@ -483,26 +479,16 @@ $.fn.idealforms = function (ops) {
      */
     responsive: function () {
 
-      var
-
-      formInputs = getFormInputs(),
-
-      maxWidth = LessVars.fieldWidth + formInputs.labels.outerWidth(),
-      $emptyLabel = formInputs.labels.filter(function () {
+      var formInputs = getFormInputs()
+      var maxWidth = LessVars.fieldWidth + formInputs.labels.outerWidth()
+      var $emptyLabel = formInputs.labels.filter(function () {
         return $(this).html() === '&nbsp;'
-      }),
-      $customSelect = $form.find('.ideal-select'),
-      $datePicker = $form.find('input.hasDatepicker')
+      })
+      var $customSelect = $form.find('.ideal-select')
 
-      if (o.responsiveAt === 'auto') {
-        $form.width() < maxWidth
-          ? $form.addClass('stack')
-          : $form.removeClass('stack')
-      } else {
-        $(window).width() < o.responsiveAt
-          ? $form.addClass('stack')
-          : $form.removeClass('stack')
-      }
+      o.responsiveAt === 'auto'
+        ? $form.toggleClass('stack', $form.width() < maxWidth)
+        : $form.toggleClass('stack', $(window).width() < o.responsiveAt)
 
       if ($form.is('.stack')) {
         $emptyLabel.hide()
@@ -513,9 +499,8 @@ $.fn.idealforms = function (ops) {
       }
 
       // Hide datePicker
-      if ($datePicker.length) {
-        $datePicker.datepicker('hide')
-      }
+      var $datePicker = $form.find('input.hasDatepicker')
+      if ($datePicker.length) { $datePicker.datepicker('hide') }
     }
   }
 
