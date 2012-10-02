@@ -16,7 +16,7 @@ $.fn.idealRadioCheck = function() {
 
     $this.parent('label').addClass('ideal-radiocheck-label')
       .attr('onclick', '') // Fix clicking label in iOS
-    //$this.css({ position: 'absolute', left: '-9999px' }) // hide by shifting left
+    $this.css({ position: 'absolute', left: '-9999px' }) // hide by shifting left
 
     // Events
     $this.on({
