@@ -8,7 +8,7 @@ $.fn.idealforms = function (ops) {
 
   // Unique ID to identify this form
   // in global $.idealforms namespace
-  var formId = '$'+ Utils.getObjSize($.idealforms.forms)
+  var formId = Utils.getObjSize($.idealforms.forms)
 
   // reference to this form in Ideal Forms namespace
   var formRef = $.idealforms.forms[formId] = {}
@@ -22,12 +22,8 @@ $.fn.idealforms = function (ops) {
     customFilters: {},
     customFlags: {},
     globalFlags: '',
-    onSuccess: function (e) {
-      alert('Thank you...')
-    },
-    onFail: function () {
-      alert($form.getInvalid().length +' invalid fields.')
-    },
+    onSuccess: function (e) { alert('Thank you...') },
+    onFail: function () { alert($form.getInvalid().length +' invalid fields.') },
     responsiveAt: 'auto',
     disableCustom: ''
   }
@@ -39,8 +35,9 @@ $.fn.idealforms = function (ops) {
   var $idealTabs = (function () {
     var $tabs = $form.find('section')
     if ($tabs.length) {
-      $form.prepend('<div class="ideal-wrap ideal-tabs ideal-full-width"/>')
-      $tabs.idealTabs({ tabContainer: '.ideal-tabs' })
+      var uniq = 'ideal-tabs-form-'+ formId
+      $form.prepend('<div class="'+ uniq +' ideal-wrap ideal-tabs ideal-full-width"/>')
+      $tabs.idealTabs({ tabContainer: '.'+ uniq })
     }
     return $tabs.length ? $tabs : false
   }())
@@ -126,23 +123,23 @@ $.fn.idealforms = function (ops) {
 
       // Validation elements
       function addValidationEls() {
-        var $error = $('<span class="ideal-error" />'),
-            $valid = $('<i class="ideal-icon ideal-icon-valid" />'),
-            $invalid = $('<i/>', {
-              'class': 'ideal-icon ideal-icon-invalid',
-              click: function () {
-                var $this = $(this),
-                isRadioCheck = $this.siblings('label').length
-                if (isRadioCheck) {
-                  $this.siblings('label:first').find('input').focus()
-                } else {
-                  $this.siblings('input, select, textarea').focus()
-                }
-              }
-            })
+        var $error = $('<span class="ideal-error" />')
+        var $valid = $('<i class="ideal-icon ideal-icon-valid" />')
+        var $invalid = $('<i/>', {
+          'class': 'ideal-icon ideal-icon-invalid',
+          click: function () {
+            var $this = $(this),
+            isRadioCheck = $this.siblings('label').length
+            if (isRadioCheck) {
+              $this.siblings('label:first').find('input').focus()
+            } else {
+              $this.siblings('input, select, textarea').focus()
+            }
+          }
+        })
         $el.parents('.ideal-field')
-           .append($valid.add($invalid).hide())
-           .after($error.hide())
+          .append($valid.add($invalid).hide())
+          .after($error.hide())
       }
 
       var type = Utils.getIdealType($el)
@@ -191,9 +188,9 @@ $.fn.idealforms = function (ops) {
         },
         description: function () {
           $el.closest('div')
-          .addClass('ideal-full-width')
-          .children()
-          .wrapAll('<span class="ideal-heading"/>')
+            .addClass('ideal-full-width')
+            .children()
+            .wrapAll('<span class="ideal-heading"/>')
         },
         separator: function () {
           $el.closest('div').addClass('ideal-full-width')
@@ -207,9 +204,7 @@ $.fn.idealforms = function (ops) {
       // Wrapper
       $el.closest('div').addClass('ideal-wrap')
 
-      idealTypes[type]
-        ? idealTypes[type]()
-        : idealTypes._default()
+      idealTypes[type] ? idealTypes[type]() : idealTypes._default()
 
     },
 
@@ -219,8 +214,8 @@ $.fn.idealforms = function (ops) {
      */
     adjust: function () {
 
-      var formInputs = getFormInputs(),
-          userInputs = getUserInputs()
+      var formInputs = getFormInputs()
+      var userInputs = getUserInputs()
 
       // Autocomplete causes some problems...
       formInputs.inputs.attr('autocomplete', 'off')
@@ -234,24 +229,21 @@ $.fn.idealforms = function (ops) {
       // Adjust headings, separators
       if ($idealTabs) {
         $idealTabs.each(function(){
-          $(this).find('.ideal-heading:first')
-                 .addClass('first-child')
+          $(this).find('.ideal-heading:first').addClass('first-child')
         })
       } else {
-        $form.find('.ideal-heading:first')
-             .addClass('first-child')
+        $form.find('.ideal-heading:first').addClass('first-child')
       }
 
       // Datepicker
-      if (jQuery.ui) {
-
-        var $datepicker = $form.find('input.datepicker')
+      var $datepicker = $form.find('input.datepicker')
+      if (jQuery.ui && $datepicker.length) {
 
         $datepicker.each(function(){
 
-          var userInput = o.inputs[this.name],
-              data = userInput.data && userInput.data.date,
-              format = data ? data.replace('yyyy', 'yy') : 'mm/dd/yy'
+          var userInput = o.inputs[this.name]
+          var data = userInput && userInput.data && userInput.data.date
+          var format = data ? data.replace('yyyy', 'yy') : 'mm/dd/yy'
 
           $(this).datepicker({
 
@@ -279,9 +271,7 @@ $.fn.idealforms = function (ops) {
           t.datepicker('widget').css('width', w)
         })
 
-        $datepicker.parent()
-                   .siblings('.ideal-error')
-                   .addClass('hidden')
+        $datepicker.parent().siblings('.ideal-error').addClass('hidden')
       }
 
       // Placeholder support
@@ -308,8 +298,8 @@ $.fn.idealforms = function (ops) {
       var formInputs = getFormInputs()
 
       $form.css('visibility', 'visible')
-           .addClass('ideal-form')
-           .attr('novalidate', 'novalidate') // disable HTML5 validation
+        .addClass('ideal-form')
+        .attr('novalidate', 'novalidate') // disable HTML5 validation
 
       // Always show datepicker below the input
       if (jQuery.ui) {
@@ -326,10 +316,9 @@ $.fn.idealforms = function (ops) {
 
       // Add inputs specified by class
       // to the list of user inputs
-      $form.find('.' + Utils.getKeys($.idealforms.filters).join(', .'))
-           .each(function(){
-             o.inputs[this.name] = { filters: this.className }
-           })
+      $form.find('[data-ideal]').each(function(){
+        o.inputs[this.name] = { filters: $(this).data('ideal') }
+      })
 
       Actions.adjust()
     },

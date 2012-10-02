@@ -16,6 +16,12 @@
 * Localization
 * HTML5 `placeholder` for every browser.
 
+### Latest commits
+**10/02/12**  
+* use data-ideal instead of class
+* cleanup and optimize radiocheck.js
+* fix datepicker undefined error
+
 ###  Videos:
 * [Adding and removing fields dynamically](http://www.youtube.com/watch?v=z-wPmywl4Tc&feature=youtu.be)
 

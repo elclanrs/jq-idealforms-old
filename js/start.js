@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------------
 
-  jq-idealforms 2.0
+  jq-idealforms 2.1
 
   * Author: Cedric Ruiz
   * License: GPL or MIT

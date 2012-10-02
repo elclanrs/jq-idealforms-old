@@ -1,53 +1,37 @@
-/**
- * A custom <input type="radio|checkbox"> jQuery plugin
- * @example `$(':radio, :checkbox').idealRadioCheck()`
+/*
+ * idealRadioCheck: jQuery plguin for checkbox and radio replacement
+ * Usage: $('input[type=checkbox], input[type=radio]').idealRadioCheck()
  */
-$.fn.idealRadioCheck = function () {
-  return this.each(function () {
-    var $this = $(this),
-        $span = $('<span/>')
+;(function(){
+$.fn.idealRadioCheck = function() {
 
-    $this.is(':checkbox')
-      ? $span.addClass('ideal-check')
-      : $span.addClass('ideal-radio')
+  return this.each(function() {
 
-    if ($this.is(':checked')) $span.addClass('checked')
+    var $this = $(this)
+    var $span = $('<span/>')
+
+    $span.addClass('ideal-'+ ($this.is(':checkbox') ? 'check' : 'radio'))
+    $this.is(':checked') && $span.addClass('checked') // init
     $span.insertAfter($this)
 
-    $(this)
-      .parent('label')
-      .addClass('ideal-radiocheck-label')
-      // Fix clicking label in iOS (iPhone, iPad)
-      .attr('onclick','');
+    $this.parent('label').addClass('ideal-radiocheck-label')
+      .attr('onclick', '') // Fix clicking label in iOS
+    $this.css({ position: 'absolute', left: '-9999px' }) // hide by shifting left
 
-    $this
-      .css({
-        position: 'absolute',
-        left: '-9999px'
-      })
-      .on({
-        change: function () {
-          var $this = $(this)
-          $this.trigger('focus')
-          if ($this.is(':radio')) {
-            $this.parent().siblings('label').children('.ideal-radio').removeClass('checked')
-            if ($this.is(':checked'))
-              $this.next('.ideal-radio').addClass('checked')
-          } else {
-            $this.is(':checked')
-              ? $span.addClass('checked')
-              : $span.removeClass('checked')
-          }
-        },
-        focus: function () {
-          $span.parent().addClass('focus')
-        },
-        blur: function () {
-          $span.parent().removeClass('focus')
-        },
-        click: function () {
-          $(this).trigger('focus')
+    // Events
+    $this.on({
+      change: function() {
+        var $this = $(this)
+        if ($this.is(':radio')) {
+          $this.parent().siblings('label').find('.ideal-radio').removeClass('checked')
         }
-      })
+        $span.toggleClass('checked')
+      },
+      focus: function() { $span.addClass('focus') },
+      blur: function() { $span.removeClass('focus') },
+      click: function() { $(this).trigger('focus') }
+    })
   })
 }
+}())
+
