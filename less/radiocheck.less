@@ -38,22 +38,14 @@
     width: @radiocheck-icon-width;
     height: @radiocheck-icon-height;
   }
-  .ideal-radio {
-    background-position: left bottom;
-  }
-  .ideal-check.checked {
-    background-position: right top;
-  }
-  .ideal-radio.checked {
-    background-position: right bottom;
-  }
-  .ideal-radiocheck label.focus {
-    background: @radiocheck-focus-bg;
-    border: @radiocheck-focus-border;
-    color: @radiocheck-focus-text;
-    font-weight: bold;
-    position: relative;
-  }
+  .ideal-radio { background-position: left bottom; }
+  .ideal-check.focus { background-position: -@radiocheck-icon-width 0; }
+  .ideal-radio.focus { background-position: -@radiocheck-icon-width bottom; }
+  .ideal-check.checked { background-position: -@radiocheck-icon-width*2 0; }
+  .ideal-check.checked { background-position: -@radiocheck-icon-width*2 0; }
+  .ideal-check.checked.focus { background-position: -@radiocheck-icon-width*3 0; }
+  .ideal-radio.checked.focus { background-position: -@radiocheck-icon-width*3 bottom; }a
+
   // Full width
   .ideal-full-width .ideal-radiocheck {
     max-width: 100%;
