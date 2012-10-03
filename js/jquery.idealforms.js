@@ -329,11 +329,11 @@ $.fn.idealforms = function (ops) {
      */
     validate: function (input, value) {
 
-      var isValid = true,
-          error = '',
-          $input = input.input,
-          userOptions = input.userOptions,
-          userFilters = userOptions.filters
+      var isValid = true
+      var error = ''
+      var $input = input.input
+      var userOptions = input.userOptions
+      var userFilters = userOptions.filters
 
       if (userFilters) {
 
@@ -365,70 +365,58 @@ $.fn.idealforms = function (ops) {
 
       }
 
-      return {
-        isValid: isValid,
-        error: error
-      }
+      return { isValid: isValid, error: error }
     },
 
     /** Shows or hides validation errors and icons
      * @memberOf Actions
-     * @param {object} input jQuery object
+     * @param {object} $input jQuery object
      * @param {string} evt The event on which `analyze()` is being called
      */
-    analyze: function (input, evt) {
+    analyze: function ($input, evt) {
 
-      var
+      var isRadiocheck = $input.is('[type="checkbox"], [type="radio"]')
+      var userOptions = o.inputs[$input.attr('name')]
 
-      isRadiocheck = input.is('[type="checkbox"], [type="radio"]'),
-
-      $input = (function(){
-        var userInputs = getUserInputs()
-        if (isRadiocheck)
-          return userInputs.filter('[name="' + input.attr('name') + '"]')
-        return userInputs.filter(input)
-      }()),
-
-      userOptions = o.inputs[input.attr('name')],
-
-      value = (function () {
-        var val = input.val()
-        if (val === input.attr('placeholder')) return
+      var value = (function () {
+        var val = $input.val()
+        if (val === $input.attr('placeholder')) return
         // Always send a value when validating
         // [type="checkbox"] and [type="radio"]
         if (isRadiocheck) return userOptions && ' '
         return val
-      }()),
+      }())
 
-      $field = input.parents('.ideal-field'),
-      $error = $field.siblings('.ideal-error'),
-      $invalid = (function () {
-        if (isRadiocheck)
-          return input.parent().siblings('.ideal-icon-invalid')
-        return input.siblings('.ideal-icon-invalid')
-      }()),
-      $valid = (function () {
-        if (isRadiocheck)
-          return input.parent().siblings('.ideal-icon-valid')
-        return input.siblings('.ideal-icon-valid')
-      }()),
+      var $field = $input.parents('.ideal-field')
+      var $error = $field.siblings('.ideal-error')
+      var $invalid = (isRadiocheck
+        ? $input.parent().siblings('.ideal-icon-invalid')
+        : $input.siblings('.ideal-icon-invalid')
+      )
+      var $valid = (isRadiocheck
+        ? $input.parent().siblings('.ideal-icon-valid')
+        : $input.siblings('.ideal-icon-valid')
+      )
 
       // Validate
-      test = Actions.validate({
-        input: $input,
+      var test = Actions.validate({
+        // Make sure to validate all radio & checkbox inputs
+        // that are related by name
+        input: isRadiocheck
+          ? $form.find('[name="' + $input.attr('name') + '"]')
+          : $input,
         userOptions: userOptions
-      },
-      value),
+      }, value)
 
       // Flags
-      flags = (function(){
+      var flags = (function(){
         // Input flags
         var f = userOptions.flags ? userOptions.flags : ''
         // Append global flags
         if (o.globalFlags) f += o.globalFlags
         return f.split(/\s/)
-      }()),
-      doFlags = function () {
+      }())
+      function doFlags() {
         for (var i = 0, len = flags.length, f; i < len; i++) {
           f = flags[i]
           if (Flags[f]) Flags[f]($input, evt)
@@ -451,10 +439,9 @@ $.fn.idealforms = function (ops) {
       if (!test.isValid) {
         $invalid.show()
         $field.addClass('invalid').data('isValid', false)
-        // error
         $form.find('.ideal-error').hide()
-        if (evt !== 'blur') // hide on blur
-          $error.html(test.error).show()
+        // hide only on blur
+        if (evt !== 'blur') $error.html(test.error).show()
       }
 
       if ($idealTabs) {
