@@ -2,25 +2,25 @@
  * @namespace jq-idealforms jQuery plugin
  */
 
-// Options
-$.idealforms.defaults = {
-  inputs: {},
-  customFilters: {},
-  customFlags: {},
-  globalFlags: '',
-  onSuccess: function (e) { alert('Thank you...') },
-  onFail: function () { alert($form.getInvalid().length +' invalid fields.') },
-  responsiveAt: 'auto',
-  disableCustom: ''
-}
-
 $.fn.idealforms = function(ops) {
 
   var $form = this;
   var formId = Utils.getObjSize($.idealforms.forms); // unique id
   var formRef = $.idealforms.forms[formId] = {}; // reference to this form
 
-  var o = formRef.options = $.extend({}, $.idealforms.defaults, ops)
+  // Options
+  var options = {
+    inputs: {},
+    customFilters: {},
+    customFlags: {},
+    globalFlags: '',
+    onSuccess: function (e) { alert('Thank you...') },
+    onFail: function () { alert($form.getInvalid().length +' invalid fields.') },
+    responsiveAt: 'auto',
+    disableCustom: ''
+  }
+
+  var o = formRef.options = $.extend({}, options, ops)
 
   $.extend($.idealforms.filters, getFilters()) // Get filters with localized errors
 
