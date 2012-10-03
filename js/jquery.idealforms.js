@@ -2,32 +2,27 @@
  * @namespace jq-idealforms jQuery plugin
  */
 
-$.fn.idealforms = function (ops) {
+// Options
+$.idealforms.defaults = {
+  inputs: {},
+  customFilters: {},
+  customFlags: {},
+  globalFlags: '',
+  onSuccess: function (e) { alert('Thank you...') },
+  onFail: function () { alert($form.getInvalid().length +' invalid fields.') },
+  responsiveAt: 'auto',
+  disableCustom: ''
+}
 
-  var $form = this
+$.fn.idealforms = function(ops) {
 
-  // Unique ID to identify this form
-  // in global $.idealforms namespace
-  var formId = Utils.getObjSize($.idealforms.forms)
+  var $form = this;
+  var formId = Utils.getObjSize($.idealforms.forms); // unique id
+  var formRef = $.idealforms.forms[formId] = {}; // reference to this form
 
-  // reference to this form in Ideal Forms namespace
-  var formRef = $.idealforms.forms[formId] = {}
+  var o = formRef.options = $.extend({}, $.idealforms.defaults, ops)
 
-  // Get filters with localized errors
-  $.extend($.idealforms.filters, getFilters())
-
-  // Options
-  formRef.options = {
-    inputs: {},
-    customFilters: {},
-    customFlags: {},
-    globalFlags: '',
-    onSuccess: function (e) { alert('Thank you...') },
-    onFail: function () { alert($form.getInvalid().length +' invalid fields.') },
-    responsiveAt: 'auto',
-    disableCustom: ''
-  }
-  var o = $.extend(formRef.options, ops)
+  $.extend($.idealforms.filters, getFilters()) // Get filters with localized errors
 
   /** Generate tabs from sections
    * @returns tabs plugin object with methods

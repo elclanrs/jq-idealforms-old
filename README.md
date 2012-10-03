@@ -448,11 +448,11 @@ var myOps = {
 $myform.setOptions(myOps)
 ```
 
-Every form is added to the `$.idealforms.forms` namespace after initialization in the order they've been created, beginning at `$0`. This means that you can manually modify a particular option of any form instead of overriding it with `setOptions` :
+Every form is added to the `$.idealforms.forms` namespace after initialization in the order they've been created, beginning at `0`. This means that you can manually modify a particular option of any form instead of overriding it with `setOptions`:
 
 ```javascript
-// remove required filter from username input in form $0
-var usernameFilters = $.idealforms.forms.$0.options.inputs['username'].filters
+// remove required filter from username input in form 0
+var usernameFilters = $.idealforms.forms[0].options.inputs['username'].filters
 usernameFilters = usernameFilters
                     .replace('required', '') // remove required filter
                     .replace('/^\s/', '') // trim leading whitespace
