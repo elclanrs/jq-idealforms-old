@@ -17,11 +17,10 @@
 * HTML5 `placeholder` polyfill
 
 ### Updates:
-**10/02/12**  
-* use `data-ideal` instead of class
-* cleanup and optimize radiocheck.js
-* fix datepicker undefined error
-* fix duplicated tabs with multiple forms
+**10/07/12**  
+* Better `number` filter
+
+**[update history](#update-history)**
 
 ###  Videos:
 * [Adding and removing fields dynamically](http://www.youtube.com/watch?v=z-wPmywl4Tc&feature=youtu.be)
@@ -807,5 +806,14 @@ Radius for round corners.
 
 ### @css3-effects
 `true` or `false` to enable or disable css3 box-shadow and gradients.
+
+Update History
+--------------
+
+**10/02/12**  
+* use `data-ideal` instead of class
+* cleanup and optimize radiocheck.js
+* fix datepicker undefined error
+* fix duplicated tabs with multiple forms
 
 **Enjoy :)**
