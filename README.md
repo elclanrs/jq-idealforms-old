@@ -8,13 +8,13 @@
 * **License:** [GPL](http://www.gnu.org/licenses/gpl.html) or [MIT](http://en.wikipedia.org/wiki/MIT_License)
 
 ###  Features:
-* Fully responsive (AKA adaptive, adapts to the container, no css media queries needed).
-* Keyboard support.
-* Every input type can be customized including `select`, `radio`, `checkbox` and `file`.
+* Fully responsive (AKA adaptive, adapts to the container, no css media queries needed)
+* Keyboard support
+* Every input type can be customized including `select`, `radio`, `checkbox` and `file`
 * Custom datepicker using jQuery UI (with fallback)
-* "On the spot" validation.
+* "On the spot" validation
 * Localization
-* HTML5 `placeholder` for every browser.
+* HTML5 `placeholder` polyfill
 
 ### Updates:
 **10/02/12**  
@@ -32,7 +32,6 @@
 
 ###  Help:
 * Help localizing Ideal Forms in other languages.
-* **[Android 2.x, 3.x?- text inputs not validating](http://stackoverflow.com/questions/10822758/android-text-inputs-not-validating-with-custom-validation-plugin)**
 
 Index:
 -----
