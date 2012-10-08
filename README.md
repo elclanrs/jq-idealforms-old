@@ -166,8 +166,10 @@ If you're working with dynamic fields check documentation on **[addFields](#addf
   <div><hr/></div>
 
   <!-- Buttons -->
-  <div><input type="submit" value="Submit"/></div>
-  <div><button>Reset</button></div>
+  <div>
+    <button type="submit">Submit</button>
+    <button id="reset" type="button">Reset</button>
+  </div>
 
 </form>
 ```
