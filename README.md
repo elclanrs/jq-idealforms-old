@@ -807,6 +807,8 @@ Radius for round corners.
 ### @css3-effects
 `true` or `false` to enable or disable css3 box-shadow and gradients.
 
+**Enjoy :)**
+
 Update History
 --------------
 
@@ -815,5 +817,3 @@ Update History
 * cleanup and optimize radiocheck.js
 * fix datepicker undefined error
 * fix duplicated tabs with multiple forms
-
-**Enjoy :)**
