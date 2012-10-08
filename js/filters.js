@@ -42,7 +42,7 @@ var getFilters = function () {
     },
 
     number: {
-      regex: /\d+/,
+      regex: function(i, v) { return !isNaN(v) },
       error: $.idealforms.errors.number
     },
 
