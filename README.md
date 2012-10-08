@@ -20,7 +20,7 @@
 **10/07/12**  
 * Better `number` filter
 
-**[update history](#update-history)**
+**[Update history»](#update-history)**
 
 ###  Videos:
 * [Adding and removing fields dynamically](http://www.youtube.com/watch?v=z-wPmywl4Tc&feature=youtu.be)
