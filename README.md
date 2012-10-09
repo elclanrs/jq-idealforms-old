@@ -19,9 +19,7 @@
 ### Updates:
 **10/09/12**  
 * New [ajax](#ajax) filter
-
-**10/07/12**  
-* Better `number` filter
+* Sprite for validation icons
 
 [Update history](#update-history)
 
@@ -835,6 +833,9 @@ Radius for round corners.
 
 Update History
 --------------
+
+**10/07/12**  
+* Better `number` filter
 
 **10/02/12**  
 * use `data-ideal` instead of class
