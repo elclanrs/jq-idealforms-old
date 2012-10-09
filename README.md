@@ -388,9 +388,10 @@ Validate a response from the server. This method is a light wrapper around `$.aj
 **validate.php**
 ```php
 <?php
-$names = array('mike', 'john', 'louis', 'james');
+// Usernames not available, usually extracted from a database
+$usernames = array('mike', 'john', 'louis', 'james');
 sleep(2); // Simulate delay from the server to see loading status
-echo json_encode(!in_array($_POST['username'], $names));
+echo json_encode(!in_array($_POST['username'], $usernames));
 ```
 
 **JavaScript:**
