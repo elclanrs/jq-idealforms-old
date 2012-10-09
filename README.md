@@ -381,6 +381,27 @@ This filter is designed for `file` inputs. It supports multifile in HTML5 browse
 }
 ```
 
+### ajax
+Validate a response from the server. This method is a light wrapper around $.ajax`, so any parameter valid in jQuery's `$.ajax` is also valid in Ideal Forms' `ajax` except `beforeSend` and `success` because they're set up automatically. Passing the `url` should be enough in most scenarios. The server will receive the value of the input in `$_POST[inputname]`. The `ajax` filter must be added at last after all other filters. Here's an example in PHP:
+
+**validate.php**
+```php
+<?php
+$names = array('mike', 'john', 'louis', 'james');
+sleep(2); // Simulate delay from the server (try it out)
+echo json_encode(!in_array($_POST['username'], $names));
+```
+
+**JavaScript:**
+```javascript
+'username': {
+  filters: 'required username ajax',
+  data: {
+    ajax: { url: 'validate.php' }
+  }
+}
+```
+
 ## Flags:
 
 Flags are custom functions that you can run on an input whenever a validation event is triggered.
