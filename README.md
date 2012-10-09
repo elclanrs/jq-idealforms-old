@@ -383,7 +383,7 @@ This filter is designed for `file` inputs. It supports multifile in HTML5 browse
 ```
 
 ### ajax
-Validate a response from the server. This method is a light wrapper around `$.ajax`, so any parameter valid in jQuery's `$.ajax` is also valid in Ideal Forms' `ajax` except `beforeSend` and `success` because they're set up automatically. Passing the `url` should be enough in most scenarios. The server will receive the value of the input in `$_POST[inputname]`. The `ajax` filter must be added at last after all other filters. Here's an example in PHP:
+Validate a response from the server. This method is a light wrapper around `$.ajax`, so any parameter valid in jQuery's `$.ajax` is also valid in Ideal Forms' `ajax` except `beforeSend` and `success` because they're set up automatically. Passing the `url` should be enough in most scenarios. The server will receive the value of the input in `$_POST[inputname]`. The default `dataType` is `json`. The `ajax` filter must be added at last after all other filters. Here's an example in PHP:
 
 **validate.php**
 ```php
