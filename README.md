@@ -17,6 +17,8 @@
 * HTML5 `placeholder` polyfill
 
 ### Updates:
+**10/09/12**  
+* New [ajax](#ajax) filter
 **10/07/12**  
 * Better `number` filter
 
