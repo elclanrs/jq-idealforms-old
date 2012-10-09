@@ -24,6 +24,7 @@
 [Update history](#update-history)
 
 ###  Videos:
+* [Simulating slow AJAX requests with loading status](http://www.youtube.com/watch?v=-FSShf8jlAg)
 * [Adding and removing fields dynamically](http://www.youtube.com/watch?v=z-wPmywl4Tc&feature=youtu.be)
 
 ###  FAQ:
