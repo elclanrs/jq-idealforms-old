@@ -26,7 +26,8 @@ $.idealforms.errors = {
   excludeOption: '{0}',
   equalto: 'Must be the same value as <strong>"{0}"</strong>',
   extension: 'File(s) must have a valid extension. <em>(e.g. "{0}")</em>',
-  ajax: '<strong>{0}</strong> is not available.'
+  ajaxSuccess: '<strong>{0}</strong> is not available.',
+  ajaxError: 'Server error...'
 
 }
 
@@ -245,13 +246,21 @@ var getFilters = function () {
 
         var self = this
         var $input = input.input
+        var userOptions = input.userOptions
         var name = $input.attr('name')
         var $field = $input.parents('.ideal-field')
         var valid = false
 
-        self.error = $.idealforms.errors.ajax.replace('{0}', value)
+        var customErrors = userOptions.errors && userOptions.errors.ajax
+        self.error = {}
+        self.error.success = customErrors && customErrors.success
+          ? customErrors.success
+          : $.idealforms.errors.ajaxSuccess.replace('{0}', value)
+        self.error.fail = customErrors && customErrors.error
+          ? customErrors.error
+          : $.idealforms.errors.ajaxError
 
-        // Send input name as $_POST
+        // Send input name as $_POST[name]
         var data = {}
         data[name] = $.trim(value)
 
@@ -260,18 +269,24 @@ var getFilters = function () {
           type: 'post',
           dataType: 'json',
           data: data,
-          beforeSend: function() {
-            $input.removeData('ideal-ajax')
-            $field.addClass('ajax')
-            $input.trigger('change')
-          },
           success: function(resp) {
-            showOrHideError(resp, self.error)
+            showOrHideError(resp, self.error.success)
+            $input.data('ideal-ajax-error', self.error.success)
             $input.data('ideal-ajax', resp)
             $input.trigger('change')
             $field.removeClass('ajax')
+          },
+          error: function() {
+            showOrHideError(false, self.error.fail)
+            $input.data('ideal-ajax-error', self.error.fail)
+            $field.removeClass('ajax')
           }
         }, input.userOptions.data.ajax)
+
+        // Init
+        $input.removeData('ideal-ajax')
+        $field.addClass('ajax')
+        $input.trigger('change')
 
         // Run request and save it to be able to abort it
         // so requests don't bubble

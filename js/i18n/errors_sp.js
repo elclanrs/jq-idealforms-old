@@ -25,6 +25,7 @@ $.extend($.idealforms.errors, {
   excludeOption: '{0}',
   equalto: 'Debe ser idéntico a <strong>"{0}"</strong>',
   extension: 'Los ficheros deben tener una extensión válida. <em>(e.g. "{0}")</em>',
-  ajax: '<strong>{0}</strong> no está disponible.'
+  ajaxSuccess: '<strong>{0}</strong> no está disponible.',
+  ajaxError: 'Error en el servidor...'
 
 })

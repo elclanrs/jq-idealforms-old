@@ -25,6 +25,7 @@ $.extend($.idealforms.errors, {
   excludeOption: '{0}',
   equalto: 'Veuillez fournir encore la même valeur que <strong>"{0}"</strong>',
   extension: 'Veuillez fournir des fichiers avec une extension valide. <em>(e.g. "{0}")</em>',
-  ajax: '<strong>{0}</strong> n\'est pas disponible.'
+  ajaxSuccess: '<strong>{0}</strong> n\'est pas disponible.',
+  ajaxError: 'Erreur au serveur...'
 
 })

@@ -306,7 +306,7 @@ $.fn.idealforms = function(ops) {
           Actions.doMarkup($(this))
         })
 
-      // Add inputs specified by class
+      // Add inputs specified by data-ideal
       // to the list of user inputs
       $form.find('[data-ideal]').each(function(){
         o.inputs[this.name] = { filters: $(this).data('ideal') }
@@ -399,13 +399,14 @@ $.fn.idealforms = function(ops) {
 
         if (value && filter !== 'required') {
           // Handle AJAX
+          // The error message is set up in the filter due to its complexity
           if (filter === 'ajax') {
             if (e.type === 'keyup') {
               if (ajaxRequest) ajaxRequest.abort()
-              theFilter.regex(inputData, value, showOrHideError)
+              theFilter.regex(inputData, value, showOrHideError) // Runs the ajax callback
               $error.hide()
             } else {
-              showOrHideError($input.data('ideal-ajax'), error)
+              showOrHideError($input.data('ideal-ajax'), $input.data('ideal-ajax-error'))
             }
           } else {
             isValid = Utils.isRegex(theFilter.regex) && theFilter.regex.test(value) ||
