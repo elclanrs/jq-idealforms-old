@@ -161,6 +161,7 @@
     right: -(@icon-size + @icon-padding);
     height: @icon-size;
     width: @icon-size;
+    background: url("@{validation-sprite}")
   }
   textarea ~ .ideal-icon-valid,
   textarea ~ .ideal-icon-invalid,
@@ -172,11 +173,14 @@
     margin-top: 0;
   }
   .ideal-icon-valid {
-    background: url("@{valid-icon}") no-repeat;
+    background-position: -@icon-size 0;
   }
   .ideal-icon-invalid {
-    background: url("@{invalid-icon}") no-repeat;
+    background-position: 0 0;
     cursor: pointer;
+  }
+  .ajax .ideal-icon-invalid {
+    background: url(../less/themes/basic/loading.gif);
   }
   /* -------------------------------------------------------
     Valid & Invalid:
@@ -206,6 +210,19 @@
     background: @valid;
     color: @valid-text;
     border: @valid-border;
+  }
+  .ajax input[type="text"],
+  .ajax input[type="password"],
+  .ajax input[type="email"],
+  .ajax input[type="number"],
+  .ajax input[type="search"],
+  .ajax input[type="url"],
+  .ajax input[type="tel"],
+  .ajax textarea,
+  .ajax select { 
+    background: @loading;
+    color: @loading-text;
+    border: @loading-border;
   }
   .valid textarea,
   .invalid textarea {

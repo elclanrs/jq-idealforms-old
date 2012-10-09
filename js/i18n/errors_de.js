@@ -24,6 +24,7 @@ $.extend($.idealforms.errors, {
   exclude: '"{0}" n\'ist nicht verfügbar.',
   excludeOption: '{0}',
   equalto: 'Die Eingabe muss mit gleich <strong>"{0}"</strong> sein.',
-  extension: 'Bitte einen gültigen Dateinamen eingeben. <em>(Beispiel: "{0}")</em>'
+  extension: 'Bitte einen gültigen Dateinamen eingeben. <em>(Beispiel: "{0}")</em>',
+  ajax: '<strong>{0}</strong> ist nicht verfügbar'
 
 })

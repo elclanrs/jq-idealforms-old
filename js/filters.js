@@ -25,7 +25,8 @@ $.idealforms.errors = {
   exclude: '"{0}" is not available.',
   excludeOption: '{0}',
   equalto: 'Must be the same value as <strong>"{0}"</strong>',
-  extension: 'File(s) must have a valid extension. <em>(e.g. "{0}")</em>'
+  extension: 'File(s) must have a valid extension. <em>(e.g. "{0}")</em>',
+  ajax: '<strong>{0}</strong> is not available.'
 
 }
 
@@ -205,7 +206,7 @@ var getFilters = function () {
           this.error = $.idealforms.errors.excludeOption.replace('{0}', value)
         else
           this.error = $.idealforms.errors.exclude.replace('{0}', value)
-        return !~$.inArray(value, exclude)
+        return $.inArray(value, exclude) === -1
       }
     },
 
@@ -219,7 +220,7 @@ var getFilters = function () {
                 .parents('.ideal-field')
                 .filter(function(){ return $(this).data('isValid') === true })
                 .length
-        if (!isValid) return false
+        if (!isValid) { return false }
         this.error = $.idealforms.errors.equalto.replace('{0}', name)
         return $input.val() === $equals.val()
       }
@@ -231,12 +232,54 @@ var getFilters = function () {
             extensions = input.userOptions.data.extension,
             re = new RegExp('\\.'+ extensions.join('|') +'$', 'i'),
             valid = false
-        for (var i = 0, len = files.length; i < len; i++)
-          valid = re.test(files[i].name) ? true : false
+        for (var i = 0, len = files.length; i < len; i++) {
+          valid = re.test(files[i].name);
+        }
         this.error = $.idealforms.errors.extension.replace('{0}', extensions.join('", "'))
         return valid
       }
+    },
+
+    ajax: {
+      regex: function(input, value, showOrHideError) {
+
+        var self = this
+        var $input = input.input
+        var name = $input.attr('name')
+        var $field = $input.parents('.ideal-field')
+        var valid = false
+
+        self.error = $.idealforms.errors.ajax.replace('{0}', value)
+
+        // Send input name as $_POST
+        var data = {}
+        data[name] = $.trim(value)
+
+        // Default ajax options
+        var ajaxOps = $.extend({
+          type: 'post',
+          dataType: 'json',
+          data: data,
+          beforeSend: function() {
+            $input.removeData('ideal-ajax')
+            $field.addClass('ajax')
+            $input.trigger('change')
+          },
+          success: function(resp) {
+            showOrHideError(resp, self.error)
+            $input.data('ideal-ajax', resp)
+            $input.trigger('change')
+            $field.removeClass('ajax')
+          }
+        }, input.userOptions.data.ajax)
+
+        // Run request and save it to be able to abort it
+        // so requests don't bubble
+        $.idealforms.ajaxRequests[name] = $.ajax(ajaxOps)
+
+      }
     }
+
   }
 
   return filters

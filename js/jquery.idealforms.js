@@ -315,144 +315,123 @@ $.fn.idealforms = function(ops) {
       Actions.adjust()
     },
 
-    /** Validates an input
+    /** Validates an input and shows or hides error and icon
      * @memberOf Actions
-     * @param {object} input Object that contains the jQuery input object [input.input]
-     * and the user options of that input [input.userOptions]
-     * @param {string} value The value of the given input
-     * @returns {object} Returns [isValid] plus [error] if it fails
+     * @param {object} $input jQuery object
+     * @param {string} e The JavaScript event
      */
-    validate: function (input, value) {
+    validate: function($input, e) {
 
-      var isValid = true
-      var error = ''
-      var $input = input.input
-      var userOptions = input.userOptions
-      var userFilters = userOptions.filters
+      var userOptions = o.inputs[$input.attr('name')]
+      var userFilters = userOptions.filters.split(' ')
+      var name = $input.attr('name')
+      var value = $input.val() === $input.attr('placeholder') ? '' : $input.val()
 
-      if (userFilters) {
+      var isRadioCheck = $input.is('[type="checkbox"], [type="radio"]')
 
-        // Required
-        if (!value && /required/.test(userFilters)) {
-          error = userOptions.errors && userOptions.errors.required
-            ? userOptions.errors.required
-            : $.idealforms.errors.required
-          isValid = false
+      var inputData = {
+        // If radio or check send all name related inputs to validate
+        input: isRadioCheck ? $form.find('[name="' + name + '"]') : $input,
+        userOptions: userOptions
+      }
+
+      // Validation elements
+      var $field = $input.parents('.ideal-field')
+      var $error = $field.siblings('.ideal-error')
+      var $invalid = (isRadioCheck
+        ? $input.parent().siblings('.ideal-icon-invalid')
+        : $input.siblings('.ideal-icon-invalid')
+      )
+      var $valid = (isRadioCheck
+        ? $input.parent().siblings('.ideal-icon-valid')
+        : $input.siblings('.ideal-icon-valid')
+      )
+
+      function showOrHideError(valid, error) {
+
+        $field.removeClass('valid invalid').removeData('ideal-isvalid')
+        $error.add($invalid).add($valid).hide()
+
+        // Validates
+        if (value && valid) {
+          $error.add($invalid).hide()
+          $field.addClass('valid').data('ideal-isvalid', true)
+          $valid.show()
         }
 
-        // All other filters
-        if (value) {
-          userFilters = userFilters.split(/\s/)
-          for (var i = 0, l = userFilters.length; i < l; i++) {
-            var uf = userFilters[i]
-            var theFilter = $.idealforms.filters[uf]
-            if (theFilter && uf !== 'required') {
-              isValid = Utils.isFunction(theFilter.regex) && theFilter.regex(input, value) ||
-                        Utils.isRegex(theFilter.regex) && theFilter.regex.test(value)
-              if (!isValid) {
-                error = userOptions.errors && userOptions.errors[uf] ||
-                        theFilter.error
-                break
-              }
-            }
+        // Does NOT validate
+        if (!valid) {
+          $invalid.show()
+          $field.addClass('invalid').data('ideal-isvalid', false)
+          if ($field.is('.ideal-field-focus')) {
+              $error.html(error).show()
           }
         }
 
       }
 
-      return { isValid: isValid, error: error }
-    },
-
-    /** Shows or hides validation errors and icons
-     * @memberOf Actions
-     * @param {object} $input jQuery object
-     * @param {string} evt The event on which `analyze()` is being called
-     */
-    analyze: function ($input, evt) {
-
-      var isRadiocheck = $input.is('[type="checkbox"], [type="radio"]')
-      var userOptions = o.inputs[$input.attr('name')]
-
-      var value = (function () {
-        var val = $input.val()
-        if (val === $input.attr('placeholder')) return
-        // Always send a value when validating
-        // [type="checkbox"] and [type="radio"]
-        if (isRadiocheck) return userOptions && ' '
-        return val
-      }())
-
-      var $field = $input.parents('.ideal-field')
-      var $error = $field.siblings('.ideal-error')
-      var $invalid = (isRadiocheck
-        ? $input.parent().siblings('.ideal-icon-invalid')
-        : $input.siblings('.ideal-icon-invalid')
-      )
-      var $valid = (isRadiocheck
-        ? $input.parent().siblings('.ideal-icon-valid')
-        : $input.siblings('.ideal-icon-valid')
-      )
+      // Prevent validation when typing but not introducing any new characters
+      // This is mainly to prevent multiple AJAX requests
+      var oldValue = $input.data('ideal-value') || 0
+      $input.data('ideal-value', value)
+      if (e.type === 'keyup' && value === oldValue) return false
 
       // Validate
-      var test = Actions.validate({
-        // Make sure to validate all radio & checkbox inputs
-        // that are related by name
-        input: isRadiocheck
-          ? $form.find('[name="' + $input.attr('name') + '"]')
-          : $input,
-        userOptions: userOptions
-      }, value)
+      $.each(userFilters, function(i, filter) {
 
-      // Flags
-      var flags = (function(){
-        // Input flags
-        var f = userOptions.flags ? userOptions.flags : ''
-        // Append global flags
-        if (o.globalFlags) f += o.globalFlags
-        return f.split(/\s/)
-      }())
-      function doFlags() {
-        for (var i = 0, len = flags.length, f; i < len; i++) {
-          f = flags[i]
-          if (Flags[f]) Flags[f]($input, evt)
-          else break
+        var isValid = true
+        var theFilter = $.idealforms.filters[filter]
+        var error = userOptions.errors && userOptions.errors[filter] ||
+                    theFilter.error
+        var ajaxRequest = $.idealforms.ajaxRequests[name]
+
+        // Required
+        if (!value && filter === 'required') {
+          showOrHideError(false, error)
+          return false
         }
-      }
 
-      // Reset
-      $field.removeClass('valid invalid').data('isValid', true)
-      $error.add($invalid).add($valid).hide()
+        // Reset if empty value and it's not required
+        if (!value) {
+          showOrHideError(true)
+          return false
+        }
 
-      // Validates
-      if (value && test.isValid) {
-        $error.add($invalid).hide()
-        $field.addClass('valid').data('isValid', true)
-        $valid.show()
-      }
+        if (value && filter !== 'required') {
+          // Handle AJAX
+          if (filter === 'ajax') {
+            if (e.type === 'keyup') {
+              if (ajaxRequest) ajaxRequest.abort()
+              theFilter.regex(inputData, value, showOrHideError)
+              $error.hide()
+            } else {
+              showOrHideError($input.data('ideal-ajax'), error)
+            }
+          } else {
+            isValid = Utils.isRegex(theFilter.regex) && theFilter.regex.test(value) ||
+                      Utils.isFunction(theFilter.regex) && theFilter.regex(inputData, value)
+            showOrHideError(isValid, error)
+            if (!isValid) { return false }
+          }
+        }
 
-      // Does NOT validate
-      if (!test.isValid) {
-        $invalid.show()
-        $field.addClass('invalid').data('isValid', false)
-        $form.find('.ideal-error').hide()
-        // hide only on blur
-        if (evt !== 'blur') $error.html(test.error).show()
-      }
+      })
 
+      // Update counter
       if ($idealTabs) {
         Actions.updateTabsCounter(Actions.getCurrentTabName($input))
       }
-
-      doFlags()
     },
 
-    /**
-     * Attach all validation events to specified user inputs
-     * @memberOf Actions
-     */
     attachEvents: function () {
       getUserInputs().on('keyup change focus blur', function (e) {
-        Actions.analyze($(this), e.type)
+        var $field = $(this).parents('.ideal-field')
+        var isFile = $(this).is('input[type=file]')
+        // Trigger on change if type=file cuz custom file
+        // disables focus on original input file (tabIndex = -1)
+        if (e.type === 'focus' || isFile && e.type === 'change') { $field.addClass('ideal-field-focus') }
+        if (e.type === 'blur') { $field.removeClass('ideal-field-focus') }
+        Actions.validate($(this), e)
       })
     },
 
@@ -596,14 +575,14 @@ $.fn.idealforms = function(ops) {
 
   $form.getInvalid = function () {
     return $form.find('.ideal-field').filter(function () {
-      return $(this).data('isValid') === false
+      return $(this).data('ideal-isvalid') === false
     })
   }
 
   $form.getInvalidInTab = function (tabname) {
     return Actions.getTab(tabname)
       .find('.ideal-field').filter(function () {
-        return $(this).data('isValid') === false
+        return $(this).data('ideal-isvalid') === false
       })
   }
 
@@ -613,7 +592,7 @@ $.fn.idealforms = function(ops) {
 
   $form.isValidField = function (str) {
     var $input = Utils.getByNameOrId(str)
-    return $input.parents('.ideal-field').data('isValid') === true
+    return $input.parents('.ideal-field').data('ideal-isvalid') === true
   }
 
   $form.focusFirst = function () {

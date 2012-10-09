@@ -25,7 +25,7 @@ $.fn.idealFile = function () {
     $button
       .attr('tabIndex', -1)
       .click(function () {
-        $file.trigger('click')
+        $file.focus().click()
       })
 
     $file
@@ -45,9 +45,6 @@ $.fn.idealFile = function () {
           }
           $input.val(filename)
           $input.attr('title', filename)
-        },
-        focus: function () {
-          $input.trigger('focus')
         }
     })
 

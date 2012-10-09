@@ -35,6 +35,7 @@
   @easy-border: #aaa;
   @easy-invalid: #FAEBEB;
   @easy-valid: #EDF7FC;
+  @easy-loading: #faf9e8;
   @easy-error: #285d85;
 
 /*--------------------------------------------------------
@@ -61,8 +62,7 @@
   @error-border: darken(@error-color, 6%);
   @error-text: lighten(@error-color, 70%);
   @icon-size: 16px;
-  @valid-icon: "../less/themes/basic/valid.png";
-  @invalid-icon: "../less/themes/basic/invalid.png";
+  @validation-sprite: "../less/themes/basic/validation.png";
 
   /* Separator */
   @sep-border-color: @easy-border;
@@ -80,13 +80,16 @@
   /* Text inputs */
   @text-bg: white;
   @text-text: darken(@text-bg, 60%);
-  @invalid: @easy-invalid;
-  @valid: @easy-valid;
   @default-border: @border-width solid @easy-border;
-  @valid-border: @border-width solid darken(@valid, 40%);
-  @invalid-border: @border-width solid darken(@invalid, 40%);
+  @valid: @easy-valid;
   @valid-text: darken(@valid, 60%);
+  @valid-border: @border-width solid darken(@valid, 40%);
+  @invalid: @easy-invalid;
   @invalid-text: darken(@invalid, 60%);
+  @invalid-border: @border-width solid darken(@invalid, 40%);
+  @loading: @easy-loading;
+  @loading-text: darken(@loading, 60%);
+  @loading-border: @border-width solid darken(@loading, 40%);
 
   /* Buttons */
   @button: @easy-ui;

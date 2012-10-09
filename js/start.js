@@ -21,5 +21,6 @@
   $.idealforms.filters = {}
   $.idealforms.errors = {}
   $.idealforms.flags = {}
+  $.idealforms.ajaxRequests = {}
 
 /*--------------------------------------------------------------------------*/
