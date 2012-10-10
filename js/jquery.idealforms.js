@@ -399,8 +399,8 @@ $.fn.idealforms = function(ops) {
         if (value && filter !== 'required') {
           // Handle AJAX
           // The error message is set up in the filter due to its complexity
-          var ajaxRequest = $.idealforms.ajaxRequests[name]
           if (filter === 'ajax') {
+            var ajaxRequest = $.idealforms.ajaxRequests[name]
             if (e.type === 'keyup') {
               if (ajaxRequest) ajaxRequest.abort()
               theFilter.regex(inputData, value, showOrHideError) // Runs the ajax callback
