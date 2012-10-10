@@ -330,7 +330,7 @@ $.fn.idealforms = function(ops) {
       var isRadioCheck = $input.is('[type="checkbox"], [type="radio"]')
 
       var inputData = {
-        // If radio or check send all name related inputs to validate
+        // If is radio or check validate all inputs related by name
         input: isRadioCheck ? $form.find('[name="' + name + '"]') : $input,
         userOptions: userOptions
       }
@@ -349,6 +349,7 @@ $.fn.idealforms = function(ops) {
 
       function showOrHideError(valid, error) {
 
+        // Reset
         $field.removeClass('valid invalid').removeData('ideal-isvalid')
         $error.add($invalid).add($valid).hide()
 
@@ -379,15 +380,13 @@ $.fn.idealforms = function(ops) {
       // Validate
       $.each(userFilters, function(i, filter) {
 
-        var isValid = true
         var theFilter = $.idealforms.filters[filter]
-        var error = userOptions.errors && userOptions.errors[filter] ||
-                    theFilter.error
-        var ajaxRequest = $.idealforms.ajaxRequests[name]
+        var customError = userOptions.errors && userOptions.errors[filter]
+        var error = customError || theFilter.error
 
         // Required
         if (!value && filter === 'required') {
-          showOrHideError(false, error)
+          showOrHideError(false, theFilter.error)
           return false
         }
 
@@ -400,6 +399,7 @@ $.fn.idealforms = function(ops) {
         if (value && filter !== 'required') {
           // Handle AJAX
           // The error message is set up in the filter due to its complexity
+          var ajaxRequest = $.idealforms.ajaxRequests[name]
           if (filter === 'ajax') {
             if (e.type === 'keyup') {
               if (ajaxRequest) ajaxRequest.abort()
@@ -408,9 +408,11 @@ $.fn.idealforms = function(ops) {
             } else {
               showOrHideError($input.data('ideal-ajax'), $input.data('ideal-ajax-error'))
             }
+          // All other filters
           } else {
-            isValid = Utils.isRegex(theFilter.regex) && theFilter.regex.test(value) ||
-                      Utils.isFunction(theFilter.regex) && theFilter.regex(inputData, value)
+            var isValid = Utils.isRegex(theFilter.regex) && theFilter.regex.test(value) ||
+                          Utils.isFunction(theFilter.regex) && theFilter.regex(inputData, value)
+            error = theFilter.error // reasign error after calling regex()
             showOrHideError(isValid, error)
             if (!isValid) { return false }
           }
