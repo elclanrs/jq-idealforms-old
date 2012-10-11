@@ -384,6 +384,16 @@ $.fn.idealforms = function(ops) {
 
       })
 
+      // Flags
+      var flags = (function(){
+        var f = userOptions.flags && userOptions.flags.split(' ') || []
+        if (o.globalFlags) { $.each(o.globalFlags.split(), function(i,v) { f.push(v) }) }
+        return f
+      }())
+      if (flags.length) {
+        $.each(flags, function(i, f) { Flags[f]($input, e.type) })
+      }
+
       // Update counter
       if ($idealTabs) {
         Actions.updateTabsCounter(Actions.getCurrentTabName($input))
@@ -392,13 +402,14 @@ $.fn.idealforms = function(ops) {
 
     attachEvents: function () {
       getUserInputs().on('keyup change focus blur', function (e) {
-        var $field = $(this).parents('.ideal-field')
-        var isFile = $(this).is('input[type=file]')
+        var $this = $(this)
+        var $field = $this.parents('.ideal-field')
+        var isFile = $this.is('input[type=file]')
         // Trigger on change if type=file cuz custom file
         // disables focus on original input file (tabIndex = -1)
         if (e.type === 'focus' || isFile && e.type === 'change') { $field.addClass('ideal-field-focus') }
         if (e.type === 'blur') { $field.removeClass('ideal-field-focus') }
-        Actions.validate($(this), e)
+        Actions.validate($this, e)
       })
     },
 
