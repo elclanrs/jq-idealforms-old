@@ -266,20 +266,6 @@ $.fn.idealforms = function(ops) {
         $datepicker.parent().siblings('.ideal-error').addClass('hidden')
       }
 
-      // Placeholder support
-      if (!('placeholder' in $('<input/>')[0])) {
-        formInputs.text.each(function () {
-          $(this).val($(this).attr('placeholder'))
-        }).on({
-          focus: function () {
-            if (this.value === $(this).attr('placeholder'))
-              $(this).val('')
-          },
-          blur: function () {
-            $(this).val() || $(this).val($(this).attr('placeholder'))
-          }
-        })
-      }
     },
 
     /**
@@ -325,7 +311,7 @@ $.fn.idealforms = function(ops) {
       var userOptions = o.inputs[$input.attr('name')]
       var userFilters = userOptions.filters.split(' ')
       var name = $input.attr('name')
-      var value = $input.val() === $input.attr('placeholder') ? '' : $input.val()
+      var value = $input.val()
 
       var isRadioCheck = $input.is('[type="checkbox"], [type="radio"]')
 
