@@ -329,46 +329,29 @@ $.fn.idealforms = function(ops) {
 
       var isRadioCheck = $input.is('[type="checkbox"], [type="radio"]')
 
-      var inputData = {
-        // If is radio or check validate all inputs related by name
-        input: isRadioCheck ? $form.find('[name="' + name + '"]') : $input,
-        userOptions: userOptions
-      }
-
       // Validation elements
       var $field = $input.parents('.ideal-field')
       var $error = $field.siblings('.ideal-error')
-      var $invalid = (isRadioCheck
+      var $invalid = isRadioCheck
         ? $input.parent().siblings('.ideal-icon-invalid')
         : $input.siblings('.ideal-icon-invalid')
-      )
-      var $valid = (isRadioCheck
+      var $valid = isRadioCheck
         ? $input.parent().siblings('.ideal-icon-valid')
         : $input.siblings('.ideal-icon-valid')
-      )
 
-      function showOrHideError(valid, error) {
-
-        // Reset
+      function resetError() {
         $field.removeClass('valid invalid').removeData('ideal-isvalid')
         $error.add($invalid).add($valid).hide()
+      }
 
-        // Validates
-        if (value && valid) {
-          $error.add($invalid).hide()
-          $field.addClass('valid').data('ideal-isvalid', true)
-          $valid.show()
-        }
-
-        // Does NOT validate
+      function showOrHideError(error, valid) {
+        resetError()
+        valid ? $valid.show() : $invalid.show()
+        $field.addClass(valid ? 'valid' : 'invalid')
         if (!valid) {
-          $invalid.show()
-          $field.addClass('invalid').data('ideal-isvalid', false)
-          if ($field.is('.ideal-field-focus')) {
-              $error.html(error).show()
-          }
+          $error.html(error).toggle($field.is('.ideal-field-focus'))
+          $field.data('ideal-isvalid', false)
         }
-
       }
 
       // Prevent validation when typing but not introducing any new characters
@@ -382,40 +365,39 @@ $.fn.idealforms = function(ops) {
 
         var theFilter = $.idealforms.filters[filter]
         var customError = userOptions.errors && userOptions.errors[filter]
-        var error = customError || theFilter.error
+        var error = customError || $.idealforms.filters[filter].error
 
-        // Required
-        if (!value && filter === 'required') {
-          showOrHideError(false, theFilter.error)
+        var inputData = {
+          // If is radio or check validate all inputs related by name
+          input: isRadioCheck ? $form.find('[name="' + name + '"]') : $input,
+          userOptions: userOptions
+        }
+
+        // If field is empty and not required
+        if (!value && filter !== 'required') {
+          resetError()
           return false
         }
 
-        // Reset if empty value and it's not required
-        if (!value) {
-          showOrHideError(true)
-          return false
-        }
-
-        if (value && filter !== 'required') {
-          // Handle AJAX
-          // The error message is set up in the filter due to its complexity
-          if (filter === 'ajax') {
-            var ajaxRequest = $.idealforms.ajaxRequests[name]
-            if (e.type === 'keyup') {
-              if (ajaxRequest) ajaxRequest.abort()
-              theFilter.regex(inputData, value, showOrHideError) // Runs the ajax callback
-              $error.hide()
-            } else {
-              showOrHideError($input.data('ideal-ajax'), $input.data('ideal-ajax-error'))
-            }
-          // All other filters
+        // AJAX
+        if (filter === 'ajax') {
+          var ajaxRequest = $.idealforms.ajaxRequests[name]
+          showOrHideError(error, false)
+          if (e.type === 'keyup') {
+            if (ajaxRequest) ajaxRequest.abort()
+            theFilter.regex(inputData, value, showOrHideError) // Runs the ajax callback
+            $error.hide()
           } else {
-            var isValid = Utils.isRegex(theFilter.regex) && theFilter.regex.test(value) ||
-                          Utils.isFunction(theFilter.regex) && theFilter.regex(inputData, value)
-            error = theFilter.error // reasign error after calling regex()
-            showOrHideError(isValid, error)
-            if (!isValid) { return false }
+            showOrHideError($input.data('ideal-ajax-error'), $input.data('ideal-ajax-resp'))
           }
+        }
+        // All other filters
+        else {
+          var valid = Utils.isRegex(theFilter.regex) && theFilter.regex.test(value) ||
+                      Utils.isFunction(theFilter.regex) && theFilter.regex(inputData, value)
+          error = theFilter.error // reasign error after calling regex()
+          showOrHideError(error, valid)
+          if (!valid) return false
         }
 
       })
@@ -648,7 +630,7 @@ $.fn.idealforms = function(ops) {
 
   $form.fresh = function () {
     getUserInputs()
-      .blur()
+      .change()
       .parents('.ideal-field')
       .removeClass('valid invalid')
     return $form

@@ -40,6 +40,7 @@ var getFilters = function () {
   var filters = {
 
     required: {
+      regex: /.+/,
       error: $.idealforms.errors.required
     },
 
@@ -270,23 +271,24 @@ var getFilters = function () {
           dataType: 'json',
           data: data,
           success: function(resp) {
-            showOrHideError(resp, self.error.success)
-            $input.data('ideal-ajax-error', self.error.success)
-            $input.data('ideal-ajax', resp)
-            $input.trigger('change')
+            showOrHideError(self.error.success, resp)
+            $input.data({
+              'ideal-ajax-error': self.error.success,
+              'ideal-ajax-resp': resp
+            })
+            $input.trigger('change') // to update counter
             $field.removeClass('ajax')
           },
           error: function() {
-            showOrHideError(false, self.error.fail)
+            showOrHideError(self.error.fail, false)
             $input.data('ideal-ajax-error', self.error.fail)
             $field.removeClass('ajax')
           }
         }, input.userOptions.data.ajax)
 
         // Init
-        $input.removeData('ideal-ajax')
+        $input.removeData('ideal-ajax-resp')
         $field.addClass('ajax')
-        $input.trigger('change')
 
         // Run request and save it to be able to abort it
         // so requests don't bubble
