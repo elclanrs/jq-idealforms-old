@@ -435,10 +435,10 @@ $.extend($.idealforms.filters, {
     error: 'My custom error'
   },
   another: {
-    regex: function (input, value) {
-      var $input = input.input,
-          userOptions = input.userOptions
-      this.error = 'Something ' + value
+    regex: function (inputData, value) {
+      var $input = inputData.input, // the jQuery input object
+          userOptions = inputData.userOptions // options specified in the plugin
+      this.error = 'Something ' + value // declare error here to have access the value
     }
   }
 })
