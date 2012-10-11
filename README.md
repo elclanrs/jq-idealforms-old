@@ -17,9 +17,9 @@
 * HTML5 `placeholder` polyfill
 
 ### Updates:
-**10/09/12**  
-* New [ajax](#ajax) filter
-* Sprite for validation icons
+**10/11/12**  
+* Remove placeholder polyfill. It was buggy and unfinished. Check for better polyfills [here](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills)
+* re-organize and cleanup validate method
 
 [Update history](#update-history)
 
@@ -841,6 +841,10 @@ Radius for round corners.
 
 Update History
 --------------
+
+**10/09/12**  
+* New [ajax](#ajax) filter
+* Sprite for validation icons
 
 **10/07/12**  
 * Better `number` filter
