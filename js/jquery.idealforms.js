@@ -103,7 +103,7 @@ $.fn.idealforms = function(ops) {
       else {
         $idealTabs.each(function () {
           tabName = $(this).data('ideal-tabs-content-name')
-          invalid = $form.getInvalid(name).length
+          invalid = $form.getInvalidInTab(tabName).length
           $idealTabs.updateCounter(tabName, invalid)
         })
       }
@@ -330,9 +330,9 @@ $.fn.idealforms = function(ops) {
         resetError()
         valid ? $valid.show() : $invalid.show()
         $field.addClass(valid ? 'valid' : 'invalid')
+        $field.data('ideal-isvalid', valid)
         if (!valid) {
           $error.html(error).toggle($field.is('.ideal-field-focus'))
-          $field.data('ideal-isvalid', false)
         }
       }
 
@@ -386,6 +386,10 @@ $.fn.idealforms = function(ops) {
             }
           }
         })
+      }
+      // Reset if there are no filters
+      else {
+        resetError()
       }
 
       // Flags
@@ -647,6 +651,7 @@ $.fn.idealforms = function(ops) {
     Actions.adjust()
     Actions.attachEvents()
     Actions.responsive()
+    $form.fresh()
     return $form
   }
 
