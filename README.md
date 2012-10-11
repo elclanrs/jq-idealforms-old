@@ -16,9 +16,11 @@
 * Localization
 
 ### Updates:
-**10/11/12**  
+**10/11/12**
 * Remove `placeholder` polyfill. It was buggy and unfinished. Check for better polyfills [here](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills)
-* re-organize and cleanup validate method
+* Re-organize and cleanup validate method
+* Restore flags, big regression, ooops!
+* Fix some undefined erros with non-existent flags and filters
 
 [Update history](#update-history)
 
