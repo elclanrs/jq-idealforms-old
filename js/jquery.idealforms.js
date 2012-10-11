@@ -305,7 +305,7 @@ $.fn.idealforms = function(ops) {
     validate: function($input, e) {
 
       var userOptions = o.inputs[$input.attr('name')]
-      var userFilters = userOptions.filters.split(' ')
+      var userFilters = userOptions.filters && userOptions.filters.split(' ')
       var name = $input.attr('name')
       var value = $input.val()
 
@@ -343,46 +343,48 @@ $.fn.idealforms = function(ops) {
       if (e.type === 'keyup' && value === oldValue) return false
 
       // Validate
-      $.each(userFilters, function(i, filter) {
+      if (userFilters) {
+        $.each(userFilters, function(i, filter) {
 
-        var theFilter = $.idealforms.filters[filter]
-        var customError = userOptions.errors && userOptions.errors[filter]
-        var error = ''
+          var theFilter = $.idealforms.filters[filter]
+          var customError = userOptions.errors && userOptions.errors[filter]
+          var error = ''
 
-        var inputData = {
-          // If is radio or check validate all inputs related by name
-          input: isRadioCheck ? $form.find('[name="' + name + '"]') : $input,
-          userOptions: userOptions
-        }
-
-        // If field is empty and not required
-        if (!value && filter !== 'required') {
-          resetError()
-          return false
-        }
-
-        // AJAX
-        if (filter === 'ajax') {
-          var ajaxRequest = $.idealforms.ajaxRequests[name]
-          showOrHideError(error, false)
-          if (e.type === 'keyup') {
-            if (ajaxRequest) ajaxRequest.abort()
-            theFilter.regex(inputData, value, showOrHideError) // Runs the ajax callback
-            $error.hide()
-          } else {
-            showOrHideError($input.data('ideal-ajax-error'), $input.data('ideal-ajax-resp'))
+          var inputData = {
+            // If is radio or check validate all inputs related by name
+            input: isRadioCheck ? $form.find('[name="' + name + '"]') : $input,
+            userOptions: userOptions
           }
-        }
-        // All other filters
-        else {
-          var valid = Utils.isRegex(theFilter.regex) && theFilter.regex.test(value) ||
-                      Utils.isFunction(theFilter.regex) && theFilter.regex(inputData, value)
-          error = customError || theFilter.error // asign error after calling regex()
-          showOrHideError(error, valid)
-          if (!valid) return false
-        }
 
-      })
+          // If field is empty and not required
+          if (!value && filter !== 'required') {
+            resetError()
+            return false
+          }
+
+          // AJAX
+          if (filter === 'ajax') {
+            var ajaxRequest = $.idealforms.ajaxRequests[name]
+            showOrHideError(error, false)
+            if (e.type === 'keyup') {
+              if (ajaxRequest) ajaxRequest.abort()
+              theFilter.regex(inputData, value, showOrHideError) // Runs the ajax callback
+              $error.hide()
+            } else {
+              showOrHideError($input.data('ideal-ajax-error'), $input.data('ideal-ajax-resp'))
+            }
+          }
+          // All other filters
+          else {
+            var valid = Utils.isRegex(theFilter.regex) && theFilter.regex.test(value) ||
+                        Utils.isFunction(theFilter.regex) && theFilter.regex(inputData, value)
+            error = customError || theFilter.error // asign error after calling regex()
+            showOrHideError(error, valid)
+            if (!valid) return false
+          }
+
+        })
+      }
 
       // Flags
       var flags = (function(){
@@ -391,7 +393,10 @@ $.fn.idealforms = function(ops) {
         return f
       }())
       if (flags.length) {
-        $.each(flags, function(i, f) { Flags[f]($input, e.type) })
+        $.each(flags, function(i, f) {
+          var theFlag = $.idealforms.flags[f]
+          if (theFlag) { theFlag($input, e.type) }
+        })
       }
 
       // Update counter

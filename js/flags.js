@@ -1,4 +1,4 @@
-var Flags = {
+$.idealforms.flags = {
   noerror: function (i) {
     i.parent().siblings('.ideal-error').hide()
   },
