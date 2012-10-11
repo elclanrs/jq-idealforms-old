@@ -14,7 +14,6 @@
 * Custom datepicker using jQuery UI (with fallback)
 * "On the spot" validation
 * Localization
-* HTML5 `placeholder` polyfill
 
 ### Updates:
 **10/11/12**  
