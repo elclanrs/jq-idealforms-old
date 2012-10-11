@@ -17,7 +17,7 @@
 
 ### Updates:
 **10/11/12**  
-* Remove placeholder polyfill. It was buggy and unfinished. Check for better polyfills [here](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills)
+* Remove `placeholder` polyfill. It was buggy and unfinished. Check for better polyfills [here](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills)
 * re-organize and cleanup validate method
 
 [Update history](#update-history)
