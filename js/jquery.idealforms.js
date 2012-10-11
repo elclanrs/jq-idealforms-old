@@ -381,7 +381,7 @@ $.fn.idealforms = function(ops) {
         else {
           var valid = Utils.isRegex(theFilter.regex) && theFilter.regex.test(value) ||
                       Utils.isFunction(theFilter.regex) && theFilter.regex(inputData, value)
-          error = theFilter.error // reasign error after calling regex()
+          error = customError || theFilter.error // reasign error after calling regex()
           showOrHideError(error, valid)
           if (!valid) return false
         }
