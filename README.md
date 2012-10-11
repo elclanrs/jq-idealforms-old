@@ -840,7 +840,7 @@ Radius for round corners.
 
 **Enjoy :)**
 
-Update History
+Update History:
 --------------
 
 **10/09/12**  
