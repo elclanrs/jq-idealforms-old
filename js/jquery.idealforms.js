@@ -344,6 +344,7 @@ $.fn.idealforms = function(ops) {
 
       // Validate
       if (userFilters) {
+
         $.each(userFilters, function(i, filter) {
 
           var theFilter = $.idealforms.filters[filter]
@@ -384,7 +385,6 @@ $.fn.idealforms = function(ops) {
               if (!valid) return false
             }
           }
-
         })
       }
 
