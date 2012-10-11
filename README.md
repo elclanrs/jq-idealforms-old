@@ -438,7 +438,7 @@ $.extend($.idealforms.filters, {
     regex: function (inputData, value) {
       var $input = inputData.input, // the jQuery input object
           userOptions = inputData.userOptions // options specified in the plugin
-      this.error = 'Something ' + value // declare error here to have access the value
+      this.error = 'Something ' + value // declare error here to have access to the value
     }
   }
 })
