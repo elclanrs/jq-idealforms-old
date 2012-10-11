@@ -238,9 +238,7 @@ $.fn.idealforms = function(ops) {
           var format = data ? data.replace('yyyy', 'yy') : 'mm/dd/yy'
 
           $(this).datepicker({
-
             dateFormat: format,
-
             beforeShow: function (input) {
               $(input).addClass('open')
             },
@@ -251,14 +249,12 @@ $.fn.idealforms = function(ops) {
                 $(this).datepicker('widget').css('width', w)
               }, 1)
             },
-            onClose: function () {
-              $(this).removeClass('open')
-            }
+            onClose: function () { $(this).removeClass('open') }
           })
         })
 
         // Adjust width
-        $datepicker.on('focus keyup', function(){
+        $datepicker.on('focus keyup', function() {
           var t = $(this), w = t.outerWidth()
           t.datepicker('widget').css('width', w)
         })
@@ -422,13 +418,9 @@ $.fn.idealforms = function(ops) {
         ? $form.toggleClass('stack', $form.width() < maxWidth)
         : $form.toggleClass('stack', $(window).width() < o.responsiveAt)
 
-      if ($form.is('.stack')) {
-        $emptyLabel.hide()
-        $customSelect.trigger('list')
-      } else {
-        $emptyLabel.show()
-        $customSelect.trigger('menu')
-      }
+      var isStack = $form.is('.stack')
+      $emptyLabel.toggle(!isStack)
+      $customSelect.trigger(isStack ? 'list' : 'menu')
 
       // Hide datePicker
       var $datePicker = $form.find('input.hasDatepicker')

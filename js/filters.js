@@ -193,9 +193,7 @@ var getFilters = function () {
 
         this.error = $.idealforms.errors.dob
 
-        return isDate &&
-          theYear >= minYear &&
-          theYear <= maxYear
+        return isDate && theYear >= minYear && theYear <= maxYear
       }
     },
 
@@ -204,10 +202,9 @@ var getFilters = function () {
         var $input = input.input,
             exclude = input.userOptions.data.exclude,
             isOption = $input.is('[type="checkbox"], [type="radio"], select')
-        if (isOption)
-          this.error = $.idealforms.errors.excludeOption.replace('{0}', value)
-        else
-          this.error = $.idealforms.errors.exclude.replace('{0}', value)
+        this.error = isOption
+          ? $.idealforms.errors.excludeOption.replace('{0}', value)
+          : this.error = $.idealforms.errors.exclude.replace('{0}', value)
         return $.inArray(value, exclude) === -1
       }
     },
@@ -217,11 +214,9 @@ var getFilters = function () {
         var $equals = $(input.userOptions.data.equalto),
             $input = input.input,
             name = $equals.attr('name') || $equals.attr('id'),
-            isValid =
-              $equals
-                .parents('.ideal-field')
-                .filter(function(){ return $(this).data('isValid') === true })
-                .length
+            isValid = $equals.parents('.ideal-field')
+              .filter(function(){ return $(this).data('ideal-isvalid') === true })
+              .length
         if (!isValid) { return false }
         this.error = $.idealforms.errors.equalto.replace('{0}', name)
         return $input.val() === $equals.val()
