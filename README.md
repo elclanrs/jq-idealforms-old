@@ -565,9 +565,7 @@ Insert the new field at the end of a section. Takes a string.
 Array of items for `select`, `radio` and `checkbox`. Use this format `item:value` to specify the value attribute.
 * **placeholder**:
 The placeholder for text inputs. Use `exclude` for select menus.
-* **filters, data, errors, flags**
-
-For more info check documentation on **[input's options](#inputs)**.
+* **filters, data, errors, flags**: Check docs on **[input's options](#inputs)**.
 
 ```javascript
 var newFields = [
