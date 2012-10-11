@@ -351,7 +351,7 @@ $.fn.idealforms = function(ops) {
 
         var theFilter = $.idealforms.filters[filter]
         var customError = userOptions.errors && userOptions.errors[filter]
-        var error = customError || $.idealforms.filters[filter].error
+        var error = ''
 
         var inputData = {
           // If is radio or check validate all inputs related by name
@@ -381,7 +381,7 @@ $.fn.idealforms = function(ops) {
         else {
           var valid = Utils.isRegex(theFilter.regex) && theFilter.regex.test(value) ||
                       Utils.isFunction(theFilter.regex) && theFilter.regex(inputData, value)
-          error = customError || theFilter.error // reasign error after calling regex()
+          error = customError || theFilter.error // asign error after calling regex()
           showOrHideError(error, valid)
           if (!valid) return false
         }
