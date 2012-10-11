@@ -362,25 +362,27 @@ $.fn.idealforms = function(ops) {
             return false
           }
 
-          // AJAX
-          if (filter === 'ajax') {
-            var ajaxRequest = $.idealforms.ajaxRequests[name]
-            showOrHideError(error, false)
-            if (e.type === 'keyup') {
-              if (ajaxRequest) ajaxRequest.abort()
-              theFilter.regex(inputData, value, showOrHideError) // Runs the ajax callback
-              $error.hide()
-            } else {
-              showOrHideError($input.data('ideal-ajax-error'), $input.data('ideal-ajax-resp'))
+          if (theFilter) {
+            // AJAX
+            if (filter === 'ajax') {
+              var ajaxRequest = $.idealforms.ajaxRequests[name]
+              showOrHideError(error, false)
+              if (e.type === 'keyup') {
+                if (ajaxRequest) ajaxRequest.abort()
+                theFilter.regex(inputData, value, showOrHideError) // Runs the ajax callback
+                $error.hide()
+              } else {
+                showOrHideError($input.data('ideal-ajax-error'), $input.data('ideal-ajax-resp'))
+              }
             }
-          }
-          // All other filters
-          else {
-            var valid = Utils.isRegex(theFilter.regex) && theFilter.regex.test(value) ||
-                        Utils.isFunction(theFilter.regex) && theFilter.regex(inputData, value)
-            error = customError || theFilter.error // asign error after calling regex()
-            showOrHideError(error, valid)
-            if (!valid) return false
+            // All other filters
+            else {
+              var valid = Utils.isRegex(theFilter.regex) && theFilter.regex.test(value) ||
+                          Utils.isFunction(theFilter.regex) && theFilter.regex(inputData, value)
+              error = customError || theFilter.error // asign error after calling regex()
+              showOrHideError(error, valid)
+              if (!valid) return false
+            }
           }
 
         })
