@@ -249,6 +249,5 @@ $.extend( IdealForms.prototype, {
     return this
   }
 
-
 })
 
