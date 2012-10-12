@@ -1,16 +1,13 @@
 /**
  * Custom tabs for Ideal Forms
  */
-$.fn.idealTabs = function (ops) {
+$.fn.idealTabs = function (container) {
 
   var
 
-  // Options
-  o = $.extend({ tabContainer: '' }, ops),
-
   // Elements
   $contents = this,
-  $container = $(o.tabContainer),
+  $container = container,
   $wrapper = $('<ul class="ideal-tabs-wrap"/>'),
   $tabs = (function () {
     var tabs = []
@@ -78,8 +75,8 @@ $.fn.idealTabs = function (ops) {
       Methods.switchTab($tabs.length - 1)
     },
 
-    updateCounter: function (name, text) {
-      var idx = Actions.getTabIdxByName(name),
+    updateCounter: function (nameOrIdx, text) {
+      var idx = !isNaN(nameOrIdx) ? nameOrIdx : Actions.getTabIdxByName(name),
           $counter = $tabs.eq(idx).find('.ideal-tabs-tab-counter')
       $counter.removeClass('ideal-tabs-tab-counter-zero')
       if (!text) {

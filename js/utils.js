@@ -93,7 +93,7 @@ var Utils = {
       /select/.test(type) && 'select' ||
       /(radio|checkbox)/.test(type) && 'radiocheck' ||
       /(button|submit|reset)/.test(type) && 'button' ||
-      /h\d/.test(type) && 'description' ||
+      /h\d/.test(type) && 'heading' ||
       /hr/.test(type) && 'separator' ||
       /hidden/.test(type) && 'hidden'
     )
