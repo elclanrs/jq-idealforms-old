@@ -67,7 +67,7 @@ $.extend( IdealForms.prototype, {
   },
 
   lastTab: function() {
-    this.$abs.lastTab()
+    this.$tabs.lastTab()
     return this
   },
 
