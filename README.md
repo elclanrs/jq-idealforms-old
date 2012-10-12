@@ -92,7 +92,7 @@ Setup:
 * Finally, call Ideal Forms on each form separately. Assign each form to a variable to have access to the public methods.
 
 ```javascript
-var $myform = $('#my-form').idealforms({ options });
+var $myform = $('#my-form').idealforms({ options }).data('idealforms');
 ```
 
 Markup:

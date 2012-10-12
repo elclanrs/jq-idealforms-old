@@ -17,7 +17,6 @@
    * Global Ideal Forms namespace
    */
   $.idealforms = {}
-  $.idealforms.forms = {}
   $.idealforms.filters = {}
   $.idealforms.errors = {}
   $.idealforms.flags = {}
