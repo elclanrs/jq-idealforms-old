@@ -156,26 +156,26 @@ $.extend( IdealForms.prototype, {
         var data = userInput && userInput.data && userInput.data.date
         var format = data ? data.replace( 'yyyy', 'yy' ) : 'mm/dd/yy'
 
-        $( this ).datepicker({
+        $(this).datepicker({
           dateFormat: format,
           beforeShow: function( input ) {
             $( input ).addClass('open')
           },
           onChangeMonthYear: function() {
             // Hack to fix IE9 not resizing
-            var $this = $( this )
+            var $this = $(this)
             var w = $this.outerWidth() // cache first!
-            setTimeout(function(){
+            setTimeout(function() {
               $this.datepicker('widget').css( 'width', w )
             }, 1)
           },
-          onClose: function() { $( this ).removeClass('open') }
+          onClose: function() { $(this).removeClass('open') }
         })
       })
 
       // Adjust width
       $datepicker.on('focus keyup', function() {
-        var t = $( this ), w = t.outerWidth()
+        var t = $(this), w = t.outerWidth()
         t.datepicker('widget').css( 'width', w )
       })
 
@@ -260,7 +260,7 @@ $.extend( IdealForms.prototype, {
     // Generate markup for current element type
     idealElements[ elementType ] ? idealElements[ elementType ]() : $.noop()
 
-    $error.add( $valid ).add( $invalid ).hide() // Start fresh
+    $error.add($valid).add($invalid).hide() // Start fresh
 
   },
 
@@ -364,6 +364,7 @@ $.extend( IdealForms.prototype, {
     // Reset if there are no filters
     else {
       resetError()
+      return false
     }
 
     // Flags
