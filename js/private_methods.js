@@ -364,7 +364,6 @@ $.extend( IdealForms.prototype, {
     // Reset if there are no filters
     else {
       resetError()
-      return false
     }
 
     // Flags
