@@ -16,11 +16,8 @@
 * Localization
 
 ### Updates:
-**10/11/12**
-* Remove `placeholder` polyfill. It was buggy and unfinished. Check for better polyfills [here](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills)
-* Re-organize and cleanup validate method
-* Restore flags, big regression, ooops!
-* Fix some undefined errors with non-existent flags and filters
+**10/12/12**
+* Massive refactoring and cleanup
 
 [Update history](#update-history)
 
@@ -462,7 +459,7 @@ Methods:
 
 ### setOptions
 
-Set the options of the form after being initialized. The new options are merged with the previous ones allowing to override any option.
+Override the options of the form after being initialized.
 
 **chainable:** yes
 
@@ -478,26 +475,13 @@ var myOps = {
 $myform.setOptions(myOps)
 ```
 
-Every form is added to the `$.idealforms.forms` namespace after initialization in the order they've been created, beginning at `0`. This means that you can manually modify a particular option of any form instead of overriding it with `setOptions`:
-
-```javascript
-// remove required filter from username input in form 0
-var usernameFilters = $.idealforms.forms[0].options.inputs['username'].filters
-usernameFilters = usernameFilters
-                    .replace('required', '') // remove required filter
-                    .replace('/^\s/', '') // trim leading whitespace
-
-// refresh the form to update changes
-$myform.reload().fresh();
-```
-
 **Note:** The `disableCustom` option cannot be modified after initialization.
 
 ### setFieldOptions
 
 **chainable:** yes
 
-Set the options of a particular field. This is a shortcut method; the same thing can be achieved with `setOptions`.
+Override the options of a particular field.
 
 ```javascript
 $myform.setFieldOptions('username', { filters: 'username' })
@@ -720,7 +704,6 @@ Re-attach events and re-adjust the form. Use this method when modifying the html
 $myform.reload().fresh() // Usually combined with `fresh()`
 ```
 
-
 Example:
 -------
 With the markup provided above you'd call the plugin like this:
@@ -839,6 +822,12 @@ Radius for round corners.
 
 Update History:
 --------------
+
+**10/11/12**
+* Remove `placeholder` polyfill. It was buggy and unfinished. Check for better polyfills [here](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills)
+* Re-organize and cleanup validate method
+* Restore flags, big regression, ooops!
+* Fix some undefined errors with non-existent flags and filters
 
 **10/09/12**  
 * New [ajax](#ajax) filter
