@@ -65,7 +65,7 @@ $.extend( IdealForms.prototype, {
 
     self._adjust()
     self._attachEvents()
-    self._getUserInputs().change() // Start fresh
+    self.fresh() // Start fresh
 
   },
 
