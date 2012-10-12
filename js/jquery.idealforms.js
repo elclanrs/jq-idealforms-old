@@ -23,7 +23,7 @@ var IdealForms = function( element, options ) {
   self.$tabs = self.$form.find('section')
 
   // Set localized filters
-  $.extend($.idealforms.filters, getFilters())
+  $.extend( $.idealforms.filters, getFilters() )
 
   self._init()
 
@@ -31,12 +31,14 @@ var IdealForms = function( element, options ) {
 
 // Plugin
 $.fn.idealforms = function( options ) {
-  return this.each( function() {
-    $(this).data('idealforms', new IdealForms( this, options ) )
+  return this.each(function () {
+    if ( !$.data( this, 'idealforms' ) ) {
+      $.data( this, 'idealforms', new IdealForms( this, options ) )
+    }
   })
 }
 
 // Get LESS variables
 var LessVars = {
-  fieldWidth: Utils.getLessVar('ideal-field-width', 'width')
+  fieldWidth: Utils.getLessVar( 'ideal-field-width', 'width' )
 }
