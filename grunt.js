@@ -42,7 +42,7 @@ module.exports = function( grunt ) {
     },
 
     watch: {
-      files: ['js/src/*.js', 'less/*.less'],
+      files: ['js/src/*.js', 'less/**/*.less'],
       tasks: ['default']
     }
 
