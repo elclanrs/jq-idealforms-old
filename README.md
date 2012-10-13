@@ -17,6 +17,7 @@
 
 ### Updates:
 **10/12/12**
+* Setup grunt.js
 * Massive refactoring and cleanup
 
 [Update history](#update-history)
