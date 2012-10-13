@@ -32,8 +32,8 @@
 ###  Help:
 * Help localizing Ideal Forms in other languages.
 
-Index:
------
+Table of contents:
+------------------
 
 - [Setup](#setup)
 - [Markup](#markup)
