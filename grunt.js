@@ -6,18 +6,12 @@ module.exports = function( grunt ) {
   grunt.initConfig({
 
     less: {
-      devel: {
+      dist: {
         options: {
           paths: ['less'],
           yuicompress: true
         },
         files: { 'css/jquery.idealforms.min.css': 'less/jquery.idealforms.less' }
-      },
-      prod: {
-        options: {
-          paths: ['less']
-        },
-        files: { 'css/jquery.idealforms.css': 'less/jquery.idealforms.less' }
       }
     },
 
