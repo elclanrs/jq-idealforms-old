@@ -1317,7 +1317,9 @@ $.extend( IdealForms.prototype, {
     var $error = $('<span class="ideal-error" />')
     var $valid = $('<i class="ideal-icon ideal-icon-valid" />')
     var $invalid = $('<i class="ideal-icon ideal-icon-invalid"/>')
-      .click(function(){ alert('hey') })
+      .click(function(){
+        $(this).parent().find('input:first, textarea, select').focus()
+      })
 
     // Basic markup
     $element.closest('div').addClass('ideal-wrap')
@@ -1559,7 +1561,6 @@ $.extend( IdealForms.prototype, {
   }
 
 })
-
 
 /*
  * Public Methods
