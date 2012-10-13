@@ -1,5 +1,5 @@
 #!/bin/sh
-cd js && sh concat.sh && cd ..
+cd js && grunt && cd ..
 lessc -x less/jquery.idealforms.less css/jquery.idealforms.css
 echo 'Commit message: '
 read commit
