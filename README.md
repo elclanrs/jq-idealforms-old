@@ -7,6 +7,8 @@
 * **jQuery 1.7+, UI 1.8+**
 * **License:** [GPL](http://www.gnu.org/licenses/gpl.html) or [MIT](http://en.wikipedia.org/wiki/MIT_License)
 
+[Download a zip will all you need](https://github.com/elclanrs/jq-idealforms/raw/master/zip/jquery.idealforms.zip)
+
 ###  Features:
 * Fully responsive (AKA adaptive, adapts to the container, no css media queries needed)
 * Keyboard support
