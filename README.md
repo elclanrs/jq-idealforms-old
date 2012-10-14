@@ -728,46 +728,27 @@ var $myform = $('#myform').idealforms({
   inputs: {
     'username': {
       filters: 'required username exclude',
-      data: {
-        exclude: ['user', 'username', 'admin']
-      }
+      data: { exclude: ['user', 'username', 'admin'] }
     },
-    'date': {
-      filters: 'date'
-    },
+    'date': { filters: 'date' },
     'comments': {
       filters: 'min max',
-      data: {
-        min: 50
-        max: 200
-      }
+      data: { min: 50, max: 200 }
     },
     'colors': {
       filters: 'exclude',
-      data: {
-        exclude: ['default']
-      },
-      errors: {
-        exclude: 'Choose a color from the list.'
-      }
+      data: { exclude: ['default'] },
+      errors: { exclude: 'Choose a color from the list.' }
     },
     'langs[]': {
       filters: 'min',
-      data: {
-        min: 2
-      },
-      errors: {
-        min: 'Check at least <strong>2</strong> languages.'
-      }
+      data: { min: 2 },
+      errors: { min: 'Check at least <strong>2</strong> languages.' }
     },
     'options': {
       filters: 'min'
-      data: {
-        min: 1
-      },
-      errors: {
-        min: 'Check only <strong>1</strong> option.'
-      }
+      data: { min: 1 },
+      errors: { min: 'Check only <strong>1</strong> option.' }
     }
   }
 });
