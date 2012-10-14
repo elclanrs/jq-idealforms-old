@@ -422,13 +422,18 @@ Ideal Forms registers global objects for filters and flags so you can extend it 
 
 ###  Custom filters:
 ```javascript
-$.extend($.idealforms.filters, {
+$.extend( $.idealforms.filters, {
   custom: {
     regex: /regularexpression/,
     error: 'My custom error'
   },
-  another: {
-    regex: function (inputData, value) {
+  another: { 
+  /**
+   * @param {Object} inputData Contains the jQuery input as [input] and 
+   * the user options set by the user on that input as [userOptions]
+   * @param {String} value The value of the input
+   */
+    regex: function ( inputData, value ) {
       var $input = inputData.input, // the jQuery input object
           userOptions = inputData.userOptions // options specified in the plugin
       this.error = 'Something ' + value // declare error here to have access to the value
@@ -439,13 +444,15 @@ $.extend($.idealforms.filters, {
 
 ###  Custom flags:
 ```javascript
-$.extend($.idealforms.flags, {
-  /*
-   * @param input jQuery input object
-   * @param event The event that was triggered on the input (focus, blur, change, keyup)
+$.extend( $.idealforms.flags, {
+  /**
+   * @param {jQuery} input jQuery input object
+   * @param {String} event The event that was triggered on the input: focus, blur, change, keyup
    */
-  custom: function(input, event){
-    if (event === 'keyup') console.log(input.val())
+  custom: function( input, event ){
+    if ( event === 'keyup' ) { 
+      console.log( input.val() )
+    }
   }
 })
 ```
