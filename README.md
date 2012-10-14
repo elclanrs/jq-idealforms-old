@@ -747,7 +747,6 @@ Theming:
 
 **Ideal Forms** relays on a carefully crafted [LESS](http://lesscss.org/) stylesheet. Everything is customizable, from the simplest text input, to the select menus, radios, and checkboxes.
 
-###  Custom UI elements:
 Here's a list of all the Ideal Forms UI elements that can be customized: tabs, labels, headings, separators, icons, errors, text inputs, buttons, select dropdowns, radios, checkboxes, datepicker... Really, ANYTHING.
 
 ###  User config:
