@@ -403,7 +403,16 @@ echo json_encode(!in_array($_POST['username'], $usernames));
 'username': {
   filters: 'required username ajax',
   data: {
-    ajax: { url: 'validate.php' }
+    ajax: { 
+      url: 'validate.php',
+      _success: function( resp, text, xhr ) {
+        // The request was succesful
+      },
+      _error: function( xhr, text, error ) {
+        // The request failed  
+      },
+      // Other $.ajax methods
+    }
   },
   errors: {
     ajax: {
