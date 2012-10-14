@@ -393,7 +393,7 @@ In most cases passing the `url` should be enough. The server will receive the va
 **validate.php**
 ```php
 <?php
-$usernames = array('mike', 'john', 'louis', 'james'); // Usernames not available, usually extracted from a database
+$usernames = array('mike', 'john', 'louis', 'james'); // Unavailable usernames, usually from a database
 sleep(2); // Simulate delay from the server to see loading status
 echo json_encode(!in_array($_POST['username'], $usernames));
 ```
