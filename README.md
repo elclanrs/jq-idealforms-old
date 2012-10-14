@@ -360,7 +360,7 @@ This filter is designed for `file` inputs. It supports multifile in HTML5 browse
 ```javascript
 'myinput': {
   filters: 'extension',
-  data: { extension: ['jpg', 'png'] } // Always array even if just one
+  data: { extension: [ 'jpg', 'png' ] } // Always array even if just one
 }
 ```
 
