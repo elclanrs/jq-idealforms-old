@@ -216,7 +216,7 @@ globalFlags: 'noerror noicons'
 
 ### onSuccess
 ```javascript
-onSuccess: function(e){
+onSuccess: function(e) {
   // Form validates
 }
 ```
@@ -261,7 +261,7 @@ Only numbers within a range. Usually combined with `number` or `digits`.
 ```javascript
 'myinput': {
   filters: 'number range',
-  data: { range: [1, 100] }
+  data: { range: [ 1, 100 ] }
 }
 ```
 
