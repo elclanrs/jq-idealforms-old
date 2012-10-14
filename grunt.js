@@ -41,6 +41,23 @@ module.exports = function( grunt ) {
       }
     },
 
+    compress: {
+      zip: {
+        files: {
+          'zip/jquery.idealforms.zip': [
+            'css/jquery.idealforms.min.css',
+            'js/min/jquery.idealforms.min.js',
+            'less/**/*.png',
+            'less/**/*.gif',
+            'zip/readme.txt'
+          ]
+        }
+      },
+      options: {
+        flatten: true
+      }
+    },
+
     watch: {
       files: ['js/src/*.js', 'less/**/*.less'],
       tasks: ['default']
@@ -49,9 +66,10 @@ module.exports = function( grunt ) {
   })
 
   // Default task
-  grunt.registerTask('default', 'less concat min');
+  grunt.registerTask('default', 'less concat min compress');
 
   // LESS
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-compress');
 
 }
