@@ -68,7 +68,7 @@ module.exports = function( grunt ) {
   // Default task
   grunt.registerTask('default', 'less concat min compress');
 
-  // LESS
+  // Plugins
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-compress');
 
