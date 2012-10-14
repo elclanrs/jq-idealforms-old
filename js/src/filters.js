@@ -45,7 +45,7 @@ var getFilters = function () {
     },
 
     number: {
-      regex: function(i, v) { return !isNaN(v) },
+      regex: function( i, v ) { return !isNaN(v) },
       error: $.idealforms.errors.number
     },
 
@@ -95,40 +95,40 @@ var getFilters = function () {
     },
 
     min: {
-      regex: function (input, value) {
+      regex: function ( input, value ) {
         var $input = input.input,
             min = input.userOptions.data.min,
             isRadioCheck = $input.is('[type="checkbox"], [type="radio"]')
-        if (isRadioCheck) {
-          this.error = $.idealforms.errors.minOption.replace('{0}', min)
+        if ( isRadioCheck ) {
+          this.error = $.idealforms.errors.minOption.replace( '{0}', min )
           return $input.filter(':checked').length >= min
         }
-        this.error = $.idealforms.errors.minChar.replace('{0}', min)
+        this.error = $.idealforms.errors.minChar.replace( '{0}', min )
         return value.length >= min
       }
     },
 
     max: {
-      regex: function (input, value) {
+      regex: function ( input, value ) {
         var $input = input.input,
             max = input.userOptions.data.max,
             isRadioCheck = $input.is('[type="checkbox"], [type="radio"]')
-        if (isRadioCheck) {
-          this.error = $.idealforms.errors.maxOption.replace('{0}', max)
+        if ( isRadioCheck ) {
+          this.error = $.idealforms.errors.maxOption.replace( '{0}', max )
           return $input.filter(':checked').length <= max
         }
-        this.error = $.idealforms.errors.maxChar.replace('{0}', max)
+        this.error = $.idealforms.errors.maxChar.replace( '{0}', max )
         return value.length <= max
       }
     },
 
     range: {
-      regex: function (input, value) {
+      regex: function ( input, value ) {
         var range = input.userOptions.data.range,
             val = +value
         this.error = $.idealforms.errors.range
-          .replace('{0}', range[0])
-          .replace('{1}', range[1])
+          .replace( '{0}', range[0] )
+          .replace( '{1}', range[1] )
         return val >= range[0] && val <= range[1]
       }
     },
@@ -142,32 +142,32 @@ var getFilters = function () {
             ? input.userOptions.data.date
             : 'mm/dd/yyyy', // default format
 
-        delimiter = /[^mdy]/.exec(userFormat)[0],
+        delimiter = /[^mdy]/.exec( userFormat )[0],
         theFormat = userFormat.split(delimiter),
         theDate = value.split(delimiter),
 
-        isDate = function (date, format) {
+        isDate = function ( date, format ) {
           var m, d, y
-          for (var i = 0, len = format.length; i < len; i++) {
-            if (/m/.test(format[i])) m = date[i]
-            if (/d/.test(format[i])) d = date[i]
-            if (/y/.test(format[i])) y = date[i]
+          for ( var i = 0, len = format.length; i < len; i++ ) {
+            if ( /m/.test( format[i]) ) m = date[i]
+            if ( /d/.test( format[i]) ) d = date[i]
+            if ( /y/.test( format[i]) ) y = date[i]
           }
           return (
             m > 0 && m < 13 &&
             y && y.length === 4 &&
-            d > 0 && d <= (new Date(y, m, 0)).getDate()
+            d > 0 && d <= ( new Date( y, m, 0 ) ).getDate()
           )
         }
 
-        this.error = $.idealforms.errors.date.replace('{0}', userFormat)
+        this.error = $.idealforms.errors.date.replace( '{0}', userFormat )
 
-        return isDate(theDate, theFormat)
+        return isDate( theDate, theFormat )
       }
     },
 
     dob: {
-      regex: function (input, value) {
+      regex: function ( input, value ) {
         var
 
         userFormat =
@@ -184,10 +184,10 @@ var getFilters = function () {
         },
 
         // Use internal date filter to validate the date
-        isDate = filters.date.regex(dateInput, value),
+        isDate = filters.date.regex( dateInput, value ),
 
         // DOB
-        theYear = /\d{4}/.exec(value),
+        theYear = /\d{4}/.exec( value ),
         maxYear = new Date().getFullYear(), // Current year
         minYear = maxYear - 100
 
@@ -198,47 +198,47 @@ var getFilters = function () {
     },
 
     exclude: {
-      regex: function (input, value) {
+      regex: function ( input, value ) {
         var $input = input.input,
             exclude = input.userOptions.data.exclude,
             isOption = $input.is('[type="checkbox"], [type="radio"], select')
         this.error = isOption
-          ? $.idealforms.errors.excludeOption.replace('{0}', value)
-          : this.error = $.idealforms.errors.exclude.replace('{0}', value)
-        return $.inArray(value, exclude) === -1
+          ? $.idealforms.errors.excludeOption.replace( '{0}', value )
+          : this.error = $.idealforms.errors.exclude.replace( '{0}', value )
+        return $.inArray( value, exclude ) === -1
       }
     },
 
     equalto: {
-      regex: function (input, value) {
-        var $equals = $(input.userOptions.data.equalto),
+      regex: function ( input, value ) {
+        var $equals = $( input.userOptions.data.equalto ),
             $input = input.input,
             name = $equals.attr('name') || $equals.attr('id'),
             isValid = $equals.parents('.ideal-field')
               .filter(function(){ return $(this).data('ideal-isvalid') === true })
               .length
-        if (!isValid) { return false }
-        this.error = $.idealforms.errors.equalto.replace('{0}', name)
+        if ( !isValid ) { return false }
+        this.error = $.idealforms.errors.equalto.replace( '{0}', name )
         return $input.val() === $equals.val()
       }
     },
 
     extension: {
-      regex: function (input, value) {
+      regex: function ( input, value ) {
         var files = input.input[0].files || [{ name: value }],
             extensions = input.userOptions.data.extension,
-            re = new RegExp('\\.'+ extensions.join('|') +'$', 'i'),
+            re = new RegExp( '\\.'+ extensions.join('|') +'$', 'i' ),
             valid = false
-        for (var i = 0, len = files.length; i < len; i++) {
-          valid = re.test(files[i].name);
+        for ( var i = 0, len = files.length; i < len; i++ ) {
+          valid = re.test( files[i].name );
         }
-        this.error = $.idealforms.errors.extension.replace('{0}', extensions.join('", "'))
+        this.error = $.idealforms.errors.extension.replace( '{0}', extensions.join('", "') )
         return valid
       }
     },
 
     ajax: {
-      regex: function(input, value, showOrHideError) {
+      regex: function( input, value, showOrHideError ) {
 
         var self = this
         var $input = input.input
@@ -251,35 +251,46 @@ var getFilters = function () {
         self.error = {}
         self.error.success = customErrors && customErrors.success
           ? customErrors.success
-          : $.idealforms.errors.ajaxSuccess.replace('{0}', value)
+          : $.idealforms.errors.ajaxSuccess.replace( '{0}', value )
         self.error.fail = customErrors && customErrors.error
           ? customErrors.error
           : $.idealforms.errors.ajaxError
 
         // Send input name as $_POST[name]
         var data = {}
-        data[name] = $.trim(value)
+        data[ name ] = $.trim( value )
 
-        // Default ajax options
-        var ajaxOps = $.extend({
+        // Ajax options defined by the user
+        var userAjaxOps = input.userOptions.data.ajax
+
+        var ajaxOps = {
           type: 'post',
           dataType: 'json',
           data: data,
-          success: function(resp) {
-            showOrHideError(self.error.success, resp)
+          success: function( resp, text, xhr ) {
+            showOrHideError( self.error.success, resp )
             $input.data({
               'ideal-ajax-error': self.error.success,
               'ideal-ajax-resp': resp
             })
             $input.trigger('change') // to update counter
             $field.removeClass('ajax')
+            // Run custom success callback
+            if( userAjaxOps._success ) {
+              userAjaxOps._success( resp, text, xhr )
+            }
           },
-          error: function() {
-            showOrHideError(self.error.fail, false)
-            $input.data('ideal-ajax-error', self.error.fail)
+          error: function( xhr, text, error ) {
+            showOrHideError( self.error.fail, false )
+            $input.data( 'ideal-ajax-error', self.error.fail )
             $field.removeClass('ajax')
+            // Run custom error callback
+            if ( userAjaxOps._error && text !== 'abort' ) {
+              userAjaxOps._error( xhr, text, error )
+            }
           }
-        }, input.userOptions.data.ajax)
+        }
+        $.extend( ajaxOps, userAjaxOps )
 
         // Init
         $input.removeData('ideal-ajax-resp')
@@ -287,7 +298,7 @@ var getFilters = function () {
 
         // Run request and save it to be able to abort it
         // so requests don't bubble
-        $.idealforms.ajaxRequests[name] = $.ajax(ajaxOps)
+        $.idealforms.ajaxRequests[ name ] = $.ajax( ajaxOps )
 
       }
     }
