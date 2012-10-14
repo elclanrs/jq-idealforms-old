@@ -201,12 +201,8 @@ inputs: {
   // The name attribute of the input in quotes
   'myinput': {
     filters: 'required min',
-    data: {
-      min: 10
-    },
-    errors: {
-      min: 'At least 10 characters'
-    },
+    data: { min: 10 },
+    errors: { min: 'At least 10 characters' },
     flags: 'noclass noinvalidicon'
   }
 }
@@ -265,9 +261,7 @@ Only numbers within a range. Usually combined with `number` or `digits`.
 ```javascript
 'myinput': {
   filters: 'number range',
-  data: {
-    range: [1, 100]
-  }
+  data: { range: [1, 100] }
 }
 ```
 
@@ -300,9 +294,7 @@ Must be a valid date. This filter effectively validates a date, so stuff like `0
 ```javascript
 'myinput': {
   filters: 'date',
-  data: {
-    date: 'dd-mm-yyyy' // or `yyyy~dd~mm` or `mm*yyyy*dd`...
-  }
+  data: { date: 'dd-mm-yyyy' } // or `yyyy~dd~mm` or `mm*yyyy*dd`
 }
 ```
 To use the datepicker you need to load jQuery UI and add the class `datepicker` to your date input. Ideal Forms will apply the custom format that you specify without having to configure the datepicker. It's seamless.
@@ -313,9 +305,7 @@ Must be a valid date of birth in this century, that is 100 years range from the 
 ```javascript
 'myinput': {
   filters: 'dob',
-  data: {
-    dob: 'yyyy/dd/mm'
-  }
+  data: { dob: 'yyyy/dd/mm' }
 }
 ```
 
@@ -326,9 +316,7 @@ Must be a valid date of birth in this century, that is 100 years range from the 
 ```javascript
 'myinput': {
   filters: 'min',
-  data: {
-    min: 10
-  }
+  data: { min: 10 }
 }
 ```
 
@@ -339,9 +327,7 @@ Must be a valid date of birth in this century, that is 100 years range from the 
 ```javascript
 'myinput': {
   filters: 'max',
-  data: {
-    max: 10
-  }
+  data: { max: 10 }
 }
 ```
 
@@ -365,10 +351,7 @@ The value must match a value of another input.
 ```javascript
 'myinput': {
   filters: 'equalto',
-  data: {
-    // You can use any valid jQuery selector
-    equalto: '#myid'
-  }
+  data: { equalto: '#myid' } // You can use any valid jQuery selector
 }
 ```
 
@@ -377,9 +360,7 @@ This filter is designed for `file` inputs. It supports multifile in HTML5 browse
 ```javascript
 'myinput': {
   filters: 'extension',
-  data: {
-    extension: ['jpg', 'png'] // Always array even if just one
-  }
+  data: { extension: ['jpg', 'png'] } // Always array even if just one
 }
 ```
 
@@ -487,7 +468,7 @@ var myOps = {
     'number': { filters: 'number' } // add new input to validate
   }
 }
-$myform.setOptions(myOps)
+$myform.setOptions( myOps )
 ```
 
 **Note:** The `disableCustom` option cannot be modified after initialization.
@@ -499,7 +480,7 @@ $myform.setOptions(myOps)
 Override the options of a particular field.
 
 ```javascript
-$myform.setFieldOptions('username', { filters: 'username' })
+$myform.setFieldOptions( 'username', { filters: 'username' } )
 ```
 
 ### isValid
@@ -507,7 +488,7 @@ Check if the form is valid.
 
 **chainable:** no
 ```javascript
-if ($myform.isValid()) {
+if ( $myform.isValid() ) {
   // do something...
 }
 ```
@@ -517,10 +498,10 @@ Check if a particular field is valid. The function takes a string. Ideal Forms w
 
 **chainable:** no
 ```javascript
-if ($myform.isValidField('username')) { // name="username" OR #username
+if ( $myform.isValidField('username') ) { // name="username" OR #username
   // do something...
 }
-if ($myform.isValidField('colors[]')) { // name="colors[]"
+if ( $myform.isValidField('colors[]') ) { // name="colors[]"
   // do something...
 }
 ```
@@ -598,7 +579,7 @@ var newFields = [
     appendToTab: 'My Section'
   }
 ]
-$myform.addFields(newFields)
+$myform.addFields( newFields )
 ```
 
 ### removeFields
@@ -608,7 +589,7 @@ Remove fields from the form dynamically. Ideal Forms will look for the `name` at
 
 ```javascript
 $myform.removeFields('username')
-$myform.removeFields(['username', 'password', 'email'])
+$myform.removeFields([ 'username', 'password', 'email' ])
 ```
 
 ### toggleFields
@@ -616,7 +597,7 @@ Hide or show fields. When the fields are hidden they will be excluded from the v
 
 ```javascript
 $myform.toggleFields('username')
-$myform.toggleFields(['username', 'password', 'email'])
+$myform.toggleFields([ 'username', 'password', 'email' ])
 ```
 
 ### focusFirst
@@ -690,7 +671,7 @@ Reset particular fields.
 **chainable:** yes
 ```javascript
 $myform.resetFields('username')
-$myform.resetFields(['username', 'password', 'email'])
+$myform.resetFields([ 'username', 'password', 'email' ])
 ```
 
 ### fresh
@@ -708,7 +689,7 @@ $myform.fresh()
 **chainable:** yes
 ```javascript
 $myform.freshFields('username')
-$myform.freshFields(['username', 'password', 'email'])
+$myform.freshFields([ 'username', 'password', 'email' ])
 ```
 
 ### reload
@@ -760,21 +741,7 @@ Theming:
 **Ideal Forms** relays on a carefully crafted [LESS](http://lesscss.org/) stylesheet. Everything is customizable, from the simplest text input, to the select menus, radios, and checkboxes.
 
 ###  Custom UI elements:
-Here's a list of all the Ideal Forms UI elements that can be customized:
-* Tabs
-* Labels
-* Headings
-* Separators
-* Icons
-* Errors
-* Text inputs
-* Buttons
-* Select dropdowns
-* Radios
-* Checkboxes
-* Datepicker
-
-Really, ANYTHING.
+Here's a list of all the Ideal Forms UI elements that can be customized: tabs, labels, headings, separators, icons, errors, text inputs, buttons, select dropdowns, radios, checkboxes, datepicker... Really, ANYTHING.
 
 ###  User config:
 
