@@ -88,7 +88,7 @@ $.extend( IdealForms.prototype, {
     return this.$form.find('[name="'+ Utils.getKeys( this.opts.inputs ).join('"], [name="') +'"]')
   },
 
-  _getTab: function ( nameOrIdx ) {
+  _getTab: function( nameOrIdx ) {
     var self = this
     var isNumber = !isNaN( nameOrIdx )
     if ( isNumber ) {
@@ -262,7 +262,7 @@ $.extend( IdealForms.prototype, {
     // Generate markup for current element type
     idealElements[ elementType ] ? idealElements[ elementType ]() : $.noop()
 
-    $error.add($valid).add($invalid).hide() // Start fresh
+    $error.add( $valid ).add( $invalid ).hide() // Start fresh
 
   },
 

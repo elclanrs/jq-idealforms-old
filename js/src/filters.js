@@ -35,7 +35,7 @@ $.idealforms.errors = {
  * Get all default filters
  * @returns object
  */
-var getFilters = function () {
+var getFilters = function() {
 
   var filters = {
 
@@ -95,7 +95,7 @@ var getFilters = function () {
     },
 
     min: {
-      regex: function ( input, value ) {
+      regex: function( input, value ) {
         var $input = input.input,
             min = input.userOptions.data.min,
             isRadioCheck = $input.is('[type="checkbox"], [type="radio"]')
@@ -109,7 +109,7 @@ var getFilters = function () {
     },
 
     max: {
-      regex: function ( input, value ) {
+      regex: function( input, value ) {
         var $input = input.input,
             max = input.userOptions.data.max,
             isRadioCheck = $input.is('[type="checkbox"], [type="radio"]')
@@ -123,7 +123,7 @@ var getFilters = function () {
     },
 
     range: {
-      regex: function ( input, value ) {
+      regex: function( input, value ) {
         var range = input.userOptions.data.range,
             val = +value
         this.error = $.idealforms.errors.range
@@ -134,7 +134,7 @@ var getFilters = function () {
     },
 
     date: {
-      regex: function (input, value) {
+      regex: function( input, value ) {
         var
 
         userFormat =
@@ -146,7 +146,7 @@ var getFilters = function () {
         theFormat = userFormat.split(delimiter),
         theDate = value.split(delimiter),
 
-        isDate = function ( date, format ) {
+        isDate = function( date, format ) {
           var m, d, y
           for ( var i = 0, len = format.length; i < len; i++ ) {
             if ( /m/.test( format[i]) ) m = date[i]
@@ -167,7 +167,7 @@ var getFilters = function () {
     },
 
     dob: {
-      regex: function ( input, value ) {
+      regex: function( input, value ) {
         var
 
         userFormat =
@@ -198,7 +198,7 @@ var getFilters = function () {
     },
 
     exclude: {
-      regex: function ( input, value ) {
+      regex: function( input, value ) {
         var $input = input.input,
             exclude = input.userOptions.data.exclude,
             isOption = $input.is('[type="checkbox"], [type="radio"], select')
@@ -210,7 +210,7 @@ var getFilters = function () {
     },
 
     equalto: {
-      regex: function ( input, value ) {
+      regex: function( input, value ) {
         var $equals = $( input.userOptions.data.equalto ),
             $input = input.input,
             name = $equals.attr('name') || $equals.attr('id'),
@@ -224,7 +224,7 @@ var getFilters = function () {
     },
 
     extension: {
-      regex: function ( input, value ) {
+      regex: function( input, value ) {
         var files = input.input[0].files || [{ name: value }],
             extensions = input.userOptions.data.extension,
             re = new RegExp( '\\.'+ extensions.join('|') +'$', 'i' ),
@@ -299,7 +299,6 @@ var getFilters = function () {
         // Run request and save it to be able to abort it
         // so requests don't bubble
         $.idealforms.ajaxRequests[ name ] = $.ajax( ajaxOps )
-
       }
     }
 

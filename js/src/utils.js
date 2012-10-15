@@ -8,11 +8,11 @@ var Utils = {
    * @param {jQuery object} $elms
    * @returns {number}
    */
-  getMaxWidth: function ($elms) {
+  getMaxWidth: function( $elms ) {
     var maxWidth = 0
     $elms.each(function() {
       var width = $(this).outerWidth()
-      if (width > maxWidth) {
+      if ( width > maxWidth ) {
         maxWidth = width
       }
     })
@@ -25,43 +25,43 @@ var Utils = {
    * @param {string} prop The css property where the data is stored.
    * @returns {number, string}
    */
-  getLessVar: function (name, prop) {
-    var value = $('<p class="' + name + '"></p>').hide().appendTo('body').css(prop)
+  getLessVar: function( name, prop ) {
+    var value = $('<p class="' + name + '"></p>').hide().appendTo('body').css( prop )
     $('.' + name).remove()
-    return (/^\d+/.test(value) ? parseInt(value, 10) : value)
+    return ( /^\d+/.test( value ) ? parseInt( value, 10 ) : value )
   },
   /**
    * Like ES5 Object.keys
    */
-  getKeys: function (obj) {
+  getKeys: function( obj ) {
     var keys = []
     for(var key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        keys.push(key)
+      if ( obj.hasOwnProperty( key ) ) {
+        keys.push( key )
       }
     }
     return keys
   },
   // Get lenght of an object
-  getObjSize: function(obj) {
+  getObjSize: function( obj ) {
     var size = 0, key;
-    for (key in obj) {
-      if (obj.hasOwnProperty(key)) {
+    for ( key in obj ) {
+      if ( obj.hasOwnProperty( key ) ) {
         size++;
       }
     }
     return size;
   },
-  isFunction: function (obj) {
+  isFunction: function( obj ) {
     return typeof obj === 'function'
   },
-  isRegex: function (obj) {
+  isRegex: function( obj ) {
     return obj instanceof RegExp
   },
-  isString: function (obj) {
+  isString: function( obj ) {
     return typeof obj === 'string'
   },
-  getByNameOrId: function (str) {
+  getByNameOrId: function( str ) {
     var $el = $('[name="'+ str +'"]').length
       ? $('[name="'+ str +'"]') // by name
       : $('#'+ str) // by id
@@ -69,33 +69,32 @@ var Utils = {
       ? $el
       : $.error('The field "'+ str + '" doesn\'t exist.')
   },
-  getFieldsFromArray: function (fields) {
+  getFieldsFromArray: function( fields ) {
     var f = []
-    for (var i = 0, l = fields.length; i < l; i++) {
-      f.push( Utils.getByNameOrId(fields[i]).get(0) )
+    for ( var i = 0, l = fields.length; i < l; i++ ) {
+      f.push( Utils.getByNameOrId( fields[i] ).get(0) )
     }
-    return $(f)
+    return $( f )
   },
-  convertToArray: function (obj) {
-    return Object.prototype.toString.call(obj) === '[object Array]'
-      ? obj
-      : [obj]
+  convertToArray: function( obj ) {
+    return Object.prototype.toString.call( obj ) === '[object Array]'
+      ? obj : [ obj ]
   },
   /**
    * Determine type of any Ideal Forms element
    * @param $input jQuery $input object
    */
-  getIdealType: function ($el) {
+  getIdealType: function( $el ) {
     var type = $el.attr('type') || $el[0].tagName.toLowerCase()
     return (
-      /(text|password|email|number|search|url|tel|textarea)/.test(type) && 'text' ||
-      /file/.test(type) && 'file' ||
-      /select/.test(type) && 'select' ||
-      /(radio|checkbox)/.test(type) && 'radiocheck' ||
-      /(button|submit|reset)/.test(type) && 'button' ||
-      /h\d/.test(type) && 'heading' ||
-      /hr/.test(type) && 'separator' ||
-      /hidden/.test(type) && 'hidden'
+      /(text|password|email|number|search|url|tel|textarea)/.test( type ) && 'text' ||
+      /file/.test( type ) && 'file' ||
+      /select/.test( type ) && 'select' ||
+      /(radio|checkbox)/.test( type ) && 'radiocheck' ||
+      /(button|submit|reset)/.test( type ) && 'button' ||
+      /h\d/.test( type ) && 'heading' ||
+      /hr/.test( type ) && 'separator' ||
+      /hidden/.test( type ) && 'hidden'
     )
   },
   /**
@@ -103,16 +102,16 @@ var Utils = {
    * @param name `name` attribute of the input
    * @param type `type` or `tagName` of the input
    */
-  makeInput: function (name, type, list, placeholder) {
+  makeInput: function( name, type, list, placeholder ) {
 
     var markup, items = [], item, value, i, len
 
-    function splitValue(str) {
+    function splitValue( str ) {
       var item, value, arr
-      if (/:/.test(str)) {
+      if ( /:/.test( str ) ) {
         arr = str.split(':')
-        item = arr[0]
-        value = arr[1]
+        item = arr[ 0 ]
+        value = arr[ 1 ]
       } else {
         item = value = str
       }
@@ -120,7 +119,7 @@ var Utils = {
     }
 
     // Text & file
-    if (/^(text|password|email|number|search|url|tel|file|hidden)$/.test(type))
+    if ( /^(text|password|email|number|search|url|tel|file|hidden)$/.test(type) )
       markup = '<input '+
         'type="'+ type +'" '+
         'id="'+ name +'" '+
@@ -129,16 +128,16 @@ var Utils = {
         '/>'
 
     // Textarea
-    if (/textarea/.test(type)) {
+    if ( /textarea/.test( type ) ) {
       markup = '<textarea id="'+ name +'" name="'+ name +'"></textarea>'
     }
 
     // Select
-    if (/select/.test(type)) {
+    if ( /select/.test( type ) ) {
       items = []
-      for (i = 0, len = list.length; i < len; i++) {
-        item = splitValue(list[i]).item
-        value = splitValue(list[i]).value
+      for ( i = 0, len = list.length; i < len; i++ ) {
+        item = splitValue( list[ i ] ).item
+        value = splitValue( list[ i ] ).value
         items.push('<option value="'+ value +'">'+ item +'</option>')
       }
       markup =
@@ -148,11 +147,11 @@ var Utils = {
     }
 
     // Radiocheck
-    if (/(radio|checkbox)/.test(type)) {
+    if ( /(radio|checkbox)/.test( type ) ) {
       items = []
-      for (i = 0, len = list.length; i < len; i++) {
-        item = splitValue(list[i]).item
-        value = splitValue(list[i]).value
+      for ( i = 0, len = list.length; i < len; i++ ) {
+        item = splitValue( list[ i ] ).item
+        value = splitValue( list[ i ] ).value
         items.push(
           '<label>'+
             '<input type="'+ type +'" name="'+ name +'" value="'+ value +'" />'+
