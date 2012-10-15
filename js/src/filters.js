@@ -292,7 +292,6 @@ var getFilters = function() {
         $.extend( ajaxOps, userAjaxOps )
 
         // Init
-        //$input.data( 'ideal-ajax-error', 'Loading...' )
         $input.removeData('ideal-ajax-error')
         $field.addClass('ajax')
 
