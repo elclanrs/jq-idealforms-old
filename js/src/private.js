@@ -282,6 +282,8 @@ $.extend( IdealForms.prototype, {
     var name = $input.attr('name')
     var value = $input.val()
 
+    var ajaxRequest = $.idealforms.ajaxRequests[ name ]
+
     var isRadioCheck = $input.is('[type="checkbox"], [type="radio"]')
 
     // Validation elements
@@ -329,8 +331,6 @@ $.extend( IdealForms.prototype, {
           input: isRadioCheck ? self.$form.find('[name="' + name + '"]') : $input,
           userOptions: userOptions
         }
-
-        var ajaxRequest = $.idealforms.ajaxRequests[ name ]
 
         // If field is empty and not required
         if ( !value && filter !== 'required' ) {
