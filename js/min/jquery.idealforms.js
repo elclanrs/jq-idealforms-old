@@ -1043,11 +1043,8 @@ var getFilters = function() {
           dataType: 'json',
           data: data,
           success: function( resp, text, xhr ) {
-            showOrHideError( self.error.success, resp )
-            $input.data({
-              'ideal-ajax-error': self.error.success,
-              'ideal-ajax-resp': resp
-            })
+            showOrHideError( self.error.success, false )
+            $input.data( 'ideal-ajax-error', self.error.success )
             $input.trigger('change') // to update counter
             $field.removeClass('ajax')
             // Run custom success callback
@@ -1056,19 +1053,22 @@ var getFilters = function() {
             }
           },
           error: function( xhr, text, error ) {
-            showOrHideError( self.error.fail, false )
-            $input.data( 'ideal-ajax-error', self.error.fail )
-            $field.removeClass('ajax')
-            // Run custom error callback
-            if ( userAjaxOps._error && text !== 'abort' ) {
-              userAjaxOps._error( xhr, text, error )
+            if ( text !== 'abort' ) {
+              showOrHideError( self.error.fail, false )
+              $input.data( 'ideal-ajax-error', self.error.fail )
+              $field.removeClass('ajax')
+              // Run custom error callback
+              if ( userAjaxOps._error ) {
+                userAjaxOps._error( xhr, text, error )
+              }
             }
           }
         }
         $.extend( ajaxOps, userAjaxOps )
 
         // Init
-        $input.removeData('ideal-ajax-resp')
+        //$input.data( 'ideal-ajax-error', 'Loading...' )
+        $input.removeData('ideal-ajax-error')
         $field.addClass('ajax')
 
         // Run request and save it to be able to abort it
@@ -1460,6 +1460,8 @@ $.extend( IdealForms.prototype, {
           userOptions: userOptions
         }
 
+        var ajaxRequest = $.idealforms.ajaxRequests[ name ]
+
         // If field is empty and not required
         if ( !value && filter !== 'required' ) {
           resetError()
@@ -1467,19 +1469,24 @@ $.extend( IdealForms.prototype, {
         }
 
         if ( theFilter ) {
+
+          // Abort and reset ajax if there's a request pending
+          if ( e.type === 'keyup' && ajaxRequest ) {
+            ajaxRequest.abort()
+            $field.removeClass('ajax')
+          }
+
           // AJAX
           if ( filter === 'ajax' ) {
-            var ajaxRequest = $.idealforms.ajaxRequests[ name ]
-            showOrHideError( error, false ) // set invalid field till response comes back
+            showOrHideError( error, false ) // set invalid till response comes back
+            $error.hide()
             if ( e.type === 'keyup' ) {
-              if ( ajaxRequest ) { ajaxRequest.abort() }
               theFilter.regex( inputData, value, showOrHideError ) // runs the ajax callback
-              $error.hide()
             } else {
-              showOrHideError(
-                $input.data('ideal-ajax-error'),
-                $input.data('ideal-ajax-resp') || false
-              )
+              var ajaxError = $input.data('ideal-ajax-error')
+              if ( ajaxError ) {
+                showOrHideError( ajaxError, false )
+              }
             }
           }
           // All other filters

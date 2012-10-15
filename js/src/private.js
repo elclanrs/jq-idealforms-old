@@ -330,6 +330,8 @@ $.extend( IdealForms.prototype, {
           userOptions: userOptions
         }
 
+        var ajaxRequest = $.idealforms.ajaxRequests[ name ]
+
         // If field is empty and not required
         if ( !value && filter !== 'required' ) {
           resetError()
@@ -337,19 +339,24 @@ $.extend( IdealForms.prototype, {
         }
 
         if ( theFilter ) {
+
+          // Abort and reset ajax if there's a request pending
+          if ( e.type === 'keyup' && ajaxRequest ) {
+            ajaxRequest.abort()
+            $field.removeClass('ajax')
+          }
+
           // AJAX
           if ( filter === 'ajax' ) {
-            var ajaxRequest = $.idealforms.ajaxRequests[ name ]
-            showOrHideError( error, false ) // set invalid field till response comes back
+            showOrHideError( error, false ) // set invalid till response comes back
+            $error.hide()
             if ( e.type === 'keyup' ) {
-              if ( ajaxRequest ) { ajaxRequest.abort() }
               theFilter.regex( inputData, value, showOrHideError ) // runs the ajax callback
-              $error.hide()
             } else {
-              showOrHideError(
-                $input.data('ideal-ajax-error'),
-                $input.data('ideal-ajax-resp') || false
-              )
+              var ajaxError = $input.data('ideal-ajax-error')
+              if ( ajaxError ) {
+                showOrHideError( ajaxError, false )
+              }
             }
           }
           // All other filters

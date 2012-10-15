@@ -268,11 +268,8 @@ var getFilters = function() {
           dataType: 'json',
           data: data,
           success: function( resp, text, xhr ) {
-            showOrHideError( self.error.success, resp )
-            $input.data({
-              'ideal-ajax-error': self.error.success,
-              'ideal-ajax-resp': resp
-            })
+            showOrHideError( self.error.success, false )
+            $input.data( 'ideal-ajax-error', self.error.success )
             $input.trigger('change') // to update counter
             $field.removeClass('ajax')
             // Run custom success callback
@@ -281,19 +278,22 @@ var getFilters = function() {
             }
           },
           error: function( xhr, text, error ) {
-            showOrHideError( self.error.fail, false )
-            $input.data( 'ideal-ajax-error', self.error.fail )
-            $field.removeClass('ajax')
-            // Run custom error callback
-            if ( userAjaxOps._error && text !== 'abort' ) {
-              userAjaxOps._error( xhr, text, error )
+            if ( text !== 'abort' ) {
+              showOrHideError( self.error.fail, false )
+              $input.data( 'ideal-ajax-error', self.error.fail )
+              $field.removeClass('ajax')
+              // Run custom error callback
+              if ( userAjaxOps._error ) {
+                userAjaxOps._error( xhr, text, error )
+              }
             }
           }
         }
         $.extend( ajaxOps, userAjaxOps )
 
         // Init
-        $input.removeData('ideal-ajax-resp')
+        //$input.data( 'ideal-ajax-error', 'Loading...' )
+        $input.removeData('ideal-ajax-error')
         $field.addClass('ajax')
 
         // Run request and save it to be able to abort it
