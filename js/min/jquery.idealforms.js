@@ -1414,6 +1414,12 @@ $.extend( IdealForms.prototype, {
     var ajaxRequest = $.idealforms.ajaxRequests[ name ]
 
     var isRadioCheck = $input.is('[type="checkbox"], [type="radio"]')
+    
+    var inputData = {
+      // If is radio or check validate all inputs related by name
+      input: isRadioCheck ? self.$form.find('[name="' + name + '"]') : $input,
+      userOptions: userOptions
+    }
 
     // Validation elements
     var $field = $input.parents('.ideal-field')
@@ -1454,12 +1460,6 @@ $.extend( IdealForms.prototype, {
         var theFilter = $.idealforms.filters[ filter ]
         var customError = userOptions.errors && userOptions.errors[ filter ]
         var error = ''
-
-        var inputData = {
-          // If is radio or check validate all inputs related by name
-          input: isRadioCheck ? self.$form.find('[name="' + name + '"]') : $input,
-          userOptions: userOptions
-        }
 
         // If field is empty and not required
         if ( !value && filter !== 'required' ) {
