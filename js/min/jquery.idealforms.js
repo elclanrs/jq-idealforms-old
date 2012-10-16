@@ -1043,8 +1043,12 @@ var getFilters = function() {
           dataType: 'json',
           data: data,
           success: function( resp, text, xhr ) {
-            showOrHideError( self.error.success, false )
-            $input.data( 'ideal-ajax-error', self.error.success )
+          console.log(resp)
+            showOrHideError( self.error.success, true )
+            $input.data({
+              'ideal-ajax-resp': resp,
+              'ideal-ajax-error': self.error.success
+            })
             $input.trigger('change') // to update counter
             $field.removeClass('ajax')
             // Run custom success callback
@@ -1068,6 +1072,7 @@ var getFilters = function() {
 
         // Init
         $input.removeData('ideal-ajax-error')
+        $input.removeData('ideal-ajax-resp')
         $field.addClass('ajax')
 
         // Run request and save it to be able to abort it
@@ -1414,7 +1419,7 @@ $.extend( IdealForms.prototype, {
     var ajaxRequest = $.idealforms.ajaxRequests[ name ]
 
     var isRadioCheck = $input.is('[type="checkbox"], [type="radio"]')
-    
+
     var inputData = {
       // If is radio or check validate all inputs related by name
       input: isRadioCheck ? self.$form.find('[name="' + name + '"]') : $input,
@@ -1484,7 +1489,7 @@ $.extend( IdealForms.prototype, {
             } else {
               var ajaxError = $input.data('ideal-ajax-error')
               if ( ajaxError ) {
-                showOrHideError( ajaxError, false )
+                showOrHideError( ajaxError, $input.data('ideal-ajax-resp') || false )
               }
             }
           }
