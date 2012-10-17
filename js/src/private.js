@@ -33,8 +33,9 @@ $.extend( IdealForms.prototype, {
 
     // Add inputs specified by data-ideal
     // to the list of user inputs
-    self.$form.find('[data-ideal]').each(function(){
-      o.inputs[ this.name ] = { filters: $(this).data('ideal') }
+    self.$form.find('[data-ideal]').each(function() {
+      var userInput = o.inputs[ this.name ]
+      o.inputs[ this.name ] = userInput || { filters: $(this).data('ideal') }
     })
 
    // Responsive
