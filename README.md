@@ -543,7 +543,7 @@ The label text.
 * **type** (required):
 `text`, `password`, `email`, `number`, `url` ,`tel`, `file`, `select`, `radio`, `checkbox` and `textarea`.
 * **value**:
-The value attribbute of the field. Check `list` to add values to options.
+The value attribute of the field. Check `list` to add values to options.
 * **addBefore**:
 Insert the new field before an existing field. Takes a string. Ideal Forms will look for `name` first and then `id`.
 * **addAfter**:
