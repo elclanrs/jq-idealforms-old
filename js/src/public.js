@@ -198,9 +198,11 @@ $.extend( IdealForms.prototype, {
       var type = ops.type
       var list = ops.list || []
       var placeholder = ops.placeholder || ''
+      var value = ops.value || ''
 
       var $field = $('<div>'+
-          '<label>'+ label +':</label>'+ Utils.makeInput( name, type, list, placeholder ) +
+          '<label>'+ label +':</label>'+
+          Utils.makeInput( name, value, type, list, placeholder ) +
         '</div>')
       var $input = $field.find('input, select, textarea, :button')
 
@@ -213,7 +215,7 @@ $.extend( IdealForms.prototype, {
       // Insert in DOM
       if ( ops.addAfter ) {
         $field.insertAfter(
-          $(Utils.getByNameOrId( ops.addAfter )).parents('.ideal-wrap')
+          $( Utils.getByNameOrId( ops.addAfter ) ).parents('.ideal-wrap')
         )
       } else if ( ops.addBefore ) {
         $field.insertBefore(

@@ -126,9 +126,9 @@ var Utils = {
    * @param name `name` attribute of the input
    * @param type `type` or `tagName` of the input
    */
-  makeInput: function( name, type, list, placeholder ) {
+  makeInput: function( name, value, type, list, placeholder ) {
 
-    var markup, items = [], item, value, i, len
+    var markup, items = [], item, i, len
 
     function splitValue( str ) {
       var item, value, arr
@@ -147,13 +147,14 @@ var Utils = {
       markup = '<input '+
         'type="'+ type +'" '+
         'id="'+ name +'" '+
-        'name="'+ name +'" ' +
+        'name="'+ name +'" '+
+        'value="'+ value +'" '+
         (placeholder && 'placeholder="'+ placeholder +'"') +
         '/>'
 
     // Textarea
     if ( /textarea/.test( type ) ) {
-      markup = '<textarea id="'+ name +'" name="'+ name +'"></textarea>'
+      markup = '<textarea id="'+ name +'" name="'+ name +'" value="'+ value +'"></textarea>'
     }
 
     // Select
@@ -1780,9 +1781,11 @@ $.extend( IdealForms.prototype, {
       var type = ops.type
       var list = ops.list || []
       var placeholder = ops.placeholder || ''
+      var value = ops.value || ''
 
       var $field = $('<div>'+
-          '<label>'+ label +':</label>'+ Utils.makeInput( name, type, list, placeholder ) +
+          '<label>'+ label +':</label>'+
+          Utils.makeInput( name, value, type, list, placeholder ) +
         '</div>')
       var $input = $field.find('input, select, textarea, :button')
 
@@ -1795,7 +1798,7 @@ $.extend( IdealForms.prototype, {
       // Insert in DOM
       if ( ops.addAfter ) {
         $field.insertAfter(
-          $(Utils.getByNameOrId( ops.addAfter )).parents('.ideal-wrap')
+          $( Utils.getByNameOrId( ops.addAfter ) ).parents('.ideal-wrap')
         )
       } else if ( ops.addBefore ) {
         $field.insertBefore(
