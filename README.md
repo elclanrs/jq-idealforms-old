@@ -102,10 +102,6 @@ Markup:
 
 For Ideal Forms to work its magic create your markup using the following template as a reference, nothing fancy, just the usual form tags wrapped in a `<div>`. Drop the form into a container of any size and Ideal Forms will do the rest.
 
-**Notes:**
-* If you're working with dynamic fields check documentation on [addFields](#addfields).
-* If you want to add custom elements to the form _always_ wrap them in a `div` with class `ideal-wrap`.
-
 ```html
 <form id="my-form">
 
@@ -187,6 +183,10 @@ Alternatively, for very simple forms, you can do it "the easy way" and just add 
   <div><label>E-Mail:</label><input type="text" name="email" data-ideal="required email"/></div>
 </form>
 ```
+
+**Notes:**
+* If you're working with dynamic fields check documentation on [addFields](#addfields).
+* If you want to add custom elements to the form _always_ wrap them in a `div` with class `ideal-wrap`.
 
 ## Options:
 
