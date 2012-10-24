@@ -17,9 +17,8 @@
 * Localization
 
 ### Updates:
-**10/12/12**
-* Setup grunt.js
-* Massive refactoring and cleanup
+**10/24/12**
+* Fix serious bug in `_adjust` that caused weird behaviors with some methods. 
 
 [Update history](#update-history)
 
@@ -795,6 +794,9 @@ Radius for round corners.
 
 Update History:
 --------------
+**10/12/12**
+* Setup grunt.js
+* Massive refactoring and cleanup
 
 **10/11/12**
 * Remove `placeholder` polyfill. It was buggy and unfinished. Check for better polyfills [here](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills)
