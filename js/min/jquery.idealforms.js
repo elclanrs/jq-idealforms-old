@@ -1237,7 +1237,7 @@ $.extend( IdealForms.prototype, {
   },
 
   _getCurrentTabIdx: function() {
-    return this.$form.find('.ideal-tabs-content:visible').index()
+    return this.$tabs.index( this.$form.find('.ideal-tabs-content:visible') )
   },
 
   _updateTabsCounter: function() {
@@ -1252,7 +1252,8 @@ $.extend( IdealForms.prototype, {
 
     var self = this
     var o = self.opts
-    var formElements = this._getFormElements()
+    var formElements = self._getFormElements()
+    var curTab = self._getCurrentTabIdx()
 
     // Autocomplete causes some problems...
     formElements.inputs.attr('autocomplete', 'off')
@@ -1276,7 +1277,10 @@ $.extend( IdealForms.prototype, {
     self._setDatepicker()
 
     // Done calculating hide tabs
-    if ( self.$tabs.length ) { self.$tabs.hide().first().show() }
+    if ( self.$tabs.length ) {
+      self.$tabs.hide()
+      self.switchTab( curTab )
+    }
 
   },
 
