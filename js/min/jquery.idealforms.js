@@ -692,10 +692,10 @@ $.fn.idealRadioCheck = function() {
     $this.on({
       change: function() {
         var $this = $(this)
-        if ( $this.is(':radio') ) {
+        if ( $this.is('input[type="radio"]') ) {
           $this.parent().siblings('label').find('.ideal-radio').removeClass('checked')
         }
-        $span.toggleClass( 'checked', $(this).is(':checked') )
+        $span.toggleClass( 'checked', $this.is(':checked') )
       },
       focus: function() { $span.addClass('focus') },
       blur: function() { $span.removeClass('focus') },
@@ -1676,7 +1676,6 @@ $.extend( IdealForms.prototype, {
   reload: function() {
     this._adjust()
     this._attachEvents()
-    this._getUserInputs().change()
     return this
   },
 
