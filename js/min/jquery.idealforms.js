@@ -1741,8 +1741,6 @@ $.extend( IdealForms.prototype, {
       self.setFieldOptions( name, { filters: dataFilters } )
     })
 
-    self._getUserInputs().change()
-
     return this
   },
 
