@@ -17,8 +17,8 @@
 * Localization
 
 ### Updates:
-**10/24/12**
-* Fix serious bug in `_adjust` that caused weird behaviors with some methods. 
+**11/01/12**
+* Refactor custom file because of bug that prevented IE from submitting the file. 
 
 [Update history](#update-history)
 
@@ -794,6 +794,9 @@ Radius for round corners.
 
 Update History:
 --------------
+**10/24/12**
+* Fix serious bug in `_adjust` that caused weird behaviors with some methods.
+
 **10/12/12**
 * Setup grunt.js
 * Massive refactoring and cleanup
