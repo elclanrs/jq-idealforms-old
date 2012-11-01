@@ -765,7 +765,6 @@ $.fn.idealRadioCheck = function() {
       })
 
       $input.on({
-        keyup: function () { $file.trigger('change') },
         focus: function () { $file.trigger('change') },
         blur: function () { $file.trigger('blur') },
         keydown: function( e ) {
@@ -775,7 +774,8 @@ $.fn.idealRadioCheck = function() {
             // On some browsers the value is read-only
             // with this trick we remove the old input and add
             // a clean clone with all the original events attached
-            $file.replaceWith( $file = $file.clone( true ) )
+            $file.replaceWith( $file = $file.val('').clone( true ) )
+            $file.trigger('change')
             $input.val('')
           } else if ( e.which === 9 ){ // TAB
             return
