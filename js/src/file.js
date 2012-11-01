@@ -9,7 +9,6 @@
     return this.each(function() {
 
       var $file = $(this).addClass('ideal-file'), // the original file input
-          // label that will be used for IE hack
           $wrap = $('<div class="ideal-file-wrap">'),
           $input = $('<input type="text" class="ideal-file-filename" />'),
           // Button that will be used in non-IE browsers
