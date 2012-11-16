@@ -132,7 +132,7 @@ For Ideal Forms to work its magic create your markup using the following templat
       </select>
     </div>
 
-  <section> <!-- END TAB -->
+  </section> <!-- END TAB -->
 
   <!-- TAB -->
   <section name="Second tab">
@@ -158,7 +158,7 @@ For Ideal Forms to work its magic create your markup using the following templat
       <label><input type="radio" name="options" value="Three"/>Three</label>
     </div>
 
-  <section> <!-- END TAB -->
+  </section> <!-- END TAB -->
 
   <!-- Separator -->
   <div><hr/></div>
@@ -715,7 +715,7 @@ Example:
 With the markup provided above you'd call the plugin like this:
 
 ```javascript
-var $myform = $('#myform').idealforms({
+var $myform = $('#my-form').idealforms({
   inputs: {
     'username': {
       filters: 'required username exclude',
