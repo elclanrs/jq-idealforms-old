@@ -216,8 +216,8 @@ $.fn.idealSelect = function () {
 
             $matches = idealSelect.items
               .filter(function () {
-                var re = new RegExp('^' + letter, 'i')
-                return re.test($(this).text())
+                return /^\w+$/i.test( letter ) && // not allow modifier keys ( ctrl, cmd, meta, super... )
+                  new RegExp('^' + letter, 'i').test( $(this).text() ) // find first match
               }),
             nMatches = $matches.length,
 
