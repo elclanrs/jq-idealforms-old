@@ -1,0 +1,46 @@
+/*--------------------------------------------------------
+  IE9
+------------------------------------------------------- */
+
+.ie9 {
+  /* IE9 doesn't like border-radius + gradient */ 
+  .ideal-form * { border-radius: 0 !important; }
+  .ideal-tabs {
+    .ideal-tabs-tab-counter {
+      border-radius: 10em !important;
+    }
+  }
+}
+
+/*--------------------------------------------------------
+  IE8
+------------------------------------------------------- */
+
+.ie8 {
+  .ideal-form {
+    input[type="password"] {
+      /* For IE8 empty character bug with custom fonts */
+      font-family: Arial;
+    }
+    /* IE8 doesn't play nice with :after pseudo */
+    .ideal-error { filter: 0; }
+    .ideal-tabs-tab {
+      &:after, &:before { border: 0; }
+      padding: 0 1.5em;
+      border-right: @border-width solid #aaa;
+    }
+    .ideal-tabs-tab-active { padding-right: 3.5em; }
+    .ideal-select-open .ideal-select-title:after {
+      // Disable in IE cuz glitches
+      @size: @select-arrow-size;
+      border-color: @select-focus-arrow transparent transparent transparent;
+      margin-top: -(@size - @size/1.5);
+    }
+  }
+  .ideal-form.stack {
+    .ideal-tabs-tab {
+      border-left: 0;
+      border-right: 0;
+    }
+  }
+}

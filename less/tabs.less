@@ -1,0 +1,152 @@
+/* --------------------------------------------------------
+
+  Tabs:
+
+/*------------------------------------------------------ */
+
+.ideal-tabs-content { .clearfix; }
+
+.ideal-tabs {
+
+  /* -------------------------------------------------------
+    Mixins:
+  -------------------------------------------------------- */
+
+  /* Tab */
+  @height: @font-size*2.5;
+  @bg: @tabs-bg;
+  @border: darken(@bg, 20%);
+
+  /* Arrow */
+  @width: ceil(@height/2);
+  @diff: ceil(@width - @width/1.5);
+  .arrow() {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    right: -@height + @diff;
+    border-width: @width @width @width @width/1.5;
+    border-style: solid;
+    border-color: transparent transparent transparent @tab-bg;
+  }
+  .separator() {
+    .arrow;
+    border-left-color: @border;
+    right: -@height + @diff - @border-width;
+  }
+
+  /* -------------------------------------------------------
+    Wrap:
+  -------------------------------------------------------- */
+
+  .ideal-tabs-wrap {
+    .clearfix;
+    margin-bottom: 2em;
+    border-radius: @border-radius;
+    .ui-color(@bg, black);
+  }
+
+
+  /* -------------------------------------------------------
+    Tabs:
+  -------------------------------------------------------- */
+
+  .ideal-tabs-tab {
+    float: left;
+    position: relative;
+    padding: 0 1.5em 0 2.5em;
+    height: @height;
+    line-height: @height;
+    cursor: pointer;
+    background: @tab-bg;
+    color: @tab-text;
+    font-size: @small-font-size;
+    &:first-child {
+      padding-left: 1.5em;
+      border-radius: @border-radius 0 0 @border-radius;
+    }
+    &:after { .arrow; }
+    &:before { .separator; }
+    .transition(padding-right .15s ease-in-out);
+    span {
+      // Fix clickable area due to high z-index
+      // in before and after pseudo elements
+      position: relative;
+      padding-left: 2em;
+      margin-left: -2em;
+      display: inline-block;
+      height: 100%;
+      z-index: 2;
+    }
+  }
+  .ideal-tabs-tab:hover {
+    background: @tab-focus;
+    color: @tab-focus-text;
+    &:after {
+      border-left-color: @tab-focus;
+    }
+  }
+  .ideal-tabs-tab-active,
+  .ideal-tabs-tab-active:hover {
+    color: @tab-selected-text;
+    background: @tab-selected-bg;
+    font-weight: bold;
+    padding-right: 3.5em;
+    cursor: default;
+    &:hover { text-decoration: none; }
+    &:after { border-left-color: @tab-selected-bg; }
+  }
+
+  /* -------------------------------------------------------
+    Icon:
+  -------------------------------------------------------- */
+
+  .ideal-tabs-tab-counter { display: none; }
+  .ideal-tabs-tab-active .ideal-tabs-tab-counter {
+    @h: floor(@font-size*1.3);
+    display: block;
+    position: absolute;
+    right: @h/2;
+    top: 50%;
+    margin-top: -@h/2;
+    height: @h;
+    width: @h;
+    border: 1px solid @tab-counter;
+    color: @tab-counter;
+    line-height: @h;
+    text-align: center;
+    font-size: @font-size * 0.70;
+    font-style: normal;
+    border-radius: 10em;
+  }
+  .ideal-tabs-tab-active .ideal-tabs-tab-counter-zero {
+    color: @tab-counter-zero;
+    border-color: @tab-counter-zero;
+  }
+}
+
+/* -------------------------------------------------------
+  Responsive:
+-------------------------------------------------------- */
+
+.ideal-form.stack .ideal-tabs {
+  .ideal-tabs-wrap {
+    .responsiveWidth;
+    background: none;
+  }
+  .ideal-tabs-tab {
+    clear: both;
+    width: 100%;
+    padding-left: 1.5em;
+    &:after, &:before { border: 0; }
+    border-bottom: @border-width solid darken(@tab-bg, 30%);
+    border-top: 1px solid white;
+    &:first-child {
+      border-radius: @border-radius @border-radius 0 0;
+    }
+    &:last-child {
+      border-bottom: 0;
+      border-radius: 0 0 @border-radius @border-radius;
+    }
+  }
+}

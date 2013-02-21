@@ -1,0 +1,132 @@
+/*--------------------------------------------------------
+  Helpers
+------------------------------------------------------- */
+
+.box-sizing() {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.reset() {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  text-decoration: none;
+  font-size: 100%;
+  list-style: none;
+  background: none;
+  .box-shadow(0);
+}
+.clearfix() {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/*-------------------------------------------------------
+  CSS3
+------------------------------------------------------- */
+
+  .gradient (@startColor, @endColor) when (@css3-effects) {
+    background-color: @startColor;
+    background-repeat: no-repeat;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+    background-image: -webkit-linear-gradient(@startColor, @endColor);
+    background-image: -moz-linear-gradient(@startColor, @endColor);
+    background-image: -o-linear-gradient(top,  @startColor,  @endColor);
+    filter: e(%("progid:DXImageTransform.Microsoft.Gradient(StartColorStr='%d', EndColorStr='%d', GradientType=0)",@startColor,@endColor));
+    -ms-filter: %("progid:DXImageTransform.Microsoft.gradient(startColorStr='%d', EndColorStr='%d', GradientType=0))",@startColor,@endColor);
+  }
+  .gradient(@startColor, @endColor) when not (@css3-effects) {
+    background-color: @endColor;
+  }
+  .box-shadow (@shadow1, @shadow2: transparent 0 0 0) when (@css3-effects) {
+    -moz-box-shadow: @shadow1, @shadow2;
+    -webkit-box-shadow: @shadow1, @shadow2;
+    box-shadow: @shadow1, @shadow2;
+  }
+  .box-shadow(@string, @shadow2: transparent 0 0 0) when not (@css3-effects) {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .transition(@string: all .30s ease-in-out) when (@css3-anim) {
+    -webkit-transition: @string;
+    -moz-transition: @string;
+    -ms-transition: @string;
+    -o-transition: @string;
+  }
+  .transition(@string) when not (@css3-anim) {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+  }
+  .no-user-select() {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  /* IE8 hack :after pseudo force refresh */
+  .ie-refresh() {
+    content: ".";
+    line-height: 0;
+    text-indent: -9999px;
+  }
+
+/*--------------------------------------------------------
+  UI Inputs (select & button)
+------------------------------------------------------- */
+  .ui-input() {
+    font-family: @font-family;
+    @size: floor(@font-size * 2.2);
+    height: @size;
+    line-height: @size;
+    padding: 0 .8em;
+  }
+  .ui-color (@color, @text-color) {
+    .gradient(lighten(@color, 20%), @color);
+    .box-shadow(
+      0 1px 1px rgba(0,0,0,.08),
+      inset 0 @border-width 0 rgba(255,255,255,.5)
+    );
+    border: @border-width solid darken(@color, 20%);
+    border-bottom-color: darken(@color, 30%);
+    border-radius: @border-radius;
+    color: @text-color;
+  }
+  .ui-focus (@color, @text-color) {
+    border: @border-width solid darken(@color, 20%);
+    border-bottom-color: darken(@color, 30%);
+    .gradient(lighten(@color, 20%),@color);
+    color: @text-color;
+  }
+  .ui-active (@color) {
+    background: @color;
+    filter: 0; /* IE !!! */
+    .box-shadow(
+      inset 0 @border-width @border-width*2 rgba(0,0,0,.2),
+      inset 0 4px @border-width*2 rgba(0,0,0,.08)
+    );
+  }
+
+/*--------------------------------------------------------
+  Responsive width
+------------------------------------------------------- */
+
+  .responsiveWidth() {
+    @icon: @icon-size + (@icon-padding * 2);
+    @total: (@input-width + @icon);
+    @percent: (@icon / @total) * 100;
+    width: 100% - @percent !important;
+  }
+
+

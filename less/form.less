@@ -1,0 +1,346 @@
+/* --------------------------------------------------------
+
+  Form:
+
+-------------------------------------------------------- */
+/* --------------------------------------------------------
+  *** PRIVATE ***
+/*------------------------------------------------------ */
+
+  /* jQuery data */
+  @ideal-field-width: @input-width + @error-width + @icon-size + (@icon-padding*2) + @arrow-size + @heading-padding;
+  .ideal-field-width {
+    width: @ideal-field-width;
+  }
+
+/*------------------------------------------------------ */
+
+.ideal-form {
+
+  /* -------------------------------------------------------
+    Global:
+  -------------------------------------------------------- */
+  font-size: @font-size;
+  font-family: @font-family;
+  line-height: @line-height;
+  background: @form-bg;
+  * {
+    .box-sizing;
+    .reset;
+  }
+  .clearfix;
+  .ideal-wrap {
+    float: left;
+    clear: both;
+    position: relative;
+    margin: .5em 0;
+  }
+  .ideal-full-width {
+    width: 100%;
+  }
+  .ideal-wrap:first-child {
+    margin-top: 0;
+  }
+  .ideal-label,
+  .ideal-field {
+    float: left;
+    position: relative;
+  }
+  .ideal-label {
+    top: .4em; /* Aprox. align */
+    max-width: @label-width;
+    margin: 0 1.5em 0 @heading-padding-nobg;
+    text-align: @label-align;
+    color: @label-text;
+  }
+
+  /* -------------------------------------------------------
+    Inputs:
+  -------------------------------------------------------- */
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="number"],
+  input[type="search"],
+  input[type="url"],
+  input[type="tel"],
+  textarea,
+  select {
+    font-size: @font-size;
+    font-family: @font-family;
+    padding: @font-size * .5;
+    width: @input-width;
+    border: @default-border;
+    background: @text-bg;
+    outline: 0;
+    color: @text-text;
+    border-radius: @border-radius;
+    .box-shadow(inset 0 @border-width @border-width * 2 rgba(0,0,0,.15));
+    .transition(background .3s ease-in-out);
+  }
+  textarea {
+    resize: none;
+  }
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin-right: .5em;
+  }
+  /* Hidden inputs */
+  .ideal-hidden { display: none; }
+
+  /* -------------------------------------------------------
+    Buttons:
+  -------------------------------------------------------- */
+  button,
+  input[type="reset"],
+  input[type="submit"] {
+    .ui-input;
+    padding: 0 1.2em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+  }
+  button,
+  select,
+  input[type="reset"],
+  input[type="submit"] {
+    font-size: @small-font-size;
+  }
+
+/* -------------------------------------------------------
+    Headings & descriptions:
+  -------------------------------------------------------- */
+  .ideal-heading {
+    display: block;
+    position: relative;
+    .heading-gradient() when (@css3-effects) { .gradient(@heading-bg, @form-bg) }
+    .heading-gradient() when not (@css3-effects) { .gradient(black, @heading-bg); }
+    .heading-gradient();
+    border-color: @heading-border-color;
+    border-style: @heading-border-style;
+    border-width: @heading-border-width;
+    color: @heading-text;
+    margin: 2em 0 1.2em 0;
+    padding: @heading-padding-nobg 0 @heading-padding 0;
+    border-radius: @heading-border-radius;
+    font-family: @font-family-alt;
+    h1, h2, h3, h4, h5, h6 {
+      display: block;
+      margin: 0;
+      padding: 0 0 .5em 0;
+      font-size: 130%;
+    }
+    p {
+      margin: 0;
+      padding: 0;
+    }
+    h1, h2, h3, h4, h5, h6, p {
+      padding-left: @heading-padding-nobg;
+      padding-right: @heading-padding;
+    }
+  }
+  .ideal-heading.first-child { margin-top: 0; }
+
+/* -------------------------------------------------------
+    Separators:
+  -------------------------------------------------------- */
+  hr { border: 0; }
+  .ideal-separator {
+    margin: 2em 0 1.2em 0;
+    border-color: @sep-border-color;
+    border-style: @sep-border-style;
+    border-width: @sep-border-width;
+  }
+
+  /* -------------------------------------------------------
+    Icons:
+  -------------------------------------------------------- */
+  .ideal-icon {
+    position: absolute;
+    top: 50%;
+    margin-top: -@icon-size/2;
+    right: -(@icon-size + @icon-padding);
+    height: @icon-size;
+    width: @icon-size;
+    background: url("@{validation-sprite}")
+  }
+  textarea ~ .ideal-icon-valid,
+  textarea ~ .ideal-icon-invalid,
+  .ideal-select ~ .ideal-icon-valid,
+  .ideal-select ~ .ideal-icon-invalid,
+  .ideal-radiocheck .ideal-icon-valid,
+  .ideal-radiocheck .ideal-icon-invalid  {
+    top: @font-size/2; /* Aproximation */
+    margin-top: 0;
+  }
+  .ideal-icon-valid {
+    background-position: -@icon-size 0;
+  }
+  .ideal-icon-invalid {
+    background-position: 0 0;
+    cursor: pointer;
+  }
+  .ajax .ideal-icon-invalid {
+    background: url(../less/themes/basic/loading.gif);
+  }
+  /* -------------------------------------------------------
+    Valid & Invalid:
+  -------------------------------------------------------- */
+  .invalid input[type="text"],
+  .invalid input[type="password"],
+  .invalid input[type="email"],
+  .invalid input[type="number"],
+  .invalid input[type="search"],
+  .invalid input[type="url"],
+  .invalid input[type="tel"],
+  .invalid textarea,
+  .invalid select {
+    background: @invalid;
+    color: @invalid-text;
+    border: @invalid-border;
+  }
+  .valid input[type="text"],
+  .valid input[type="password"],
+  .valid input[type="email"],
+  .valid input[type="number"],
+  .valid input[type="search"],
+  .valid input[type="url"],
+  .valid input[type="tel"],
+  .valid textarea,
+  .valid select {
+    background: @valid;
+    color: @valid-text;
+    border: @valid-border;
+  }
+  .ajax input[type="text"],
+  .ajax input[type="password"],
+  .ajax input[type="email"],
+  .ajax input[type="number"],
+  .ajax input[type="search"],
+  .ajax input[type="url"],
+  .ajax input[type="tel"],
+  .ajax textarea,
+  .ajax select { 
+    background: @loading;
+    color: @loading-text;
+    border: @loading-border;
+  }
+  .valid textarea,
+  .invalid textarea {
+    color: @text-text;
+    background: @text-bg;
+  }
+
+  /* -------------------------------------------------------
+    Error:
+  -------------------------------------------------------- */
+  .ideal-error {
+    position: absolute;
+    width: @error-width;
+    right: -(@error-width + @icon-size + (@icon-padding * 2));
+    margin-right: -@arrow-size;
+    top: @font-size;
+    z-index: 999;
+    padding: .8em 1.2em;
+    font-size: @small-font-size;
+    .error-gradient() when (@css3-effects) { .gradient(@error-color, lighten(@error-color, 10%)); }
+    .error-gradient() when not (@css3-effects) { .gradient(black, @error-color); }
+    .error-gradient();
+    color: @error-text;
+    border: @border-width solid @error-border;
+    border-bottom: @border-width solid @error-border;
+    .box-shadow(0px @border-width @border-width rgba(0,0,0,0.2));
+    border-radius: 0 @border-radius @border-radius @border-radius;
+  }
+  .ideal-error:after,
+  .ideal-error:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -@arrow-size*2 + @border-width; /* `-1` to fix gap */
+    border-style: solid;
+    border-width: 0 @arrow-size @arrow-size @arrow-size;
+    border-color: transparent;
+    border-right-color: @error-color;
+  }
+  .ideal-error:before {
+    border-right-color: @error-border;
+    left: -@arrow-size*2;
+    margin-left: -@border-width;
+    top: -@border-width;
+  }
+  /* Full width */
+  .ideal-full-width .ideal-error {
+    right: 0;
+    margin-right: @arrow-size*2;
+    border-radius: @border-radius 0 @border-radius @border-radius;
+    &:after {
+      left: 100%;
+      margin-left: -1px; /*fix gap*/
+      border-color: transparent;
+      border-left-color: @error-color;
+    }
+  }
+  .ideal-error.hidden {
+    visibility: hidden;
+  }
+  /* ----------------------------------------------------
+    Responsive:
+  ------------------------------------------------------ */
+  &.stack {
+    .ideal-field,
+    .ideal-full-width,
+    .ideal-heading,
+    .ideal-separator,
+    .ideal-error {
+      .responsiveWidth;
+    }
+    .ideal-wrap,
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="number"],
+    input[type="search"],
+    input[type="url"],
+    input[type="tel"],
+    textarea,
+    select {
+      width: 100% !important;
+      max-width: @input-width * 1.5;
+    }
+    .ideal-label {
+      text-align: left;
+      padding-bottom: .5em;
+      top: 0;
+    }
+    .ideal-error {
+      position: relative;
+      float: left;
+      clear: left;
+      right: 0;
+      margin-right: 0;
+      top: 100%;
+      margin-top: .4em;
+      border-radius: @border-radius;
+    }
+    .ideal-error:after,
+    .ideal-error:before {
+      .ie-refresh;
+      position: absolute;
+      top: 0;
+      margin-top: -@arrow-size*2;
+      left: 50%;
+      z-index: 1;
+      margin-left: -@arrow-size;
+      border-style: solid;
+      border-width: @arrow-size;
+      border-color: transparent;
+      border-bottom-color: @error-color
+    }
+    .ideal-error:before {
+      margin-top: -(@arrow-size*2) - @border-width;
+      z-index: -1;
+      border-bottom-color: @error-border;
+    }
+    .ideal-error.hidden { position: absolute; }
+  }
+}

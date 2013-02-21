@@ -1,0 +1,193 @@
+/* --------------------------------------------------------
+
+  Custom select:
+
+-------------------------------------------------------- */
+
+  @select-item-height: floor(@font-size * 1.7);
+  @select-max-height: @select-item-height * @select-scroll-size; /* `auto` for no scrollbar */
+  @select-arrow-size: @arrow-size / 1.7;
+
+  /* --------------------------------------------------------
+    Mixins:
+  -------------------------------------------------------- */
+
+  .drop-arrow() {
+    @size: @select-arrow-size;
+    content: "";
+    position: absolute;
+    right: @size*1.5;
+    top: 50%;
+    margin-top: -(@size - @size/1.5);
+    border-style: solid;
+    border-width: @size;
+  }
+
+  /* --------------------------------------------------------
+    Global:
+  -------------------------------------------------------- */
+
+  .ideal-select,
+  .ideal-select * {
+    padding: 0;
+    margin: 0;
+  }
+  .ideal-select,
+  .ideal-select-sub {
+    list-style: none;
+    .no-user-select;
+  }
+  .ideal-select-title,
+  .ideal-select-item {
+    .ui-input;
+    display: block;
+    cursor: pointer;
+  }
+  .ideal-select {
+    /* Let Ideal Forms auto adjust the width? */
+    .auto-width() when (@select-auto-width) { width: @input-width; }
+    .auto-width() when not (@select-auto-width) {}
+    .auto-width();
+    font-size: @small-font-size;
+  }
+
+  /* --------------------------------------------------------
+    Title:
+  -------------------------------------------------------- */
+
+  .ideal-select-title {
+    .ui-color(@select-title, @select-title-text);
+    padding-right: 3em;
+    position: relative;
+    &:before {
+      @size: ((@select-arrow-size*1.5)*3);
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      z-index: 1;
+      width: @size;
+      background: @select-title;
+      border-left: @border-width solid darken(@select-title, 20%);
+      border-radius: 0 @border-radius @border-radius 0;
+      .box-shadow(
+        inset 0 @border-width 0 rgba(255,255,255,.5),
+        -1px 0 0 0 lighten(@select-title, 20%)
+      );
+    }
+    &:after {
+      .drop-arrow;
+      z-index: 1;
+      border-color: transparent;
+      border-top-color: darken(@select-title, 40%);
+    }
+  }
+  .ideal-select-focus .ideal-select-title,
+  .ideal-select-title:hover {
+    .ui-focus(@select-focus, @select-title-focus-text);
+    &:before {
+      background: @select-focus;
+      border-left: @border-width solid darken(@select-focus, 20%);
+      .box-shadow(
+        inset 0 @border-width 0 rgba(255,255,255,.5),
+        -1px 0 0 0 lighten(@select-focus, 20%)
+      );
+    }
+    &:after {
+      border-top-color: darken(@select-focus, 40%);
+    }
+  }
+  /* Menu open */
+  .ideal-select-open .ideal-select-title {
+    border-radius: @border-radius @border-radius 0 0;
+    &:after {
+      @size: @select-arrow-size;
+      .drop-arrow;
+      border-color: transparent;
+      border-bottom-color: @select-focus-arrow;
+      margin-top: -(@size + @size/2);
+    }
+  }
+
+  /* --------------------------------------------------------
+    Options:
+  -------------------------------------------------------- */
+
+  .ideal-select-sub {
+    .select-scroll() when (@select-scroll){
+      max-height: @select-max-height;
+      height: @select-max-height~'\9'; /* Fix IE */
+      overflow-y: scroll;
+    }
+    .select-scroll() when not (@select-scroll){}
+    .select-scroll;
+    position: absolute;
+    min-width: 100%; /* `min-width` instead of `width` to fix IE9 bug */
+    z-index: 2;
+    color: @select-sub-text;
+    border: @border-width solid darken(@select-sub-bg, 30%);
+    border-top: 0;
+    border-radius: 0 0 @border-radius @border-radius;
+    .gradient(@select-sub-bg, lighten(@select-sub-bg, 10%));
+    .box-shadow(0 @border-width @border-width rgba(0,0,0,.2));
+  }
+  .ideal-select-item {
+    @size: floor(@select-item-height);
+    height: @size;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: @size;
+    .box-shadow(none);
+    /* Last item fix round border */
+    &:last-child {
+      border-radius: 0 0 @border-radius @border-radius;
+    }
+  }
+  /* Option selected/hover */
+  .ideal-select-item:hover,
+  .ideal-select-item-selected {
+    .gradient(@select-sub-selected, lighten(@select-sub-selected, 10%));
+    .box-shadow(inset 0 @border-width @border-width*2 rgba(0,0,0,.3));
+    color: @select-sub-selected-text;
+  }
+
+  /* --------------------------------------------------------
+    List mode:
+  -------------------------------------------------------- */
+  .ideal-select-list {
+    width: auto;
+
+    &.ideal-select-focus .title:after
+    .ideal-select-title:after,
+    .ideal-select-title:before,
+    .ideal-select-title:hover {
+      .ie-refresh;
+      border: 0;
+      .box-shadow(inset 0 @border-width 0 rgba(255,255,255,.5));
+      background: none;
+    }
+    &.ideal-select-open .ideal-select-title,
+    .ideal-select-title {
+      border-radius: @border-radius @border-radius 0 0;
+      &:after, &:before {
+        .ie-refresh;
+        border: 0;
+        .box-shadow(inset 0 @border-width 0 rgba(255,255,255,.5));
+        background: none;
+      }
+    }
+    .ideal-select-sub {
+      /* Fix IE8 adding 1px to scrollbar */
+      min-width: auto~'\9';
+      width: 100% ~'\9';
+      position: relative;
+    }
+  }
+  /* --------------------------------------------------------
+    Responsive:
+  -------------------------------------------------------- */
+  .ideal-form.stack .ideal-select-list {
+    z-index: 0;
+    width: 100%;
+  }

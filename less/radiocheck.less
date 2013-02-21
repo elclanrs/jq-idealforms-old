@@ -1,0 +1,60 @@
+/* --------------------------------------------------------
+
+  Custom radio & check:
+
+-------------------------------------------------------- */
+  .ideal-radiocheck {
+    .auto-width() when (@radiocheck-auto-width) { min-width: @input-width; }
+    .auto-width() when not (@radiocheck-auto-width) {}
+    .auto-width();
+    max-width: @ideal-field-width;
+    position: relative;
+    padding: 1.6em 0;
+    font-size: @small-font-size;
+    color: @radiocheck-text;
+    border-radius: @border-radius;
+    border: @radiocheck-bg-border;
+    .gradient(@radiocheck-bg, lighten(@radiocheck-bg, 20%));
+    label, input { cursor: pointer; }
+    label {
+      .transition(~"background .15s ease-in-out, color .15s ease-in-out, border .15s ease-in-out");
+      float: left;
+      clear: both;
+      margin: 0 1em;
+      padding: .4em .8em;
+      border: @border-width solid transparent;
+      border-radius: @border-radius;
+    }
+    .ideal-radiocheck-label {
+      padding-left: @radiocheck-icon-width*2;
+    }
+  }
+  .ideal-check,
+  .ideal-radio {
+    .no-user-select;
+    position: absolute;
+    margin-left: -@radiocheck-icon-width*1.5;
+    background: url("@{radiocheck-sprite}") left top no-repeat;
+    width: @radiocheck-icon-width;
+    height: @radiocheck-icon-height;
+  }
+  .ideal-radio { background-position: left bottom; }
+  .ideal-check.focus { background-position: -@radiocheck-icon-width 0; }
+  .ideal-radio.focus { background-position: -@radiocheck-icon-width bottom; }
+  .ideal-check.checked { background-position: -@radiocheck-icon-width*2 0; }
+  .ideal-radio.checked { background-position: -@radiocheck-icon-width*2 bottom; }
+  .ideal-check.checked.focus { background-position: -@radiocheck-icon-width*3 0; }
+  .ideal-radio.checked.focus { background-position: -@radiocheck-icon-width*3 bottom; }
+
+  // Full width
+  .ideal-full-width .ideal-radiocheck {
+    max-width: 100%;
+    width: 100%;
+  }
+
+/* --------------------------------------------------------
+  Responsive:
+-------------------------------------------------------- */
+.ideal-form.stack .ideal-radiocheck {
+  min-width: 0;
+}

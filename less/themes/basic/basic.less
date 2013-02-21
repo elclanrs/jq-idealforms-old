@@ -1,0 +1,144 @@
+/* --------------------------------------------------------
+
+  User Config:
+
+/*------------------------------------------------------ */
+
+/* --------------------------------------------------------
+  Layout:
+  * keep same units
+/*------------------------------------------------------ */
+
+  @font-size: 15px;
+  @font-family: sans-serif;
+  @font-family-alt: sans-serif; // For headings
+  @small-font-size: 85%;
+  @input-width: @font-size * 15;
+  @label-align: left;
+  @label-width: auto; /* `auto` for auto-adjust */
+  @border-width: 1px;
+  @border-radius: 3px;
+  @heading-padding: @font-size;
+  @heading-padding-nobg: 0; // Set to `0` to align left without background color
+  @css3-anim: true;
+  @css3-effects: true; // box-shadow and gradients
+
+/*--------------------------------------------------------
+  Easy Theme:
+------------------------------------------------------- */
+
+  @easy-form: white;
+  @easy-label: #222;
+  @easy-heading: #1f4f73;
+  @easy-ui: #e5e5e5; // UI elements
+  @easy-ui-focus: #D5E3ED;
+  @easy-border: #aaa;
+  @easy-invalid: #FAEBEB;
+  @easy-valid: #EDF7FC;
+  @easy-loading: #faf9e8;
+  @easy-error: #285d85;
+
+/*--------------------------------------------------------
+  Advanced Theme:
+------------------------------------------------------- */
+
+  /* Form */
+  @form-bg: @easy-form;
+  @label-text: @easy-label;
+
+  /* Tabs */
+  @tabs-bg: @easy-ui;
+  @tab-bg: @tabs-bg;
+  @tab-focus: @easy-ui-focus;
+  @tab-focus-text: darken(@tab-focus, 60%);
+  @tab-text: darken(@tab-bg, 60%);
+  @tab-selected-bg: lighten(@tab-bg, 20%);
+  @tab-selected-text: darken(@valid, 50%);
+  @tab-counter: darken(@easy-invalid, 40%);
+  @tab-counter-zero: @tab-selected-text;
+
+  /* Validation */
+  @error-color: @easy-error;
+  @error-border: darken(@error-color, 6%);
+  @error-text: lighten(@error-color, 70%);
+  @icon-size: 16px;
+  @validation-sprite: "../less/themes/basic/validation.png";
+
+  /* Separator */
+  @sep-border-color: @easy-border;
+  @sep-border-width: 0 0 @border-width 0;
+  @sep-border-style: solid;
+
+  /* Headings */
+  @heading-text: @easy-heading;
+  @heading-bg: @form-bg;
+  @heading-border-color: @sep-border-color;
+  @heading-border-width: 0 0 @border-width 0;
+  @heading-border-style: @sep-border-style;
+  @heading-border-radius: 0;
+
+  /* Text inputs */
+  @text-bg: white;
+  @text-text: darken(@text-bg, 60%);
+  @default-border: @border-width solid @easy-border;
+  @valid: @easy-valid;
+  @valid-text: darken(@valid, 60%);
+  @valid-border: @border-width solid darken(@valid, 40%);
+  @invalid: @easy-invalid;
+  @invalid-text: darken(@invalid, 60%);
+  @invalid-border: @border-width solid darken(@invalid, 40%);
+  @loading: @easy-loading;
+  @loading-text: darken(@loading, 60%);
+  @loading-border: @border-width solid darken(@loading, 40%);
+
+  /* Buttons */
+  @button: @easy-ui;
+  @button-focus: @easy-ui-focus;
+  @button-text: darken(@button, 60%);
+  @button-focus-text: darken(@button-focus, 60%);
+
+  /* Select */
+  @select-title: @button;
+  @select-sub-bg: white;
+  @select-sub-text: darken(@select-sub-bg, 60%);
+  @select-sub-selected: @error-color;
+  @select-sub-selected-text: white;
+  @select-focus: @button-focus;
+  @select-title-text: @button-text;
+  @select-title-focus-text: @button-focus-text;
+  @select-arrow: darken(@select-title, 40%);
+  @select-focus-arrow: darken(@select-focus, 40%);
+  @select-scroll: true;
+  @select-scroll-size: 7; /* 7 items in scroll view */
+
+  /* Radio & Checkbox */
+  @radiocheck-bg: #fff;
+  @radiocheck-text: #666;
+  @radiocheck-bg-border: @border-width solid @easy-border;
+  @radiocheck-sprite: "../less/themes/basic/radiocheck.png";
+  @radiocheck-icon-width: 20px;
+  @radiocheck-icon-height: 20px;
+
+  /* Datepicker */
+  @datepicker-border: @border-width solid @easy-border;
+  @datepicker-bg: white;
+  @datepicker-day-text: #999;
+  @datepicker-day-selected-text: #1a8fc9;
+  @datepicker-weekday-text: #222;
+  @datepicker-monthyear-text: #222;
+  @datepicker-sprite: "../less/themes/basic/datepicker.png";
+  @datepicker-icon-size: 16px;
+
+/*--------------------------------------------------------
+  Extra:
+  Edit these variables wisely...
+------------------------------------------------------- */
+
+  @line-height: @font-size * 1.5;
+  @icon-padding: floor(@icon-size/2);
+  @error-width: floor(@input-width/1.2);
+  @arrow-size: floor(@font-size/1.4);
+  @radiocheck-auto-width: true;
+  @select-auto-width: true;
+  @select-valid-border: none;
+  @select-invalid-border: none;

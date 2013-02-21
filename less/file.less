@@ -1,0 +1,32 @@
+/* --------------------------------------------------------
+
+  Custom file input:
+
+-------------------------------------------------------- */
+
+  .ideal-file-wrap {
+    width: @input-width;
+  }
+  input.ideal-file-filename {
+    padding-right: @font-size * 5 !important; // Aprox
+    height: @font-size * 2.2; // Aprox
+  }
+  label.ideal-file-upload,
+  button.ideal-file-upload {
+    .ui-input;
+    .ideal-button;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    height: @font-size * 2.2; // Aprox
+    border-radius: 0 @border-radius @border-radius 0;
+  }
+
+/* --------------------------------------------------------
+  Responsive:
+-------------------------------------------------------- */
+
+.ideal-form.stack .ideal-file-wrap {
+  width: 100%;
+}
