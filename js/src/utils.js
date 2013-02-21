@@ -164,5 +164,8 @@ var Utils = {
     }
 
     return markup
+  },
+  escapeRegex: function( str ) {
+    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")
   }
 }

@@ -188,6 +188,9 @@ var Utils = {
     }
 
     return markup
+  },
+  escapeRegex: function( str ) {
+    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")
   }
 }
 
@@ -223,7 +226,7 @@ $.fn.idealTabs = function (container) {
         .index()
     },
     getTabIdxByName: function (name) {
-      var re = new RegExp(name, 'i')
+      var re = new RegExp(Utils.escapeRegex(name), 'i')
       var $tab = $tabs.filter(function () {
         return re.test($(this).text())
       })
