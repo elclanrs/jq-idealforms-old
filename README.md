@@ -18,6 +18,7 @@
 
 ### Updates:
 **02/21/13**
+* Fix #116 tab issue by escaping regex
 * Fix overlapping selects (z-index issues)
 
 **01/28/13**
