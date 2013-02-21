@@ -17,8 +17,11 @@
 * Localization
 
 ### Updates:
+**02/21/13**
+* Fix overlapping selects (z-index issues)
+
 **01/28/13**
-* Fix z-index issues with datepicker. 
+* Fix z-index issues with datepicker.
 
 [Update history](#update-history)
 
@@ -386,13 +389,13 @@ echo json_encode(!in_array($_POST['username'], $usernames));
 'username': {
   filters: 'required username ajax',
   data: {
-    ajax: { 
+    ajax: {
       url: 'validate.php',
       _success: function( resp, text, xhr ) {
         // The request was succesful
       },
       _error: function( xhr, text, error ) {
-        // The request failed  
+        // The request failed
       },
       // Other $.ajax methods
     }
@@ -429,9 +432,9 @@ $.extend( $.idealforms.filters, {
     regex: /regularexpression/,
     error: 'My custom error'
   },
-  another: { 
+  another: {
   /**
-   * @param {Object} inputData Contains the jQuery input as [input] and 
+   * @param {Object} inputData Contains the jQuery input as [input] and
    * the user options set by the user on that input as [userOptions]
    * @param {String} value The value of the input
    */
@@ -452,7 +455,7 @@ $.extend( $.idealforms.flags, {
    * @param {String} event The event that was triggered on the input: focus, blur, change, keyup
    */
   custom: function( input, event ){
-    if ( event === 'keyup' ) { 
+    if ( event === 'keyup' ) {
       console.log( input.val() )
     }
   }
@@ -480,7 +483,7 @@ var myOps = {
 $myform.setOptions( myOps )
 ```
 
-All options are exposed on `$myform.opts` so you can manually edit them if needed. Make sure to [reload](#reload) the form when doing this.  
+All options are exposed on `$myform.opts` so you can manually edit them if needed. Make sure to [reload](#reload) the form when doing this.
 
 **Note:** The `disableCustom` option cannot be modified after initialization.
 
@@ -801,13 +804,13 @@ Update History:
 --------------
 
 **11/29/12**
-* Add flags to grunt build and fix globalFlags not loading. 
+* Add flags to grunt build and fix globalFlags not loading.
 
 **11/21/12**
-* Prevent modifier keys ( ctrl, meta, super... ) in select menu to avoid regexp error. 
+* Prevent modifier keys ( ctrl, meta, super... ) in select menu to avoid regexp error.
 
 **11/01/12**
-* Refactor custom file because of bug that prevented IE from submitting the file. 
+* Refactor custom file because of bug that prevented IE from submitting the file.
 
 **10/24/12**
 * Fix serious bug in `_adjust` that caused weird behaviors with some methods.
@@ -822,14 +825,14 @@ Update History:
 * Restore flags, big regression, ooops!
 * Fix some undefined errors with non-existent flags and filters
 
-**10/09/12**  
+**10/09/12**
 * New [ajax](#ajax) filter
 * Sprite for validation icons
 
-**10/07/12**  
+**10/07/12**
 * Better `number` filter
 
-**10/02/12**  
+**10/02/12**
 * use `data-ideal` instead of class
 * cleanup and optimize radiocheck.js
 * fix datepicker undefined error
