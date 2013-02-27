@@ -17,12 +17,8 @@
 * Localization
 
 ### Updates:
-**02/21/13**
-* Fix #116 tab issue by escaping regex
-* Fix overlapping selects (z-index issues)
-
-**01/28/13**
-* Fix z-index issues with datepicker.
+**02/26/13**
+Update grunt to 0.4.0 and fix alignment issues css
 
 [Update history](#update-history)
 
@@ -803,6 +799,12 @@ Radius for round corners.
 
 Update History:
 --------------
+**02/21/13**
+* Fix #116 tab issue by escaping regex
+* Fix overlapping selects (z-index issues)
+
+**01/28/13**
+* Fix z-index issues with datepicker.
 
 **11/29/12**
 * Add flags to grunt build and fix globalFlags not loading.
