@@ -17,7 +17,7 @@
 * Localization
 
 ### Updates:
-**02/26/13**
+**02/26/13**  
 Update grunt to 0.4.0 and fix alignment issues css
 
 [Update history](#update-history)
