@@ -265,7 +265,7 @@ $.extend( IdealForms.prototype, {
     }
 
     // Generate markup for current element type
-    idealElements[ elementType ] ? idealElements[ elementType ]() : $.noop()
+    if ( idealElements[ elementType ] ) idealElements[ elementType ]()
 
     $error.add( $valid ).add( $invalid ).hide() // Start fresh
 
