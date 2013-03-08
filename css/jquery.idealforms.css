@@ -1085,8 +1085,8 @@ textarea {
 .ideal-check.checked {
   background-position: -40px 0;
 }
-.ideal-check.checked {
-  background-position: -40px 0;
+.ideal-radio.checked {
+  background-position: -40px bottom;
 }
 .ideal-check.checked.focus {
   background-position: -60px 0;
