@@ -91,8 +91,16 @@
         <section name="Step 2">
           <div>
             <h2>Options:</h2>
-            <p>Wow, nice radios and checkboxes!</p>
+            <p>Telephones: We need at least 2 phones(to verify your identity). You can choose the ones you like most</p>
           </div>
+		  <div id="telephones">
+            <label>Telephones: We need at least 2 phones </label>
+            <div><label>Work Phone Number:</label><input id="tel1" name="tels[]" type="text"/></div>
+            <div><label>Work Cell Number:</label><input id="tel2" name="tels[]" type="text"/></div>
+            <div><label>Home Phone Number:</label><input id="tel3" name="tels[]" type="text"/></div>
+            <div><label>Home Cell Number:</label><input id="tel4" name="tels[]" type="text"/></div>
+          </div>
+		  
           <div id="languages">
             <label>Languages:</label>
             <label><input type="checkbox" name="langs[]" value="English"/>English</label>
@@ -230,8 +238,14 @@
         filters: 'extension',
         data: { extension: ['jpg'] }
       },
-
-      'comments': {
+	'tels[]': {
+		filters: 'required_amount mincount',
+		data: { min: 2},
+		errors: {
+			min: 'Fill at least 2 phone numbers.'
+		}
+	  },
+	  'comments': {
         filters: 'min max',
         data: { min: 50, max: 200 }
       },
