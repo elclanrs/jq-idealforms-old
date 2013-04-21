@@ -823,7 +823,8 @@ $.idealforms.errors = {
   equalto: 'Must be the same value as <strong>"{0}"</strong>',
   extension: 'File(s) must have a valid extension. <em>(e.g. "{0}")</em>',
   ajaxSuccess: '<strong>{0}</strong> is not available.',
-  ajaxError: 'Server error...'
+  ajaxError: 'Server error...',
+  min_count: 'There must be at least {0} filled fields'
 
 }
 
@@ -837,6 +838,11 @@ var getFilters = function() {
 
     required: {
       regex: /.+/,
+      error: $.idealforms.errors.required
+    },
+	
+	required_amount: {
+      regex: /.*/,
       error: $.idealforms.errors.required
     },
 
@@ -901,6 +907,23 @@ var getFilters = function() {
         }
         this.error = $.idealforms.errors.minChar.replace( '{0}', min )
         return value.length >= min
+      }
+    },
+	
+	mincount: {
+      regex: function( input, value ) {
+        var $input = input.input;
+        var $min = input.userOptions.data.min;
+		this.error = $.idealforms.errors.minOption.replace( '{0}', $min );
+		var $filled=[];
+		var $array_name="[name="+input.input.attr('name').replace('[','\\[').replace(']','\\]')+"]";
+		$.each($($array_name),function(index,value){
+			if($(this).val()!=""){
+				$filled.push($(this).val());
+			}
+		});
+		return $filled.length >= $min;
+		
       }
     },
 
@@ -1517,7 +1540,7 @@ $.extend( IdealForms.prototype, {
         var error = ''
 
         // If field is empty and not required
-        if ( !value && filter !== 'required' ) {
+        if ( !value && filter !== 'required' && filter !== 'required_amount') {
           resetError()
           return false
         }
