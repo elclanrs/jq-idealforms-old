@@ -18,7 +18,7 @@ $.extend($.idealforms.errors, {
   minOption: 'Selecciona al menos <strong>{0}</strong> opciones.',
   maxChar: 'No puede contener más de <strong>{0}</strong> caracteres.',
   maxOption: 'No puede haber más de <strong>{0}</strong> opciones seleccionadas.',
-  range: 'Debe ser un número entre {0} and {1}.',
+  range: 'Debe ser un número entre {0} y {1}.',
   date: 'Debe ser una fecha válida. <em>(e.g. {0})</em>',
   dob: 'Debe ser una fecha de nacimiento válida.',
   exclude: '"{0}" no está disponible.',
