@@ -83,7 +83,7 @@ Setup:
 * Load `js/min/jquery.idealforms.min.js` plugin
 * Load `css/jquery.idealforms.css` stylesheet
 * Load [jQuery UI](http://jqueryui.com/) for datepicker support
-* Replace your document's opening `<html>` tag with the following conditional comments. This will load the appropiate fixes for all supported IE versions:
+* Replace your document's opening `<html>` tag with the following conditional comments. This will load the appropriate fixes for all supported IE versions:
 
 ```html
 <!--[if IE 8]> <html class="ie8" lang="en"> <![endif]-->
@@ -391,7 +391,7 @@ echo json_encode(!in_array($_POST['username'], $usernames));
     ajax: {
       url: 'validate.php',
       _success: function( resp, text, xhr ) {
-        // The request was succesful
+        // The request was successful
       },
       _error: function( xhr, text, error ) {
         // The request failed
